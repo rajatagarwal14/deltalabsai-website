@@ -34,12 +34,12 @@ async function saveRetargetLead(email, name, industry, score) {
 // Variant B (treatment): benefit-led headline + urgency CTA
 const AB_VARIANTS = {
   A: {
-    pageTitle: "Free AI Business Diagnostic — 9-Dimension Health Score",
-    ctaLabel: "Submit & Book Your Discovery Call",
+    pageTitle: "Unlock Your AI Potential: Get a Free Diagnostic & Custom Roadmap",
+    ctaLabel: "Start My Free AI Diagnostic",
   },
   B: {
-    pageTitle: "See Exactly Where AI Can 10x Your Business",
-    ctaLabel: "Get My Free AI Roadmap →",
+    pageTitle: "Unlock Your AI Potential: Get a Free Diagnostic & Custom Roadmap",
+    ctaLabel: "Start My Free AI Diagnostic",
   },
 };
 
