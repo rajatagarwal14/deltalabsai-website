@@ -1117,13 +1117,13 @@ Don't let another quarter go by operating in chaos. Get clear on where you're go
   },
   {
     slug: "ai-automations-small-business",
-    title: "7 AI Automations for Small Business Owners (No-Code, Set Up in Hours)",
+    title: "AI Automations for Small Business: Boost Efficiency & Growth",
     subtitle: "Turn hours of manual work into frictionless workflows — no coding or developer required",
     category: "AI & Automation",
     date: "February 14, 2026",
     readTime: "9 min read",
     keywords: ["AI for small business", "business automation", "workflow automation", "AI automation tools", "small business automation", "process automation"],
-    description: "7 specific AI automations you can implement in your small business this week. No coding required. Tools, setup guide, and ROI expectations included.",
+    description: "Discover how AI automations can transform your small business. Learn practical strategies to save time, reduce costs, and accelerate growth.",
     sections: [
       {
         heading: null,
