@@ -22,8 +22,17 @@ function F({ children, d = 0, style = {} }) {
   return <div ref={r} style={{ opacity: v ? 1 : 0, transform: v ? "translateY(0)" : "translateY(20px)", transition: `all 0.6s ease ${d}s`, ...style }}>{children}</div>;
 }
 
-function fmt(n) {
-  return new Intl.NumberFormat("en-IN", { style: "currency", currency: "INR", maximumFractionDigits: 0 }).format(n);
+const CURRENCIES = {
+  USD: { code: "USD", locale: "en-US", symbol: "$",   perApptDefault: 80,   apptMin: 20,  apptMax: 500,  apptStep: 5 },
+  AED: { code: "AED", locale: "en-AE", symbol: "AED", perApptDefault: 300,  apptMin: 50,  apptMax: 2000, apptStep: 25 },
+  AUD: { code: "AUD", locale: "en-AU", symbol: "A$",  perApptDefault: 120,  apptMin: 30,  apptMax: 800,  apptStep: 10 },
+  GBP: { code: "GBP", locale: "en-GB", symbol: "£",   perApptDefault: 60,   apptMin: 20,  apptMax: 500,  apptStep: 5 },
+  SGD: { code: "SGD", locale: "en-SG", symbol: "S$",  perApptDefault: 100,  apptMin: 25,  apptMax: 700,  apptStep: 5 },
+  INR: { code: "INR", locale: "en-IN", symbol: "₹",   perApptDefault: 1800, apptMin: 500, apptMax: 8000, apptStep: 100 },
+};
+function fmt(n, curCode = "USD") {
+  const c = CURRENCIES[curCode] || CURRENCIES.USD;
+  return new Intl.NumberFormat(c.locale, { style: "currency", currency: c.code, maximumFractionDigits: 0 }).format(n);
 }
 
 function SliderInput({ label, min, max, step, value, onChange, prefix = "", suffix = "" }) {
@@ -79,7 +88,7 @@ async function saveLead(data) {
         industry: "dental",
         source: "no_show_calculator",
         status: "warm",
-        notes: `No-show calculator lead. Monthly loss: ₹${data.monthlyLoss.toLocaleString()}. Annual loss: ₹${data.annualLoss.toLocaleString()}. Recovery potential: ₹${data.recovery.toLocaleString()}/mo. Inputs: ${data.apptPerDay} appts/day, ₹${data.avgRevenue} avg revenue, ${data.noShowRate}% no-show rate.`,
+        notes: `No-show calculator lead (${data.cur || "USD"}). Monthly loss: ${data.monthlyLoss.toLocaleString()}. Annual loss: ${data.annualLoss.toLocaleString()}. Recovery potential: ${data.recovery.toLocaleString()}/mo. Inputs: ${data.apptPerDay} appts/day, ${data.avgRevenue} avg revenue, ${data.noShowRate}% no-show rate.`,
         created_at: new Date().toISOString()
       })
     });
@@ -89,8 +98,11 @@ async function saveLead(data) {
 }
 
 export default function NoShowCalculator() {
+  const [cur, setCur] = useState("USD");
+  const CUR = CURRENCIES[cur];
+  const f = (n) => fmt(n, cur);
   const [apptPerDay, setApptPerDay] = useState(12);
-  const [avgRevenue, setAvgRevenue] = useState(1800);
+  const [avgRevenue, setAvgRevenue] = useState(80);
   const [noShowRate, setNoShowRate] = useState(15);
   const [workingDays, setWorkingDays] = useState(26);
 
@@ -110,7 +122,7 @@ export default function NoShowCalculator() {
     e.preventDefault();
     if (!form.email) return;
     setSubmitting(true);
-    await saveLead({ ...form, monthlyLoss, annualLoss, recovery, apptPerDay, avgRevenue, noShowRate });
+    await saveLead({ ...form, cur, monthlyLoss, annualLoss, recovery, apptPerDay, avgRevenue, noShowRate });
     setSubmitting(false);
     setStep("done");
   }
@@ -118,7 +130,7 @@ export default function NoShowCalculator() {
   function handleShare() {
     const url = `https://deltalabsai.com/dental/no-show-calculator`;
     // Viral unit = the personalised shocking number, pre-filled, 1-click, on WhatsApp (India's channel).
-    const msg = `😳 My dental clinic is losing ${fmt(annualLoss)} a year to no-shows — I had no idea.\n\nFound out in 30 seconds with this free calculator. Check your clinic's number 👇\n${url}`;
+    const msg = `😳 My dental clinic is losing ${f(annualLoss)} a year to no-shows — I had no idea.\n\nFound out in 30 seconds with this free calculator. Check your clinic's number 👇\n${url}`;
     // Native share sheet on mobile (lets them pick WhatsApp/anything); WhatsApp deep-link on desktop.
     if (typeof navigator !== "undefined" && navigator.share) {
       navigator.share({ text: msg, url }).catch(() => {});
@@ -160,15 +172,27 @@ export default function NoShowCalculator() {
             SmileCRM by Delta Labs AI
           </div>
           <h1 style={S.h1}>How much revenue are you losing to no-shows?</h1>
-          <p style={S.sub}>Most dental clinics lose ₹1–3 lakhs every year to missed appointments — and don't even know it. Use this free calculator to find your exact number.</p>
+          <p style={S.sub}>Most clinics lose thousands every year to missed appointments — and don't even know it. Use this free calculator to find your exact number.</p>
         </F>
 
         <F d={0.1}>
           <div style={S.card}>
             <div style={S.sectionLabel}>Your Practice</div>
 
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 24 }}>
+              <label style={{ fontSize: 14, color: "#9ca3af", fontWeight: 500 }}>Currency</label>
+              <select value={cur} onChange={e => { const nc = e.target.value; setCur(nc); setAvgRevenue(CURRENCIES[nc].perApptDefault); }}
+                style={{ background: "rgba(255,255,255,0.06)", color: "#e2e8f0", border: "1px solid rgba(255,255,255,0.15)", borderRadius: 8, padding: "8px 12px", fontSize: 14, fontWeight: 600, cursor: "pointer", outline: "none" }}>
+                <option value="USD">$ USD — International</option>
+                <option value="AED">AED — UAE / Gulf</option>
+                <option value="AUD">A$ AUD — Australia</option>
+                <option value="GBP">£ GBP — UK</option>
+                <option value="SGD">S$ SGD — Singapore</option>
+                <option value="INR">₹ INR — India</option>
+              </select>
+            </div>
             <SliderInput label="Appointments per day" min={4} max={40} step={1} value={apptPerDay} onChange={setApptPerDay} />
-            <SliderInput label="Average revenue per appointment" min={500} max={8000} step={100} value={avgRevenue} onChange={setAvgRevenue} prefix="₹" />
+            <SliderInput label="Average revenue per appointment" min={CUR.apptMin} max={CUR.apptMax} step={CUR.apptStep} value={avgRevenue} onChange={setAvgRevenue} prefix={CUR.symbol + " "} />
             <SliderInput label="No-show rate" min={5} max={40} step={1} value={noShowRate} onChange={setNoShowRate} suffix="%" />
             <SliderInput label="Working days per month" min={20} max={30} step={1} value={workingDays} onChange={setWorkingDays} />
           </div>
@@ -178,8 +202,8 @@ export default function NoShowCalculator() {
           <div style={S.sectionLabel}>Your Revenue Loss</div>
           <div style={S.resultsRow}>
             <ResultCard label="No-shows / month" value={Math.round(noShowPerMonth)} sub={`${noShowPerDay.toFixed(1)} per day`} />
-            <ResultCard label="Monthly loss" value={fmt(monthlyLoss)} sub="Revenue walking out the door" />
-            <ResultCard label="Annual loss" value={fmt(annualLoss)} highlight sub="Every year, year after year" />
+            <ResultCard label="Monthly loss" value={f(monthlyLoss)} sub="Revenue walking out the door" />
+            <ResultCard label="Annual loss" value={f(annualLoss)} highlight sub="Every year, year after year" />
           </div>
         </F>
 
@@ -189,10 +213,10 @@ export default function NoShowCalculator() {
               <div style={{ fontSize: 28 }}>💡</div>
               <div>
                 <div style={{ fontSize: 15, fontWeight: 700, color: "#e2e8f0", marginBottom: 6 }}>
-                  SmileCRM could recover {fmt(recovery)}/month for your clinic
+                  SmileCRM could recover {f(recovery)}/month for your clinic
                 </div>
                 <div style={{ fontSize: 13, color: "#94a3b8", lineHeight: 1.6 }}>
-                  Our automated reminder + follow-up system recovers an average of 65% of no-shows within 90 days. That's {fmt(recovery * 12)}/year back in your pocket — on a plan that costs ₹2,999–6,999/month.
+                  Our automated reminder + follow-up system recovers an average of 65% of no-shows within 90 days. That's {f(recovery * 12)}/year back in your pocket — on a flat monthly plan.
                 </div>
               </div>
             </div>
@@ -223,7 +247,7 @@ export default function NoShowCalculator() {
             <div style={S.card}>
               <div style={S.sectionLabel}>Get your personalised recovery plan</div>
               <p style={{ fontSize: 14, color: "#94a3b8", marginBottom: 20 }}>
-                We'll send you a custom PDF showing exactly how SmileCRM would recover <strong style={{ color: "#a5b4fc" }}>{fmt(recovery)}/month</strong> for your clinic — plus a free 30-min consultation.
+                We'll send you a custom PDF showing exactly how SmileCRM would recover <strong style={{ color: "#a5b4fc" }}>{f(recovery)}/month</strong> for your clinic — plus a free 30-min consultation.
               </p>
               <form onSubmit={handleCapture}>
                 <input style={S.input} placeholder="Your name" value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))} required />
@@ -273,7 +297,7 @@ export default function NoShowCalculator() {
             <div style={{ display: "flex", gap: 32, flexWrap: "wrap", marginBottom: 24 }}>
               {[
                 { n: "65%", l: "Average no-show recovery" },
-                { n: "₹2,999", l: "Starting price / month" },
+                { n: "~40%", l: "Fewer no-shows" },
                 { n: "2 weeks", l: "Typical setup time" },
                 { n: "200+", l: "Clinics served" },
               ].map(({ n, l }) => (
