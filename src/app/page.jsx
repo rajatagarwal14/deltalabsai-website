@@ -118,10 +118,11 @@ function AnnouncementBar() {
       gap: 12, flexWrap: "wrap",
     }}>
       <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 14, fontWeight: 600, color: "#fff", display: "flex", alignItems: "center", gap: 8 }}>
-        <span style={{ background: "#FCD34D", color: "#92400E", borderRadius: 100, padding: "2px 10px", fontSize: 11, fontWeight: 800, letterSpacing: "0.04em", textTransform: "uppercase", whiteSpace: "nowrap" }}>Free</span>
-        <span>See exactly where your business is losing money — 3 minutes, instant results.</span>
+        <style>{`@keyframes dl-new-pulse{0%,100%{opacity:1}50%{opacity:.5}}`}</style>
+        <span style={{ background: "#FACC15", color: "#92400E", borderRadius: 100, padding: "2px 10px", fontSize: 11, fontWeight: 800, letterSpacing: "0.04em", textTransform: "uppercase", whiteSpace: "nowrap", animation: "dl-new-pulse 1.4s infinite" }}>New</span>
+        <span>Free No-Show Calculator — see exactly how much revenue your clinic loses, in 30 seconds.</span>
       </span>
-      <a href="/diagnostic" style={{
+      <a href="/dental/no-show-calculator" style={{
         display: "inline-flex", alignItems: "center", gap: 6,
         background: "#fff", color: "#1D4ED8",
         borderRadius: 8, padding: "7px 18px",
@@ -132,7 +133,7 @@ function AnnouncementBar() {
         onMouseEnter={e => { e.currentTarget.style.background = "#EFF6FF"; }}
         onMouseLeave={e => { e.currentTarget.style.background = "#fff"; }}
       >
-        Get Your Free AI Diagnostic <Ic.Arr />
+        Try the Calculator <Ic.Arr />
       </a>
       <button onClick={() => setVisible(false)} aria-label="Dismiss" style={{
         position: "absolute", right: 12, top: "50%", transform: "translateY(-50%)",
