@@ -113,10 +113,10 @@ export default function NoShowCalculator() {
 
   const noShowPerDay = (apptPerDay * noShowRate) / 100;
   const noShowPerMonth = noShowPerDay * workingDays;
-  const monthlyLoss = noShowPerMonth * avgRevenue;
+  const monthlyLoss = Math.round(noShowPerMonth * avgRevenue);
   const annualLoss = monthlyLoss * 12;
   const recoveryRate = 0.65;
-  const recovery = monthlyLoss * recoveryRate;
+  const recovery = Math.round(monthlyLoss * recoveryRate);
 
   async function handleCapture(e) {
     e.preventDefault();
@@ -216,7 +216,7 @@ export default function NoShowCalculator() {
                   SmileCRM could recover {f(recovery)}/month for your clinic
                 </div>
                 <div style={{ fontSize: 13, color: "#94a3b8", lineHeight: 1.6 }}>
-                  Our automated reminder + follow-up system recovers an average of 65% of no-shows within 90 days. That's {f(recovery * 12)}/year back in your pocket — on a flat monthly plan.
+                  Our automated reminder + follow-up system recovers an average of 65% of the revenue you lose to no-shows. That's about {f(recovery * 12)}/year — on a flat monthly plan.
                 </div>
               </div>
             </div>
