@@ -245,7 +245,7 @@ function Hero() {
           </F>
           <F d={0.08}>
             <h1 className="hero-h1" style={{ fontFamily: "Georgia, 'Times New Roman', serif", fontSize: "clamp(38px, 5.6vw, 64px)", fontWeight: 500, lineHeight: 1.06, letterSpacing: "-0.02em", margin: "0 0 24px" }}>
-              We find the revenue leaking out of your business \u2014 and{" "}
+              We find the revenue leaking out of your business — and{" "}
               <em style={{ color: "#60A5FA", fontStyle: "italic" }}>fix it.</em>
             </h1>
           </F>
