@@ -157,11 +157,11 @@ function Nav() {
   return (
     <nav style={{ position: "fixed", top: 44, left: 0, right: 0, zIndex: 150, background: sc ? "rgba(255,255,255,0.97)" : "transparent", backdropFilter: sc ? "blur(12px)" : "none", borderBottom: sc ? "1px solid #E5E7EB" : "none", transition: "all 0.3s" }}>
       <div style={{ maxWidth: 1100, margin: "0 auto", padding: "13px 24px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-        <div onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} style={{ display: "flex", alignItems: "center", gap: 8, cursor: "pointer", color: "#0F172A" }}>
+        <div onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} style={{ display: "flex", alignItems: "center", gap: 8, cursor: "pointer", color: sc ? "#0F172A" : "#FFFFFF" }}>
           <Ic.Delta /><span style={{ fontFamily: "'DM Sans',sans-serif", fontWeight: 700, fontSize: 18, letterSpacing: "-0.02em" }}>Delta Labs AI</span>
         </div>
         <div className="dln" style={{ display: "flex", alignItems: "center", gap: 24 }}>
-          {links.map(([l, id]) => id === "blog" || id === "store" ? <a key={id} href={`/${id}`} style={{ background: "none", border: "none", cursor: "pointer", fontFamily: "'DM Sans',sans-serif", fontSize: 14, fontWeight: 500, color: "#4B5563", transition: "color 0.15s", textDecoration: "none" }} onMouseEnter={e => e.target.style.color = "#2563EB"} onMouseLeave={e => e.target.style.color = "#4B5563"}>{l}</a> : <button key={id} onClick={() => scrollTo(id)} style={{ background: "none", border: "none", cursor: "pointer", fontFamily: "'DM Sans',sans-serif", fontSize: 14, fontWeight: 500, color: "#4B5563", transition: "color 0.15s" }} onMouseEnter={e => e.target.style.color = "#2563EB"} onMouseLeave={e => e.target.style.color = "#4B5563"}>{l}</button>)}
+          {links.map(([l, id]) => { const lc = sc ? "#4B5563" : "#E2E8F0"; return id === "blog" || id === "store" ? <a key={id} href={`/${id}`} style={{ background: "none", border: "none", cursor: "pointer", fontFamily: "'DM Sans',sans-serif", fontSize: 14, fontWeight: 500, color: lc, transition: "color 0.15s", textDecoration: "none" }} onMouseEnter={e => e.target.style.color = "#2563EB"} onMouseLeave={e => e.target.style.color = lc}>{l}</a> : <button key={id} onClick={() => scrollTo(id)} style={{ background: "none", border: "none", cursor: "pointer", fontFamily: "'DM Sans',sans-serif", fontSize: 14, fontWeight: 500, color: lc, transition: "color 0.15s" }} onMouseEnter={e => e.target.style.color = "#2563EB"} onMouseLeave={e => e.target.style.color = lc}>{l}</button>; })}
           <Btn href={FORM} style={{ padding: "9px 20px", fontSize: 13 }}>Free Diagnostic <Ic.Arr /></Btn>
         </div>
         <button className="dlm" onClick={() => setM(!m)} aria-label={m ? "Close menu" : "Open menu"} style={{ background: "none", border: "none", cursor: "pointer", display: "none", color: "#0F172A" }}>{m ? <Ic.X /> : <Ic.Menu />}</button>
@@ -210,10 +210,25 @@ function Radar() {
     dims.forEach((d, i) => { const p = pt(i, R * d.v); svg.appendChild(el("circle", { cx: p[0], cy: p[1], r: 3.5, fill: d.v < 0.5 ? LEAK : ACC })); });
     svg.appendChild(el("circle", { cx, cy, r: 2.5, fill: LBL }));
     if (!reduce) {
-      area.style.transformOrigin = cx + "px " + cy + "px";
+      // Scale-in: transform-box:fill-box is required for transform-origin to work on SVG elements
+      area.style.transformBox = "fill-box";
+      area.style.transformOrigin = "center";
       area.style.transform = "scale(0)";
       area.style.transition = "transform 1s cubic-bezier(0.22,1,0.36,1)";
-      requestAnimationFrame(() => { setTimeout(() => { area.style.transform = "scale(1)"; }, 200); });
+      requestAnimationFrame(() => { setTimeout(() => { area.style.transform = "scale(1)"; }, 150); });
+
+      // Continuous rotating sweep line — the recognizable "live radar" motion
+      const sweep = el("line", { x1: cx, y1: cy, x2: cx, y2: cy - R, stroke: ACC, "stroke-width": 1.5, "stroke-opacity": 0.5 });
+      svg.appendChild(sweep);
+      const t0 = performance.now();
+      let raf;
+      const spin = (t) => {
+        const deg = ((t - t0) / 18) % 360; // ~one rotation / 6.5s
+        sweep.setAttribute("transform", "rotate(" + deg + " " + cx + " " + cy + ")");
+        raf = requestAnimationFrame(spin);
+      };
+      raf = requestAnimationFrame(spin);
+      return () => cancelAnimationFrame(raf);
     }
   }, []);
   return (
