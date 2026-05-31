@@ -210,29 +210,23 @@ function Radar() {
     dims.forEach((d, i) => { const p = pt(i, R * d.v); svg.appendChild(el("circle", { cx: p[0], cy: p[1], r: 3.5, fill: d.v < 0.5 ? LEAK : ACC })); });
     svg.appendChild(el("circle", { cx, cy, r: 2.5, fill: LBL }));
     if (!reduce) {
-      // Scale-in: transform-box:fill-box is required for transform-origin to work on SVG elements
-      area.style.transformBox = "fill-box";
-      area.style.transformOrigin = "center";
-      area.style.transform = "scale(0)";
-      area.style.transition = "transform 1s cubic-bezier(0.22,1,0.36,1)";
-      requestAnimationFrame(() => { setTimeout(() => { area.style.transform = "scale(1)"; }, 150); });
-
-      // Continuous rotating sweep line — the recognizable "live radar" motion
+      // Scale-in of the data polygon (CSS keyframes — reliable on SVG via transform-box)
+      area.classList.add("dl-radar-area");
+      // Continuous rotating sweep line via pure CSS animation (no rAF lifecycle issues)
       const sweep = el("line", { x1: cx, y1: cy, x2: cx, y2: cy - R, stroke: ACC, "stroke-width": 1.5, "stroke-opacity": 0.5 });
+      sweep.setAttribute("class", "dl-radar-sweep");
       svg.appendChild(sweep);
-      const t0 = performance.now();
-      let raf;
-      const spin = (t) => {
-        const deg = ((t - t0) / 18) % 360; // ~one rotation / 6.5s
-        sweep.setAttribute("transform", "rotate(" + deg + " " + cx + " " + cy + ")");
-        raf = requestAnimationFrame(spin);
-      };
-      raf = requestAnimationFrame(spin);
-      return () => cancelAnimationFrame(raf);
     }
   }, []);
   return (
     <div style={{ position: "relative", aspectRatio: "1", maxWidth: 440, margin: "0 auto", width: "100%" }}>
+      <style>{`
+        .dl-radar-area{transform-box:fill-box;transform-origin:center;animation:dlRadarIn 1s cubic-bezier(.22,1,.36,1) both}
+        @keyframes dlRadarIn{from{transform:scale(0);opacity:0}to{transform:scale(1);opacity:1}}
+        .dl-radar-sweep{transform-origin:200px 200px;animation:dlRadarSpin 6s linear infinite}
+        @keyframes dlRadarSpin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+        @media(prefers-reduced-motion:reduce){.dl-radar-area,.dl-radar-sweep{animation:none}}
+      `}</style>
       <svg ref={ref} viewBox="0 0 400 400" style={{ width: "100%", height: "100%", overflow: "visible" }} aria-label="Live business diagnostic radar across 9 dimensions" />
       <span style={{ position: "absolute", top: 0, left: 0, fontFamily: "monospace", fontSize: 10, letterSpacing: "0.1em", color: "rgba(255,255,255,0.4)" }}>DIAGNOSTIC · LIVE</span>
       <span style={{ position: "absolute", top: 0, right: 0, fontFamily: "monospace", fontSize: 10, letterSpacing: "0.1em", color: "rgba(255,255,255,0.4)" }}>9 DIMENSIONS</span>
