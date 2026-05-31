@@ -219,7 +219,7 @@ function Radar() {
   return (
     <div style={{ position: "relative", aspectRatio: "1", maxWidth: 440, margin: "0 auto", width: "100%" }}>
       <svg ref={ref} viewBox="0 0 400 400" style={{ width: "100%", height: "100%", overflow: "visible" }} aria-label="Live business diagnostic radar across 9 dimensions" />
-      <span style={{ position: "absolute", top: 0, left: 0, fontFamily: "monospace", fontSize: 10, letterSpacing: "0.1em", color: "rgba(255,255,255,0.4)" }}>DIAGNOSTIC \u00b7 LIVE</span>
+      <span style={{ position: "absolute", top: 0, left: 0, fontFamily: "monospace", fontSize: 10, letterSpacing: "0.1em", color: "rgba(255,255,255,0.4)" }}>DIAGNOSTIC · LIVE</span>
       <span style={{ position: "absolute", top: 0, right: 0, fontFamily: "monospace", fontSize: 10, letterSpacing: "0.1em", color: "rgba(255,255,255,0.4)" }}>9 DIMENSIONS</span>
       <div style={{ position: "absolute", bottom: -6, left: "50%", transform: "translateX(-50%)", display: "flex", gap: 18, fontFamily: "monospace", fontSize: 11, color: "rgba(255,255,255,0.55)", whiteSpace: "nowrap" }}>
         <span>HEALTH&nbsp;<b style={{ color: "#3B82F6" }}>57</b></span>
