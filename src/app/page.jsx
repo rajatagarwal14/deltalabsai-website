@@ -175,57 +175,117 @@ function Nav() {
   );
 }
 
-// Hero
+// Radar instrument \u2014 live 9-dimension diagnostic visual (ported from premium design)
+function Radar() {
+  const ref = useRef(null);
+  useEffect(() => {
+    const svg = ref.current;
+    if (!svg) return;
+    svg.innerHTML = "";
+    const reduce = typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const ACC = "#3B82F6", LEAK = "#F87171", RING = "rgba(255,255,255,0.10)", LBL = "rgba(255,255,255,0.45)";
+    const cx = 200, cy = 200, R = 150, NS = "http://www.w3.org/2000/svg";
+    const dims = [
+      { label: "Revenue", v: 0.58 }, { label: "Sales", v: 0.42 }, { label: "Ops", v: 0.71 },
+      { label: "Team", v: 0.66 }, { label: "Tech", v: 0.38 }, { label: "Data", v: 0.49 },
+      { label: "Finance", v: 0.62 }, { label: "Marketing", v: 0.45 }, { label: "Customer", v: 0.74 },
+    ];
+    const n = dims.length;
+    const pt = (i, r) => { const a = (Math.PI * 2 * i) / n - Math.PI / 2; return [cx + Math.cos(a) * r, cy + Math.sin(a) * r]; };
+    const el = (tag, attrs) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); return e; };
+    [0.25, 0.5, 0.75, 1].forEach(f => {
+      let poly = ""; for (let i = 0; i < n; i++) { const p = pt(i, R * f); poly += p[0] + "," + p[1] + " "; }
+      svg.appendChild(el("polygon", { points: poly.trim(), fill: "none", stroke: RING, "stroke-width": 1 }));
+    });
+    dims.forEach((d, i) => {
+      const p = pt(i, R);
+      svg.appendChild(el("line", { x1: cx, y1: cy, x2: p[0], y2: p[1], stroke: RING, "stroke-width": 1 }));
+      const lp = pt(i, R + 22);
+      const t = el("text", { x: lp[0], y: lp[1], fill: LBL, "font-size": 11, "font-family": "monospace", "text-anchor": "middle", "dominant-baseline": "middle" });
+      t.textContent = d.label; svg.appendChild(t);
+    });
+    let dpoly = ""; dims.forEach((d, i) => { const p = pt(i, R * d.v); dpoly += p[0] + "," + p[1] + " "; });
+    const area = el("polygon", { points: dpoly.trim(), fill: ACC, "fill-opacity": 0.16, stroke: ACC, "stroke-width": 2, "stroke-linejoin": "round" });
+    svg.appendChild(area);
+    dims.forEach((d, i) => { const p = pt(i, R * d.v); svg.appendChild(el("circle", { cx: p[0], cy: p[1], r: 3.5, fill: d.v < 0.5 ? LEAK : ACC })); });
+    svg.appendChild(el("circle", { cx, cy, r: 2.5, fill: LBL }));
+    if (!reduce) {
+      area.style.transformOrigin = cx + "px " + cy + "px";
+      area.style.transform = "scale(0)";
+      area.style.transition = "transform 1s cubic-bezier(0.22,1,0.36,1)";
+      requestAnimationFrame(() => { setTimeout(() => { area.style.transform = "scale(1)"; }, 200); });
+    }
+  }, []);
+  return (
+    <div style={{ position: "relative", aspectRatio: "1", maxWidth: 440, margin: "0 auto", width: "100%" }}>
+      <svg ref={ref} viewBox="0 0 400 400" style={{ width: "100%", height: "100%", overflow: "visible" }} aria-label="Live business diagnostic radar across 9 dimensions" />
+      <span style={{ position: "absolute", top: 0, left: 0, fontFamily: "monospace", fontSize: 10, letterSpacing: "0.1em", color: "rgba(255,255,255,0.4)" }}>DIAGNOSTIC \u00b7 LIVE</span>
+      <span style={{ position: "absolute", top: 0, right: 0, fontFamily: "monospace", fontSize: 10, letterSpacing: "0.1em", color: "rgba(255,255,255,0.4)" }}>9 DIMENSIONS</span>
+      <div style={{ position: "absolute", bottom: -6, left: "50%", transform: "translateX(-50%)", display: "flex", gap: 18, fontFamily: "monospace", fontSize: 11, color: "rgba(255,255,255,0.55)", whiteSpace: "nowrap" }}>
+        <span>HEALTH&nbsp;<b style={{ color: "#3B82F6" }}>57</b></span>
+        <span>LEAKS&nbsp;<b style={{ color: "#F87171" }}>3</b></span>
+        <span>48 DATA PTS</span>
+      </div>
+    </div>
+  );
+}
+
+// Hero \u2014 premium editorial redesign (dark, split layout with live radar)
 function Hero() {
   const scrollTo = useScrollTo();
   return (
-    <section style={{ minHeight: "100vh", display: "flex", alignItems: "center", padding: "150px 24px 60px", position: "relative", overflow: "hidden", background: "linear-gradient(155deg, #FAFBFF 0%, #EEF2FF 50%, #F0FDF4 100%)" }}>
-      <div style={{ position: "absolute", inset: 0, opacity: 0.3, backgroundImage: "radial-gradient(#CBD5E1 0.7px, transparent 0.7px)", backgroundSize: "26px 26px" }} />
-      <div style={{ position: "absolute", top: "10%", right: "8%", opacity: 0.04, fontSize: 280, fontWeight: 900, color: "#2563EB", fontFamily: "Georgia,serif" }}>{"\u0394"}</div>
-      <div style={{ maxWidth: 720, margin: "0 auto", textAlign: "center", position: "relative", zIndex: 1 }}>
-        <F>
-          <div style={{ display: "inline-block", background: "#FEF3C7", color: "#92400E", borderRadius: 100, padding: "5px 16px", marginBottom: 24, fontFamily: "'DM Sans',sans-serif", fontSize: 13, fontWeight: 700 }}>
-            The average SME loses 15-30% of revenue to operational inefficiency
-          </div>
-        </F>
-        <F d={0.08}>
-          <h1 style={{ fontFamily: "'DM Sans',sans-serif", fontSize: "clamp(32px, 5.5vw, 56px)", fontWeight: 800, lineHeight: 1.1, color: "#0F172A", letterSpacing: "-0.03em", margin: "0 0 20px" }}>
-            <span style={{ background: "linear-gradient(135deg, #2563EB, #059669)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>AI Automation</span> for Small Businesses.<br />
-            We find revenue leaks and{" "}<span style={{ background: "linear-gradient(135deg, #DC2626, #EA580C)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>fix them.</span>
-          </h1>
-        </F>
-        <F d={0.16}>
-          <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: "clamp(16px, 2vw, 19px)", color: "#4B5563", lineHeight: 1.7, maxWidth: 540, margin: "0 auto 32px" }}>
-            Take our free 3-minute diagnostic. See exactly where money is slipping through the cracks - and get a clear plan to fix it.
-          </p>
-        </F>
-        <F d={0.24}>
-          <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
-            <Btn href={FORM}>Get Your Free Diagnostic <Ic.Arr /></Btn>
-            <Btn primary={false} onClick={() => scrollTo("how")}>See How It Works</Btn>
-          </div>
-        </F>
-        <F d={0.35}>
-          <div style={{ marginTop: 48, display: "flex", justifyContent: "center", gap: "clamp(20px, 4vw, 48px)", flexWrap: "wrap" }}>
-            {[["6-12 weeks", "to measurable results"], ["14 industries", "served globally"], ["$0", "for your first diagnostic"]].map(([n, l], i) => (
-              <div key={i} style={{ textAlign: "center" }}>
-                <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 24, fontWeight: 800, color: "#0F172A" }}>{n}</div>
-                <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, color: "#6B7280", fontWeight: 500 }}>{l}</div>
-              </div>
-            ))}
-          </div>
+    <section style={{ background: "linear-gradient(160deg, #0B1220 0%, #0F1B33 100%)", color: "#fff", padding: "120px 24px 92px", overflow: "hidden" }}>
+      <div className="hero-grid" style={{ maxWidth: 1180, margin: "0 auto", display: "grid", gridTemplateColumns: "minmax(0,1.05fr) minmax(0,0.95fr)", gap: 48, alignItems: "center" }}>
+        <div>
+          <F>
+            <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.12)", borderRadius: 100, padding: "6px 14px", fontSize: 13, color: "#cbd5e1", fontFamily: "'DM Sans',sans-serif", marginBottom: 28 }}>
+              <span style={{ width: 7, height: 7, borderRadius: "50%", background: "#F87171", flexShrink: 0 }} />
+              The average SME loses <b style={{ color: "#fff", margin: "0 4px" }}>15-30%</b> of revenue to operational inefficiency
+            </div>
+          </F>
+          <F d={0.08}>
+            <h1 className="hero-h1" style={{ fontFamily: "Georgia, 'Times New Roman', serif", fontSize: "clamp(38px, 5.6vw, 64px)", fontWeight: 500, lineHeight: 1.06, letterSpacing: "-0.02em", margin: "0 0 24px" }}>
+              We find the revenue leaking out of your business \u2014 and{" "}
+              <em style={{ color: "#60A5FA", fontStyle: "italic" }}>fix it.</em>
+            </h1>
+          </F>
+          <F d={0.16}>
+            <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: "clamp(16px, 1.6vw, 19px)", color: "#94a3b8", lineHeight: 1.7, maxWidth: 520, margin: "0 0 34px" }}>
+              Take our free 3-minute diagnostic. See exactly where money is slipping through the cracks across 9 dimensions of your business - and get a clear plan to fix it.
+            </p>
+          </F>
+          <F d={0.24}>
+            <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+              <Btn href={FORM}>Get Your Free Diagnostic <Ic.Arr /></Btn>
+              <a onClick={() => scrollTo("how")} style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "14px 28px", borderRadius: 10, fontFamily: "'DM Sans',sans-serif", fontWeight: 600, fontSize: 15, cursor: "pointer", color: "#e2e8f0", border: "1.5px solid rgba(255,255,255,0.18)", background: "transparent" }}>See how it works</a>
+            </div>
+          </F>
+          <F d={0.35}>
+            <div style={{ marginTop: 44, display: "flex", gap: "clamp(20px, 4vw, 44px)", flexWrap: "wrap" }}>
+              {[["3 min", "free diagnostic\nno card needed"], ["14", "industries\nserved globally"], ["6-12 wks", "to measurable\nresults"]].map(([n, l], i) => (
+                <div key={i}>
+                  <div style={{ fontFamily: "monospace", fontSize: 26, fontWeight: 700, color: i === 0 ? "#60A5FA" : "#fff" }}>{n}</div>
+                  <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, color: "#64748b", fontWeight: 500, marginTop: 4, whiteSpace: "pre-line", lineHeight: 1.4 }}>{l}</div>
+                </div>
+              ))}
+            </div>
+          </F>
+        </div>
+        <F d={0.2}>
+          <div className="hero-radar"><Radar /></div>
         </F>
       </div>
+      <style>{`@media(max-width:860px){.hero-grid{grid-template-columns:1fr!important}.hero-radar{margin-top:24px;max-width:380px}.hero-h1{font-size:clamp(34px,9vw,46px)!important}}`}</style>
     </section>
   );
 }
 
-// Social Proof Bar
+// Social Proof Bar \u2014 honest credibility only (real testimonials drop in when ready, no invented numbers)
 function Proof() {
   return (
     <div style={{ background: "#0F172A", padding: "18px 24px" }}>
-      <div style={{ maxWidth: 900, margin: "0 auto", display: "flex", justifyContent: "center", alignItems: "center", gap: "clamp(16px, 4vw, 40px)", flexWrap: "wrap" }}>
-        {["Built on Fortune 500 consulting frameworks", "AI-powered analysis across 48 dimensions", "Businesses across 4 continents"].map((t, i) => (
+      <div style={{ maxWidth: 1000, margin: "0 auto", display: "flex", justifyContent: "center", alignItems: "center", gap: "clamp(16px, 4vw, 40px)", flexWrap: "wrap" }}>
+        {["Built on Fortune 500 consulting frameworks", "AI analysis across 48 data points", "9-dimension diagnostic - free audit"].map((t, i) => (
           <div key={i} style={{ display: "flex", alignItems: "center", gap: 8 }}>
             <span style={{ color: "#34D399" }}><Ic.Chk /></span>
             <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, color: "#CBD5E1", fontWeight: 500 }}>{t}</span>
