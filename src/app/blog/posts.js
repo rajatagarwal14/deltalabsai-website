@@ -2352,7 +2352,7 @@ The businesses that get the best results from AI consulting are the ones that wa
     ],
   },
   {
-    slug: "reduce-no-shows-dental-practice-automation",
+    slug: "reduce-dental-no-shows-scheduling-workflows",
     title: "How to Reduce No-Shows in Dental Practices by 40% with Automation",
     subtitle: "Smart reminder systems and scheduling workflows that keep your chairs filled",
     category: "Healthcare",
