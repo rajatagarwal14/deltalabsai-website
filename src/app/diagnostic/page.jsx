@@ -854,7 +854,23 @@ export default function IntakeForm() {
           <h1 style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, fontWeight: 600, color: "#6B7280", textAlign: "center", margin: "0 0 16px", letterSpacing: "0.06em", textTransform: "uppercase" }}>{ab.pageTitle}</h1>
           <ProgressBar step={step} total={totalSteps + 1} />
 
-          <div style={{ background: "#fff", borderRadius: 20, padding: "36px 32px", border: "1px solid #E5E7EB", boxShadow: "0 4px 24px rgba(0,0,0,0.04)", minHeight: 400 }}>
+          {step === 0 && (
+            <ul style={{ margin: "16px 0 0", padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: 8 }}>
+              {[
+                "Identify your top AI opportunities in minutes",
+                "Receive a custom roadmap built for your industry",
+                "Free — no commitment, no sales call",
+                "Results delivered to your inbox instantly",
+              ].map((benefit) => (
+                <li key={benefit} style={{ display: "flex", alignItems: "center", gap: 10, fontFamily: "'DM Sans',sans-serif", fontSize: 14, fontWeight: 500, color: "#374151", lineHeight: 1.4 }}>
+                  <span style={{ flexShrink: 0, width: 20, height: 20, background: "#EFF6FF", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 11, color: "#2563EB" }}>✓</span>
+                  {benefit}
+                </li>
+              ))}
+            </ul>
+          )}
+
+          <div style={{ background: "#fff", borderRadius: 20, padding: "36px 32px", border: "1px solid #E5E7EB", boxShadow: "0 4px 24px rgba(0,0,0,0.04)", minHeight: 400, marginTop: step === 0 ? 16 : 0 }}>
             {renderStep()}
           </div>
 

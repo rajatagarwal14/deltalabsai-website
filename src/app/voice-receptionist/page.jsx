@@ -892,6 +892,18 @@ export default function VoiceReceptionist() {
         </div>
       </section>
 
+      {/* Diagnostic CTA */}
+      <section style={{ padding: "64px 24px", background: C.card, borderTop: `1px solid ${C.border}`, textAlign: "center" }}>
+        <F>
+          <div style={{ maxWidth: 520, margin: "0 auto" }}>
+            <p style={{ fontSize: 18, color: C.textSec, marginBottom: 28, lineHeight: 1.65 }}>
+              Not sure which solution fits your business? Take the free 5-minute AI diagnostic and find out.
+            </p>
+            <Btn href="/diagnostic" style={{ fontSize: 15, padding: "14px 32px" }}>Start Free Diagnostic →</Btn>
+          </div>
+        </F>
+      </section>
+
       {/* Footer */}
       <footer
         style={{

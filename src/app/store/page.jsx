@@ -505,6 +505,18 @@ export default function StorePage() {
         </div>
       </div>
 
+      {/* Diagnostic CTA */}
+      <div style={{ padding: "64px 24px", background: "#fafafa", borderTop: "1px solid #f1f5f9", textAlign: "center" }}>
+        <F>
+          <div style={{ maxWidth: 520, margin: "0 auto" }}>
+            <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 18, color: "#374151", marginBottom: 28, lineHeight: 1.65 }}>
+              Not sure which solution fits your business? Take the free 5-minute AI diagnostic and find out.
+            </p>
+            <a href={DIAG} style={{ fontFamily: "'DM Sans',sans-serif", background: "#18181b", color: "#fff", padding: "14px 32px", borderRadius: 10, fontWeight: 700, fontSize: 15, textDecoration: "none", display: "inline-block" }}>Start Free Diagnostic →</a>
+          </div>
+        </F>
+      </div>
+
       {/* ── FOOTER ───────────────────────────────────────────────────── */}
       <div style={{ background: "#0F172A", padding: "40px 24px", borderTop: "1px solid #1E293B" }}>
         <div style={{ maxWidth: 1140, margin: "0 auto", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 16 }}>

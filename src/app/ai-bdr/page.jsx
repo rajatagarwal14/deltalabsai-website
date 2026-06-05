@@ -342,6 +342,18 @@ export default function AIBDRPage() {
         </F>
       </section>
 
+      {/* Diagnostic CTA */}
+      <section style={{ padding: "64px 24px", background: "#fafafa", borderTop: "1px solid #f4f4f5", textAlign: "center" }}>
+        <F>
+          <div style={{ maxWidth: 520, margin: "0 auto" }}>
+            <p style={{ fontSize: 18, color: "#374151", marginBottom: 28, lineHeight: 1.65 }}>
+              Not sure which solution fits your business? Take the free 5-minute AI diagnostic and find out.
+            </p>
+            <Btn href="/diagnostic" style={{ padding: "14px 32px", fontSize: 15 }}>Start Free Diagnostic →</Btn>
+          </div>
+        </F>
+      </section>
+
       {/* Footer */}
       <footer style={{ padding: "32px 24px", borderTop: "1px solid #f4f4f5", textAlign: "center" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>

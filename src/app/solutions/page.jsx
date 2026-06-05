@@ -167,15 +167,14 @@ export default function SolutionsPage() {
         </div>
       </section>
 
-      {/* Bottom CTA */}
+      {/* Diagnostic CTA */}
       <section style={{ padding: "64px 24px", background: "#fafafa", borderTop: "1px solid #f4f4f5", textAlign: "center" }}>
         <F>
           <div style={{ maxWidth: 520, margin: "0 auto" }}>
-            <h2 style={{ fontSize: "clamp(24px, 3.5vw, 36px)", fontWeight: 800, letterSpacing: -1, marginBottom: 14 }}>Not sure where to start?</h2>
-            <p style={{ fontSize: 15, color: "#52525b", marginBottom: 28, lineHeight: 1.65 }}>
-              Answer 5 questions about your business. We&apos;ll map exactly which tools save you the most time — for free.
+            <p style={{ fontSize: 18, color: "#374151", marginBottom: 28, lineHeight: 1.65 }}>
+              Not sure which solution fits your business? Take the free 5-minute AI diagnostic and find out.
             </p>
-            <a href={DIAG} style={{ background: "#18181b", color: "#fff", padding: "14px 32px", borderRadius: 10, fontWeight: 700, fontSize: 15, textDecoration: "none" }}>Take the Free Diagnostic</a>
+            <a href={DIAG} style={{ background: "#18181b", color: "#fff", padding: "14px 32px", borderRadius: 10, fontWeight: 700, fontSize: 15, textDecoration: "none" }}>Start Free Diagnostic →</a>
           </div>
         </F>
       </section>
