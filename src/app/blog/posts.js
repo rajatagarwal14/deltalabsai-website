@@ -878,13 +878,13 @@ KEY: Every week without these systems is another week of lost students, missed b
   },
   {
     slug: "manual-processes-costing-money",
-    title: "5 Signs Manual Processes Are Costing You Money ($36,000+/Year)",
-    subtitle: "How operational inefficiency silently drains revenue -and what to do about it",
+    title: "Manual Processes Are Costing Your Small Business Money: 5 Warning Signs",
+    subtitle: "How to spot the hidden revenue leaks before they cost you $36,000+ a year",
     category: "Operations",
     date: "February 18, 2026",
     readTime: "7 min read",
-    keywords: ["business manual processes", "operational inefficiency cost", "business automation ROI", "revenue leak manual work", "small business operations", "process automation benefits", "business efficiency tips"],
-    description: "Small business owners silently lose $36,000–60,000 a year to manual work they never measure. If your business shows these 5 signs, automation pays for itself in under 30 days.",
+    keywords: ["manual processes costing small business money", "business manual processes", "operational inefficiency cost", "business automation ROI", "revenue leak manual work", "small business operations", "process automation benefits", "business efficiency tips"],
+    description: "Manual processes cost small businesses $36,000–150,000 per year in hidden revenue leaks. Here are 5 warning signs your business is one of them — and the free diagnostic that shows exactly where to fix first.",
     sections: [
       {
         heading: null,
@@ -894,7 +894,9 @@ KEY: Every week without these systems is another week of lost students, missed b
 
 For small and mid-sized businesses -agencies, clinics, home service companies, gyms, and professional service firms -the impact is even more severe. Without enterprise-level systems and dedicated operations teams, manual processes compound into significant revenue leaks. **A company doing $500K in annual revenue could be losing $75K to $150K per year** to operational inefficiency without even knowing it.
 
-Here are five signs that your business is one of them.`,
+Here are five signs that your business is one of them.
+
+<div style="margin: 24px 0; padding: 16px 20px; background: #F0F9FF; border-radius: 10px; border-left: 3px solid #2563EB; font-size: 15px; color: #374151;">Already know you have efficiency gaps? <a href="/diagnostic" style="color: #2563EB; font-weight: 700; text-decoration: none;">Get a free AI diagnostic for your business →</a></div>`,
       },
       {
         heading: "1. Your Team Copies and Pastes Data Between Tools",
@@ -929,6 +931,10 @@ Companies that track weekly metrics grow 30% faster than those that don't. This 
 The minimum viable dashboard for any growing business has five numbers, reviewed every Monday: total revenue, new leads generated, conversion rate, cash balance, and one customer satisfaction metric. That's it. Five numbers. If you don't have these at your fingertips right now, you're making decisions based on gut feeling -and gut feeling doesn't scale.
 
 Setting this up doesn't require expensive BI software. A simple Google Sheet with manual weekly entries is better than nothing. A proper CRM with built-in reporting is better than a spreadsheet. A real-time dashboard pulling from your actual systems is the gold standard. But start where you are.`,
+      },
+      {
+        heading: null,
+        body: `<div style="margin: 40px 0; padding: 32px; background: linear-gradient(135deg, #EFF6FF, #F5F3FF); border-radius: 16px; border: 1.5px solid #BFDBFE; text-align: center;"><h3 style="font-size: 20px; font-weight: 800; color: #0F172A; margin: 0 0 10px; letter-spacing: -0.02em;">See exactly how much manual processes are costing you — Free Diagnostic</h3><p style="font-size: 15px; color: #4B5563; line-height: 1.65; margin: 0 0 20px;">2 minutes. 9 dimensions. One specific quick win you can act on this week.</p><a href="/diagnostic" style="display: inline-flex; align-items: center; gap: 8px; padding: 13px 26px; border-radius: 10px; background: #2563EB; color: #fff; font-weight: 700; font-size: 15px; text-decoration: none;">Run the free 2-minute diagnostic →</a></div>`,
       },
       {
         heading: "4. Your Onboarding Process Is Different Every Time",
@@ -968,7 +974,9 @@ You'll get a visual radar chart showing your strengths and gaps, a specific quic
 
 > STAT: The average SME loses **15% to 30% of potential revenue** to operational gaps. For a $500K business, that's $75K to $150K per year.
 
-KEY: Every week you wait, these inefficiencies continue to compound. The systems and automation that would eliminate the problem cost a fraction of what the problem itself costs you. Stop losing money to manual processes -find out exactly where your business stands today.`,
+KEY: Every week you wait, these inefficiencies continue to compound. The systems and automation that would eliminate the problem cost a fraction of what the problem itself costs you. Stop losing money to manual processes -find out exactly where your business stands today.
+
+<div style="margin: 32px 0; padding: 36px; background: linear-gradient(135deg, #0F172A, #1E293B); border-radius: 20px; text-align: center;"><h3 style="font-size: 22px; font-weight: 800; color: #fff; margin: 0 0 12px; letter-spacing: -0.02em;">Find out exactly where your business is losing money</h3><p style="font-size: 15px; color: #94A3B8; line-height: 1.65; max-width: 420px; margin: 0 auto 24px;">Free 2-minute diagnostic. Get your score across 9 dimensions and a specific quick win you can implement this week.</p><a href="/diagnostic" style="display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border-radius: 10px; background: #fff; color: #0F172A; font-weight: 700; font-size: 15px; text-decoration: none;">Start the free diagnostic →</a></div>`,
       },
     ],
   },
