@@ -254,18 +254,18 @@ function Hero() {
           </F>
           <F d={0.08}>
             <h1 className="hero-h1" style={{ fontFamily: "Georgia, 'Times New Roman', serif", fontSize: "clamp(38px, 5.6vw, 64px)", fontWeight: 500, lineHeight: 1.06, letterSpacing: "-0.02em", margin: "0 0 24px" }}>
-              Free AI Diagnostic for{" "}
-              <em style={{ color: "#60A5FA", fontStyle: "italic" }}>Your Business</em>
+              Get Your{" "}
+              <em style={{ color: "#60A5FA", fontStyle: "italic" }}>Free AI Diagnostic</em>
             </h1>
           </F>
           <F d={0.16}>
             <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: "clamp(16px, 1.6vw, 19px)", color: "#94a3b8", lineHeight: 1.7, maxWidth: 520, margin: "0 0 34px" }}>
-              See exactly where your business is leaking revenue — scored across 9 dimensions in 3 minutes. No credit card. No sales call. Just a clear picture of what to fix.
+              See exactly where your business is losing time and money — in 2 minutes.
             </p>
           </F>
           <F d={0.24}>
             <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
-              <Btn href={FORM} style={{ background: "#2563EB", fontSize: 16, padding: "16px 34px", boxShadow: "0 4px 20px rgba(37,99,235,0.45)" }}>Get Your Free AI Diagnostic Now <Ic.Arr /></Btn>
+              <Btn href={FORM} style={{ background: "#2563EB", fontSize: 16, padding: "16px 34px", boxShadow: "0 4px 20px rgba(37,99,235,0.45)" }}>Start Your Free Diagnostic <Ic.Arr /></Btn>
               <a onClick={() => scrollTo("how")} style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "14px 28px", borderRadius: 10, fontFamily: "'DM Sans',sans-serif", fontWeight: 600, fontSize: 15, cursor: "pointer", color: "#e2e8f0", border: "1.5px solid rgba(255,255,255,0.18)", background: "transparent" }}>See how it works</a>
             </div>
           </F>
