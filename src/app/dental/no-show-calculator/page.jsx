@@ -27,7 +27,6 @@ const CURRENCIES = {
   AUD: { code: "AUD", locale: "en-AU", symbol: "A$",  perApptDefault: 120,  apptMin: 30,  apptMax: 800,  apptStep: 10 },
   GBP: { code: "GBP", locale: "en-GB", symbol: "£",   perApptDefault: 60,   apptMin: 20,  apptMax: 500,  apptStep: 5 },
   SGD: { code: "SGD", locale: "en-SG", symbol: "S$",  perApptDefault: 100,  apptMin: 25,  apptMax: 700,  apptStep: 5 },
-  INR: { code: "INR", locale: "en-IN", symbol: "₹",   perApptDefault: 1800, apptMin: 500, apptMax: 8000, apptStep: 100 },
 };
 function fmt(n, curCode = "USD") {
   const c = CURRENCIES[curCode] || CURRENCIES.USD;
@@ -245,7 +244,6 @@ export default function NoShowCalculator() {
                 <option value="AUD">A$ AUD — Australia</option>
                 <option value="GBP">£ GBP — UK</option>
                 <option value="SGD">S$ SGD — Singapore</option>
-                <option value="INR">₹ INR — India</option>
               </select>
             </div>
             <SliderInput label="Appointments per day" min={4} max={40} step={1} value={apptPerDay} onChange={setApptPerDay} />
