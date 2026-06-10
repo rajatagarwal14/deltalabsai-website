@@ -3,9 +3,8 @@
 import { useState, useRef, useEffect } from "react";
 
 const CAL = "https://cal.com/ag-ventures-qbqxax/30min";
-const SUPABASE_URL = "https://qkcafjbmqrxhqyyayrqz.supabase.co";
-const SUPABASE_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "";
-
+const CAPTURE_API = "https://delta-labs-ecosystem.vercel.app/api/leads/capture";
+const BASE_URL = "https://deltalabsai.com/dental/no-show-calculator";
 
 function useFade() {
   const r = useRef(null);
@@ -33,6 +32,16 @@ const CURRENCIES = {
 function fmt(n, curCode = "USD") {
   const c = CURRENCIES[curCode] || CURRENCIES.USD;
   return new Intl.NumberFormat(c.locale, { style: "currency", currency: c.code, maximumFractionDigits: 0 }).format(n);
+}
+
+// No-show grade — benchmarked against a healthy clinic (industry healthy band ≈ under 10%)
+function gradeFor(rate) {
+  if (rate <= 6)  return { g: "A+", color: "#22c55e", label: "Excellent — better than almost every clinic",        tone: "Your front desk is doing something right. Protect it." };
+  if (rate <= 9)  return { g: "A",  color: "#4ade80", label: "Healthy — at the good end of the industry band",      tone: "Small leaks only. Automation keeps it that way as you grow." };
+  if (rate <= 12) return { g: "B",  color: "#a3e635", label: "Average — right at the industry norm",                tone: "Average still means real money walking out. Recoverable." };
+  if (rate <= 16) return { g: "C",  color: "#facc15", label: "Leaking — noticeably above the healthy band",         tone: "This is the zone where reminders + recall pay for themselves fastest." };
+  if (rate <= 22) return { g: "D",  color: "#fb923c", label: "Serious leak — well above the healthy band",          tone: "At this rate, no-shows are one of your biggest silent costs." };
+  return            { g: "F",  color: "#ef4444", label: "Critical — among the highest no-show rates",          tone: "Every week without follow-up automation is real revenue lost." };
 }
 
 function SliderInput({ label, min, max, step, value, onChange, prefix = "", suffix = "" }) {
@@ -71,30 +80,40 @@ function ResultCard({ label, value, highlight = false, sub = "" }) {
   );
 }
 
+// Lead capture via the ecosystem's public capture API (validates, resolves org, Telegrams the CEO).
+// NOTE: posting straight to Supabase with name/clinic_name/status:'warm' silently failed forever —
+// those columns/enum values don't exist. Keep all writes going through the capture API.
 async function saveLead(data) {
   try {
-    await fetch(`${SUPABASE_URL}/rest/v1/leads`, {
+    await fetch(CAPTURE_API, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "apikey": SUPABASE_KEY,
-        "Authorization": `Bearer ${SUPABASE_KEY}`,
-        "Prefer": "return=minimal"
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        name: data.name,
         email: data.email,
-        clinic_name: data.clinic,
-        industry: "dental",
-        source: "no_show_calculator",
-        status: "warm",
-        notes: `No-show calculator lead (${data.cur || "USD"}). Monthly loss: ${data.monthlyLoss.toLocaleString()}. Annual loss: ${data.annualLoss.toLocaleString()}. Recovery potential: ${data.recovery.toLocaleString()}/mo. Inputs: ${data.apptPerDay} appts/day, ${data.avgRevenue} avg revenue, ${data.noShowRate}% no-show rate.`,
-        created_at: new Date().toISOString()
-      })
+        full_name: data.name || data.clinic || data.email,
+        company_name: data.clinic || data.name || "",
+        industry: "Dental",
+        source: "diagnostic_tool",
+        source_detail: {
+          actual_source: "no_show_calculator",
+          partner: data.partner || null,
+          currency: data.cur || "USD",
+          grade: data.grade,
+          inputs: { apptPerDay: data.apptPerDay, avgRevenue: data.avgRevenue, noShowRate: data.noShowRate, workingDays: data.workingDays },
+          results: { monthlyLoss: data.monthlyLoss, annualLoss: data.annualLoss, recoveryPerMonth: data.recovery },
+        },
+        notes: `No-show calculator (grade ${data.grade}${data.partner ? `, via partner ${data.partner}` : ""}). Annual loss ${data.cur} ${data.annualLoss.toLocaleString()}. Recovery potential ${data.cur} ${data.recovery.toLocaleString()}/mo.`,
+        tags: ["no_show_calculator", ...(data.partner ? ["partner_cobrand"] : [])],
+      }),
     });
   } catch (_) {
-    // silent — don't block UX
+    // silent — never block the UX
   }
+}
+
+function sanitizeParam(s, max = 48) {
+  if (!s) return "";
+  return String(s).replace(/[<>"'`]/g, "").trim().slice(0, max);
 }
 
 export default function NoShowCalculator() {
@@ -106,10 +125,30 @@ export default function NoShowCalculator() {
   const [noShowRate, setNoShowRate] = useState(15);
   const [workingDays, setWorkingDays] = useState(26);
 
+  // Personalisation + partner co-brand (read from URL on mount; window-based to avoid
+  // useSearchParams/Suspense constraints in static builds)
+  const [clinicName, setClinicName] = useState("");
+  const [partner, setPartner] = useState("");
+
+  useEffect(() => {
+    try {
+      const q = new URLSearchParams(window.location.search);
+      const c = sanitizeParam(q.get("clinic"));
+      const p = sanitizeParam(q.get("p") || q.get("partner"));
+      if (c) setClinicName(c);
+      if (p) setPartner(p);
+      const curQ = (q.get("cur") || "").toUpperCase();
+      if (CURRENCIES[curQ]) { setCur(curQ); setAvgRevenue(CURRENCIES[curQ].perApptDefault); }
+      const rate = Number(q.get("rate")); if (rate >= 5 && rate <= 40) setNoShowRate(rate);
+      const appts = Number(q.get("appts")); if (appts >= 4 && appts <= 40) setApptPerDay(appts);
+    } catch (_) {}
+  }, []);
+
   const [step, setStep] = useState("calc"); // "calc" | "capture" | "done"
   const [form, setForm] = useState({ name: "", email: "", clinic: "" });
   const [submitting, setSubmitting] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [linkCopied, setLinkCopied] = useState(false);
 
   const noShowPerDay = (apptPerDay * noShowRate) / 100;
   const noShowPerMonth = noShowPerDay * workingDays;
@@ -117,21 +156,30 @@ export default function NoShowCalculator() {
   const annualLoss = monthlyLoss * 12;
   const recoveryRate = 0.65;
   const recovery = Math.round(monthlyLoss * recoveryRate);
+  const grade = gradeFor(noShowRate);
+
+  // A link that reproduces THIS exact result — for outreach personalisation + sharing
+  function personalLink() {
+    const q = new URLSearchParams();
+    if (clinicName || form.clinic) q.set("clinic", clinicName || form.clinic);
+    if (partner) q.set("p", partner);
+    q.set("cur", cur); q.set("rate", String(noShowRate)); q.set("appts", String(apptPerDay));
+    return `${BASE_URL}?${q.toString()}`;
+  }
 
   async function handleCapture(e) {
     e.preventDefault();
     if (!form.email) return;
     setSubmitting(true);
-    await saveLead({ ...form, cur, monthlyLoss, annualLoss, recovery, apptPerDay, avgRevenue, noShowRate });
+    await saveLead({ ...form, clinic: form.clinic || clinicName, partner, cur, grade: grade.g, monthlyLoss, annualLoss, recovery, apptPerDay, avgRevenue, noShowRate, workingDays });
     setSubmitting(false);
     setStep("done");
   }
 
   function handleShare() {
-    const url = `https://deltalabsai.com/dental/no-show-calculator`;
-    // Viral unit = the personalised shocking number, pre-filled, 1-click, on WhatsApp (India's channel).
-    const msg = `😳 My dental clinic is losing ${f(annualLoss)} a year to no-shows — I had no idea.\n\nFound out in 30 seconds with this free calculator. Check your clinic's number 👇\n${url}`;
-    // Native share sheet on mobile (lets them pick WhatsApp/anything); WhatsApp deep-link on desktop.
+    const url = personalLink();
+    const who = clinicName ? `${clinicName} is` : "My dental clinic is";
+    const msg = `📋 No-Show Report Card: Grade ${grade.g}\n\n😳 ${who} losing ${f(annualLoss)} a year to no-shows.\n\nTook 30 seconds with this free calculator — check your clinic's grade 👇\n${url}`;
     if (typeof navigator !== "undefined" && navigator.share) {
       navigator.share({ text: msg, url }).catch(() => {});
       return;
@@ -140,9 +188,13 @@ export default function NoShowCalculator() {
   }
 
   function handleCopy() {
-    const url = `https://deltalabsai.com/dental/no-show-calculator`;
     if (navigator.clipboard) {
-      navigator.clipboard.writeText(url).then(() => { setCopied(true); setTimeout(() => setCopied(false), 2000); });
+      navigator.clipboard.writeText(BASE_URL).then(() => { setCopied(true); setTimeout(() => setCopied(false), 2000); });
+    }
+  }
+  function handleCopyPersonal() {
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(personalLink()).then(() => { setLinkCopied(true); setTimeout(() => setLinkCopied(false), 2000); });
     }
   }
 
@@ -167,12 +219,17 @@ export default function NoShowCalculator() {
     <div style={S.page}>
       <div style={S.wrap}>
         <F>
+          {partner && (
+            <div style={{ ...S.tag, background: "rgba(34,197,94,0.12)", border: "1px solid rgba(34,197,94,0.3)", color: "#86efac", marginRight: 10 }}>
+              🤝 Brought to you by {partner}
+            </div>
+          )}
           <div style={S.tag}>
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
             SmileCRM by Delta Labs AI
           </div>
-          <h1 style={S.h1}>How much revenue are you losing to no-shows?</h1>
-          <p style={S.sub}>Most clinics lose thousands every year to missed appointments — and don't even know it. Use this free calculator to find your exact number.</p>
+          <h1 style={S.h1}>{clinicName ? `${clinicName}: what's your no-show grade?` : "What's your clinic's no-show grade?"}</h1>
+          <p style={S.sub}>Most clinics lose thousands every year to missed appointments — and don't even know it. Get your clinic's report card in 30 seconds.</p>
         </F>
 
         <F d={0.1}>
@@ -198,8 +255,49 @@ export default function NoShowCalculator() {
           </div>
         </F>
 
+        {/* ───── REPORT CARD — the shareable unit ───── */}
+        <F d={0.15}>
+          <div style={{
+            border: `1px solid ${grade.color}40`, borderRadius: 20, marginBottom: 24, overflow: "hidden",
+            background: "rgba(255,255,255,0.03)",
+          }}>
+            <div style={{ background: `${grade.color}14`, borderBottom: `1px solid ${grade.color}30`, padding: "14px 28px", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 8 }}>
+              <span style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "#9ca3af" }}>
+                📋 No-Show Report Card{clinicName ? ` — ${clinicName}` : ""}
+              </span>
+              <span style={{ fontSize: 11, color: "#6b7280" }}>benchmark: healthy clinics stay under 10%</span>
+            </div>
+            <div style={{ padding: "28px", display: "flex", gap: 28, alignItems: "center", flexWrap: "wrap" }}>
+              <div style={{
+                width: 110, height: 110, borderRadius: 20, flexShrink: 0,
+                background: `${grade.color}1a`, border: `2px solid ${grade.color}`,
+                display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
+              }}>
+                <div style={{ fontSize: 44, fontWeight: 900, color: grade.color, lineHeight: 1 }}>{grade.g}</div>
+                <div style={{ fontSize: 10, color: "#9ca3af", marginTop: 4, textTransform: "uppercase", letterSpacing: "0.08em" }}>{noShowRate}% no-shows</div>
+              </div>
+              <div style={{ flex: 1, minWidth: 220 }}>
+                <div style={{ fontSize: 17, fontWeight: 700, color: "#e2e8f0", marginBottom: 6 }}>{grade.label}</div>
+                <div style={{ fontSize: 14, color: "#94a3b8", lineHeight: 1.6, marginBottom: 12 }}>{grade.tone}</div>
+                <div style={{ fontSize: 14, color: "#e2e8f0" }}>
+                  Annual leak: <strong style={{ color: grade.color, fontSize: 17 }}>{f(annualLoss)}</strong>
+                  <span style={{ color: "#6b7280" }}> · recoverable with automation: ~{f(recovery * 12)}/yr</span>
+                </div>
+              </div>
+            </div>
+            <div style={{ padding: "0 28px 22px", display: "flex", gap: 10, flexWrap: "wrap" }}>
+              <button style={{ ...S.shareBtn, background: "rgba(37,211,102,0.12)", border: "1px solid rgba(37,211,102,0.35)", color: "#25D366" }} onClick={handleShare}>
+                💬 Share my report card
+              </button>
+              <button style={S.shareBtn} onClick={handleCopyPersonal}>
+                {linkCopied ? "✓ personalised link copied" : "🔗 Copy my personalised link"}
+              </button>
+            </div>
+          </div>
+        </F>
+
         <F d={0.2}>
-          <div style={S.sectionLabel}>Your Revenue Loss</div>
+          <div style={S.sectionLabel}>The Numbers</div>
           <div style={S.resultsRow}>
             <ResultCard label="No-shows / month" value={Math.round(noShowPerMonth)} sub={`${noShowPerDay.toFixed(1)} per day`} />
             <ResultCard label="Monthly loss" value={f(monthlyLoss)} sub="Revenue walking out the door" />
@@ -216,7 +314,7 @@ export default function NoShowCalculator() {
                   SmileCRM could recover {f(recovery)}/month for your clinic
                 </div>
                 <div style={{ fontSize: 13, color: "#94a3b8", lineHeight: 1.6 }}>
-                  Our automated reminder + follow-up system recovers an average of 65% of the revenue you lose to no-shows. That's about {f(recovery * 12)}/year — on a flat monthly plan.
+                  Automated reminders, recall and WhatsApp follow-ups typically recover around 65% of no-show revenue. That's about {f(recovery * 12)}/year — on a flat monthly plan, running 24/7. It's the same system running live in a real dental clinic today.
                 </div>
               </div>
             </div>
@@ -230,10 +328,10 @@ export default function NoShowCalculator() {
                 style={{ ...S.btn, ...S.btnPrimary, flex: 2, minWidth: 220 }}
                 onClick={() => setStep("capture")}
               >
-                Get my free SmileCRM recovery plan →
+                Get my free recovery plan →
               </button>
               <button style={{ ...S.shareBtn, background: "rgba(37,211,102,0.12)", border: "1px solid rgba(37,211,102,0.35)", color: "#25D366" }} onClick={handleShare}>
-                💬 Share my number on WhatsApp
+                💬 Share on WhatsApp
               </button>
             </div>
             <p style={{ fontSize: 12, color: "#4b5563", marginTop: 12, textAlign: "center" }}>
@@ -247,11 +345,11 @@ export default function NoShowCalculator() {
             <div style={S.card}>
               <div style={S.sectionLabel}>Get your personalised recovery plan</div>
               <p style={{ fontSize: 14, color: "#94a3b8", marginBottom: 20 }}>
-                We'll send you a custom PDF showing exactly how SmileCRM would recover <strong style={{ color: "#a5b4fc" }}>{f(recovery)}/month</strong> for your clinic — plus a free 30-min consultation.
+                We'll send a custom plan showing exactly how SmileCRM would recover <strong style={{ color: "#a5b4fc" }}>{f(recovery)}/month</strong> for your clinic (grade {grade.g} → A) — plus a free 30-min consultation.
               </p>
               <form onSubmit={handleCapture}>
                 <input style={S.input} placeholder="Your name" value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))} required />
-                <input style={S.input} placeholder="Clinic name" value={form.clinic} onChange={e => setForm(f => ({ ...f, clinic: e.target.value }))} />
+                <input style={S.input} placeholder="Clinic name" value={form.clinic || clinicName} onChange={e => setForm(f => ({ ...f, clinic: e.target.value }))} />
                 <input style={S.input} type="email" placeholder="Email address *" value={form.email} onChange={e => setForm(f => ({ ...f, email: e.target.value }))} required />
                 <button type="submit" style={{ ...S.btn, ...S.btnPrimary }} disabled={submitting}>
                   {submitting ? "Sending..." : "Send me my recovery plan →"}
@@ -261,7 +359,7 @@ export default function NoShowCalculator() {
                 <button style={{ ...S.btn, ...S.btnSecondary, width: "auto", padding: "10px 20px", fontSize: 13 }} onClick={() => window.open(CAL, "_blank")}>
                   Or book a 30-min demo directly
                 </button>
-                <a href={`https://wa.me/917011402167?text=${encodeURIComponent("Hi Delta Labs AI — I just used your no-show calculator and want to know more.")}`} target="_blank" rel="noopener" style={{ ...S.btn, width: "auto", padding: "10px 20px", fontSize: 13, background: "#25D366", color: "#fff", textDecoration: "none" }}>
+                <a href={`https://wa.me/917011402167?text=${encodeURIComponent(`Hi Delta Labs AI — my clinic scored grade ${grade.g} on your no-show calculator. I want to know more.`)}`} target="_blank" rel="noopener" style={{ ...S.btn, width: "auto", padding: "10px 20px", fontSize: 13, background: "#25D366", color: "#fff", textDecoration: "none" }}>
                   💬 Chat on WhatsApp
                 </a>
               </div>
@@ -281,11 +379,11 @@ export default function NoShowCalculator() {
                 <a href={`https://wa.me/917011402167?text=${encodeURIComponent("Hi Delta Labs AI — I just got my no-show recovery plan and want to talk.")}`} target="_blank" rel="noopener" style={{ ...S.btn, width: "auto", background: "#25D366", color: "#fff", textDecoration: "none" }}>
                   💬 Talk to us on WhatsApp
                 </a>
-                <a href="#cal-book" target="_blank" rel="noopener" style={{ ...S.btn, ...S.btnPrimary, width: "auto" }}>
+                <a href={CAL} target="_blank" rel="noopener" style={{ ...S.btn, ...S.btnPrimary, width: "auto", textDecoration: "none" }}>
                   Book your free demo →
                 </a>
                 <button style={{ ...S.shareBtn, background: "rgba(37,211,102,0.12)", border: "1px solid rgba(37,211,102,0.35)", color: "#25D366" }} onClick={handleShare}>
-                  💬 Share my number on WhatsApp
+                  💬 Share my report card
                 </button>
               </div>
             </div>
@@ -296,10 +394,10 @@ export default function NoShowCalculator() {
           <div style={{ marginTop: 48, borderTop: "1px solid rgba(255,255,255,0.06)", paddingTop: 32 }}>
             <div style={{ display: "flex", gap: 32, flexWrap: "wrap", marginBottom: 24 }}>
               {[
-                { n: "65%", l: "Average no-show recovery" },
-                { n: "~40%", l: "Fewer no-shows" },
+                { n: "~65%", l: "Typical no-show revenue recovery" },
+                { n: "24/7", l: "Reminders + recall, fully automated" },
                 { n: "2 weeks", l: "Typical setup time" },
-                { n: "200+", l: "Clinics served" },
+                { n: "Live", l: "Running in a real dental clinic today" },
               ].map(({ n, l }) => (
                 <div key={l} style={{ textAlign: "center", flex: 1, minWidth: 100 }}>
                   <div style={{ fontSize: 26, fontWeight: 800, color: "#6366f1" }}>{n}</div>
