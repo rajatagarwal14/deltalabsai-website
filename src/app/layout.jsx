@@ -85,14 +85,16 @@ const jsonLd = {
   logo: {
     "@type": "ImageObject",
     url: "https://deltalabsai.com/logo.png",
-    width: 512,
-    height: 512,
+    width: 400,
+    height: 400,
   },
   image: "https://deltalabsai.com/og-image.png",
   priceRange: "$$",
   sameAs: [
     "https://www.linkedin.com/company/delta-labs-ai-consulting",
     "https://www.facebook.com/profile.php?id=61588293766138",
+    // ADD after creation: "https://www.google.com/maps?cid=<GBP_CID>",
+    // ADD after creation: "https://www.crunchbase.com/organization/delta-labs-ai",
   ],
   areaServed: [
     { "@type": "Country", name: "United States" },
