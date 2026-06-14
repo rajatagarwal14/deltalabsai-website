@@ -254,8 +254,8 @@ function Hero() {
           </F>
           <F d={0.08}>
             <h1 className="hero-h1" style={{ fontFamily: "Georgia, 'Times New Roman', serif", fontSize: "clamp(38px, 5.6vw, 64px)", fontWeight: 500, lineHeight: 1.06, letterSpacing: "-0.02em", margin: "0 0 24px" }}>
-              Get Your{" "}
-              <em style={{ color: "#60A5FA", fontStyle: "italic" }}>Free AI Diagnostic</em>
+              AI Automation for Small Business —{" "}
+              <em style={{ color: "#60A5FA", fontStyle: "italic" }}>Get Your Free Delta Labs AI Diagnostic</em>
             </h1>
           </F>
           <F d={0.16}>

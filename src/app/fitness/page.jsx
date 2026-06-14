@@ -34,42 +34,38 @@ function Btn({ children, href, v = "primary", ...p }) {
   return <a href={href} style={styles} {...p}>{children}</a>;
 }
 
-const services = [
-  "Cleaning Services", "Pest Control", "Plumbing", "Electrical", "HVAC & AC Repair", "Painting", "Landscaping", "Handyman Services"
-];
-
-const problems = [
-  { title: "Missed calls = missed revenue", desc: "When you are on a job, you cannot answer the phone. Every missed call is a potential customer who goes to your competitor instead." },
-  { title: "No follow-up system", desc: "You finish a job, move to the next one, and never follow up. That customer needed you again 6 months later but called someone else because they forgot your name." },
-  { title: "Scheduling chaos", desc: "Double bookings, forgotten appointments, and last-minute cancellations. Your calendar lives in your head or on sticky notes." },
-  { title: "Zero online presence", desc: "You have 5 Google reviews. The company that started last year has 50. New customers choose them every time." },
+const painPoints = [
+  { title: "Members ghost after month one", desc: "50% of new members cancel within 90 days. Without automated engagement, they quietly disappear and you only notice when revenue drops." },
+  { title: "Scheduling is a full-time job", desc: "WhatsApp messages, phone calls, walk-ins. Managing class bookings manually eats 10+ hours per week that should go toward training clients." },
+  { title: "Empty slots from no-shows", desc: "Members book classes but do not show up. The spot goes wasted. The waitlisted member never gets notified. Revenue lost, twice." },
+  { title: "Reviews do not match your quality", desc: "Your studio delivers great results but has 12 Google reviews. The franchise gym down the road has 200. Guess who new members find first." },
 ];
 
 const solutions = [
-  { title: "24/7 Online Booking", desc: "Customers book appointments through your website or a simple link, any time of day. No missed calls. No phone tag. Jobs fill your calendar while you work." },
-  { title: "Automated Confirmations", desc: "The moment someone books, they get a WhatsApp or SMS confirmation with date, time, and your contact details. Professional and instant." },
-  { title: "Job Reminders", desc: "Customers get reminded 24 hours before their appointment. You get reminded too. No-shows drop by 40%. No more wasted trips." },
-  { title: "Follow-up Automation", desc: "After every job, customers automatically receive a thank-you message, a feedback request, and a Google review link. Build repeat business on autopilot." },
-  { title: "Customer CRM", desc: "Every customer, every job, every note in one simple dashboard. When Mrs. Sharma calls again, you know her address, her AC model, and what you fixed last time." },
-  { title: "Review Collection", desc: "Happy customers get a gentle review request at the perfect moment. Grow your Google reviews 2x in 3 months without awkwardly asking." },
+  { title: "24/7 Class Booking", desc: "Members book, cancel, and join waitlists online. No calls, no WhatsApp back-and-forth. Your schedule updates everywhere automatically." },
+  { title: "Smart Reminders", desc: "Automated WhatsApp and SMS reminders 24 hours and 2 hours before class. Cut no-shows by up to 40% without sending a single message yourself." },
+  { title: "Retention Autopilot", desc: "When a regular member misses their usual class, they get a personalized nudge. Milestone celebrations at 10, 25, 50 classes keep motivation high." },
+  { title: "Review Engine", desc: "After their 10th class, members automatically receive a Google review request. Double your reviews in 3 months without asking awkwardly." },
+  { title: "Member Dashboard", desc: "See attendance trends, at-risk members, revenue, and class popularity at a glance. Make decisions with data, not gut feeling." },
+  { title: "WhatsApp Follow-ups", desc: "Post-class tips, workout plans, and check-ins sent automatically. Keep members engaged between sessions without manual effort." },
 ];
 
 const stats = [
   { num: "40%", label: "Fewer no-shows" },
-  { num: "60%", label: "Of calls missed while on jobs" },
-  { num: "2x", label: "More repeat customers" },
+  { num: "50%", label: "Members lost in 90 days (without automation)" },
+  { num: "2x", label: "More Google reviews" },
   { num: "10+ hrs", label: "Saved per week" },
 ];
 
 const faqs = [
-  { q: "I am not tech-savvy. Can I still use this?", a: "Absolutely. We set everything up for you. If you can use WhatsApp, you can use our tools. No technical skills needed." },
-  { q: "How much does it cost?", a: "Plans start at Rs 2,999/month (or $49/month for international businesses). 14-day free trial, no credit card required." },
-  { q: "Will my customers actually book online?", a: "Yes. We have seen 70%+ of customers prefer online booking when given the option. It is faster for them and easier for you." },
-  { q: "How quickly can I get started?", a: "Most businesses are set up within 48 hours. We handle the configuration, import your customer data, and train you on the dashboard." },
-  { q: "Does this work for businesses outside India?", a: "Yes. We work with home service businesses globally, including UAE, UK, USA, and Australia. Pricing adapts to your market." },
+  { q: "Does this work for yoga studios, gyms, and personal trainers?", a: "Yes. Our tools are designed for any independent fitness business, whether you run group classes, one-on-one training, or both." },
+  { q: "How long does setup take?", a: "Most studios are fully set up within 48 hours. We handle the configuration and import your existing member data." },
+  { q: "What if my members are not tech-savvy?", a: "The booking system works through a simple link. If someone can use WhatsApp, they can book a class. No app download required." },
+  { q: "How much does it cost?", a: "Plans start at Rs 2,999/month for small studios. Custom pricing available for larger facilities. 14-day free trial on all plans." },
+  { q: "Can I try it before committing?", a: "Absolutely. We offer a 14-day free trial with no credit card required. See the results before you pay anything." },
 ];
 
-export default function HomeServicesPage() {
+export default function FitnessPage() {
   const [openFaq, setOpenFaq] = useState(null);
 
   return (
@@ -92,18 +88,13 @@ export default function HomeServicesPage() {
       {/* Hero */}
       <section style={{ maxWidth: 900, margin: "0 auto", padding: "80px 24px 60px", textAlign: "center" }}>
         <F>
-          <div style={{ display: "inline-block", padding: "6px 16px", borderRadius: 20, background: "#fefce8", color: "#ca8a04", fontSize: 13, fontWeight: 600, marginBottom: 24 }}>Built for Home Service Businesses</div>
+          <div style={{ display: "inline-block", padding: "6px 16px", borderRadius: 20, background: "#eff6ff", color: "#2563eb", fontSize: 13, fontWeight: 600, marginBottom: 24 }}>Built for Independent Gyms, Yoga Studios & Trainers</div>
           <h1 style={{ fontSize: "clamp(32px, 5vw, 52px)", fontWeight: 800, lineHeight: 1.1, letterSpacing: -1.5, margin: "0 0 20px" }}>
-            Never miss a booking.<br />Never lose a customer.
+            Gym & Yoga Studio Automation<br />for Scheduling, Retention & Reviews
           </h1>
-          <p style={{ fontSize: 18, color: "#52525b", maxWidth: 600, margin: "0 auto 24px", lineHeight: 1.6 }}>
-            Automated booking, reminders, follow-ups, and reviews for cleaning, pest control, plumbing, HVAC, and every home service business. Built for small teams.
+          <p style={{ fontSize: 18, color: "#52525b", maxWidth: 600, margin: "0 auto 32px", lineHeight: 1.6 }}>
+            Class scheduling, member retention, and review collection on autopilot. Built for independent fitness businesses that want to grow without burning out.
           </p>
-          <div style={{ display: "flex", gap: 8, justifyContent: "center", flexWrap: "wrap", marginBottom: 32 }}>
-            {services.map((s, i) => (
-              <span key={i} style={{ padding: "4px 12px", borderRadius: 16, background: "#f4f4f5", fontSize: 12, color: "#52525b" }}>{s}</span>
-            ))}
-          </div>
           <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
             <Btn href="#cal-book">Book a Free Demo <Ic.Arr /></Btn>
             <Btn href={FORM} v="secondary">Take Free Diagnostic</Btn>
@@ -123,14 +114,14 @@ export default function HomeServicesPage() {
         </div>
       </section>
 
-      {/* Problems */}
+      {/* Pain Points */}
       <section style={{ maxWidth: 900, margin: "0 auto", padding: "72px 24px" }}>
-        <F><h2 style={{ fontSize: 28, fontWeight: 700, marginBottom: 32, textAlign: "center" }}>Running a home service business is hard enough</h2></F>
+        <F><h2 style={{ fontSize: 28, fontWeight: 700, marginBottom: 32, textAlign: "center" }}>Sound familiar?</h2></F>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 24 }}>
-          {problems.map((p, i) => (
+          {painPoints.map((p, i) => (
             <F key={i} d={i * 0.08}>
-              <div style={{ padding: 24, borderRadius: 12, border: "1px solid #fef3c7", background: "#fffbeb" }}>
-                <h3 style={{ fontSize: 16, fontWeight: 600, marginBottom: 8, color: "#b45309" }}>{p.title}</h3>
+              <div style={{ padding: 24, borderRadius: 12, border: "1px solid #fecaca", background: "#fef2f2" }}>
+                <h3 style={{ fontSize: 16, fontWeight: 600, marginBottom: 8, color: "#dc2626" }}>{p.title}</h3>
                 <p style={{ fontSize: 14, color: "#71717a", lineHeight: 1.6 }}>{p.desc}</p>
               </div>
             </F>
@@ -141,7 +132,7 @@ export default function HomeServicesPage() {
       {/* Solutions */}
       <section style={{ background: "#fafafa", padding: "72px 24px" }}>
         <div style={{ maxWidth: 1000, margin: "0 auto" }}>
-          <F><h2 style={{ fontSize: 28, fontWeight: 700, marginBottom: 40, textAlign: "center" }}>Let automation handle the admin. You handle the work.</h2></F>
+          <F><h2 style={{ fontSize: 28, fontWeight: 700, marginBottom: 40, textAlign: "center" }}>The fix is simpler than you think</h2></F>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 24 }}>
             {solutions.map((f, i) => (
               <F key={i} d={i * 0.08}>
@@ -176,9 +167,9 @@ export default function HomeServicesPage() {
       {/* CTA */}
       <section style={{ background: "#fafafa", padding: "72px 24px", textAlign: "center" }}>
         <F>
-          <h2 style={{ fontSize: 28, fontWeight: 700, marginBottom: 16 }}>Ready to grow your business?</h2>
+          <h2 style={{ fontSize: 28, fontWeight: 700, marginBottom: 16 }}>Ready to grow your studio?</h2>
           <p style={{ fontSize: 16, color: "#52525b", marginBottom: 32, lineHeight: 1.6, maxWidth: 500, margin: "0 auto 32px" }}>
-            Home service businesses across India, Dubai, UK, and USA are automating their operations. Start your 14-day free trial today.
+            Independent fitness businesses across India and worldwide are automating their operations. Start your 14-day free trial today.
           </p>
           <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
             <Btn href="#cal-book">Book a Free Demo <Ic.Arr /></Btn>

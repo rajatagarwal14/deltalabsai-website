@@ -91,6 +91,12 @@ export default function sitemap() {
       changeFrequency: "weekly",
       priority: 0.8,
     },
+    {
+      url: "https://deltalabsai.com/smilecrm",
+      lastModified: new Date("2026-04-29"),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
     ...cityPages,
     ...blogPosts,
   ];

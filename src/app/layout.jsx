@@ -1,10 +1,11 @@
 import "./globals.css";
 import WhatsAppFloat from "./WhatsAppFloat";
+import DiagnosticBanner from "./DiagnosticBanner";
 
 export const metadata = {
-  title: "Delta Labs AI — Stop Losing Revenue to Broken Operations",
+  title: "AI Automation for Small Business | Delta Labs AI",
   description:
-    "Small business drowning in chaos? Delta Labs AI is your automation co-pilot. Start with our free 3-minute diagnostic.",
+    "Delta Labs AI builds AI automation for small businesses — dental clinics, gyms, home services, e-commerce. Start with a free 3-minute revenue diagnostic.",
   keywords: [
     "AI business consulting",
     "digital transformation consulting",
@@ -25,7 +26,7 @@ export const metadata = {
     canonical: "https://deltalabsai.com",
   },
   openGraph: {
-    title: "Delta Labs AI — Stop Losing Revenue to Broken Operations",
+    title: "AI Automation for Small Business | Delta Labs AI",
     description:
       "Small business drowning in chaos? Delta Labs AI is your automation co-pilot. Start with our free 3-minute diagnostic.",
     url: "https://deltalabsai.com",
@@ -43,7 +44,7 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Delta Labs AI — Stop Losing Revenue to Broken Operations",
+    title: "AI Automation for Small Business | Delta Labs AI",
     description:
       "Small business drowning in chaos? Delta Labs AI is your automation co-pilot. Start with our free 3-minute diagnostic.",
     images: ["/og-image.png"],
@@ -204,16 +205,10 @@ const faqJsonLd = {
   ],
 };
 
-// Organization schema for broad search visibility
-const organizationJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "Delta Labs AI",
-  "url": "https://deltalabsai.com",
-  "logo": "https://deltalabsai.com/logo.png",
-  "description": "AI-powered operations partner for growing service businesses",
-  "sameAs": ["https://www.linkedin.com/company/delta-labs-ai-consulting/"],
-};
+// NOTE: removed the duplicate bare Organization node — the canonical entity is the
+// single #organization ProfessionalService node (jsonLd above). Two conflicting
+// Organization nodes (different description + LinkedIn trailing-slash) confused the
+// entity graph. Keep ONE source of truth.
 
 // Service schema for homepage
 const serviceJsonLd = {
@@ -333,10 +328,6 @@ export default function RootLayout({ children }) {
         />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
-        />
-        <script
-          type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
         />
         <script
@@ -406,6 +397,7 @@ export default function RootLayout({ children }) {
         {children}
 
         <WhatsAppFloat />
+        <DiagnosticBanner />
 
         {/* Exit-Intent Popup + Chat Widget */}
         <script dangerouslySetInnerHTML={{ __html: `
@@ -529,20 +521,20 @@ export default function RootLayout({ children }) {
                   body: JSON.stringify(data)
                 }).then(function(r) {
                   if (!r.ok) {
-                    // ALERT on failure - never fail silently
-                    fetch('https://api.telegram.org/bot8680426384:AAHqWHX13qD83KrozwQ3LPH-Mn1bPlLRk3o/sendMessage', {
+                    // ALERT on failure - never fail silently (token stays server-side)
+                    fetch('https://delta-labs-ecosystem.vercel.app/api/internal/lead-alert', {
                       method: 'POST', headers: { 'Content-Type': 'application/json' },
-                      body: JSON.stringify({ chat_id: '1166752894', text: 'ALERT: Popup form FAILED for ' + data.name + ' (' + data.email + '). CRM returned ' + r.status + '. Check immediately.' })
-                    });
+                      body: JSON.stringify({ name: data.name, email: data.email, reason: 'CRM returned ' + r.status })
+                    }).catch(function(){});
                     // FALLBACK: store in localStorage for retry
                     try { var fails = JSON.parse(localStorage.getItem('dla_failed_leads') || '[]'); fails.push(data); localStorage.setItem('dla_failed_leads', JSON.stringify(fails)); } catch(x){}
                   }
                 }).catch(function(err) {
-                  // Network error - alert + fallback
-                  fetch('https://api.telegram.org/bot8680426384:AAHqWHX13qD83KrozwQ3LPH-Mn1bPlLRk3o/sendMessage', {
+                  // Network error - alert + fallback (token stays server-side)
+                  fetch('https://delta-labs-ecosystem.vercel.app/api/internal/lead-alert', {
                     method: 'POST', headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ chat_id: '1166752894', text: 'ALERT: Popup form NETWORK ERROR for ' + data.name + ' (' + data.email + '). Error: ' + err.message })
-                  });
+                    body: JSON.stringify({ name: data.name, email: data.email, reason: 'Network error: ' + err.message })
+                  }).catch(function(){});
                   try { var fails = JSON.parse(localStorage.getItem('dla_failed_leads') || '[]'); fails.push(data); localStorage.setItem('dla_failed_leads', JSON.stringify(fails)); } catch(x){}
                 });
                 // 2. Google Sheet backup capture
