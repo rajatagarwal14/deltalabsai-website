@@ -462,6 +462,9 @@ export default function IntakeForm() {
   const [modalEmail, setModalEmail] = useState("");
   const [modalSubmitted, setModalSubmitted] = useState(false);
   const [modalSubmitting, setModalSubmitting] = useState(false);
+  const [toolStack, setToolStack] = useState([]);
+  const [toolSpend, setToolSpend] = useState("");
+  const [toolSatisfaction, setToolSatisfaction] = useState("");
 
   useEffect(() => {
     const v = getAbVariant();
@@ -469,7 +472,7 @@ export default function IntakeForm() {
     trackAbEvent(v, "view");
   }, []);
 
-  const totalSteps = 3 + dimensions.length;
+  const totalSteps = 4 + dimensions.length;
 
   useEffect(() => {
     if (step !== totalSteps) return;
@@ -491,6 +494,7 @@ export default function IntakeForm() {
     if (step === 1) return info.teamSize && info.revenue;
     if (step >= 2 && step < 2 + dimensions.length) return scores[dimensions[step - 2]?.id] !== undefined;
     if (step === 2 + dimensions.length) return info.biggestChallenge.length > 10;
+    if (step === 3 + dimensions.length) return toolSatisfaction !== "";
     return true;
   };
 
@@ -622,6 +626,52 @@ export default function IntakeForm() {
       </div>
     );
 
+    // Step 8: Tool Stack Survey
+    if (step === 3 + dimensions.length) {
+      const toolOptions = ["Notion", "Zapier / Make", "HubSpot", "Mailchimp", "Calendly", "Monday.com", "Slack", "QuickBooks / Xero", "Shopify", "WhatsApp Business", "Other"];
+      const spendOptions = ["< $100 / mo", "$100–300 / mo", "$300–600 / mo", "$600+ / mo"];
+      const satOptions = ["Yes", "Somewhat", "No"];
+      const toggleTool = (tool) => setToolStack(prev => prev.includes(tool) ? prev.filter(t => t !== tool) : [...prev, tool]);
+      return (
+        <div>
+          <div style={{ marginBottom: 8 }}>
+            <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, fontWeight: 600, color: "#2563EB", textTransform: "uppercase", letterSpacing: "0.08em" }}>Almost there</span>
+          </div>
+          <h2 style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 26, fontWeight: 800, color: "#0F172A", margin: "0 0 6px" }}>Which tools do you use?</h2>
+          <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 14.5, color: "#6B7280", margin: "0 0 28px", lineHeight: 1.6 }}>Helps us spot where you&apos;re overpaying or underserved by your current stack.</p>
+
+          <div style={{ marginBottom: 24 }}>
+            <label style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, fontWeight: 600, color: "#374151", display: "block", marginBottom: 10 }}>Tools you currently use <span style={{ fontWeight: 400, color: "#9CA3AF" }}>(select all that apply)</span></label>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+              {toolOptions.map(tool => (
+                <button key={tool} onClick={() => toggleTool(tool)} style={{
+                  padding: "8px 14px", borderRadius: 8, cursor: "pointer", transition: "all 0.15s",
+                  background: toolStack.includes(tool) ? "#EFF6FF" : "#fff",
+                  border: toolStack.includes(tool) ? "1.5px solid #2563EB" : "1.5px solid #E5E7EB",
+                  fontFamily: "'DM Sans',sans-serif", fontSize: 13, fontWeight: toolStack.includes(tool) ? 600 : 400,
+                  color: toolStack.includes(tool) ? "#1E40AF" : "#4B5563",
+                }}>{toolStack.includes(tool) ? "✓ " : ""}{tool}</button>
+              ))}
+            </div>
+          </div>
+
+          <div style={{ marginBottom: 24 }}>
+            <label style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, fontWeight: 600, color: "#374151", display: "block", marginBottom: 10 }}>Monthly spend on these tools</label>
+            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+              {spendOptions.map((opt, i) => <OptionBtn key={opt} label={opt} selected={toolSpend === opt} onClick={() => setToolSpend(opt)} index={i} />)}
+            </div>
+          </div>
+
+          <div>
+            <label style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, fontWeight: 600, color: "#374151", display: "block", marginBottom: 10 }}>Are these tools saving you meaningful time?</label>
+            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+              {satOptions.map((opt, i) => <OptionBtn key={opt} label={opt} selected={toolSatisfaction === opt} onClick={() => setToolSatisfaction(opt)} index={i} />)}
+            </div>
+          </div>
+        </div>
+      );
+    }
+
     // Results
     if (step === totalSteps) return (
       <div>
@@ -689,7 +739,9 @@ export default function IntakeForm() {
               setSubmitting(true);
               setSubmitError("");
               try {
-                const payload = { info, scores };
+                const isToolStackPain = (toolSatisfaction === "No" || toolSatisfaction === "Somewhat") && toolSpend !== "" && toolSpend !== "< $100 / mo";
+                const leadTags = isToolStackPain ? ["tool_stack_pain"] : [];
+                const payload = { info, scores, toolStack, toolSpend, toolSatisfaction };
                 const res = await fetch(FORM_ENDPOINT, {
                   method: "POST",
                   headers: { "Content-Type": "text/plain" },
@@ -700,9 +752,23 @@ export default function IntakeForm() {
                 fetch("https://delta-labs-ecosystem.vercel.app/api/leads/capture", {
                   method: "POST",
                   headers: { "Content-Type": "application/json" },
-                  body: JSON.stringify({ name: info.name, email: info.email, company: info.company, website: info.website, industry: info.industry, source: "diagnostic_tool", score: Math.round((Object.values(scores).reduce((a, b) => a + b, 0) / 45) * 100), notes: "Diagnostic: " + info.urgency + ". Challenge: " + info.biggestChallenge }),
+                  body: JSON.stringify({
+                    name: info.name, email: info.email, company: info.company, website: info.website,
+                    industry: info.industry, source: "diagnostic_tool",
+                    score: Math.round((Object.values(scores).reduce((a, b) => a + b, 0) / 45) * 100),
+                    notes: "Diagnostic: " + info.urgency + ". Challenge: " + info.biggestChallenge,
+                    tags: leadTags,
+                    metadata: {
+                      diagnostic_answers: {
+                        teamSize: info.teamSize, revenue: info.revenue, urgency: info.urgency,
+                        biggestChallenge: info.biggestChallenge, tool_stack: toolStack,
+                        tool_spend: toolSpend, tool_satisfaction: toolSatisfaction,
+                      }
+                    },
+                  }),
                 }).catch(() => {});
                 setSubmitted(true);
+                trackGa4Event("diagnostic_complete", { score: scoreData.pct, industry: info.industry });
               } catch (err) {
                 // Even with no-cors, data is sent. Mark as submitted.
                 setSubmitted(true);
