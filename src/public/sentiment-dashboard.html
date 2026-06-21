@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[Client] Community Pulse — Delta Labs AI</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, 'SF Pro Display', 'Segoe UI', sans-serif; background: #080D19; color: #E2E8F0; overflow-x: hidden; }
+  
+  .topbar { background: rgba(15,23,42,0.95); backdrop-filter: blur(12px); padding: 16px 32px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(59,130,246,0.15); position: sticky; top: 0; z-index: 100; }
+  .topbar .brand { display: flex; align-items: center; gap: 12px; }
+  .topbar .brand svg { width: 28px; height: 28px; }
+  .topbar .brand h1 { font-size: 16px; color: #F8FAFC; font-weight: 600; }
+  .topbar .brand span { color: #3B82F6; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; }
+  .topbar .period { display: flex; align-items: center; gap: 8px; }
+  .topbar .period select { background: #1E293B; color: #94A3B8; border: 1px solid #334155; border-radius: 8px; padding: 6px 12px; font-size: 13px; cursor: pointer; }
+  .topbar .live { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #10B981; }
+  .topbar .live .dot { width: 8px; height: 8px; border-radius: 50%; background: #10B981; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+  
+  .alert-strip { background: linear-gradient(90deg, #991B1B, #7F1D1D); padding: 10px 32px; display: flex; align-items: center; gap: 10px; font-size: 13px; color: #FCA5A5; animation: slideIn 0.5s ease; }
+  .alert-strip strong { color: #FEE2E2; }
+  @keyframes slideIn { from { transform: translateY(-100%); } to { transform: translateY(0); } }
+  
+  .container { max-width: 1400px; margin: 0 auto; padding: 24px 32px; }
+  
+  .metrics-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-bottom: 24px; }
+  .metric-card { background: linear-gradient(135deg, #111827, #0F172A); border: 1px solid #1F2937; border-radius: 16px; padding: 20px; text-align: center; transition: all 0.3s; cursor: pointer; position: relative; overflow: hidden; }
+  .metric-card:hover { border-color: #3B82F6; transform: translateY(-2px); box-shadow: 0 8px 32px rgba(59,130,246,0.15); }
+  .metric-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; border-radius: 16px 16px 0 0; }
+  .metric-card.green::before { background: linear-gradient(90deg, #10B981, #34D399); }
+  .metric-card.yellow::before { background: linear-gradient(90deg, #F59E0B, #FBBF24); }
+  .metric-card.red::before { background: linear-gradient(90deg, #EF4444, #F87171); }
+  .metric-card.blue::before { background: linear-gradient(90deg, #3B82F6, #60A5FA); }
+  .metric-card.purple::before { background: linear-gradient(90deg, #8B5CF6, #A78BFA); }
+  .metric-label { font-size: 11px; color: #64748B; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 8px; }
+  .metric-value { font-size: 36px; font-weight: 800; letter-spacing: -1px; }
+  .metric-value.green { color: #10B981; }
+  .metric-value.yellow { color: #F59E0B; }
+  .metric-value.red { color: #EF4444; }
+  .metric-value.blue { color: #3B82F6; }
+  .metric-value.purple { color: #8B5CF6; }
+  .metric-trend { font-size: 12px; margin-top: 6px; display: flex; align-items: center; justify-content: center; gap: 4px; }
+  .metric-trend.up { color: #10B981; }
+  .metric-trend.down { color: #EF4444; }
+  
+  .row { display: grid; gap: 16px; margin-bottom: 24px; }
+  .row-2 { grid-template-columns: 1fr 1fr; }
+  .row-3 { grid-template-columns: 1fr 1fr 1fr; }
+  .row-2-1 { grid-template-columns: 2fr 1fr; }
+  .row-1-2 { grid-template-columns: 1fr 2fr; }
+  
+  .card { background: #111827; border: 1px solid #1F2937; border-radius: 16px; padding: 24px; transition: all 0.3s; }
+  .card:hover { border-color: rgba(59,130,246,0.3); }
+  .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+  .card-title { font-size: 14px; font-weight: 600; color: #F8FAFC; display: flex; align-items: center; gap: 8px; }
+  .card-badge { font-size: 11px; padding: 2px 8px; border-radius: 12px; font-weight: 600; }
+  
+  .gauge-container { display: flex; justify-content: center; align-items: center; padding: 16px 0; }
+  
+  .item-row { display: flex; align-items: flex-start; gap: 12px; padding: 14px 0; border-bottom: 1px solid rgba(31,41,55,0.5); transition: all 0.2s; }
+  .item-row:hover { background: rgba(59,130,246,0.03); margin: 0 -12px; padding: 14px 12px; border-radius: 8px; }
+  .item-row:last-child { border-bottom: none; }
+  .rank { width: 28px; height: 28px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; flex-shrink: 0; }
+  .rank-red { background: rgba(239,68,68,0.15); color: #F87171; }
+  .rank-green { background: rgba(16,185,129,0.15); color: #34D399; }
+  .item-content { flex: 1; }
+  .item-title { font-size: 14px; font-weight: 600; color: #E2E8F0; }
+  .item-desc { font-size: 12px; color: #64748B; margin-top: 2px; }
+  .item-quote { font-size: 12px; color: #94A3B8; font-style: italic; margin-top: 6px; padding: 6px 10px; background: rgba(59,130,246,0.05); border-left: 2px solid #3B82F6; border-radius: 0 6px 6px 0; }
+  .item-mentions { font-size: 12px; color: #3B82F6; font-weight: 600; flex-shrink: 0; }
+  
+  .comp-row { display: flex; align-items: center; padding: 12px 0; border-bottom: 1px solid rgba(31,41,55,0.5); }
+  .comp-row:last-child { border-bottom: none; }
+  .comp-name { flex: 1; font-size: 14px; font-weight: 600; color: #E2E8F0; }
+  .comp-bar { flex: 2; padding: 0 16px; }
+  .comp-bar-bg { height: 6px; background: #1F2937; border-radius: 3px; overflow: hidden; }
+  .comp-bar-fill { height: 100%; border-radius: 3px; }
+  .comp-tag { font-size: 11px; padding: 3px 8px; border-radius: 6px; font-weight: 700; }
+  .tag-losing { background: rgba(239,68,68,0.15); color: #F87171; }
+  .tag-mixed { background: rgba(245,158,11,0.15); color: #FBBF24; }
+  .tag-winning { background: rgba(16,185,129,0.15); color: #34D399; }
+  
+  .trend-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .trend-tag { padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+  .trend-tag:hover { transform: scale(1.05); }
+  .trend-hot { background: rgba(239,68,68,0.12); color: #F87171; border: 1px solid rgba(239,68,68,0.2); }
+  .trend-warm { background: rgba(245,158,11,0.12); color: #FBBF24; border: 1px solid rgba(245,158,11,0.2); }
+  .trend-cool { background: rgba(59,130,246,0.12); color: #60A5FA; border: 1px solid rgba(59,130,246,0.2); }
+  
+  .source-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+  .source-item { background: #0F172A; border: 1px solid #1F2937; border-radius: 10px; padding: 12px; text-align: center; font-size: 12px; color: #94A3B8; }
+  .source-item .count { font-size: 18px; font-weight: 700; color: #E2E8F0; margin-bottom: 2px; }
+  
+  .footer { text-align: center; padding: 32px; color: #334155; font-size: 11px; letter-spacing: 0.5px; }
+  .footer a { color: #3B82F6; text-decoration: none; }
+  
+  @media (max-width: 768px) {
+    .metrics-row { grid-template-columns: repeat(2, 1fr); }
+    .row-2, .row-3, .row-2-1, .row-1-2 { grid-template-columns: 1fr; }
+    .source-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand">
+    <svg viewBox="0 0 40 40" fill="none"><polygon points="20,5 35,33 5,33" stroke="#3B82F6" stroke-width="2.5" fill="none" stroke-linejoin="round"/><circle cx="20" cy="22" r="3.5" fill="#3B82F6" opacity="0.3"/></svg>
+    <div>
+      <span>Delta Labs AI</span>
+      <h1>[Client] Community Pulse</h1>
+    </div>
+  </div>
+  <div class="period">
+    <div class="live"><div class="dot"></div> Live Monitoring</div>
+    <select>
+      <option>Mar 19 - 25, 2026</option>
+      <option>Mar 12 - 18, 2026</option>
+      <option>Mar 5 - 11, 2026</option>
+    </select>
+  </div>
+</div>
+
+<div class="alert-strip">
+  ⚠️ <strong>ALERT:</strong> Pricing backlash detected — 47 negative mentions in 48hrs across Reddit + Trustpilot. E-commerce segment sentiment dropped 8 points.
+</div>
+
+<div class="container">
+
+<!-- TOP METRICS -->
+<div class="metrics-row">
+  <div class="metric-card yellow">
+    <div class="metric-label">Sentiment Score</div>
+    <div class="metric-value yellow">62</div>
+    <div class="metric-trend down">▼ 3 pts from last week</div>
+    <div style="font-size:10px;color:#64748B;margin-top:4px;">Industry avg: 58</div>
+  </div>
+  <div class="metric-card blue">
+    <div class="metric-label">Total Mentions</div>
+    <div class="metric-value blue">1,847</div>
+    <div class="metric-trend up">▲ 12% from last week</div>
+  </div>
+  <div class="metric-card green">
+    <div class="metric-label">Positive</div>
+    <div class="metric-value green">41%</div>
+    <div class="metric-trend down">▼ 5% from last week</div>
+  </div>
+  <div class="metric-card red">
+    <div class="metric-label">Negative</div>
+    <div class="metric-value red">31%</div>
+    <div class="metric-trend down">▲ 8% from last week</div>
+  </div>
+  <div class="metric-card purple">
+    <div class="metric-label">Neutral</div>
+    <div class="metric-value purple">28%</div>
+    <div class="metric-trend">— flat</div>
+  </div>
+</div>
+
+<!-- CHARTS ROW -->
+<div class="row row-2">
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">📊 Sentiment Trend (4 Weeks)</div>
+    </div>
+    <canvas id="trendChart" height="180"></canvas>
+  </div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">📡 Mentions by Source</div>
+    </div>
+    <canvas id="sourceChart" height="180"></canvas>
+  </div>
+</div>
+
+<!-- SEGMENTS -->
+<div class="row row-2">
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">👥 Sentiment by Segment</div>
+    </div>
+    <canvas id="segmentChart" height="200"></canvas>
+  </div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">🤖 AI Features Reception</div>
+      <div class="card-badge" style="background:rgba(16,185,129,0.15);color:#34D399;">Mostly Positive</div>
+    </div>
+    <canvas id="aiChart" height="200"></canvas>
+  </div>
+</div>
+
+<!-- PAIN & PRAISE -->
+<div class="row row-2">
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">🔴 Top Pain Points</div>
+      <div class="card-badge" style="background:rgba(239,68,68,0.15);color:#F87171;">5 issues</div>
+    </div>
+    <div class="item-row"><div class="rank rank-red">1</div><div class="item-content"><div class="item-title">Pricing shock after plan increases</div><div class="item-desc">Reddit r/[client], Trustpilot — Small biz owners hit hardest</div><div class="item-quote">"[Client] doubled my plan cost overnight. Moving to WordPress."</div></div><div class="item-mentions">47</div></div>
+    <div class="item-row"><div class="rank rank-red">2</div><div class="item-content"><div class="item-title">[Client] Studio editor bugs & crashes</div><div class="item-desc">Reddit r/webdev — Performance issues during peak hours</div></div><div class="item-mentions">32</div></div>
+    <div class="item-row"><div class="rank rank-red">3</div><div class="item-content"><div class="item-title">Harmony AI output feels generic</div><div class="item-desc">ProductHunt, Reddit — Sites look similar, lack brand personality</div></div><div class="item-mentions">28</div></div>
+    <div class="item-row"><div class="rank rank-red">4</div><div class="item-content"><div class="item-title">Platform lock-in concerns</div><div class="item-desc">Reddit, G2 — Cannot export site or migrate easily</div></div><div class="item-mentions">19</div></div>
+    <div class="item-row"><div class="rank rank-red">5</div><div class="item-content"><div class="item-title">Customer support response times</div><div class="item-desc">Trustpilot, Twitter — Wait times exceeding 48 hours</div></div><div class="item-mentions">15</div></div>
+  </div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">🟢 Top Praise</div>
+      <div class="card-badge" style="background:rgba(16,185,129,0.15);color:#34D399;">5 wins</div>
+    </div>
+    <div class="item-row"><div class="rank rank-green">1</div><div class="item-content"><div class="item-title">AI Visibility Overview (SEO dashboard)</div><div class="item-desc">Reddit, Twitter — "Game-changing" for SEO monitoring</div><div class="item-quote">"Finally [Client] gives us real SEO data. This is game-changing."</div></div><div class="item-mentions">38</div></div>
+    <div class="item-row"><div class="rank rank-green">2</div><div class="item-content"><div class="item-title">Ease of use for non-technical users</div><div class="item-desc">G2, Trustpilot — Still the easiest builder for beginners</div></div><div class="item-mentions">31</div></div>
+    <div class="item-row"><div class="rank rank-green">3</div><div class="item-content"><div class="item-title">AI Site Builder for quick prototyping</div><div class="item-desc">Reddit, ProductHunt — Freelancers love rapid mockups</div></div><div class="item-mentions">25</div></div>
+    <div class="item-row"><div class="rank rank-green">4</div><div class="item-content"><div class="item-title">[Client] Bookings system</div><div class="item-desc">G2, r/smallbusiness — Service businesses highly satisfied</div></div><div class="item-mentions">18</div></div>
+    <div class="item-row"><div class="rank rank-green">5</div><div class="item-content"><div class="item-title">Expanding app marketplace</div><div class="item-desc">Reddit, Twitter — Third-party integrations improving</div></div><div class="item-mentions">12</div></div>
+  </div>
+</div>
+
+<!-- COMPETITORS & TRENDING -->
+<div class="row row-2">
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">🏁 Competitor Mentions</div>
+    </div>
+    <div class="comp-row"><div class="comp-name">WordPress</div><div class="comp-bar"><div class="comp-bar-bg"><div class="comp-bar-fill" style="width:89%;background:linear-gradient(90deg,#EF4444,#F87171)"></div></div></div><div class="comp-tag tag-losing">89 mentions</div></div>
+    <div class="comp-row"><div class="comp-name">Squarespace</div><div class="comp-bar"><div class="comp-bar-bg"><div class="comp-bar-fill" style="width:54%;background:linear-gradient(90deg,#F59E0B,#FBBF24)"></div></div></div><div class="comp-tag tag-mixed">54 mentions</div></div>
+    <div class="comp-row"><div class="comp-name">Shopify</div><div class="comp-bar"><div class="comp-bar-bg"><div class="comp-bar-fill" style="width:41%;background:linear-gradient(90deg,#EF4444,#F87171)"></div></div></div><div class="comp-tag tag-losing">41 mentions</div></div>
+    <div class="comp-row"><div class="comp-name">Webflow</div><div class="comp-bar"><div class="comp-bar-bg"><div class="comp-bar-fill" style="width:33%;background:linear-gradient(90deg,#EF4444,#F87171)"></div></div></div><div class="comp-tag tag-losing">33 mentions</div></div>
+    <div class="comp-row"><div class="comp-name">Framer</div><div class="comp-bar"><div class="comp-bar-bg"><div class="comp-bar-fill" style="width:12%;background:linear-gradient(90deg,#F59E0B,#FBBF24)"></div></div></div><div class="comp-tag tag-mixed">12 mentions</div></div>
+  </div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">🔥 Trending Topics</div>
+    </div>
+    <div class="trend-tags" style="margin-bottom: 20px;">
+      <div class="trend-tag trend-hot">🔥 Pricing Backlash</div>
+      <div class="trend-tag trend-hot">🔥 Harmony Reviews</div>
+      <div class="trend-tag trend-warm">⚡ Vibe Coding</div>
+      <div class="trend-tag trend-warm">⚡ AI Builder Limits</div>
+      <div class="trend-tag trend-cool">📈 GEO Optimization</div>
+      <div class="trend-tag trend-cool">📉 Stock Decline</div>
+      <div class="trend-tag trend-warm">⚡ WordPress Migration</div>
+      <div class="trend-tag trend-cool">🔒 Phishing Attacks</div>
+    </div>
+    <div style="border-top: 1px solid #1F2937; padding-top: 16px;">
+      <div class="card-title" style="margin-bottom: 12px;">📡 Monitoring Sources</div>
+      <div class="source-grid">
+        <div class="source-item"><div class="count">487</div>Reddit</div>
+        <div class="source-item"><div class="count">412</div>Twitter/X</div>
+        <div class="source-item"><div class="count">298</div>Trustpilot</div>
+        <div class="source-item"><div class="count">187</div>G2</div>
+        <div class="source-item"><div class="count">463</div>Others</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<!-- RECOMMENDED ACTIONS -->
+<div class="row" style="padding: 0 32px 24px;">
+  <div class="card" style="border: 1px solid rgba(59,130,246,0.3); background: linear-gradient(135deg, #0F172A, #111827);">
+    <div class="card-header">
+      <div class="card-title">🎯 Recommended Actions This Week</div>
+      <div class="card-badge" style="background:rgba(59,130,246,0.15);color:#60A5FA;">AI-Generated</div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;">
+      <div style="background:rgba(239,68,68,0.06);border:1px solid rgba(239,68,68,0.15);border-radius:12px;padding:16px;">
+        <div style="font-size:12px;color:#F87171;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">🔴 Urgent</div>
+        <div style="font-size:14px;color:#F8FAFC;font-weight:600;margin-bottom:6px;">Address pricing backlash</div>
+        <div style="font-size:12px;color:#94A3B8;">47 negative mentions in 48hrs. Consider publishing a transparent blog post explaining value added in new plans. Engage directly in r/[client] thread.</div>
+      </div>
+      <div style="background:rgba(245,158,11,0.06);border:1px solid rgba(245,158,11,0.15);border-radius:12px;padding:16px;">
+        <div style="font-size:12px;color:#FBBF24;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">⚡ This Week</div>
+        <div style="font-size:14px;color:#F8FAFC;font-weight:600;margin-bottom:6px;">Improve Harmony AI output quality</div>
+        <div style="font-size:12px;color:#94A3B8;">45% positive sentiment is below threshold. Users report generic designs. Investigate adding more template variety and brand customization options.</div>
+      </div>
+      <div style="background:rgba(16,185,129,0.06);border:1px solid rgba(16,185,129,0.15);border-radius:12px;padding:16px;">
+        <div style="font-size:12px;color:#34D399;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">🟢 Amplify</div>
+        <div style="font-size:14px;color:#F8FAFC;font-weight:600;margin-bottom:6px;">Promote AI Visibility Overview</div>
+        <div style="font-size:12px;color:#94A3B8;">78% positive - highest rated AI feature. Create case studies, push in marketing. Users calling it "game-changing." Leverage this win across channels.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <strong>Delta Labs AI</strong> — Delta Content Agent | Auto-generated every Monday 9:00 AM UTC<br>
+  Next report: March 31, 2026 | Languages: EN, ES, PT, HE | <a href="https://deltalabsai.com">deltalabsai.com</a>
+</div>
+
+<script>
+// Sentiment Trend Chart
+new Chart(document.getElementById('trendChart'), {
+  type: 'line',
+  data: {
+    labels: ['Week 1', 'Week 2', 'Week 3', 'This Week'],
+    datasets: [
+      { label: 'Positive', data: [48, 46, 44, 41], borderColor: '#10B981', backgroundColor: 'rgba(16,185,129,0.1)', fill: true, tension: 0.4, pointRadius: 5, pointHoverRadius: 8 },
+      { label: 'Negative', data: [22, 24, 26, 31], borderColor: '#EF4444', backgroundColor: 'rgba(239,68,68,0.1)', fill: true, tension: 0.4, pointRadius: 5, pointHoverRadius: 8 },
+      { label: 'Neutral', data: [30, 30, 30, 28], borderColor: '#8B5CF6', backgroundColor: 'rgba(139,92,246,0.05)', fill: true, tension: 0.4, pointRadius: 5, pointHoverRadius: 8 }
+    ]
+  },
+  options: { plugins: { legend: { labels: { color: '#94A3B8', font: { size: 11 } } } }, scales: { x: { ticks: { color: '#64748B' }, grid: { color: 'rgba(31,41,55,0.5)' } }, y: { ticks: { color: '#64748B', callback: v => v + '%' }, grid: { color: 'rgba(31,41,55,0.5)' } } }, interaction: { intersect: false, mode: 'index' } }
+});
+
+// Source Donut Chart
+new Chart(document.getElementById('sourceChart'), {
+  type: 'doughnut',
+  data: {
+    labels: ['Reddit', 'Twitter/X', 'Trustpilot', 'G2', 'YouTube', 'Forums', 'Blogs'],
+    datasets: [{ data: [487, 412, 298, 187, 156, 198, 109], backgroundColor: ['#3B82F6', '#60A5FA', '#F59E0B', '#10B981', '#EF4444', '#8B5CF6', '#EC4899'], borderWidth: 0 }]
+  },
+  options: { cutout: '65%', plugins: { legend: { position: 'right', labels: { color: '#94A3B8', font: { size: 11 }, padding: 12, usePointStyle: true } } } }
+});
+
+// Segment Chart
+new Chart(document.getElementById('segmentChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Portfolio', 'Services', 'Creators', 'E-commerce', 'Enterprise'],
+    datasets: [{ label: 'Sentiment Score', data: [68, 65, 60, 58, 55], backgroundColor: ['#10B981', '#10B981', '#F59E0B', '#F59E0B', '#EF4444'], borderRadius: 8, barThickness: 32 }]
+  },
+  options: { indexAxis: 'y', plugins: { legend: { display: false } }, scales: { x: { max: 100, ticks: { color: '#64748B' }, grid: { color: 'rgba(31,41,55,0.5)' } }, y: { ticks: { color: '#E2E8F0', font: { size: 12 } }, grid: { display: false } } } }
+});
+
+// AI Features Chart
+new Chart(document.getElementById('aiChart'), {
+  type: 'radar',
+  data: {
+    labels: ['AI Site Builder', 'AI Text Gen', 'AI SEO Tools', 'AI Visibility', 'Harmony'],
+    datasets: [{ label: 'Positive %', data: [72, 65, 58, 78, 45], backgroundColor: 'rgba(59,130,246,0.15)', borderColor: '#3B82F6', pointBackgroundColor: '#3B82F6', pointRadius: 5, pointHoverRadius: 8 }]
+  },
+  options: { plugins: { legend: { display: false } }, scales: { r: { beginAtZero: true, max: 100, ticks: { color: '#64748B', backdropColor: 'transparent' }, grid: { color: 'rgba(31,41,55,0.5)' }, pointLabels: { color: '#CBD5E1', font: { size: 11 } } } } }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+html, body {
+  margin: 0;
+  padding: 0;
+  max-width: 100vw;
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* Mobile tap targets - Google Lighthouse requires 48px minimum, 8px apart */
+@media (max-width: 768px) {
+  /* All interactive elements must be 48px minimum */
+  button, a, input, select, textarea {
+    min-height: 48px;
+    display: inline-flex;
+    align-items: center;
+  }
+  /* Footer and nav links need spacing */
+  footer a, nav a, nav button {
+    min-height: 48px;
+    min-width: 48px;
+    padding: 12px 8px !important;
+    margin: 2px !important;
+  }
+  /* Ensure readable font sizes on mobile */
+  body {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  p, li, span {
+    font-size: 16px !important;
+    line-height: 1.7 !important;
+  }
+  h1 {
+    font-size: 28px !important;
+  }
+  h2 {
+    font-size: 22px !important;
+  }
+  h3 {
+    font-size: 18px !important;
+  }
+  /* Fix grid layouts for mobile */
+  section > div[style*="grid"] {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
