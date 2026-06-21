@@ -1,6 +1,5 @@
 import "./globals.css";
 import WhatsAppFloat from "./WhatsAppFloat";
-import DiagnosticBanner from "./DiagnosticBanner";
 
 export const metadata = {
   title: "AI Automation for Small Business | Delta Labs AI",
@@ -299,8 +298,6 @@ export default function RootLayout({ children }) {
         <link
           href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap"
           rel="stylesheet"
-          media="print"
-          onLoad="this.media='all'"
         />
         <script
           dangerouslySetInnerHTML={{
@@ -382,6 +379,7 @@ export default function RootLayout({ children }) {
             if (el) {
               e.preventDefault();
               e.stopPropagation();
+              if (window.gtag) window.gtag("event", "book_call_click");
               openCalPopup();
             }
           }, true);
@@ -399,7 +397,6 @@ export default function RootLayout({ children }) {
         {children}
 
         <WhatsAppFloat />
-        <DiagnosticBanner />
 
         {/* Exit-Intent Popup + Chat Widget */}
         <script dangerouslySetInnerHTML={{ __html: `
@@ -457,58 +454,27 @@ export default function RootLayout({ children }) {
 
             // ===== EXIT-INTENT POPUP =====
             var popupShown = false;
-            var popupHTML = '<div id="dla-popup-overlay" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);z-index:99999;justify-content:center;align-items:center"><div style="background:#fff;border-radius:16px;padding:40px;max-width:440px;width:90%;text-align:center;position:relative;box-shadow:0 20px 60px rgba(0,0,0,0.3)"><button onclick="document.getElementById(\\'dla-popup-overlay\\').style.display=\\'none\\'" style="position:absolute;top:12px;right:16px;background:none;border:none;font-size:24px;cursor:pointer;color:#999">×</button><div style="font-size:40px;margin-bottom:12px">🎯</div><h2 style="font-family:DM Sans,sans-serif;font-size:22px;font-weight:800;color:#0F172A;margin:0 0 8px">Wait! Get Your FREE AI Score</h2><p style="font-family:DM Sans,sans-serif;font-size:14px;color:#64748B;margin:0 0 20px;line-height:1.5">See how AI can save your business 15-30% in lost revenue. Takes 3 minutes.</p><form id="dla-popup-form" style="display:flex;flex-direction:column;gap:10px"><input name="name" placeholder="Your Name" required style="padding:12px 16px;border:1.5px solid #E2E8F0;border-radius:10px;font-size:14px;font-family:DM Sans,sans-serif;outline:none" /><input name="email" type="email" placeholder="Work Email" required style="padding:12px 16px;border:1.5px solid #E2E8F0;border-radius:10px;font-size:14px;font-family:DM Sans,sans-serif;outline:none" /><input name="company" placeholder="Company Name" style="padding:12px 16px;border:1.5px solid #E2E8F0;border-radius:10px;font-size:14px;font-family:DM Sans,sans-serif;outline:none" /><button type="submit" style="padding:14px;background:#0F172A;color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:700;font-family:DM Sans,sans-serif;cursor:pointer">Get My Free AI Score →</button></form><p style="font-family:DM Sans,sans-serif;font-size:11px;color:#94A3B8;margin:12px 0 0">No spam. Just your personalized AI readiness report.</p></div></div>';
+            var popupArmed = false; // only allow exit-intent after a grace period so it never fires on page load
+            function showPopup() {
+              if (popupShown || sessionStorage.getItem('dla_popup')) return;
+              popupShown = true;
+              sessionStorage.setItem('dla_popup', '1');
+              document.getElementById('dla-popup-overlay').style.display = 'flex';
+            }
+            var popupHTML = '<div id="dla-popup-overlay" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);z-index:99999;justify-content:center;align-items:center"><div style="background:#fff;border-radius:16px;padding:40px;max-width:440px;width:90%;text-align:center;position:relative;box-shadow:0 20px 60px rgba(0,0,0,0.3)"><button onclick="document.getElementById(\\'dla-popup-overlay\\').style.display=\\'none\\'" style="position:absolute;top:12px;right:16px;background:none;border:none;font-size:24px;cursor:pointer;color:#999">×</button><div style="font-size:40px;margin-bottom:12px">🎯</div><h2 style="font-family:DM Sans,sans-serif;font-size:22px;font-weight:800;color:#0F172A;margin:0 0 8px">Wait! Get Your FREE AI Score</h2><p style="font-family:DM Sans,sans-serif;font-size:14px;color:#64748B;margin:0 0 20px;line-height:1.5">See how AI can save your business 15-30% in lost revenue. Takes 3 minutes.</p><form id="dla-popup-form" style="display:flex;flex-direction:column;gap:10px"><input name="name" placeholder="Your Name" required style="padding:12px 16px;border:1.5px solid #E2E8F0;border-radius:10px;font-size:14px;font-family:DM Sans,sans-serif;outline:none" /><input name="email" type="email" placeholder="Work Email" required style="padding:12px 16px;border:1.5px solid #E2E8F0;border-radius:10px;font-size:14px;font-family:DM Sans,sans-serif;outline:none" /><input name="company" placeholder="Company Name" style="padding:12px 16px;border:1.5px solid #E2E8F0;border-radius:10px;font-size:14px;font-family:DM Sans,sans-serif;outline:none" /><button type="submit" style="padding:14px;background:#0F172A;color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:700;font-family:DM Sans,sans-serif;cursor:pointer">Get My Free Diagnostic →</button></form><p style="font-family:DM Sans,sans-serif;font-size:11px;color:#94A3B8;margin:12px 0 0">No spam. Just your personalized AI readiness report.</p></div></div>';
             document.body.insertAdjacentHTML('beforeend', popupHTML);
 
+            // Arm exit-intent only after 10s on page — prevents firing when the cursor
+            // happens to be near the top (URL bar) on initial load.
+            setTimeout(function() { popupArmed = true; }, 10000);
+
+            // True exit-intent: cursor leaves the top of the viewport.
             document.addEventListener('mouseout', function(e) {
-              if (e.clientY < 10 && !popupShown && !sessionStorage.getItem('dla_popup')) {
-                popupShown = true;
-                sessionStorage.setItem('dla_popup', '1');
-                document.getElementById('dla-popup-overlay').style.display = 'flex';
-              }
+              if (popupArmed && e.clientY <= 0 && !e.relatedTarget) showPopup();
             });
 
-            // Also show after 30 seconds on page
-            setTimeout(function() {
-              if (!popupShown && !sessionStorage.getItem('dla_popup')) {
-                popupShown = true;
-                sessionStorage.setItem('dla_popup', '1');
-                document.getElementById('dla-popup-overlay').style.display = 'flex';
-              }
-            }, 30000);
-
-            // Show when user switches tab or minimizes browser
-            document.addEventListener('visibilitychange', function() {
-              if (document.visibilityState === 'hidden' && !popupShown && !sessionStorage.getItem('dla_popup')) {
-                popupShown = true;
-                sessionStorage.setItem('dla_popup', '1');
-                document.getElementById('dla-popup-overlay').style.display = 'flex';
-              }
-            });
-
-            // Show on back button / navigate away
-            window.addEventListener('beforeunload', function(e) {
-              if (!popupShown && !sessionStorage.getItem('dla_popup')) {
-                popupShown = true;
-                sessionStorage.setItem('dla_popup', '1');
-                document.getElementById('dla-popup-overlay').style.display = 'flex';
-                e.preventDefault();
-                e.returnValue = '';
-              }
-            });
-
-            // Push state for back button detection
-            if (window.history && window.history.pushState) {
-              window.history.pushState(null, '', window.location.href);
-              window.addEventListener('popstate', function() {
-                if (!popupShown && !sessionStorage.getItem('dla_popup')) {
-                  popupShown = true;
-                  sessionStorage.setItem('dla_popup', '1');
-                  document.getElementById('dla-popup-overlay').style.display = 'flex';
-                  window.history.pushState(null, '', window.location.href);
-                }
-              });
-            }
+            // Fallback: show once after 45s of engaged time on page.
+            setTimeout(showPopup, 45000);
 
             // Handle popup form submission
             document.addEventListener('submit', function(e) {

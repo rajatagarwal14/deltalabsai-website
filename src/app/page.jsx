@@ -6,13 +6,21 @@ const CAL = "https://cal.com/ag-ventures-qbqxax/30min";
 const FORM = "/diagnostic";
 
 function useScrollTo() { return (id) => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" }); }
-function useFade() {
-  const r = useRef(null); const [v, setV] = useState(false);
-  useEffect(() => { const o = new IntersectionObserver(([e]) => { if (e.isIntersecting) setV(true); }, { threshold: 0.1 }); if (r.current) o.observe(r.current); return () => o.disconnect(); }, []);
+function useFade(eager = false) {
+  const r = useRef(null); const [v, setV] = useState(eager);
+  useEffect(() => {
+    if (eager) return;
+    const o = new IntersectionObserver(([e]) => { if (e.isIntersecting) setV(true); }, { threshold: 0.1 });
+    if (r.current) o.observe(r.current);
+    // Fallback: if observer never fires (e.g. already in view, layout quirk), reveal anyway.
+    const t = setTimeout(() => setV(true), 1200);
+    return () => { o.disconnect(); clearTimeout(t); };
+  }, [eager]);
   return [r, v];
 }
-function F({ children, d = 0, style = {} }) {
-  const [r, v] = useFade();
+// eager=true → render visible immediately (above-the-fold; never gate on scroll/JS hydration).
+function F({ children, d = 0, eager = false, style = {} }) {
+  const [r, v] = useFade(eager);
   return <div ref={r} style={{ opacity: v ? 1 : 0, transform: v ? "translateY(0)" : "translateY(24px)", transition: `all 0.65s ease ${d}s`, ...style }}>{children}</div>;
 }
 
@@ -110,30 +118,35 @@ function FAQ() {
 function AnnouncementBar() {
   const [visible, setVisible] = useState(true);
   if (!visible) return null;
+  const trackClick = () => {
+    if (typeof window !== "undefined" && window.gtag) {
+      window.gtag("event", "diagnostic_annbar_click", { event_category: "CRO", event_label: "announcement_bar" });
+    }
+  };
   return (
     <div style={{
       position: "fixed", top: 0, left: 0, right: 0, zIndex: 200,
-      background: "linear-gradient(90deg, #1D4ED8 0%, #7C3AED 100%)",
+      background: "linear-gradient(90deg, #065F46 0%, #047857 100%)",
       padding: "10px 16px", display: "flex", alignItems: "center", justifyContent: "center",
       gap: 12, flexWrap: "wrap",
     }}>
       <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 14, fontWeight: 600, color: "#fff", display: "flex", alignItems: "center", gap: 8 }}>
-        <style>{`@keyframes dl-new-pulse{0%,100%{opacity:1}50%{opacity:.5}}`}</style>
-        <span style={{ background: "#FACC15", color: "#92400E", borderRadius: 100, padding: "2px 10px", fontSize: 11, fontWeight: 800, letterSpacing: "0.04em", textTransform: "uppercase", whiteSpace: "nowrap", animation: "dl-new-pulse 1.4s infinite" }}>New</span>
-        <span>Free No-Show Calculator — see exactly how much revenue your clinic loses, in 30 seconds.</span>
+        <style>{`@keyframes dl-free-pulse{0%,100%{opacity:1}50%{opacity:.55}}`}</style>
+        <span style={{ background: "#10B981", color: "#fff", borderRadius: 100, padding: "2px 10px", fontSize: 11, fontWeight: 800, letterSpacing: "0.04em", textTransform: "uppercase", whiteSpace: "nowrap", animation: "dl-free-pulse 1.4s infinite" }}>Free</span>
+        <span className="ann-text">Find where your business leaks revenue — AI scores you across 9 dimensions in 3 minutes.</span>
       </span>
-      <a href="/dental/no-show-calculator" style={{
+      <a href="/diagnostic" onClick={trackClick} style={{
         display: "inline-flex", alignItems: "center", gap: 6,
-        background: "#fff", color: "#1D4ED8",
+        background: "#fff", color: "#065F46",
         borderRadius: 8, padding: "7px 18px",
         fontFamily: "'DM Sans',sans-serif", fontWeight: 700, fontSize: 13,
         textDecoration: "none", whiteSpace: "nowrap", flexShrink: 0,
         transition: "background 0.15s",
       }}
-        onMouseEnter={e => { e.currentTarget.style.background = "#EFF6FF"; }}
+        onMouseEnter={e => { e.currentTarget.style.background = "#ECFDF5"; }}
         onMouseLeave={e => { e.currentTarget.style.background = "#fff"; }}
       >
-        Try the Calculator <Ic.Arr />
+        Get Your Free Diagnostic <Ic.Arr />
       </a>
       <button onClick={() => setVisible(false)} aria-label="Dismiss" style={{
         position: "absolute", right: 12, top: "50%", transform: "translateY(-50%)",
@@ -246,30 +259,30 @@ function Hero() {
     <section style={{ background: "linear-gradient(160deg, #0B1220 0%, #0F1B33 100%)", color: "#fff", padding: "120px 24px 92px", overflow: "hidden" }}>
       <div className="hero-grid" style={{ maxWidth: 1180, margin: "0 auto", display: "grid", gridTemplateColumns: "minmax(0,1.05fr) minmax(0,0.95fr)", gap: 48, alignItems: "center" }}>
         <div>
-          <F>
+          <F eager>
             <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.12)", borderRadius: 100, padding: "6px 14px", fontSize: 13, color: "#cbd5e1", fontFamily: "'DM Sans',sans-serif", marginBottom: 28 }}>
               <span style={{ width: 7, height: 7, borderRadius: "50%", background: "#34D399", flexShrink: 0 }} />
               Free · 3 minutes · Instant results across <b style={{ color: "#fff", margin: "0 4px" }}>9 business dimensions</b>
             </div>
           </F>
-          <F d={0.08}>
+          <F eager d={0.08}>
             <h1 className="hero-h1" style={{ fontFamily: "Georgia, 'Times New Roman', serif", fontSize: "clamp(38px, 5.6vw, 64px)", fontWeight: 500, lineHeight: 1.06, letterSpacing: "-0.02em", margin: "0 0 24px" }}>
               AI Automation for Small Business —{" "}
               <em style={{ color: "#60A5FA", fontStyle: "italic" }}>Get Your Free Delta Labs AI Diagnostic</em>
             </h1>
           </F>
-          <F d={0.16}>
+          <F eager d={0.16}>
             <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: "clamp(16px, 1.6vw, 19px)", color: "#94a3b8", lineHeight: 1.7, maxWidth: 520, margin: "0 0 34px" }}>
-              See exactly where your business is losing time and money — in 2 minutes.
+              See exactly where your business is losing time and money — in 3 minutes.
             </p>
           </F>
-          <F d={0.24}>
+          <F eager d={0.24}>
             <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
-              <Btn href={FORM} style={{ background: "#2563EB", fontSize: 16, padding: "16px 34px", boxShadow: "0 4px 20px rgba(37,99,235,0.45)" }}>Start Your Free Diagnostic <Ic.Arr /></Btn>
+              <Btn href={FORM} style={{ background: "#2563EB", fontSize: 16, padding: "16px 34px", boxShadow: "0 4px 20px rgba(37,99,235,0.45)" }}>Get Your Free Diagnostic <Ic.Arr /></Btn>
               <a onClick={() => scrollTo("how")} style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "14px 28px", borderRadius: 10, fontFamily: "'DM Sans',sans-serif", fontWeight: 600, fontSize: 15, cursor: "pointer", color: "#e2e8f0", border: "1.5px solid rgba(255,255,255,0.18)", background: "transparent" }}>See how it works</a>
             </div>
           </F>
-          <F d={0.35}>
+          <F eager d={0.35}>
             <div style={{ marginTop: 44, display: "flex", gap: "clamp(20px, 4vw, 44px)", flexWrap: "wrap" }}>
               {[["3 min", "free diagnostic\nno card needed"], ["14", "industries\nserved globally"], ["6-12 wks", "to measurable\nresults"]].map(([n, l], i) => (
                 <div key={i}>
@@ -280,7 +293,7 @@ function Hero() {
             </div>
           </F>
         </div>
-        <F d={0.2}>
+        <F eager d={0.2}>
           <div className="hero-radar"><Radar /></div>
         </F>
       </div>
@@ -321,7 +334,7 @@ function HeroCTABand() {
             Our AI scans 9 dimensions of your business and pinpoints exactly where money is leaking — in minutes.
           </p>
           <Btn href={FORM} style={{ background: "#2563EB", color: "#fff", fontSize: 17, padding: "16px 36px", borderRadius: 12, boxShadow: "0 4px 24px rgba(37,99,235,0.4)" }}>
-            Get Your Free AI Diagnostic Today! <Ic.Arr />
+            Get Your Free Diagnostic <Ic.Arr />
           </Btn>
           <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, color: "#64748B", margin: "14px 0 0" }}>No credit card required. No sales call needed.</p>
         </F>
@@ -353,7 +366,7 @@ function DiagnosticCTA() {
                 style={{ flex: "1 1 240px", padding: "14px 18px", borderRadius: 10, border: "1.5px solid #D1D5DB", fontFamily: "'DM Sans',sans-serif", fontSize: 15, outline: "none", background: "#fff", minWidth: 200 }}
                 onFocus={e => e.target.style.borderColor = "#2563EB"} onBlur={e => e.target.style.borderColor = "#D1D5DB"} />
               <Btn onClick={() => { if (email.includes("@")) { setSent(true); window.open("/diagnostic?email=" + encodeURIComponent(email), "_blank"); } }} style={{ flex: "0 0 auto" }}>
-                Start Free Diagnostic <Ic.Arr />
+                Get Your Free Diagnostic <Ic.Arr />
               </Btn>
             </div>
           ) : (
@@ -475,7 +488,7 @@ function Services() {
         </div>
         <F d={0.3}>
           <div style={{ textAlign: "center", marginTop: 36 }}>
-            <Btn href={FORM}>Get Started - Free Diagnostic <Ic.Arr /></Btn>
+            <Btn href={FORM}>Get Your Free Diagnostic <Ic.Arr /></Btn>
           </div>
         </F>
       </div>
