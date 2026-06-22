@@ -4,7 +4,7 @@ import WhatsAppFloat from "./WhatsAppFloat";
 export const metadata = {
   title: "AI Automation for Small Business | Delta Labs AI",
   description:
-    "Delta Labs AI builds AI automation for small businesses — dental clinics, gyms, home services, e-commerce. Start with a free 3-minute revenue diagnostic.",
+    "Delta Labs AI helps small businesses automate operations in under 2 weeks. Free diagnostic. No lock-in.",
   keywords: [
     "AI business consulting",
     "digital transformation consulting",
