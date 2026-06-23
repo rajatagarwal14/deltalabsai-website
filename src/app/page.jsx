@@ -657,11 +657,11 @@ function Footer() {
           <a href="https://aiagentsdirectory.com/agent/delta-labs-ai?utm_source=badge&utm_medium=referral&utm_campaign=free_listing&utm_content=delta-labs-ai" target="_blank" rel="noopener noreferrer">
             <img src="https://aiagentsdirectory.com/featured-badge.svg?v=2024" alt="Delta Labs AI - Featured AI Agent on AI Agents Directory" width="200" height="50" />
           </a>
-          <div style={{ display: "flex", alignItems: "center", gap: 8, background: "#1E293B", borderRadius: 8, padding: "8px 16px" }}>
-            <img src="/sarvam-logo.svg" alt="Sarvam AI" width="24" height="24" />
+          <div style={{ display: "flex", alignItems: "center", gap: 10, background: "#1E293B", borderRadius: 8, padding: "8px 16px" }}>
             <div style={{ textAlign: "left" }}>
-              <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, color: "#F26B3A", fontWeight: 700, letterSpacing: "0.5px", textTransform: "uppercase" }}>Powered by</div>
-              <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, color: "#fff", fontWeight: 600 }}>Sarvam AI</div>
+              <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, color: "#E8772E", fontWeight: 700, letterSpacing: "0.5px", textTransform: "uppercase" }}>Powered by</div>
+              {/* Sarvam's official logo is a lowercase 'sarvam' wordmark (white). */}
+              <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 17, lineHeight: 1, color: "#fff", fontWeight: 700, letterSpacing: "-0.5px" }}>sarvam</div>
             </div>
           </div>
           <a href="https://bolomate.com" target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
