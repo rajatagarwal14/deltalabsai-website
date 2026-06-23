@@ -659,9 +659,9 @@ function Footer() {
           </a>
           <div style={{ display: "flex", alignItems: "center", gap: 10, background: "#1E293B", borderRadius: 8, padding: "8px 16px" }}>
             <div style={{ textAlign: "left" }}>
-              <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, color: "#E8772E", fontWeight: 700, letterSpacing: "0.5px", textTransform: "uppercase" }}>Powered by</div>
-              {/* Sarvam's official logo is a lowercase 'sarvam' wordmark (white). */}
-              <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 17, lineHeight: 1, color: "#fff", fontWeight: 700, letterSpacing: "-0.5px" }}>sarvam</div>
+              <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, color: "#E8772E", fontWeight: 700, letterSpacing: "0.5px", textTransform: "uppercase", marginBottom: 3 }}>Powered by</div>
+              {/* Sarvam official wordmark (white), from sarvam.ai/brand — 202x32 */}
+              <img src="/sarvam-logo.svg" alt="Sarvam AI" height="15" width="95" style={{ display: "block" }} />
             </div>
           </div>
           <a href="https://bolomate.com" target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
