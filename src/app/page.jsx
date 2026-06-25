@@ -528,6 +528,68 @@ function HeroProduct() {
   );
 }
 
+// Clinic Digital Score Banner — free tool for dental clinics
+function ClinicScoreBanner() {
+  return (
+    <section style={{ padding: "64px 24px", background: "#fff" }}>
+      <div style={{ maxWidth: 700, margin: "0 auto" }}>
+        <F>
+          <div style={{
+            background: "linear-gradient(135deg, #0a0f1e 0%, #1e293b 100%)",
+            borderRadius: 20,
+            padding: "40px 36px",
+            display: "flex",
+            gap: 28,
+            alignItems: "center",
+            flexWrap: "wrap",
+            justifyContent: "center",
+            border: "1px solid #334155",
+            position: "relative",
+            overflow: "hidden",
+          }}>
+            <div style={{ position: "absolute", top: -20, right: -20, fontSize: 120, opacity: 0.04, lineHeight: 1 }}>🏥</div>
+            <div style={{ flex: "1 1 280px", minWidth: 240, position: "relative", zIndex: 1 }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 10 }}>
+                <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, fontWeight: 700, color: "#818cf8", textTransform: "uppercase", letterSpacing: "0.08em" }}>New · Free Tool</span>
+                <span style={{ background: "#22c55e22", color: "#22c55e", fontFamily: "'DM Sans',sans-serif", fontSize: 10, fontWeight: 700, padding: "2px 8px", borderRadius: 20, border: "1px solid #22c55e44" }}>FOR DENTAL CLINICS</span>
+              </div>
+              <h3 style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 22, fontWeight: 800, color: "#f1f5f9", margin: "0 0 10px", letterSpacing: "-0.01em", lineHeight: 1.25 }}>
+                Clinic Digital Score™
+              </h3>
+              <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 14, color: "#94a3b8", lineHeight: 1.7, margin: "0 0 20px" }}>
+                6 questions. 90 seconds. See how your clinic ranks against 500+ others worldwide — and get your top 3 actionable improvements instantly. Free, no login needed.
+              </p>
+              <a href="/clinic-score" style={{
+                fontFamily: "'DM Sans',sans-serif",
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 8,
+                background: "#6366f1",
+                color: "#fff",
+                padding: "12px 22px",
+                borderRadius: 10,
+                fontWeight: 700,
+                fontSize: 14,
+                textDecoration: "none",
+                transition: "background 0.2s",
+              }}
+                onMouseEnter={e => { e.currentTarget.style.background = "#4f46e5"; }}
+                onMouseLeave={e => { e.currentTarget.style.background = "#6366f1"; }}
+              >
+                Get My Clinic Score <Ic.Arr />
+              </a>
+            </div>
+            <div style={{ flex: "0 0 auto", width: 120, height: 120, borderRadius: "50%", border: "8px solid #6366f1", background: "#6366f115", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", position: "relative", zIndex: 1 }}>
+              <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 36, fontWeight: 900, color: "#818cf8", lineHeight: 1 }}>68</span>
+              <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, color: "#475569" }}>/ 100</span>
+            </div>
+          </div>
+        </F>
+      </div>
+    </section>
+  );
+}
+
 // Latest Articles - SEO internal linking section
 function LatestArticles() {
   const articles = [
@@ -634,6 +696,7 @@ function Footer() {
         <div style={{ display: "flex", gap: 8, alignItems: "center", flexWrap: "wrap" }}>
           <a href="/blog" style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, fontWeight: 500, color: "#94A3B8", textDecoration: "none", transition: "color 0.2s", padding: "12px 10px", display: "inline-flex", alignItems: "center" }} onMouseEnter={e => e.currentTarget.style.color = "#fff"} onMouseLeave={e => e.currentTarget.style.color = "#94A3B8"}>Blog</a>
           <a href="/diagnostic" style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, fontWeight: 500, color: "#94A3B8", textDecoration: "none", transition: "color 0.2s", padding: "12px 10px", display: "inline-flex", alignItems: "center" }} onMouseEnter={e => e.currentTarget.style.color = "#fff"} onMouseLeave={e => e.currentTarget.style.color = "#94A3B8"}>Diagnostic</a>
+          <a href="/clinic-score" style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, fontWeight: 500, color: "#94A3B8", textDecoration: "none", transition: "color 0.2s", padding: "12px 10px", display: "inline-flex", alignItems: "center" }} onMouseEnter={e => e.currentTarget.style.color = "#fff"} onMouseLeave={e => e.currentTarget.style.color = "#94A3B8"}>Clinic Score</a>
           <a href="/blog/ai-automations-small-business" style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, fontWeight: 500, color: "#94A3B8", textDecoration: "none", transition: "color 0.2s", padding: "12px 10px", display: "inline-flex", alignItems: "center" }} onMouseEnter={e => e.currentTarget.style.color = "#fff"} onMouseLeave={e => e.currentTarget.style.color = "#94A3B8"}>AI Automation</a>
           <a href="/blog/9-dimensions-healthy-business" style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, fontWeight: 500, color: "#94A3B8", textDecoration: "none", transition: "color 0.2s", padding: "12px 10px", display: "inline-flex", alignItems: "center" }} onMouseEnter={e => e.currentTarget.style.color = "#fff"} onMouseLeave={e => e.currentTarget.style.color = "#94A3B8"}>9 Dimensions</a>
           <a href="/blog/manual-processes-costing-money" style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, fontWeight: 500, color: "#94A3B8", textDecoration: "none", transition: "color 0.2s", padding: "12px 10px", display: "inline-flex", alignItems: "center" }} onMouseEnter={e => e.currentTarget.style.color = "#fff"} onMouseLeave={e => e.currentTarget.style.color = "#94A3B8"}>Manual Process Costs</a>
@@ -701,6 +764,7 @@ export default function App() {
       <How />
       <Services />
       <HeroProduct />
+      <ClinicScoreBanner />
       <FAQ />
       <LatestArticles />
       <CTA />

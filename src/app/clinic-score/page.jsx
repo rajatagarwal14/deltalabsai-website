@@ -138,23 +138,31 @@ const TIERS = [
   { min: 76, max: 100, name: "AI-Ready Clinic",   emoji: "🏆", stars: 4, color: "#22c55e", message: "Your clinic is in the top 10% for digital readiness." },
 ];
 
-const INDIAN_CITIES = [
+const CITIES = [
+  // India
   "Mumbai", "Delhi", "Bengaluru", "Hyderabad", "Chennai", "Pune", "Kolkata",
-  "Ahmedabad", "Jaipur", "Surat", "Lucknow", "Kanpur", "Nagpur", "Indore",
-  "Thane", "Bhopal", "Visakhapatnam", "Pimpri-Chinchwad", "Patna", "Vadodara",
-  "Ghaziabad", "Ludhiana", "Coimbatore", "Agra", "Madurai", "Nashik", "Faridabad",
-  "Meerut", "Rajkot", "Kalyan-Dombivli", "Vasai-Virar", "Varanasi", "Srinagar",
-  "Aurangabad", "Dhanbad", "Amritsar", "Navi Mumbai", "Allahabad", "Ranchi",
-  "Howrah", "Jabalpur", "Gwalior", "Vijayawada", "Jodhpur", "Raipur", "Kota",
-  "Guwahati", "Chandigarh", "Solapur", "Hubballi-Dharwad", "Mysuru", "Tiruchirappalli",
-  "Bareilly", "Aligarh", "Tiruppur", "Moradabad", "Jalandhar", "Bhubaneswar",
-  "Salem", "Warangal", "Guntur", "Bhiwandi", "Saharanpur", "Gorakhpur",
-  "Bikaner", "Amravati", "Noida", "Jamshedpur", "Bhilai", "Cuttack",
-  "Firozabad", "Kochi", "Siliguri", "Bhavnagar", "Dehradun", "Durgapur",
-  "Asansol", "Nanded", "Kolhapur", "Ajmer", "Akola", "Gulbarga", "Jamnagar",
-  "Ujjain", "Loni", "Sikar", "Jhansi", "Ulhasnagar", "Jammu", "Sangli-Miraj",
-  "Mangaluru", "Erode", "Belgaum", "Ambattur", "Tirunelveli", "Malegaon",
-  "Gaya", "Jalgaon", "Udaipur", "Maheshtala", "Other",
+  "Ahmedabad", "Jaipur", "Surat", "Lucknow", "Nagpur", "Indore", "Noida",
+  "Navi Mumbai", "Thane", "Chandigarh", "Kochi", "Coimbatore", "Mysuru",
+  "Vadodara", "Rajkot", "Amritsar", "Dehradun", "Bhopal", "Patna",
+  // UAE
+  "Dubai", "Abu Dhabi", "Sharjah", "Ajman",
+  // US
+  "New York", "Los Angeles", "Chicago", "Houston", "Phoenix", "Philadelphia",
+  "San Antonio", "Dallas", "San Diego", "San Jose", "Austin", "Miami",
+  // UK
+  "London", "Manchester", "Birmingham", "Leeds", "Glasgow", "Liverpool", "Edinburgh",
+  // Australia
+  "Sydney", "Melbourne", "Brisbane", "Perth", "Adelaide", "Gold Coast",
+  // Singapore & SE Asia
+  "Singapore", "Kuala Lumpur", "Jakarta", "Bangkok", "Manila",
+  // Canada
+  "Toronto", "Vancouver", "Calgary", "Ottawa", "Montreal",
+  // Middle East
+  "Riyadh", "Doha", "Kuwait City", "Muscat", "Manama",
+  // Africa
+  "Nairobi", "Lagos", "Johannesburg", "Cairo", "Accra",
+  // Other
+  "Other",
 ];
 
 function getTier(score) {
@@ -329,7 +337,7 @@ export default function ClinicScorePage() {
 
   function buildShareText() {
     const pctText = percentile != null ? `top ${percentile}% of ` : "";
-    return `Just checked how my clinic compares to 500+ others in ${city}. Scored ${score}/100 — ${pctText}${city} dental clinics for digital readiness. Get your free score: deltalabsai.com/clinic-score`;
+    return `Just benchmarked my clinic against 500+ dental clinics worldwide. Scored ${score}/100 — ${pctText}clinics in ${city} for digital readiness. Free tool: deltalabsai.com/clinic-score`;
   }
 
   function buildWhatsAppLink() {
@@ -346,7 +354,7 @@ export default function ClinicScorePage() {
     return `https://deltalabsai.com/api/og/clinic-score?${params}`;
   }
 
-  const filteredCities = INDIAN_CITIES.filter(c =>
+  const filteredCities = CITIES.filter(c =>
     c.toLowerCase().includes(citySearch.toLowerCase())
   );
 
@@ -358,13 +366,13 @@ export default function ClinicScorePage() {
         <div style={card}>
           <div style={{ textAlign: "center", marginBottom: 32 }}>
             <div style={badge}>🏥 Free Benchmark Tool</div>
-            <h1 style={h1}>How does your clinic compare to 500+ others in your city?</h1>
-            <p style={sub}>Get your Clinic Digital Score in 90 seconds. Free. No email required to see your result.</p>
+            <h1 style={h1}>How does your dental clinic rank globally?</h1>
+            <p style={sub}>Free 90-second benchmark. See how your clinic compares to 500+ clinics worldwide. No email required to see your score.</p>
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: 16, marginBottom: 32 }}>
             {[
               { icon: "⚡", t: "6 quick questions", d: "Takes under 90 seconds" },
-              { icon: "📊", t: "City percentile rank", d: "See how you compare locally" },
+              { icon: "📊", t: "Global percentile rank", d: "See how you compare worldwide" },
               { icon: "🎯", t: "Top 3 improvement areas", d: "Specific, actionable gaps" },
             ].map(f => (
               <div key={f.t} style={featureRow}>
@@ -392,15 +400,15 @@ export default function ClinicScorePage() {
       <div ref={topRef} style={pageWrap}>
         <div style={card}>
           <ProgressBar current={0} total={QUESTIONS.length} />
-          <h2 style={{ ...h2, marginTop: 24 }}>Before we start — which city is your clinic in?</h2>
-          <p style={sub}>We use this to rank your score against clinics in your city.</p>
+          <h2 style={{ ...h2, marginTop: 24 }}>Which city is your clinic in?</h2>
+          <p style={sub}>We compare you against clinics in your city and globally.</p>
 
           <div style={{ position: "relative", marginBottom: 16 }}>
             <input
               type="text"
-              placeholder="Type your city..."
+              placeholder="Type your city (anywhere in the world)..."
               value={citySearch}
-              onChange={e => { setCitySearch(e.target.value); setShowCityDropdown(true); }}
+              onChange={e => { setCitySearch(e.target.value); setCity(e.target.value); setShowCityDropdown(true); }}
               onFocus={() => setShowCityDropdown(true)}
               style={inputStyle}
               autoFocus
@@ -487,7 +495,7 @@ export default function ClinicScorePage() {
         <div style={{ ...card, textAlign: "center" }}>
           <div style={{ fontSize: 48, marginBottom: 16 }}>⚡</div>
           <h2 style={h2}>Calculating your score...</h2>
-          <p style={{ color: "#64748b" }}>Comparing against {city} clinics</p>
+          <p style={{ color: "#64748b" }}>Comparing against clinics in {city} and worldwide</p>
           <div style={spinner} />
         </div>
       </div>
