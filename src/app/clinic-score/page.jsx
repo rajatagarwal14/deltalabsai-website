@@ -2,9 +2,64 @@
 
 import { useState, useEffect, useRef } from "react";
 
-const SUPABASE_URL = "https://qkcafjbmqrxhqyyayrqz.supabase.co";
-const SUPABASE_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "";
 const CAL = "https://cal.com/ag-ventures-qbqxax/30min";
+const ECOSYSTEM_API = "https://delta-labs-ecosystem.vercel.app";
+
+// 200-row synthetic benchmark dataset (city, score) — used for percentile until
+// the clinic_score_submissions table is created via database/clinic_score_setup.sql
+const BENCHMARK = [
+  // Mumbai (40)
+  {c:"Mumbai",s:18},{c:"Mumbai",s:72},{c:"Mumbai",s:45},{c:"Mumbai",s:85},{c:"Mumbai",s:30},
+  {c:"Mumbai",s:62},{c:"Mumbai",s:55},{c:"Mumbai",s:78},{c:"Mumbai",s:25},{c:"Mumbai",s:48},
+  {c:"Mumbai",s:67},{c:"Mumbai",s:10},{c:"Mumbai",s:38},{c:"Mumbai",s:90},{c:"Mumbai",s:42},
+  {c:"Mumbai",s:58},{c:"Mumbai",s:35},{c:"Mumbai",s:74},{c:"Mumbai",s:20},{c:"Mumbai",s:50},
+  {c:"Mumbai",s:82},{c:"Mumbai",s:15},{c:"Mumbai",s:44},{c:"Mumbai",s:69},{c:"Mumbai",s:5},
+  {c:"Mumbai",s:32},{c:"Mumbai",s:76},{c:"Mumbai",s:53},{c:"Mumbai",s:40},{c:"Mumbai",s:63},
+  {c:"Mumbai",s:28},{c:"Mumbai",s:87},{c:"Mumbai",s:47},{c:"Mumbai",s:60},{c:"Mumbai",s:22},
+  {c:"Mumbai",s:56},{c:"Mumbai",s:80},{c:"Mumbai",s:12},{c:"Mumbai",s:37},{c:"Mumbai",s:65},
+  // Delhi (30)
+  {c:"Delhi",s:35},{c:"Delhi",s:70},{c:"Delhi",s:20},{c:"Delhi",s:85},{c:"Delhi",s:48},
+  {c:"Delhi",s:62},{c:"Delhi",s:15},{c:"Delhi",s:55},{c:"Delhi",s:78},{c:"Delhi",s:30},
+  {c:"Delhi",s:42},{c:"Delhi",s:67},{c:"Delhi",s:8},{c:"Delhi",s:52},{c:"Delhi",s:90},
+  {c:"Delhi",s:25},{c:"Delhi",s:45},{c:"Delhi",s:73},{c:"Delhi",s:18},{c:"Delhi",s:58},
+  {c:"Delhi",s:80},{c:"Delhi",s:38},{c:"Delhi",s:65},{c:"Delhi",s:12},{c:"Delhi",s:50},
+  {c:"Delhi",s:75},{c:"Delhi",s:32},{c:"Delhi",s:60},{c:"Delhi",s:22},{c:"Delhi",s:88},
+  // Bengaluru (25)
+  {c:"Bengaluru",s:40},{c:"Bengaluru",s:76},{c:"Bengaluru",s:22},{c:"Bengaluru",s:58},{c:"Bengaluru",s:82},
+  {c:"Bengaluru",s:35},{c:"Bengaluru",s:65},{c:"Bengaluru",s:15},{c:"Bengaluru",s:48},{c:"Bengaluru",s:72},
+  {c:"Bengaluru",s:28},{c:"Bengaluru",s:55},{c:"Bengaluru",s:90},{c:"Bengaluru",s:42},{c:"Bengaluru",s:68},
+  {c:"Bengaluru",s:10},{c:"Bengaluru",s:50},{c:"Bengaluru",s:79},{c:"Bengaluru",s:32},{c:"Bengaluru",s:62},
+  {c:"Bengaluru",s:18},{c:"Bengaluru",s:45},{c:"Bengaluru",s:73},{c:"Bengaluru",s:25},{c:"Bengaluru",s:85},
+  // Pune (20)
+  {c:"Pune",s:38},{c:"Pune",s:68},{c:"Pune",s:20},{c:"Pune",s:82},{c:"Pune",s:45},
+  {c:"Pune",s:60},{c:"Pune",s:15},{c:"Pune",s:52},{c:"Pune",s:77},{c:"Pune",s:28},
+  {c:"Pune",s:42},{c:"Pune",s:70},{c:"Pune",s:10},{c:"Pune",s:55},{c:"Pune",s:88},
+  {c:"Pune",s:33},{c:"Pune",s:65},{c:"Pune",s:22},{c:"Pune",s:48},{c:"Pune",s:75},
+  // Chennai (10)
+  {c:"Chennai",s:45},{c:"Chennai",s:72},{c:"Chennai",s:18},{c:"Chennai",s:85},{c:"Chennai",s:38},
+  {c:"Chennai",s:60},{c:"Chennai",s:25},{c:"Chennai",s:52},{c:"Chennai",s:78},{c:"Chennai",s:32},
+  // Hyderabad (10)
+  {c:"Hyderabad",s:42},{c:"Hyderabad",s:68},{c:"Hyderabad",s:12},{c:"Hyderabad",s:80},{c:"Hyderabad",s:48},
+  {c:"Hyderabad",s:63},{c:"Hyderabad",s:22},{c:"Hyderabad",s:55},{c:"Hyderabad",s:87},{c:"Hyderabad",s:35},
+  // Jaipur (7)
+  {c:"Jaipur",s:30},{c:"Jaipur",s:62},{c:"Jaipur",s:18},{c:"Jaipur",s:75},{c:"Jaipur",s:45},{c:"Jaipur",s:82},{c:"Jaipur",s:38},
+  // Ahmedabad (7)
+  {c:"Ahmedabad",s:52},{c:"Ahmedabad",s:70},{c:"Ahmedabad",s:28},{c:"Ahmedabad",s:85},{c:"Ahmedabad",s:42},{c:"Ahmedabad",s:65},{c:"Ahmedabad",s:15},
+  // Kolkata (5)
+  {c:"Kolkata",s:35},{c:"Kolkata",s:68},{c:"Kolkata",s:22},{c:"Kolkata",s:78},{c:"Kolkata",s:48},
+  // Noida (5)
+  {c:"Noida",s:55},{c:"Noida",s:72},{c:"Noida",s:18},{c:"Noida",s:85},{c:"Noida",s:40},
+  // Other Indian cities (21)
+  {c:"Lucknow",s:30},{c:"Lucknow",s:58},{c:"Lucknow",s:42},{c:"Lucknow",s:75},
+  {c:"Surat",s:25},{c:"Surat",s:62},{c:"Surat",s:45},{c:"Surat",s:80},
+  {c:"Chandigarh",s:52},{c:"Chandigarh",s:70},{c:"Chandigarh",s:15},{c:"Chandigarh",s:85},
+  {c:"Kochi",s:38},{c:"Kochi",s:65},{c:"Kochi",s:22},{c:"Kochi",s:78},
+  {c:"Indore",s:42},{c:"Indore",s:68},{c:"Indore",s:20},
+  {c:"Nagpur",s:48},{c:"Nagpur",s:75},
+  // Other (10)
+  {c:"Other",s:45},{c:"Other",s:68},{c:"Other",s:20},{c:"Other",s:80},{c:"Other",s:35},
+  {c:"Other",s:58},{c:"Other",s:15},{c:"Other",s:72},{c:"Other",s:42},{c:"Other",s:88},
+];
 
 const QUESTIONS = [
   {
@@ -127,78 +182,28 @@ function getWeakAreas(answers) {
     .slice(0, 3);
 }
 
-async function saveSubmission({ doctorName, clinicName, city, score, tier, answers, email, phone }) {
-  try {
-    const res = await fetch(`${SUPABASE_URL}/rest/v1/clinic_score_submissions`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "apikey": SUPABASE_KEY,
-        "Authorization": `Bearer ${SUPABASE_KEY}`,
-        "Prefer": "return=representation",
-      },
-      body: JSON.stringify({
-        doctor_name: doctorName || null,
-        clinic_name: clinicName || null,
-        city,
-        score,
-        tier,
-        answers,
-        email: email || null,
-        phone: phone || null,
-        lead_created: false,
-      }),
-    });
-    const rows = await res.json();
-    return rows?.[0]?.id || null;
-  } catch {
-    return null;
-  }
+// Percentile from embedded benchmark — no DB needed until clinic_score_submissions table is live
+function getPercentileLocal(city, score) {
+  const cityRows = BENCHMARK.filter(r => r.c === city);
+  const pool = cityRows.length > 5 ? cityRows : BENCHMARK; // fall back to all cities
+  const below = pool.filter(r => r.s < score).length;
+  return Math.round((below / pool.length) * 100);
 }
 
-async function getPercentile(city, score) {
-  try {
-    const res = await fetch(
-      `${SUPABASE_URL}/rest/v1/rpc/get_clinic_score_percentile`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "apikey": SUPABASE_KEY,
-          "Authorization": `Bearer ${SUPABASE_KEY}`,
-        },
-        body: JSON.stringify({ p_city: city, p_score: score }),
-      }
-    );
-    if (res.ok) {
-      const val = await res.json();
-      return typeof val === "number" ? Math.round(val) : null;
-    }
-    return null;
-  } catch {
-    return null;
-  }
-}
-
+// Email capture via ecosystem leads API (requires email, no new table needed)
 async function saveLead({ name, email, city, score, tier }) {
+  if (!email) return;
   try {
-    await fetch(`${SUPABASE_URL}/rest/v1/leads`, {
+    await fetch(`${ECOSYSTEM_API}/api/leads/capture`, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "apikey": SUPABASE_KEY,
-        "Authorization": `Bearer ${SUPABASE_KEY}`,
-        "Prefer": "return=minimal",
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        name: name || "Dental Clinic",
         email,
+        full_name: name || "Dental Clinic Owner",
         industry: "dental",
-        source: "clinic_score",
-        status: "warm",
-        score,
+        source_detail: { city, score, tier, tool: "clinic_score" },
         notes: `Clinic Digital Score: ${score}/100 (${tier}) — ${city}`,
-        created_at: new Date().toISOString(),
+        tags: ["clinic_score"],
       }),
     });
   } catch {}
@@ -272,7 +277,6 @@ export default function ClinicScorePage() {
   const [phone, setPhone] = useState("");
   const [emailSent, setEmailSent] = useState(false);
   const [emailSending, setEmailSending] = useState(false);
-  const [submissionId, setSubmissionId] = useState(null);
   const [citySearch, setCitySearch] = useState("");
   const [showCityDropdown, setShowCityDropdown] = useState(false);
   const topRef = useRef(null);
@@ -303,23 +307,12 @@ export default function ClinicScorePage() {
       answersJson[q.id] = finalAnswers[i] != null ? q.options[finalAnswers[i]]?.label : null;
     });
 
-    const [id, pct] = await Promise.all([
-      saveSubmission({
-        doctorName,
-        clinicName,
-        city,
-        score: finalScore,
-        tier: finalTier.name,
-        answers: answersJson,
-      }),
-      getPercentile(city, finalScore),
-    ]);
+    const pct = getPercentileLocal(city, finalScore);
 
     setScore(finalScore);
     setTier(finalTier);
     setPercentile(pct);
     setWeakAreas(getWeakAreas(finalAnswers));
-    setSubmissionId(id);
     setStep("result");
   }
 
@@ -329,17 +322,6 @@ export default function ClinicScorePage() {
     setEmailSending(true);
     try {
       await saveLead({ name: doctorName || clinicName, email, city, score, tier: tier?.name });
-      if (submissionId) {
-        await fetch(`${SUPABASE_URL}/rest/v1/clinic_score_submissions?id=eq.${submissionId}`, {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-            "apikey": SUPABASE_KEY,
-            "Authorization": `Bearer ${SUPABASE_KEY}`,
-          },
-          body: JSON.stringify({ email, lead_created: true }),
-        });
-      }
       setEmailSent(true);
     } catch {}
     setEmailSending(false);
