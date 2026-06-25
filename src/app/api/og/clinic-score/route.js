@@ -14,7 +14,7 @@ export async function GET(request) {
   const score = Math.min(100, Math.max(0, parseInt(searchParams.get("score") || "68", 10)));
   const tierName = searchParams.get("tier") || "Digital-Forward";
   const name = (searchParams.get("name") || "Your Clinic").slice(0, 40);
-  const city = (searchParams.get("city") || "India").slice(0, 30);
+  const city = (searchParams.get("city") || "Global").slice(0, 30);
 
   const tier = TIERS[tierName] || TIERS["Digital-Forward"];
   const stars = "★".repeat(tier.stars) + "☆".repeat(4 - tier.stars);

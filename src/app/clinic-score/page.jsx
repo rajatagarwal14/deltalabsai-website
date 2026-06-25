@@ -367,11 +367,12 @@ export default function ClinicScorePage() {
       answersJson[q.id] = finalAnswers[i] != null ? q.options[finalAnswers[i]]?.label : null;
     });
 
-    const pct = getPercentileLocal(city, finalScore);
+    const { pct, isGlobal } = getPercentileLocal(city, finalScore);
 
     setScore(finalScore);
     setTier(finalTier);
     setPercentile(pct);
+    setIsGlobalPercentile(isGlobal);
     setWeakAreas(getWeakAreas(finalAnswers));
     setStep("result");
   }
@@ -388,8 +389,9 @@ export default function ClinicScorePage() {
   }
 
   function buildShareText() {
-    const pctText = percentile != null ? `top ${percentile}% of ` : "";
-    return `Just benchmarked my clinic against 500+ dental clinics worldwide. Scored ${score}/100 — ${pctText}clinics in ${city} for digital readiness. Free tool: deltalabsai.com/clinic-score`;
+    const locationText = isGlobalPercentile || !city ? "globally" : `in ${city}`;
+    const pctText = percentile != null ? `top ${percentile}% ` : "";
+    return `Just checked how my clinic compares to dental clinics worldwide. Scored ${score}/100 — ${pctText}${locationText} for digital readiness. Get yours free: deltalabsai.com/clinic-score`;
   }
 
   function buildWhatsAppLink() {
@@ -401,7 +403,7 @@ export default function ClinicScorePage() {
       score: score.toString(),
       tier: tier?.name || "",
       name: doctorName || clinicName || "Your Clinic",
-      city,
+      city: city || "Global",
     });
     return `https://deltalabsai.com/api/og/clinic-score?${params}`;
   }
@@ -452,8 +454,8 @@ export default function ClinicScorePage() {
       <div ref={topRef} style={pageWrap}>
         <div style={card}>
           <ProgressBar current={0} total={QUESTIONS.length} />
-          <h2 style={{ ...h2, marginTop: 24 }}>Which city is your clinic in?</h2>
-          <p style={sub}>We compare you against clinics in your city and globally.</p>
+          <h2 style={{ ...h2, marginTop: 24 }}>Which city is your clinic in? <span style={{ color: "#475569", fontWeight: 400, fontSize: 16 }}>(optional)</span></h2>
+          <p style={sub}>Enter your city for a local percentile, or skip to benchmark against dental clinics globally.</p>
 
           <div style={{ position: "relative", marginBottom: 16 }}>
             <input
@@ -496,11 +498,10 @@ export default function ClinicScorePage() {
           />
 
           <button
-            style={{ ...primaryBtn, opacity: city ? 1 : 0.4 }}
-            disabled={!city}
+            style={primaryBtn}
             onClick={() => { setStep("q"); setCurrentQ(0); }}
           >
-            Continue →
+            {city ? "Continue →" : "Skip & benchmark globally →"}
           </button>
         </div>
       </div>
@@ -547,7 +548,7 @@ export default function ClinicScorePage() {
         <div style={{ ...card, textAlign: "center" }}>
           <div style={{ fontSize: 48, marginBottom: 16 }}>⚡</div>
           <h2 style={h2}>Calculating your score...</h2>
-          <p style={{ color: "#64748b" }}>Comparing against clinics in {city} and worldwide</p>
+          <p style={{ color: "#64748b" }}>{city ? `Comparing against clinics in ${city} and worldwide` : "Comparing against dental clinics worldwide"}</p>
           <div style={spinner} />
         </div>
       </div>
@@ -556,8 +557,8 @@ export default function ClinicScorePage() {
 
   if (step === "result" && tier) {
     const pctText = percentile != null
-      ? `Top ${percentile}% in ${city}`
-      : `Scored in ${city}`;
+      ? (isGlobalPercentile ? `Top ${percentile}% globally` : `Top ${percentile}% in ${city}`)
+      : "Your score";
 
     return (
       <div ref={topRef} style={pageWrap}>
@@ -586,7 +587,7 @@ export default function ClinicScorePage() {
           {percentile != null && (
             <div style={percentileBox}>
               <div style={{ fontSize: 28, fontWeight: 800, color: "#818cf8" }}>Top {percentile}%</div>
-              <div style={{ color: "#94a3b8", fontSize: 14 }}>of {city} dental clinics</div>
+              <div style={{ color: "#94a3b8", fontSize: 14 }}>{isGlobalPercentile ? "of dental clinics globally" : `of ${city} dental clinics`}</div>
             </div>
           )}
 
@@ -693,7 +694,7 @@ export default function ClinicScorePage() {
               setWeakAreas([]);
               setEmail("");
               setEmailSent(false);
-              setSubmissionId(null);
+              setIsGlobalPercentile(false);
               setDoctorName("");
               setClinicName("");
               setCity("");
