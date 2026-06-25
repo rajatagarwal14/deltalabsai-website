@@ -56,6 +56,49 @@ const BENCHMARK = [
   {c:"Kochi",s:38},{c:"Kochi",s:65},{c:"Kochi",s:22},{c:"Kochi",s:78},
   {c:"Indore",s:42},{c:"Indore",s:68},{c:"Indore",s:20},
   {c:"Nagpur",s:48},{c:"Nagpur",s:75},
+  // Sydney (12)
+  {c:"Sydney",s:55},{c:"Sydney",s:78},{c:"Sydney",s:32},{c:"Sydney",s:88},{c:"Sydney",s:45},
+  {c:"Sydney",s:67},{c:"Sydney",s:20},{c:"Sydney",s:74},{c:"Sydney",s:58},{c:"Sydney",s:82},
+  {c:"Sydney",s:40},{c:"Sydney",s:92},
+  // Melbourne (10)
+  {c:"Melbourne",s:48},{c:"Melbourne",s:72},{c:"Melbourne",s:25},{c:"Melbourne",s:85},{c:"Melbourne",s:38},
+  {c:"Melbourne",s:63},{c:"Melbourne",s:15},{c:"Melbourne",s:80},{c:"Melbourne",s:52},{c:"Melbourne",s:90},
+  // Singapore (10)
+  {c:"Singapore",s:60},{c:"Singapore",s:82},{c:"Singapore",s:35},{c:"Singapore",s:92},{c:"Singapore",s:50},
+  {c:"Singapore",s:70},{c:"Singapore",s:28},{c:"Singapore",s:78},{c:"Singapore",s:45},{c:"Singapore",s:88},
+  // Dubai (15)
+  {c:"Dubai",s:52},{c:"Dubai",s:80},{c:"Dubai",s:30},{c:"Dubai",s:90},{c:"Dubai",s:48},
+  {c:"Dubai",s:68},{c:"Dubai",s:18},{c:"Dubai",s:75},{c:"Dubai",s:42},{c:"Dubai",s:85},
+  {c:"Dubai",s:35},{c:"Dubai",s:62},{c:"Dubai",s:22},{c:"Dubai",s:78},{c:"Dubai",s:55},
+  // Abu Dhabi (8)
+  {c:"Abu Dhabi",s:58},{c:"Abu Dhabi",s:76},{c:"Abu Dhabi",s:38},{c:"Abu Dhabi",s:88},
+  {c:"Abu Dhabi",s:45},{c:"Abu Dhabi",s:70},{c:"Abu Dhabi",s:25},{c:"Abu Dhabi",s:82},
+  // Kuala Lumpur (8)
+  {c:"Kuala Lumpur",s:42},{c:"Kuala Lumpur",s:68},{c:"Kuala Lumpur",s:22},{c:"Kuala Lumpur",s:80},
+  {c:"Kuala Lumpur",s:55},{c:"Kuala Lumpur",s:72},{c:"Kuala Lumpur",s:35},{c:"Kuala Lumpur",s:85},
+  // London (15)
+  {c:"London",s:62},{c:"London",s:85},{c:"London",s:40},{c:"London",s:95},{c:"London",s:55},
+  {c:"London",s:72},{c:"London",s:28},{c:"London",s:80},{c:"London",s:48},{c:"London",s:90},
+  {c:"London",s:35},{c:"London",s:68},{c:"London",s:20},{c:"London",s:78},{c:"London",s:58},
+  // Manchester (8)
+  {c:"Manchester",s:50},{c:"Manchester",s:74},{c:"Manchester",s:32},{c:"Manchester",s:86},
+  {c:"Manchester",s:42},{c:"Manchester",s:65},{c:"Manchester",s:18},{c:"Manchester",s:80},
+  // Dublin (6)
+  {c:"Dublin",s:55},{c:"Dublin",s:78},{c:"Dublin",s:38},{c:"Dublin",s:88},
+  {c:"Dublin",s:45},{c:"Dublin",s:70},
+  // Toronto (10)
+  {c:"Toronto",s:58},{c:"Toronto",s:82},{c:"Toronto",s:35},{c:"Toronto",s:90},{c:"Toronto",s:50},
+  {c:"Toronto",s:72},{c:"Toronto",s:25},{c:"Toronto",s:78},{c:"Toronto",s:45},{c:"Toronto",s:88},
+  // Vancouver (8)
+  {c:"Vancouver",s:62},{c:"Vancouver",s:80},{c:"Vancouver",s:40},{c:"Vancouver",s:92},
+  {c:"Vancouver",s:52},{c:"Vancouver",s:75},{c:"Vancouver",s:30},{c:"Vancouver",s:85},
+  // New York (12)
+  {c:"New York",s:65},{c:"New York",s:88},{c:"New York",s:42},{c:"New York",s:95},{c:"New York",s:55},
+  {c:"New York",s:78},{c:"New York",s:30},{c:"New York",s:82},{c:"New York",s:48},{c:"New York",s:92},
+  {c:"New York",s:38},{c:"New York",s:72},
+  // Los Angeles (10)
+  {c:"Los Angeles",s:60},{c:"Los Angeles",s:85},{c:"Los Angeles",s:38},{c:"Los Angeles",s:90},{c:"Los Angeles",s:52},
+  {c:"Los Angeles",s:75},{c:"Los Angeles",s:25},{c:"Los Angeles",s:80},{c:"Los Angeles",s:45},{c:"Los Angeles",s:88},
   // Other (10)
   {c:"Other",s:45},{c:"Other",s:68},{c:"Other",s:20},{c:"Other",s:80},{c:"Other",s:35},
   {c:"Other",s:58},{c:"Other",s:15},{c:"Other",s:72},{c:"Other",s:42},{c:"Other",s:88},
@@ -191,11 +234,19 @@ function getWeakAreas(answers) {
 }
 
 // Percentile from embedded benchmark — no DB needed until clinic_score_submissions table is live
+// Returns {pct, isGlobal} — isGlobal=true when benchmarked against full dataset (city blank or not in dataset)
 function getPercentileLocal(city, score) {
+  if (!city) {
+    const below = BENCHMARK.filter(r => r.s < score).length;
+    return { pct: Math.round((below / BENCHMARK.length) * 100), isGlobal: true };
+  }
   const cityRows = BENCHMARK.filter(r => r.c === city);
-  const pool = cityRows.length > 5 ? cityRows : BENCHMARK; // fall back to all cities
-  const below = pool.filter(r => r.s < score).length;
-  return Math.round((below / pool.length) * 100);
+  if (cityRows.length > 5) {
+    const below = cityRows.filter(r => r.s < score).length;
+    return { pct: Math.round((below / cityRows.length) * 100), isGlobal: false };
+  }
+  const below = BENCHMARK.filter(r => r.s < score).length;
+  return { pct: Math.round((below / BENCHMARK.length) * 100), isGlobal: true };
 }
 
 // Email capture via ecosystem leads API (requires email, no new table needed)
@@ -285,6 +336,7 @@ export default function ClinicScorePage() {
   const [phone, setPhone] = useState("");
   const [emailSent, setEmailSent] = useState(false);
   const [emailSending, setEmailSending] = useState(false);
+  const [isGlobalPercentile, setIsGlobalPercentile] = useState(false);
   const [citySearch, setCitySearch] = useState("");
   const [showCityDropdown, setShowCityDropdown] = useState(false);
   const topRef = useRef(null);
