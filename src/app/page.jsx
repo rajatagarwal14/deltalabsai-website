@@ -146,7 +146,7 @@ function AnnouncementBar() {
         onMouseEnter={e => { e.currentTarget.style.background = "#ECFDF5"; }}
         onMouseLeave={e => { e.currentTarget.style.background = "#fff"; }}
       >
-        Get Your Free Diagnostic <Ic.Arr />
+        Get Your Free AI Diagnostic <Ic.Arr />
       </a>
       <button onClick={() => setVisible(false)} aria-label="Dismiss" style={{
         position: "absolute", right: 12, top: "50%", transform: "translateY(-50%)",
@@ -278,7 +278,8 @@ function Hero() {
           </F>
           <F eager d={0.24}>
             <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
-              <Btn href={FORM} style={{ background: "#2563EB", fontSize: 16, padding: "16px 34px", boxShadow: "0 4px 20px rgba(37,99,235,0.45)" }}>Get Your Free Diagnostic <Ic.Arr /></Btn>
+              <style>{`@keyframes dl-cta-pulse{0%,100%{box-shadow:0 4px 20px rgba(37,99,235,0.45),0 0 0 0 rgba(37,99,235,0.4)}70%{box-shadow:0 4px 20px rgba(37,99,235,0.45),0 0 0 12px rgba(37,99,235,0)}}`}</style>
+              <Btn href={FORM} style={{ background: "#2563EB", fontSize: 17, padding: "18px 38px", animation: "dl-cta-pulse 2.2s infinite", borderRadius: 12 }}>Get Your Free AI Diagnostic <Ic.Arr /></Btn>
               <a onClick={() => scrollTo("how")} style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "14px 28px", borderRadius: 10, fontFamily: "'DM Sans',sans-serif", fontWeight: 600, fontSize: 15, cursor: "pointer", color: "#e2e8f0", border: "1.5px solid rgba(255,255,255,0.18)", background: "transparent" }}>See how it works</a>
             </div>
           </F>
@@ -334,7 +335,7 @@ function HeroCTABand() {
             Our AI scans 9 dimensions of your business and pinpoints exactly where money is leaking — in minutes.
           </p>
           <Btn href={FORM} style={{ background: "#2563EB", color: "#fff", fontSize: 17, padding: "16px 36px", borderRadius: 12, boxShadow: "0 4px 24px rgba(37,99,235,0.4)" }}>
-            Get Your Free Diagnostic <Ic.Arr />
+            Get Your Free AI Diagnostic <Ic.Arr />
           </Btn>
           <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, color: "#64748B", margin: "14px 0 0" }}>No credit card required. No sales call needed.</p>
         </F>
