@@ -1,24 +1,26 @@
 export const metadata = {
-  title: "Free 9-Dimension Business Diagnostic | Delta Labs AI",
+  title: "Free AI Diagnostic for Small Business | Delta Labs AI",
   description:
-    "Find out where your business is leaking revenue. Take Delta Labs AI's free 3-minute diagnostic and get your personalized automation roadmap.",
+    "Free AI diagnostic for small businesses — 3 minutes to score 9 dimensions, spot revenue leaks, and get your personalized automation roadmap.",
   keywords: [
+    "free AI diagnostic for small business",
+    "free business automation audit",
+    "AI business diagnostic",
     "free business diagnostic",
     "business health assessment",
     "9 dimension business score",
     "revenue leak analysis",
     "business operations assessment",
-    "free business audit tool",
-    "AI business diagnostic",
     "small business health check",
+    "AI automation for SMB",
   ],
   alternates: {
     canonical: "https://deltalabsai.com/diagnostic",
   },
   openGraph: {
-    title: "Free 9-Dimension Business Diagnostic | Delta Labs AI",
+    title: "Free AI Diagnostic for Small Business | Delta Labs AI",
     description:
-      "Score your business across 9 dimensions in 3 minutes. See exactly where you're losing revenue with our AI-powered radar chart analysis.",
+      "Free AI diagnostic for small businesses — 3 minutes to score 9 dimensions, spot revenue leaks, and get your personalized automation roadmap.",
     url: "https://deltalabsai.com/diagnostic",
     siteName: "Delta Labs AI",
     type: "website",
@@ -34,9 +36,9 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Free 9-Dimension Business Diagnostic | Delta Labs AI",
+    title: "Free AI Diagnostic for Small Business | Delta Labs AI",
     description:
-      "Score your business across 9 dimensions in 3 minutes. See exactly where you're losing revenue.",
+      "Free AI diagnostic for small businesses — 3 minutes to score 9 dimensions, spot revenue leaks, and get your automation roadmap.",
     images: ["/og-image.png"],
   },
   robots: {

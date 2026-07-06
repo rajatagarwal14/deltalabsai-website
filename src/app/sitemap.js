@@ -27,13 +27,13 @@ export default function sitemap() {
   return [
     {
       url: "https://deltalabsai.com",
-      lastModified: new Date("2026-02-18"),
+      lastModified: new Date("2026-06-29"),
       changeFrequency: "weekly",
       priority: 1.0,
     },
     {
       url: "https://deltalabsai.com/diagnostic",
-      lastModified: new Date("2026-02-18"),
+      lastModified: new Date("2026-06-29"),
       changeFrequency: "monthly",
       priority: 0.9,
     },

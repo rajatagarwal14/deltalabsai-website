@@ -2,18 +2,19 @@ import "./globals.css";
 import WhatsAppFloat from "./WhatsAppFloat";
 
 export const metadata = {
-  title: "AI Automation for Small Business | Delta Labs AI",
+  title: "Free AI Diagnostic for SMBs | AI Consulting | Delta Labs AI",
   description:
-    "Delta Labs AI helps small businesses automate operations in under 2 weeks. Free diagnostic. No lock-in.",
+    "AI consulting for small businesses and dental clinics. Free 3-min AI diagnostic — score 9 dimensions, find revenue leaks, get your automation roadmap. No lock-in.",
   keywords: [
+    "free AI diagnostic for small business",
+    "AI consulting for dental clinics",
+    "AI automation for SMB",
+    "free business automation audit",
+    "AI tools for independent dental practice",
     "AI business consulting",
     "digital transformation consulting",
     "business operations consulting",
-    "AI automation for small business",
     "business diagnostic tool",
-    "operations optimization",
-    "SME consulting",
-    "revenue leak analysis",
     "workflow automation",
     "CRM setup consulting",
     "AI agents for business",
@@ -25,9 +26,9 @@ export const metadata = {
     canonical: "https://deltalabsai.com",
   },
   openGraph: {
-    title: "AI Automation for Small Business | Delta Labs AI",
+    title: "Free AI Diagnostic for SMBs | AI Consulting | Delta Labs AI",
     description:
-      "Small business drowning in chaos? Delta Labs AI is your automation co-pilot. Start with our free 3-minute diagnostic.",
+      "AI consulting for small businesses and dental clinics. Free 3-min AI diagnostic — score 9 dimensions, find revenue leaks, get your automation roadmap.",
     url: "https://deltalabsai.com",
     siteName: "Delta Labs AI",
     type: "website",
@@ -43,9 +44,9 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "AI Automation for Small Business | Delta Labs AI",
+    title: "Free AI Diagnostic for SMBs | AI Consulting | Delta Labs AI",
     description:
-      "Small business drowning in chaos? Delta Labs AI is your automation co-pilot. Start with our free 3-minute diagnostic.",
+      "AI consulting for small businesses and dental clinics. Free 3-min AI diagnostic — score 9 dimensions, find revenue leaks, get your automation roadmap.",
     images: ["/og-image.png"],
   },
   icons: {
@@ -309,9 +310,9 @@ export default function RootLayout({ children }) {
                 document.head.appendChild(s);
                 s.onload = function() {
                   window.dataLayer = window.dataLayer || [];
-                  function gtag(){dataLayer.push(arguments);}
-                  gtag('js', new Date());
-                  gtag('config', 'G-E8311XDVDX');
+                  window.gtag = function(){dataLayer.push(arguments);}
+                  window.gtag('js', new Date());
+                  window.gtag('config', 'G-E8311XDVDX');
                 };
               });
             `,
@@ -422,7 +423,7 @@ export default function RootLayout({ children }) {
                   // Silently capture to CRM
                   fetch('https://delta-labs-ecosystem.vercel.app/api/leads/capture', {
                     method: 'POST', headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ name: name || email.split('@')[0], email: email, company: company || '', source: 'website_popup', notes: 'Auto-captured from email input on page: ' + window.location.pathname })
+                    body: JSON.stringify({ name: name || email.split('@')[0], email: email, company_name: company || '', source: 'website_popup', notes: 'Auto-captured from email input on page: ' + window.location.pathname })
                   }).catch(function(){});
                 }
               }
@@ -481,7 +482,7 @@ export default function RootLayout({ children }) {
               if (e.target.id === 'dla-popup-form') {
                 e.preventDefault();
                 var fd = new FormData(e.target);
-                var data = { name: fd.get('name'), email: fd.get('email'), company: fd.get('company'), source: 'exit_popup' };
+                var data = { name: fd.get('name'), email: fd.get('email'), company: fd.get('company'), company_name: fd.get('company'), source: 'exit_popup' };
                 // DOUBLE CAPTURE: Send to BOTH CRM and Google Sheet
                 // 1. CRM capture
                 fetch('https://delta-labs-ecosystem.vercel.app/api/leads/capture', {

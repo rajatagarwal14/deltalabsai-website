@@ -736,6 +736,7 @@ export default function IntakeForm() {
           <div>
             <button onClick={async () => {
               trackAbEvent(abVariant, "convert", { score: scoreData.pct });
+              trackGa4Event("form_submit", { form_name: "diagnostic", industry: info.industry, score: scoreData.pct });
               setSubmitting(true);
               setSubmitError("");
               try {
@@ -753,7 +754,7 @@ export default function IntakeForm() {
                   method: "POST",
                   headers: { "Content-Type": "application/json" },
                   body: JSON.stringify({
-                    name: info.name, email: info.email, company: info.company, website: info.website,
+                    name: info.name, email: info.email, company_name: info.company, website: info.website,
                     industry: info.industry, source: "diagnostic_tool",
                     score: Math.round((Object.values(scores).reduce((a, b) => a + b, 0) / 45) * 100),
                     notes: "Diagnostic: " + info.urgency + ". Challenge: " + info.biggestChallenge,
