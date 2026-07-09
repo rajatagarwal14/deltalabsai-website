@@ -201,13 +201,13 @@ Ready for a full setup? [Delta Labs AI's solutions](https://deltalabsai.com/solu
   },
   {
     slug: "ai-automation-for-small-business-owners",
-    title: "AI Automation for Small Business Owners: A Practical Guide to Saving Time and Boosting Profits",
+    title: "AI Automation for Small Business Owners: Cut 15+ Hrs of Admin Weekly (2026)",
     subtitle: "How independent businesses are using AI automation to cut admin work by 60% and grow revenue — without hiring more staff",
     category: "AI Automation",
     date: "May 22, 2026",
     readTime: "10 min read",
     keywords: ["ai automation for small business owners", "small business automation", "AI for small business", "business process automation SMB", "automate small business tasks", "AI tools for entrepreneurs", "small business AI guide", "save time with AI"],
-    description: "AI automation isn't just for enterprise companies. Small business owners are saving 15+ hours per week and growing revenue by automating repetitive tasks. Here's the practical guide to getting started.",
+    description: "Small business owners are cutting 15+ hours of admin work every week with AI automation — no developer, no IT team. Real tools, real costs, step-by-step 2026 guide. Free diagnostic →",
     sections: [
       {
         heading: null,
@@ -1843,13 +1843,13 @@ Build a healthy business. Know where you stand. Get clear on what to fix. Then f
   },
   {
     slug: "crm-service-businesses",
-    title: "CRM Implementation Services for Businesses Moving Off Spreadsheets (2026 Guide)",
+    title: "CRM for Service Businesses: Move Off Spreadsheets in 3 Weeks (2026)",
     subtitle: "When and how to upgrade from spreadsheets to a real CRM (and what will change)",
     category: "Operations",
     date: "February 10, 2026",
     readTime: "8 min read",
     keywords: ["CRM for service business", "customer relationship management", "CRM software", "business management system", "sales pipeline management", "crm implementation services", "moving off spreadsheets crm", "best crm implementation services for companies moving off spreadsheets"],
-    description: "Moving your business off spreadsheets to a CRM? Delta Labs AI handles setup, data migration, and automation in under 3 weeks — no disruption, no IT team needed. Free CRM audit →",
+    description: "Moving off spreadsheets? Delta Labs AI migrates your service business to a real CRM in under 3 weeks — zero disruption, no IT team. Free CRM audit →",
     sections: [
       {
         heading: null,
@@ -3605,13 +3605,13 @@ Want to see what else is costing your property management business time and mone
   },
   {
     slug: "ai-automation-stack-small-business",
-    title: "The AI Automation Stack Your Small Business Actually Needs (No Tech Jargon)",
+    title: "AI Automation Stack for Small Business: The 5-Layer System (2026)",
     subtitle: "A practical toolkit guide with specific tools and steps any small business owner can follow to automate operations without hiring a developer",
     category: "Automation",
     date: "March 27, 2026",
     readTime: "12 min read",
     keywords: ["AI automation tools for small business", "small business automation", "AI tools for small business", "business automation stack", "no-code automation", "AI for SMB", "automate small business operations", "best automation tools for small business"],
-    description: "The complete AI automation toolkit for small businesses. Specific tools, real costs, and step-by-step implementation you can start this week. No technical background required.",
+    description: "The 5-layer AI automation stack small businesses actually use in 2026 — specific tools, real monthly costs, no tech jargon. Start with Layer 1 this week →",
     sections: [
       {
         heading: null,
