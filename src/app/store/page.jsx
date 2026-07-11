@@ -279,7 +279,7 @@ const TRUST = ["Dental Clinics", "Fitness Studios", "Real Estate Agencies", "Hom
 
 // ── Reviews ───────────────────────────────────────────────────────────────────
 const REVIEWS = [
-  { name: "Dr. Anita Sharma", role: "Dentist, Bengaluru", quote: "SmileCRM cut my no-show rate by 40% in the first month. The WhatsApp automation is magic.", stars: 5 },
+  { name: "Dr. Anita Sharma", role: "Dentist, Bengaluru", quote: "SmileCRM's WhatsApp automation cut my no-shows noticeably in the first month. It's magic.", stars: 5 },
   { name: "Ravi Kumar", role: "Gym Owner, Hyderabad", quote: "Set up in under 10 minutes. The AI handles follow-ups I used to do manually every evening.", stars: 5 },
   { name: "Priya Nair", role: "E-commerce Founder", quote: "The outreach agent booked 3 B2B calls in the first week. I didn't have to do anything.", stars: 5 },
 ];
@@ -355,10 +355,10 @@ export default function StorePage() {
   ];
 
   const STAT_ITEMS = [
-    { n: "300+", l: "SMBs using our tools" },
+    { n: "300+", l: "Leads in our CRM" },
     { n: "9%", l: "Cold email open rate" },
     { n: "48h", l: "Setup to first result" },
-    { n: "40%", l: "Avg no-show reduction" },
+    { n: "Auto", l: "No-show reminders built-in" },
   ];
 
   return (

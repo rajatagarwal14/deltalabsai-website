@@ -3,6 +3,7 @@ export default function robots() {
     rules: {
       userAgent: "*",
       allow: "/",
+      disallow: "/clinic/",
     },
     sitemap: "https://deltalabsai.com/sitemap.xml",
   };

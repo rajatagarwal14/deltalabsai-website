@@ -137,7 +137,7 @@ const QUESTIONS = [
       { label: "Rarely or never", points: 0 },
     ],
     improvementLabel: "Review responses",
-    improvementTip: "Responding to reviews (especially negative ones) increases conversion by 18%. Most clinics skip this — it's a quick win.",
+    improvementTip: "Responding to reviews (especially negative ones) is built to lift conversion. Most clinics skip this — it's a quick win.",
   },
   {
     id: "booking",
@@ -148,7 +148,7 @@ const QUESTIONS = [
       { label: "Walk-in only", points: 0 },
     ],
     improvementLabel: "Online booking",
-    improvementTip: "Online booking captures appointments even when your front desk is busy or closed. Clinics report 30% more bookings after switching.",
+    improvementTip: "Online booking captures appointments even when your front desk is busy or closed.",
   },
   {
     id: "reminders",
@@ -159,7 +159,7 @@ const QUESTIONS = [
       { label: "No reminders sent", points: 0 },
     ],
     improvementLabel: "Appointment reminders",
-    improvementTip: "Automated reminders reduce no-shows by 35–45%. Manual calls cost front-desk time and still miss patients.",
+    improvementTip: "Automated WhatsApp and SMS reminders are built to cut no-shows. Manual calls cost front-desk time and still miss patients.",
   },
   {
     id: "followup",
@@ -421,7 +421,7 @@ export default function ClinicScorePage() {
           <div style={{ textAlign: "center", marginBottom: 32 }}>
             <div style={badge}>🏥 Free Benchmark Tool</div>
             <h1 style={h1}>How does your dental clinic rank globally?</h1>
-            <p style={sub}>Free 90-second benchmark. See how your clinic compares to 500+ clinics worldwide. No email required to see your score.</p>
+            <p style={sub}>Free 90-second benchmark. See how your clinic compares worldwide. No email required to see your score.</p>
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: 16, marginBottom: 32 }}>
             {[

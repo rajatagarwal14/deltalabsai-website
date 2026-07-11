@@ -48,17 +48,17 @@ const problems = [
 const solutions = [
   { title: "24/7 Online Booking", desc: "Customers book appointments through your website or a simple link, any time of day. No missed calls. No phone tag. Jobs fill your calendar while you work." },
   { title: "Automated Confirmations", desc: "The moment someone books, they get a WhatsApp or SMS confirmation with date, time, and your contact details. Professional and instant." },
-  { title: "Job Reminders", desc: "Customers get reminded 24 hours before their appointment. You get reminded too. No-shows drop by 40%. No more wasted trips." },
+  { title: "Job Reminders", desc: "Customers get reminded 24 hours before their appointment. You get reminded too. Built to cut no-shows. No more wasted trips." },
   { title: "Follow-up Automation", desc: "After every job, customers automatically receive a thank-you message, a feedback request, and a Google review link. Build repeat business on autopilot." },
   { title: "Customer CRM", desc: "Every customer, every job, every note in one simple dashboard. When Mrs. Sharma calls again, you know her address, her AC model, and what you fixed last time." },
-  { title: "Review Collection", desc: "Happy customers get a gentle review request at the perfect moment. Grow your Google reviews 2x in 3 months without awkwardly asking." },
+  { title: "Review Collection", desc: "Happy customers get a gentle review request at the perfect moment. Grow your Google reviews without awkwardly asking." },
 ];
 
 const stats = [
-  { num: "40%", label: "Fewer no-shows" },
-  { num: "60%", label: "Of calls missed while on jobs" },
-  { num: "2x", label: "More repeat customers" },
-  { num: "10+ hrs", label: "Saved per week" },
+  { num: "24/7", label: "Automated booking & reminders" },
+  { num: "Auto", label: "Confirmations on every job" },
+  { num: "Auto", label: "Follow-up & review requests" },
+  { num: "Live", label: "Customer CRM dashboard" },
 ];
 
 const faqs = [

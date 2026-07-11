@@ -817,7 +817,7 @@ export default function IntakeForm() {
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
           <span style={{ display: "flex", alignItems: "center", gap: 5, color: "#6B7280" }}><Ic.Clock /><span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, fontWeight: 500 }}>Takes 3 minutes</span></span>
           <span style={{ display: "flex", alignItems: "center", gap: 5, color: "#6B7280" }}><Ic.Lock /><span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, fontWeight: 500 }}>Private & secure</span></span>
-          <span style={{ display: "flex", alignItems: "center", gap: 5, color: "#059669" }}><Ic.Sparkle /><span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, fontWeight: 600 }}>Join 100+ businesses diagnosed</span></span>
+          <span style={{ display: "flex", alignItems: "center", gap: 5, color: "#059669" }}><Ic.Sparkle /><span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, fontWeight: 600 }}>Get your free AI diagnostic</span></span>
         </div>
       </div>
 

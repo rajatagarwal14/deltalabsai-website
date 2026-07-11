@@ -1,7 +1,7 @@
 export const metadata = {
   title: "Clinic Digital Score — How does your clinic rank? | Delta Labs AI",
   description:
-    "Free 90-second benchmark: see how your dental clinic ranks against 500+ clinics in your city. Get your Clinic Digital Score instantly.",
+    "Free 90-second benchmark: see how your dental clinic ranks in your city. Get your Clinic Digital Score instantly.",
   keywords: [
     "clinic digital score",
     "dental clinic benchmark",
@@ -19,7 +19,7 @@ export const metadata = {
   openGraph: {
     title: "How does your clinic rank? Get your Clinic Digital Score",
     description:
-      "Free 90-second benchmark tool. See how your dental clinic compares to 500+ others in your city.",
+      "Free 90-second benchmark tool. See how your dental clinic compares in your city.",
     url: "https://deltalabsai.com/clinic-score",
     siteName: "Delta Labs AI",
     type: "website",

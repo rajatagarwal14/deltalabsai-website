@@ -37,9 +37,9 @@ function Btn({ children, href, v = "primary", ...p }) {
 }
 
 const features = [
-  { title: "Automated Appointment Reminders", desc: "WhatsApp and SMS reminders sent 24 hours and 2 hours before every appointment. Cut no-shows by up to 40%." },
-  { title: "Patient Recall System", desc: "Automatically identify patients overdue for checkups and send personalized recall messages. Recover 10-15% of lost revenue." },
-  { title: "Google Review Automation", desc: "After every visit, patients automatically receive a review request. Double your Google reviews in 3 months." },
+  { title: "Automated Appointment Reminders", desc: "WhatsApp and SMS reminders sent 24 hours and 2 hours before every appointment. Built to cut no-shows." },
+  { title: "Patient Recall System", desc: "Automatically identify patients overdue for checkups and send personalized recall messages. Recover revenue lost to missed recalls." },
+  { title: "Google Review Automation", desc: "After every visit, patients automatically receive a review request — designed to grow your Google reviews." },
   { title: "Simple Appointment Dashboard", desc: "See your entire schedule, patient history, and revenue at a glance. No complex training required." },
   { title: "WhatsApp Follow-ups", desc: "Post-treatment care instructions, feedback requests, and appointment confirmations sent automatically via WhatsApp." },
   { title: "Patient Records at Your Fingertips", desc: "Quick access to patient history, treatment plans, and notes. Everything in one place, accessible from any device." },
@@ -52,10 +52,10 @@ const plans = [
 ];
 
 const stats = [
-  { num: "40%", label: "Fewer no-shows" },
-  { num: "2x", label: "More Google reviews" },
-  { num: "10-15%", label: "Revenue recovered" },
-  { num: "5-10 hrs", label: "Saved per week" },
+  { num: "24/7", label: "Automated reminders" },
+  { num: "Auto", label: "Google review requests" },
+  { num: "Auto", label: "Patient recall" },
+  { num: "Auto", label: "Admin work off your plate" },
 ];
 
 const faqs = [
@@ -91,7 +91,7 @@ export default function DentalPage() {
         <F>
           <div style={{ display: "inline-block", padding: "6px 16px", borderRadius: 20, background: "#f0fdf4", color: "#16a34a", fontSize: 13, fontWeight: 600, marginBottom: 24 }}>Built for Independent Dental Clinics</div>
           <h1 style={{ fontSize: "clamp(32px, 5vw, 52px)", fontWeight: 800, lineHeight: 1.1, letterSpacing: -1.5, margin: "0 0 20px" }}>
-            SmileCRM: Dental Clinic Automation<br />That Cuts No-Shows by 40%
+            SmileCRM: Dental Clinic Automation<br />Built to Cut No-Shows
           </h1>
           <p style={{ fontSize: 18, color: "#52525b", maxWidth: 600, margin: "0 auto 32px", lineHeight: 1.6 }}>
             SmileCRM automates appointment reminders, patient recall, and review collection for your dental clinic. Simple setup. Affordable pricing. Real results.

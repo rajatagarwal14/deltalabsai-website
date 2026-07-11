@@ -1,8 +1,15 @@
 "use client";
 
+import { usePathname } from "next/navigation";
+
 // Site-wide floating WhatsApp button — Delta Labs AI inbound channel.
 // Pre-filled "Hi" message routes to the active number wa.me/917011402167.
 export default function WhatsAppFloat() {
+  const pathname = usePathname();
+  // Hide on standalone report pages — they are a focused conversion surface and
+  // the float overlaps the report content. Keep it on all marketing pages.
+  if (pathname && pathname.startsWith("/clinic")) return null;
+
   const href =
     "https://wa.me/917011402167?text=" +
     encodeURIComponent("Hi Delta Labs AI 👋 I'd like to know how you can help my business.");

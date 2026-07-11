@@ -31,7 +31,7 @@ export async function generateMetadata({ params }) {
     },
     openGraph: {
       title: `SmileCRM for Dental Clinics in ${city.name}`,
-      description: `Cut no-shows by 40%, automate patient recall, and grow Google reviews for your ${city.name} dental clinic. Starting at Rs 2,999/month.`,
+      description: `Automated WhatsApp reminders built to cut no-shows, automate patient recall, and grow Google reviews for your ${city.name} dental clinic. Starting at Rs 2,999/month.`,
       url,
       siteName: "Delta Labs AI",
       type: "website",

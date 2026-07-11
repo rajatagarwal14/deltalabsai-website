@@ -1,7 +1,7 @@
 export const metadata = {
   title: "Fitness & Yoga Studio Automation | Delta Labs AI",
   description:
-    "Automate class scheduling, member retention, and review collection for your gym, yoga studio, or fitness center. Reduce no-shows by 40%. Affordable plans for independent studios.",
+    "Automate class scheduling, member retention, and review collection for your gym, yoga studio, or fitness center. Automated reminders built to cut no-shows. Affordable plans for independent studios.",
   keywords: [
     "gym automation",
     "yoga studio software",

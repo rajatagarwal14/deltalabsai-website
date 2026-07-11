@@ -558,7 +558,7 @@ function ClinicScoreBanner() {
                 Clinic Digital Score™
               </h3>
               <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 14, color: "#94a3b8", lineHeight: 1.7, margin: "0 0 20px" }}>
-                6 questions. 90 seconds. See how your clinic ranks against 500+ others worldwide — and get your top 3 actionable improvements instantly. Free, no login needed.
+                6 questions. 90 seconds. See how your clinic ranks worldwide — and get your top 3 actionable improvements instantly. Free, no login needed.
               </p>
               <a href="/clinic-score" style={{
                 fontFamily: "'DM Sans',sans-serif",

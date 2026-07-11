@@ -43,18 +43,18 @@ const painPoints = [
 
 const solutions = [
   { title: "24/7 Class Booking", desc: "Members book, cancel, and join waitlists online. No calls, no WhatsApp back-and-forth. Your schedule updates everywhere automatically." },
-  { title: "Smart Reminders", desc: "Automated WhatsApp and SMS reminders 24 hours and 2 hours before class. Cut no-shows by up to 40% without sending a single message yourself." },
+  { title: "Smart Reminders", desc: "Automated WhatsApp and SMS reminders 24 hours and 2 hours before class. Built to cut no-shows without sending a single message yourself." },
   { title: "Retention Autopilot", desc: "When a regular member misses their usual class, they get a personalized nudge. Milestone celebrations at 10, 25, 50 classes keep motivation high." },
-  { title: "Review Engine", desc: "After their 10th class, members automatically receive a Google review request. Double your reviews in 3 months without asking awkwardly." },
+  { title: "Review Engine", desc: "After their 10th class, members automatically receive a Google review request — designed to grow your reviews without asking awkwardly." },
   { title: "Member Dashboard", desc: "See attendance trends, at-risk members, revenue, and class popularity at a glance. Make decisions with data, not gut feeling." },
   { title: "WhatsApp Follow-ups", desc: "Post-class tips, workout plans, and check-ins sent automatically. Keep members engaged between sessions without manual effort." },
 ];
 
 const stats = [
-  { num: "40%", label: "Fewer no-shows" },
-  { num: "50%", label: "Members lost in 90 days (without automation)" },
-  { num: "2x", label: "More Google reviews" },
-  { num: "10+ hrs", label: "Saved per week" },
+  { num: "24/7", label: "Automated class booking" },
+  { num: "Auto", label: "No-show reminders" },
+  { num: "Auto", label: "Google review requests" },
+  { num: "Auto", label: "Member retention nudges" },
 ];
 
 const faqs = [

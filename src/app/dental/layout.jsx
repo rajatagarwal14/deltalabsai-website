@@ -1,7 +1,7 @@
 export const metadata = {
   title: "SmileCRM - Dental Clinic Automation | Delta Labs AI",
   description:
-    "SmileCRM automates appointment reminders, patient recall, and Google review collection for independent dental clinics. Cut no-shows by 40%. Starting at Rs 2,999/month.",
+    "SmileCRM automates appointment reminders, patient recall, and Google review collection for independent dental clinics. Automated reminders built to cut no-shows. Starting at Rs 2,999/month.",
   keywords: [
     "dental clinic CRM",
     "dental appointment automation",
@@ -20,7 +20,7 @@ export const metadata = {
   openGraph: {
     title: "SmileCRM - Built for Independent Dental Clinics",
     description:
-      "Automate appointment reminders, patient recall, and review collection. Cut no-shows by 40%. Starting at Rs 2,999/month.",
+      "Automate appointment reminders, patient recall, and review collection. Automated reminders built to cut no-shows. Starting at Rs 2,999/month.",
     url: "https://deltalabsai.com/dental",
     siteName: "Delta Labs AI",
     type: "website",

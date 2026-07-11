@@ -69,7 +69,7 @@ const solutions = [
     tag: "Dental Clinics",
     name: "SmileCRM",
     desc: "Purpose-built CRM for independent dental clinics. Automates appointment reminders, patient recall, review requests, and WhatsApp follow-ups.",
-    features: ["No-show reduction by 40%", "Automated patient recall", "WhatsApp & SMS reminders", "Google review automation"],
+    features: ["Automated no-show reminders", "Automated patient recall", "WhatsApp & SMS reminders", "Google review automation"],
     price: "₹2,999–6,999/mo",
     href: "/dental",
     cta: "See SmileCRM",
