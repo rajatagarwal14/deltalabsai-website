@@ -2,9 +2,9 @@ import "./globals.css";
 import WhatsAppFloat from "./WhatsAppFloat";
 
 export const metadata = {
-  title: "Free AI Diagnostic for SMBs | AI Consulting | Delta Labs AI",
+  title: "AI Automation for Small Business | Free AI Diagnostic | Delta Labs AI",
   description:
-    "AI consulting for small businesses and dental clinics. Free 3-min AI diagnostic — score 9 dimensions, find revenue leaks, get your automation roadmap. No lock-in.",
+    "AI automation for small businesses and dental clinics. Free 3-min AI diagnostic that scores 9 dimensions, finds revenue leaks, and gives your automation roadmap. No lock-in.",
   keywords: [
     "free AI diagnostic for small business",
     "AI consulting for dental clinics",
@@ -26,9 +26,9 @@ export const metadata = {
     canonical: "https://deltalabsai.com",
   },
   openGraph: {
-    title: "Free AI Diagnostic for SMBs | AI Consulting | Delta Labs AI",
+    title: "AI Automation for Small Business | Free AI Diagnostic | Delta Labs AI",
     description:
-      "AI consulting for small businesses and dental clinics. Free 3-min AI diagnostic — score 9 dimensions, find revenue leaks, get your automation roadmap.",
+      "AI automation for small businesses and dental clinics. Free 3-min AI diagnostic that scores 9 dimensions, finds revenue leaks, and gives your automation roadmap.",
     url: "https://deltalabsai.com",
     siteName: "Delta Labs AI",
     type: "website",
@@ -44,9 +44,9 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Free AI Diagnostic for SMBs | AI Consulting | Delta Labs AI",
+    title: "AI Automation for Small Business | Free AI Diagnostic | Delta Labs AI",
     description:
-      "AI consulting for small businesses and dental clinics. Free 3-min AI diagnostic — score 9 dimensions, find revenue leaks, get your automation roadmap.",
+      "AI automation for small businesses and dental clinics. Free 3-min AI diagnostic that scores 9 dimensions, finds revenue leaks, and gives your automation roadmap.",
     images: ["/og-image.png"],
   },
   icons: {
@@ -167,45 +167,9 @@ const jsonLd = {
   },
 };
 
-// FAQPage schema for LLM/search visibility
-const faqJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: [
-    {
-      "@type": "Question",
-      name: "What is the Delta Labs AI Business Diagnostic?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "The Delta Labs AI Business Diagnostic is a free, 3-minute online assessment that scores your business across 9 dimensions: revenue engine, operations, technology, team, data practices, marketing, customer experience, financial health, and growth readiness. You receive a visual radar chart showing your strengths and gaps, plus a specific quick-win recommendation you can implement immediately.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "How much does Delta Labs AI consulting cost?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Delta Labs AI offers a free 9-dimension business diagnostic and a free 30-minute discovery call. The self-serve Business Diagnostic Kit is $49. Custom consulting engagements for AI automation, CRM setup, and digital transformation are priced based on scope and complexity.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "What industries does Delta Labs AI serve?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Delta Labs AI serves small and mid-sized businesses across multiple industries including healthcare (dental, medical practices), field services (HVAC, plumbing), fitness and gyms, e-commerce, professional services (consulting firms, agencies), real estate and property management, and more. We operate in the US, India, UK, UAE, and Australia.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "How does AI automation help small businesses?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "AI automation helps small businesses by eliminating repetitive manual tasks like data entry, appointment scheduling, lead qualification, invoice processing, and report generation. Operational inefficiency quietly drains potential revenue at most SMEs. AI automation can recover this lost revenue by streamlining operations, reducing errors, and freeing team members to focus on revenue-generating work.",
-      },
-    },
-  ],
-};
+// NOTE: FAQPage JSON-LD moved out of the root layout — it now lives on the
+// home page (src/app/page.jsx) next to the visible FAQ accordion it describes,
+// so it only emits on pages that actually show matching Q&A content.
 
 // NOTE: removed the duplicate bare Organization node — the canonical entity is the
 // single #organization ProfessionalService node (jsonLd above). Two conflicting
@@ -321,10 +285,6 @@ export default function RootLayout({ children }) {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
         />
         <script
           type="application/ld+json"

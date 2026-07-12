@@ -164,6 +164,16 @@ export default function FitnessPage() {
         </div>
       </section>
 
+      {/* Related guide */}
+      <section style={{ padding: "0 24px 24px", textAlign: "center" }}>
+        <p style={{ fontSize: 14, color: "#71717a" }}>
+          Worried about members drifting away? Read our guide on{" "}
+          <a href="/answers/reduce-gym-member-churn" style={{ color: "#18181b", fontWeight: 600 }}>
+            how to reduce gym member churn with automation
+          </a>.
+        </p>
+      </section>
+
       {/* CTA */}
       <section style={{ background: "#fafafa", padding: "72px 24px", textAlign: "center" }}>
         <F>

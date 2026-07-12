@@ -4,12 +4,14 @@ import { cities } from "./smilecrm/cities";
 export default function sitemap() {
   const allPosts = getAllPosts();
 
-  const cityPages = cities.map((city) => ({
-    url: `https://deltalabsai.com/smilecrm/${city.slug}`,
-    lastModified: new Date("2026-04-29"),
-    changeFrequency: "monthly",
-    priority: city.tier === 1 ? 0.8 : city.tier === 2 ? 0.75 : 0.7,
-  }));
+  const cityPages = cities
+    .filter((city) => city.tier === 1)
+    .map((city) => ({
+      url: `https://deltalabsai.com/smilecrm/${city.slug}`,
+      lastModified: new Date("2026-04-29"),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    }));
 
   const blogPosts = allPosts.map((post) => {
     // Parse the post date string to a proper Date
@@ -96,6 +98,30 @@ export default function sitemap() {
       lastModified: new Date("2026-04-29"),
       changeFrequency: "monthly",
       priority: 0.8,
+    },
+    {
+      url: "https://deltalabsai.com/about",
+      lastModified: new Date("2026-07-13"),
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
+      url: "https://deltalabsai.com/answers/hvac-invoicing-automation",
+      lastModified: new Date("2026-07-13"),
+      changeFrequency: "monthly",
+      priority: 0.75,
+    },
+    {
+      url: "https://deltalabsai.com/answers/reduce-gym-member-churn",
+      lastModified: new Date("2026-07-13"),
+      changeFrequency: "monthly",
+      priority: 0.75,
+    },
+    {
+      url: "https://deltalabsai.com/answers/appointment-scheduling-non-technical-owners",
+      lastModified: new Date("2026-07-13"),
+      changeFrequency: "monthly",
+      priority: 0.75,
     },
     ...cityPages,
     ...blogPosts,

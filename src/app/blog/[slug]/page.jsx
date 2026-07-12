@@ -44,16 +44,17 @@ export async function generateMetadata({ params }) {
 
   const url = `https://deltalabsai.com/blog/${post.slug}`;
   const publishedTime = parseDate(post.date);
+  const metaTitle = post.metaTitle || post.title;
 
   return {
-    title: `${post.title} | Delta Labs AI`,
+    title: `${metaTitle} | Delta Labs AI`,
     description: post.description || post.subtitle,
     keywords: post.keywords || [],
     alternates: {
       canonical: url,
     },
     openGraph: {
-      title: post.title,
+      title: metaTitle,
       description: post.description || post.subtitle,
       url,
       siteName: "Delta Labs AI",
@@ -75,7 +76,7 @@ export async function generateMetadata({ params }) {
     },
     twitter: {
       card: "summary_large_image",
-      title: post.title,
+      title: metaTitle,
       description: post.description || post.subtitle,
       images: [post.ogImage || "/og-image.png"],
     },
@@ -123,10 +124,9 @@ export default function BlogPostPage({ params }) {
     articleSection: post.category,
     keywords: (post.keywords || []).join(", "),
     author: {
-      "@type": "Organization",
-      name: "Delta Labs AI",
-      url: "https://deltalabsai.com",
-      logo: "https://deltalabsai.com/logo.png",
+      "@type": "Person",
+      name: "Neil",
+      url: "https://deltalabsai.com/about",
     },
     publisher: {
       "@type": "Organization",

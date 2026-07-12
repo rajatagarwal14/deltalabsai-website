@@ -175,6 +175,12 @@ export default function SolutionsPage() {
               Not sure which solution fits your business? Take the free 5-minute AI diagnostic and find out.
             </p>
             <a href={DIAG} style={{ background: "#18181b", color: "#fff", padding: "14px 32px", borderRadius: 10, fontWeight: 700, fontSize: 15, textDecoration: "none" }}>Start Free Diagnostic →</a>
+            <p style={{ fontSize: 13, color: "#a1a1aa", marginTop: 20 }}>
+              Not technical? See our plain-language guide to{" "}
+              <a href="/answers/appointment-scheduling-non-technical-owners" style={{ color: "#52525b", fontWeight: 600 }}>
+                appointment scheduling automation for non-technical owners
+              </a>.
+            </p>
           </div>
         </F>
       </section>

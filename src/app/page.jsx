@@ -81,8 +81,21 @@ function FAQ() {
     { q: "Are we locked into a long-term contract?", a: "No. We don't do lock-in contracts. Engagements are project-based or month-to-month. You stay because you're getting results, not because of a contract." },
     { q: "What if the discovery call isn't useful?", a: "If we can't identify at least one actionable quick win in your 30-minute call, we'll send you our DX Roadmap Template ($79 value) completely free. We've never had to do this." },
   ];
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  };
   return (
     <section id="faq" style={{ padding: "88px 24px", background: "#fff" }}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <div style={{ maxWidth: 680, margin: "0 auto" }}>
         <F><div style={{ textAlign: "center", marginBottom: 48 }}>
           <h2 style={{ fontFamily: "'DM Sans',sans-serif", fontSize: "clamp(26px, 3.5vw, 36px)", fontWeight: 800, color: "#0F172A", letterSpacing: "-0.02em", margin: "0 0 10px" }}>Common questions</h2>
@@ -166,7 +179,7 @@ function Nav() {
   const [m, setM] = useState(false);
   const [sc, setSc] = useState(false);
   useEffect(() => { const h = () => setSc(window.scrollY > 40); window.addEventListener("scroll", h); return () => window.removeEventListener("scroll", h); }, []);
-  const links = [["How It Works", "how"], ["Services", "services"], ["Store", "store"], ["Blog", "blog"], ["FAQ", "faq"]];
+  const links = [["How It Works", "how"], ["Services", "services"], ["Store", "store"], ["Blog", "blog"], ["About", "about"], ["FAQ", "faq"]];
   return (
     <nav style={{ position: "fixed", top: 44, left: 0, right: 0, zIndex: 150, background: sc ? "rgba(255,255,255,0.97)" : "transparent", backdropFilter: sc ? "blur(12px)" : "none", borderBottom: sc ? "1px solid #E5E7EB" : "none", transition: "all 0.3s" }}>
       <div style={{ maxWidth: 1100, margin: "0 auto", padding: "13px 24px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
@@ -174,13 +187,13 @@ function Nav() {
           <Ic.Delta /><span style={{ fontFamily: "'DM Sans',sans-serif", fontWeight: 700, fontSize: 18, letterSpacing: "-0.02em" }}>Delta Labs AI</span>
         </div>
         <div className="dln" style={{ display: "flex", alignItems: "center", gap: 24 }}>
-          {links.map(([l, id]) => { const lc = sc ? "#4B5563" : "#E2E8F0"; return id === "blog" || id === "store" ? <a key={id} href={`/${id}`} style={{ background: "none", border: "none", cursor: "pointer", fontFamily: "'DM Sans',sans-serif", fontSize: 14, fontWeight: 500, color: lc, transition: "color 0.15s", textDecoration: "none" }} onMouseEnter={e => e.target.style.color = "#2563EB"} onMouseLeave={e => e.target.style.color = lc}>{l}</a> : <button key={id} onClick={() => scrollTo(id)} style={{ background: "none", border: "none", cursor: "pointer", fontFamily: "'DM Sans',sans-serif", fontSize: 14, fontWeight: 500, color: lc, transition: "color 0.15s" }} onMouseEnter={e => e.target.style.color = "#2563EB"} onMouseLeave={e => e.target.style.color = lc}>{l}</button>; })}
+          {links.map(([l, id]) => { const lc = sc ? "#4B5563" : "#E2E8F0"; return id === "blog" || id === "store" || id === "about" ? <a key={id} href={`/${id}`} style={{ background: "none", border: "none", cursor: "pointer", fontFamily: "'DM Sans',sans-serif", fontSize: 14, fontWeight: 500, color: lc, transition: "color 0.15s", textDecoration: "none" }} onMouseEnter={e => e.target.style.color = "#2563EB"} onMouseLeave={e => e.target.style.color = lc}>{l}</a> : <button key={id} onClick={() => scrollTo(id)} style={{ background: "none", border: "none", cursor: "pointer", fontFamily: "'DM Sans',sans-serif", fontSize: 14, fontWeight: 500, color: lc, transition: "color 0.15s" }} onMouseEnter={e => e.target.style.color = "#2563EB"} onMouseLeave={e => e.target.style.color = lc}>{l}</button>; })}
           <Btn href={FORM} style={{ padding: "9px 20px", fontSize: 13 }}>Free Diagnostic <Ic.Arr /></Btn>
         </div>
         <button className="dlm" onClick={() => setM(!m)} aria-label={m ? "Close menu" : "Open menu"} style={{ background: "none", border: "none", cursor: "pointer", display: "none", color: "#0F172A" }}>{m ? <Ic.X /> : <Ic.Menu />}</button>
       </div>
       {m && <div style={{ background: "#fff", padding: "8px 24px 20px", borderTop: "1px solid #E5E7EB" }}>
-        {links.map(([l, id]) => id === "blog" || id === "store" ? <a key={id} href={`/${id}`} style={{ display: "block", width: "100%", textAlign: "left", padding: "16px 0", minHeight: 48, fontFamily: "'DM Sans',sans-serif", fontSize: 16, fontWeight: 500, color: "#374151", textDecoration: "none", borderBottom: "1px solid #F3F4F6" }}>{l}</a> : <button key={id} onClick={() => { scrollTo(id); setM(false); }} style={{ display: "block", width: "100%", textAlign: "left", background: "none", border: "none", padding: "16px 0", minHeight: 48, fontFamily: "'DM Sans',sans-serif", fontSize: 16, fontWeight: 500, color: "#374151", cursor: "pointer", borderBottom: "1px solid #F3F4F6" }}>{l}</button>)}
+        {links.map(([l, id]) => id === "blog" || id === "store" || id === "about" ? <a key={id} href={`/${id}`} style={{ display: "block", width: "100%", textAlign: "left", padding: "16px 0", minHeight: 48, fontFamily: "'DM Sans',sans-serif", fontSize: 16, fontWeight: 500, color: "#374151", textDecoration: "none", borderBottom: "1px solid #F3F4F6" }}>{l}</a> : <button key={id} onClick={() => { scrollTo(id); setM(false); }} style={{ display: "block", width: "100%", textAlign: "left", background: "none", border: "none", padding: "16px 0", minHeight: 48, fontFamily: "'DM Sans',sans-serif", fontSize: 16, fontWeight: 500, color: "#374151", cursor: "pointer", borderBottom: "1px solid #F3F4F6" }}>{l}</button>)}
         <Btn href={FORM} onClick={() => setM(false)} style={{ width: "100%", marginTop: 12, justifyContent: "center", fontSize: 14 }}>Free Diagnostic</Btn>
       </div>}
       <style>{`@media(max-width:768px){.dln{display:none!important}.dlm{display:block!important}}`}</style>
@@ -594,7 +607,7 @@ function ClinicScoreBanner() {
 // Latest Articles - SEO internal linking section
 function LatestArticles() {
   const articles = [
-    { slug: "ai-automation-stack-small-business", title: "The AI Automation Stack Your Small Business Actually Needs", category: "Automation", readTime: "12 min" },
+    { slug: "ai-automations-small-business", title: "The AI Automation Stack Your Small Business Actually Needs", category: "Automation", readTime: "12 min" },
     { slug: "manual-processes-costing-money", title: "5 Signs Your Business Is Losing Money to Manual Processes", category: "Operations", readTime: "7 min" },
     { slug: "digital-transformation-roadmap", title: "What Is a Digital Transformation Roadmap?", category: "Strategy", readTime: "8 min" },
     { slug: "how-to-choose-ai-consultant", title: "How to Choose an AI Consultant for Your Business", category: "AI", readTime: "8 min" },
@@ -685,6 +698,55 @@ function CTA() {
   );
 }
 
+// Industries & Solutions - internal linking section
+function Industries() {
+  const links = [
+    { href: "/dental", title: "Dental Automation", desc: "Appointment reminders, recall & reviews for independent clinics" },
+    { href: "/fitness", title: "Fitness & Wellness", desc: "Member retention and scheduling automation for gyms and studios" },
+    { href: "/home-services", title: "Home Services", desc: "Booking, dispatch and follow-up automation for plumbers, electricians & more" },
+    { href: "/ai-bdr", title: "AI BDR", desc: "AI-powered lead qualification and outbound for growing sales teams" },
+    { href: "/smilecrm", title: "SmileCRM", desc: "Purpose-built CRM for dental clinics — appointments, recall, WhatsApp" },
+    { href: "/solutions", title: "All Solutions", desc: "The full Delta Labs AI automation and consulting suite" },
+    { href: "/voice-receptionist", title: "Voice Receptionist", desc: "AI voice agents that answer calls and book appointments 24/7" },
+  ];
+  return (
+    <section style={{ padding: "80px 24px", background: "#fafafa" }}>
+      <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+        <F>
+          <div style={{ textAlign: "center", marginBottom: 48 }}>
+            <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, fontWeight: 700, color: "#2563EB", textTransform: "uppercase", letterSpacing: "0.1em" }}>Solutions by Industry</span>
+            <h2 style={{ fontFamily: "'DM Sans',sans-serif", fontSize: "clamp(26px, 3.5vw, 36px)", fontWeight: 800, color: "#0F172A", letterSpacing: "-0.02em", margin: "8px 0 12px" }}>
+              Built for Your Business
+            </h2>
+            <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 16, color: "#6B7280", maxWidth: 560, margin: "0 auto" }}>
+              Explore how Delta Labs AI automates operations across industries
+            </p>
+          </div>
+        </F>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: 20 }}>
+          {links.map((l, i) => (
+            <F key={l.href} d={i * 0.06}>
+              <a href={l.href} style={{
+                display: "block", borderRadius: 14, border: "1px solid #E5E7EB", padding: "22px",
+                background: "#fff", textDecoration: "none", color: "inherit", transition: "all 0.25s", height: "100%",
+              }}
+                onMouseEnter={e => { e.currentTarget.style.borderColor = "#2563EB"; e.currentTarget.style.transform = "translateY(-3px)"; e.currentTarget.style.boxShadow = "0 8px 24px rgba(37,99,235,0.1)"; }}
+                onMouseLeave={e => { e.currentTarget.style.borderColor = "#E5E7EB"; e.currentTarget.style.transform = ""; e.currentTarget.style.boxShadow = ""; }}
+              >
+                <h3 style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 16, fontWeight: 700, color: "#0F172A", margin: "0 0 6px" }}>{l.title}</h3>
+                <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, color: "#6B7280", lineHeight: 1.6, margin: 0 }}>{l.desc}</p>
+                <div style={{ display: "flex", alignItems: "center", gap: 4, marginTop: 14, color: "#2563EB", fontSize: 13, fontWeight: 600, fontFamily: "'DM Sans',sans-serif" }}>
+                  Learn more <Ic.Arr />
+                </div>
+              </a>
+            </F>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 // Footer
 function Footer() {
   return (
@@ -696,6 +758,7 @@ function Footer() {
         </div>
         <div style={{ display: "flex", gap: 8, alignItems: "center", flexWrap: "wrap" }}>
           <a href="/blog" style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, fontWeight: 500, color: "#94A3B8", textDecoration: "none", transition: "color 0.2s", padding: "12px 10px", display: "inline-flex", alignItems: "center" }} onMouseEnter={e => e.currentTarget.style.color = "#fff"} onMouseLeave={e => e.currentTarget.style.color = "#94A3B8"}>Blog</a>
+          <a href="/about" style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, fontWeight: 500, color: "#94A3B8", textDecoration: "none", transition: "color 0.2s", padding: "12px 10px", display: "inline-flex", alignItems: "center" }} onMouseEnter={e => e.currentTarget.style.color = "#fff"} onMouseLeave={e => e.currentTarget.style.color = "#94A3B8"}>About</a>
           <a href="/diagnostic" style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, fontWeight: 500, color: "#94A3B8", textDecoration: "none", transition: "color 0.2s", padding: "12px 10px", display: "inline-flex", alignItems: "center" }} onMouseEnter={e => e.currentTarget.style.color = "#fff"} onMouseLeave={e => e.currentTarget.style.color = "#94A3B8"}>Diagnostic</a>
           <a href="/clinic-score" style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, fontWeight: 500, color: "#94A3B8", textDecoration: "none", transition: "color 0.2s", padding: "12px 10px", display: "inline-flex", alignItems: "center" }} onMouseEnter={e => e.currentTarget.style.color = "#fff"} onMouseLeave={e => e.currentTarget.style.color = "#94A3B8"}>Clinic Score</a>
           <a href="/blog/ai-automations-small-business" style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, fontWeight: 500, color: "#94A3B8", textDecoration: "none", transition: "color 0.2s", padding: "12px 10px", display: "inline-flex", alignItems: "center" }} onMouseEnter={e => e.currentTarget.style.color = "#fff"} onMouseLeave={e => e.currentTarget.style.color = "#94A3B8"}>AI Automation</a>
@@ -768,6 +831,7 @@ export default function App() {
       <ClinicScoreBanner />
       <FAQ />
       <LatestArticles />
+      <Industries />
       <CTA />
       <Footer />
     </div>

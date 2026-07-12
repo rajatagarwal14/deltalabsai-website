@@ -173,6 +173,16 @@ export default function HomeServicesPage() {
         </div>
       </section>
 
+      {/* Related guide */}
+      <section style={{ padding: "0 24px 24px", textAlign: "center" }}>
+        <p style={{ fontSize: 14, color: "#71717a" }}>
+          Running an HVAC business specifically? Read our guide on{" "}
+          <a href="/answers/hvac-invoicing-automation" style={{ color: "#18181b", fontWeight: 600 }}>
+            how to automate HVAC invoicing
+          </a>.
+        </p>
+      </section>
+
       {/* CTA */}
       <section style={{ background: "#fafafa", padding: "72px 24px", textAlign: "center" }}>
         <F>
