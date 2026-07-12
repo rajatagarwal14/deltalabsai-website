@@ -33,6 +33,7 @@ export default async function ClinicReportPage({ params }) {
   const report = await getReportBySlug(city, slug);
 
   if (!report) notFound();
+  if (report.status === "expired") notFound();
 
   const facts = report.source_data || [];
   const breakdown = report.estimate_breakdown || null;
@@ -193,7 +194,7 @@ export default async function ClinicReportPage({ params }) {
             {currencyDisplay.symbol}
             {leakAmount.toLocaleString(currencyDisplay.locale)}
           </p>
-          {breakdown && (
+          {breakdown && Array.isArray(breakdown.steps) && breakdown.steps.length > 0 && (
             <details style={{ marginTop: 16, fontSize: 14, color: "#475569" }}>
               <summary
                 style={{

@@ -14,7 +14,8 @@ export default async function CityLeaderboardPage({ params, searchParams }) {
   const { city } = params;
   const ref = searchParams?.ref;
 
-  const row = ref ? await getReportBySlug(city, ref) : null;
+  let row = ref ? await getReportBySlug(city, ref) : null;
+  if (row?.status === "expired") row = null;
 
   return (
     <>
