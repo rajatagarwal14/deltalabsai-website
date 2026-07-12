@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getReportBySlug } from "../../../../lib/reports-db";
 import { ClinicHeader, ClinicFooter } from "../../BrandChrome";
+import ReportViewTracker from "../../ReportViewTracker";
 
 // Display symbols + locale for report currency. Mirrors CURRENCY_CONFIG in
 // worker/generate-clinic-reports.cjs — keep in sync if that map changes.
@@ -55,6 +56,7 @@ export default async function ClinicReportPage({ params }) {
 
   return (
     <>
+      <ReportViewTracker slug={slug} />
       <ClinicHeader />
       <main style={{ minHeight: "100vh", background: "#F8FAFC", padding: "32px 16px" }}>
       <div style={{ maxWidth: 672, margin: "0 auto" }}>

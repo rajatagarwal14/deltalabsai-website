@@ -43,6 +43,20 @@ export async function reportExists(slug) {
   });
 }
 
+export async function recordReportOpen(slug) {
+  return withClient(async (client) => {
+    const { rowCount } = await client.query(
+      `update clinic_reports
+       set open_count = open_count + 1,
+           last_opened_at = now(),
+           first_opened_at = coalesce(first_opened_at, now())
+       where slug = $1`,
+      [slug]
+    );
+    return rowCount > 0;
+  });
+}
+
 export async function insertClaimLead({ slug, name, phone, email }) {
   return withClient(async (client) => {
     // Dedup by email or phone before inserting.
