@@ -23,7 +23,7 @@ export async function generateMetadata({ params }) {
   if (!report) return { title: "Free clinic report · Delta Labs AI", robots: { index: false, follow: false } };
   return {
     title: `Free clinic report · ${report.clinic_name} · Delta Labs AI`,
-    description: `A quick, free look at where ${report.clinic_name} may be leaking revenue — from Delta Labs AI.`,
+    description: `A quick, free look at where ${report.clinic_name} may be leaking revenue, from Delta Labs AI.`,
     robots: { index: false, follow: false },
   };
 }
