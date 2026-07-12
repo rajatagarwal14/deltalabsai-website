@@ -19,7 +19,8 @@ const CURRENCY_DISPLAY = {
 };
 
 export async function generateMetadata({ params }) {
-  const { city, slug } = params;
+  let { city, slug } = params;
+  city = decodeURIComponent(city);
   const report = await getReputationReportBySlug(city, slug);
   if (!report) return { title: "Free Reputation Score · Delta Labs AI", robots: { index: false, follow: false } };
   return {
@@ -30,7 +31,8 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function ReputationReportPage({ params }) {
-  const { city, slug } = params;
+  let { city, slug } = params;
+  city = decodeURIComponent(city);
   const report = await getReputationReportBySlug(city, slug);
 
   if (!report) notFound();

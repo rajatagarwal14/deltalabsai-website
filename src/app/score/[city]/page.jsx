@@ -9,7 +9,8 @@ import { ClinicHeader, ClinicFooter } from "../../clinic/BrandChrome";
 // (?ref=<slug>), never the full competitor list, so anonymous visitors can't
 // scrape a city's whole business list.
 export default async function ReputationLeaderboardPage({ params, searchParams }) {
-  const { city } = params;
+  let { city } = params;
+  city = decodeURIComponent(city);
   const ref = searchParams?.ref;
 
   const row = ref ? await getReputationReportBySlug(city, ref) : null;
