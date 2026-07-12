@@ -57,6 +57,50 @@ export async function recordReportOpen(slug) {
   });
 }
 
+// --- Reputation Score reports (reputation_reports table) ---------------
+// Same withClient/query pattern as the clinic_reports helpers above.
+
+export async function getReputationReportBySlug(city, slug) {
+  return withClient(async (client) => {
+    const { rows } = await client.query(
+      `select * from reputation_reports where slug = $1 and city ilike $2 limit 1`,
+      [slug, city]
+    );
+    return rows[0] || null;
+  });
+}
+
+export async function getReputationReportsByCity(city) {
+  return withClient(async (client) => {
+    const { rows } = await client.query(
+      `select * from reputation_reports where city ilike $1 order by rank_in_city asc`,
+      [city]
+    );
+    return rows;
+  });
+}
+
+export async function reputationReportExists(slug) {
+  return withClient(async (client) => {
+    const { rows } = await client.query(`select slug from reputation_reports where slug = $1 limit 1`, [slug]);
+    return !!rows[0];
+  });
+}
+
+export async function recordReputationReportOpen(slug) {
+  return withClient(async (client) => {
+    const { rowCount } = await client.query(
+      `update reputation_reports
+       set open_count = open_count + 1,
+           last_opened_at = now(),
+           first_opened_at = coalesce(first_opened_at, now())
+       where slug = $1`,
+      [slug]
+    );
+    return rowCount > 0;
+  });
+}
+
 export async function insertClaimLead({ slug, name, phone, email }) {
   return withClient(async (client) => {
     // Dedup by email or phone before inserting.
