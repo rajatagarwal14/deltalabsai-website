@@ -252,7 +252,7 @@ export default async function ReputationReportPage({ params }) {
             <p style={{ fontSize: 14, lineHeight: 1.6, color: "#1E293B" }}>
               <strong>{report.top_competitor_name}</strong> is getting the customers you&apos;re not
               {typeof report.top_competitor_rating === "number" || report.top_competitor_reviews
-                ? " — "
+                ? ", "
                 : "."}
               {typeof report.top_competitor_rating === "number" && `${report.top_competitor_rating}★`}
               {typeof report.top_competitor_rating === "number" && report.top_competitor_reviews ? ", " : ""}
