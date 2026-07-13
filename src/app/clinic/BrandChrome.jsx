@@ -82,7 +82,7 @@ export function ClinicFooter() {
           <span style={{ fontWeight: 700, fontSize: 14 }}>Delta Labs AI</span>
         </div>
         <p style={{ fontSize: 12, color: "#94A3B8", margin: "0 0 12px" }}>
-          AI-powered business consulting for growing clinics.
+          Proof first. Zero effort from your team. No AI hype, just real numbers.
         </p>
         <div style={{ display: "flex", justifyContent: "center", gap: 6, alignItems: "center", marginBottom: 10 }}>
           <a href="/privacy" style={{ fontSize: 11, color: "#64748B", textDecoration: "none" }}>
