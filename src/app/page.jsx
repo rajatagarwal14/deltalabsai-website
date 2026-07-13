@@ -332,8 +332,13 @@ function Proof() {
   );
 }
 
-// Hero CTA Band — below hero, above diagnostic section
+// Hero CTA Band — DELA-4176: prominent, distinct CRO section immediately below hero
 function HeroCTABand() {
+  const trackClick = () => {
+    if (typeof window !== "undefined" && window.gtag) {
+      window.gtag("event", "diagnostic_herocta_click", { event_category: "CRO", event_label: "hero_cta_band" });
+    }
+  };
   return (
     <section style={{ padding: "48px 24px", background: "linear-gradient(135deg, #1E3A5F 0%, #0F172A 100%)", textAlign: "center" }}>
       <div style={{ maxWidth: 700, margin: "0 auto" }}>
@@ -342,14 +347,21 @@ function HeroCTABand() {
             Free · 3 Minutes · Instant Results
           </p>
           <h2 style={{ fontFamily: "'DM Sans',sans-serif", fontSize: "clamp(22px, 3.5vw, 34px)", fontWeight: 800, color: "#fff", letterSpacing: "-0.02em", margin: "0 0 8px", lineHeight: 1.2 }}>
-            Stop losing revenue to hidden inefficiencies.
+            Ready to See How AI Can Transform Your Business?
           </h2>
           <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: "clamp(14px, 1.8vw, 17px)", color: "#94A3B8", margin: "0 0 28px", lineHeight: 1.6 }}>
             Our AI scans 9 dimensions of your business and pinpoints exactly where money is leaking — in minutes.
           </p>
-          <Btn href={FORM} style={{ background: "#2563EB", color: "#fff", fontSize: 17, padding: "16px 36px", borderRadius: 12, boxShadow: "0 4px 24px rgba(37,99,235,0.4)" }}>
+          <a href={FORM} onClick={trackClick} style={{
+            display: "inline-flex", alignItems: "center", gap: 8, textDecoration: "none",
+            background: "#2563EB", color: "#fff", fontFamily: "'DM Sans',sans-serif", fontWeight: 700, fontSize: 17,
+            padding: "16px 36px", borderRadius: 12, boxShadow: "0 4px 24px rgba(37,99,235,0.4)", transition: "transform 0.2s",
+          }}
+            onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-2px)"; }}
+            onMouseLeave={e => { e.currentTarget.style.transform = ""; }}
+          >
             Get Your Free AI Diagnostic <Ic.Arr />
-          </Btn>
+          </a>
           <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, color: "#64748B", margin: "14px 0 0" }}>No credit card required. No sales call needed.</p>
         </F>
       </div>
@@ -821,8 +833,8 @@ export default function App() {
       <AnnouncementBar />
       <Nav />
       <Hero />
-      <Proof />
       <HeroCTABand />
+      <Proof />
       <DiagnosticCTA />
       <WhoFor />
       <How />
