@@ -1,8 +1,11 @@
 export const metadata = {
-  title: "Free AI Diagnostic for Small Business | Delta Labs AI",
+  title: "Free AI Business Diagnostic for SMBs in India | Delta Labs AI",
   description:
-    "Free AI diagnostic for small businesses — 3 minutes to score 9 dimensions, spot revenue leaks, and get your personalized automation roadmap.",
+    "Free AI diagnostic built for SMBs in India and worldwide — 3 minutes to score 9 dimensions, spot revenue leaks, and get your personalized automation roadmap.",
   keywords: [
+    "AI diagnostic India",
+    "business diagnostic India",
+    "AI business assessment India",
     "free AI diagnostic for small business",
     "free business automation audit",
     "AI business diagnostic",
@@ -18,9 +21,9 @@ export const metadata = {
     canonical: "https://deltalabsai.com/diagnostic",
   },
   openGraph: {
-    title: "Free AI Diagnostic for Small Business | Delta Labs AI",
+    title: "Free AI Business Diagnostic for SMBs in India | Delta Labs AI",
     description:
-      "Free AI diagnostic for small businesses — 3 minutes to score 9 dimensions, spot revenue leaks, and get your personalized automation roadmap.",
+      "Free AI diagnostic built for SMBs in India and worldwide — 3 minutes to score 9 dimensions, spot revenue leaks, and get your personalized automation roadmap.",
     url: "https://deltalabsai.com/diagnostic",
     siteName: "Delta Labs AI",
     type: "website",
@@ -36,9 +39,9 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Free AI Diagnostic for Small Business | Delta Labs AI",
+    title: "Free AI Business Diagnostic for SMBs in India | Delta Labs AI",
     description:
-      "Free AI diagnostic for small businesses — 3 minutes to score 9 dimensions, spot revenue leaks, and get your automation roadmap.",
+      "Free AI diagnostic built for SMBs in India and worldwide — 3 minutes to score 9 dimensions, spot revenue leaks, and get your automation roadmap.",
     images: ["/og-image.png"],
   },
   robots: {

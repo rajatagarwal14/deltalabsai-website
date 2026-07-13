@@ -936,13 +936,13 @@ Stop manually doing work that machines can do. Let AI handle the routine stuff. 
   {
     slug: "9-dimensions-healthy-business",
     title: "The 9 Dimensions of a Healthy Business — Most SMBs Score Well on 3 and Leak on the Other 6",
-    metaTitle: "9 Dimensions of a Healthy Business",
+    metaTitle: "AI Diagnostic for SMBs in India: 9 Dimensions of a Healthy Business",
     subtitle: "A diagnostic framework that reveals where your business is losing growth — and what to fix first",
     category: "Framework",
     date: "February 12, 2026",
     readTime: "11 min read",
-    keywords: ["business health assessment", "business framework", "operational excellence", "business diagnostic", "business metrics", "business evaluation"],
-    description: "A healthy business isn't just revenue. These 9 dimensions show where you're losing growth without knowing it. Most SMBs have 2-3 hidden leaks. Score yours free in 5 minutes.",
+    keywords: ["business health assessment", "AI diagnostic India", "business diagnostic India", "business framework", "operational excellence", "business diagnostic", "business metrics", "business evaluation"],
+    description: "A free AI diagnostic for SMBs in India and worldwide. These 9 dimensions show where you're losing growth without knowing it — most SMBs have 2-3 hidden leaks. Score yours free in 5 minutes.",
     sections: [
       {
         heading: null,
@@ -950,7 +950,7 @@ Stop manually doing work that machines can do. Let AI handle the routine stuff. 
 
 That's because business health is multi-dimensional. You can be profitable and still be at risk. You can be growing and still be fragile. A business that looks healthy on the surface might be held together by key-person dependency, broken processes, or customer concentration that you can't see without looking deeper.
 
-The Delta Labs AI Framework breaks business health into nine distinct dimensions. Each one measures something critical. Together, they paint a complete picture of your business's current state -where you're strong, where you're vulnerable, and where improvements will have the biggest impact.
+The Delta Labs AI Framework — the same one behind our free AI diagnostic for SMBs in India and worldwide — breaks business health into nine distinct dimensions. Each one measures something critical. Together, they paint a complete picture of your business's current state -where you're strong, where you're vulnerable, and where improvements will have the biggest impact.
 
 These nine dimensions are what we use in the Delta Labs AI Business Diagnostic. But you can evaluate yourself against them right now.`,
       },
@@ -1558,17 +1558,17 @@ Get off spreadsheets. Get into a system. Watch what happens to your business.`,
   {
     slug: "how-to-choose-ai-consultant",
     title: "How to Choose an AI Consultant in 2026: Avoid These 7 Costly Mistakes",
-    metaTitle: "How to Choose an AI Consultant (2026 Guide)",
+    metaTitle: "AI Consulting for SMBs: How to Choose an AI Consultant (2026)",
     subtitle: "Red flags, right questions, and how to evaluate proposals before you sign anything",
     category: "AI & Automation",
     date: "February 8, 2026",
     readTime: "9 min read",
-    keywords: ["how to choose an ai consultant", "ai consultant cost", "ai consulting for small business", "hire ai consultant", "ai consultant red flags", "ai consulting pricing", "ai consultant vs in house", "best ai consultant", "ai implementation consultant", "digital transformation consultant"],
-    description: "How to choose the right AI consultant in 2026 — pricing, red flags, questions to ask, and how to evaluate proposals. Plus a cost comparison: consultant vs. in-house hire.",
+    keywords: ["how to choose an ai consultant", "ai consulting for smbs", "ai consultant cost", "ai consulting for small business", "hire ai consultant", "ai consultant red flags", "ai consulting pricing", "ai consultant vs in house", "best ai consultant", "ai implementation consultant", "digital transformation consultant"],
+    description: "A practical guide to AI consulting for SMBs — how to choose the right AI consultant in 2026, pricing, red flags, questions to ask, and a cost comparison: consultant vs. in-house hire.",
     sections: [
       {
         heading: null,
-        body: `Every business owner has someone telling them they need AI. "AI will transform your business!" "You're missing out if you're not using AI!" "Everyone is implementing AI!"
+        body: `AI consulting for SMBs has exploded — and so has the noise. Every business owner has someone telling them they need AI. "AI will transform your business!" "You're missing out if you're not using AI!" "Everyone is implementing AI!"
 
 Most of this is hype.
 
