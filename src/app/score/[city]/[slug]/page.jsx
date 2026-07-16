@@ -134,47 +134,58 @@ export default async function ReputationReportPage({ params }) {
                 <p style={factTextStyle}>{report.unanswered_count} recent reviews with no business reply</p>
               </li>
             )}
-            {facts.map((f, i) => (
-              <li key={i} style={factCardStyle}>
-                <span style={tagStyle}>{f.source}</span>
-                <p style={factTextStyle}>{f.fact}</p>
-              </li>
-            ))}
+            {facts
+              .filter((f) => f && f.type !== "review_quote")
+              .map((f, i) => (
+                <li key={i} style={factCardStyle}>
+                  <span style={tagStyle}>{f.source}</span>
+                  <p style={factTextStyle}>{f.fact}</p>
+                </li>
+              ))}
           </ul>
         </section>
 
-        {/* Real bad review — emotional gut-check, right before the loss card */}
-        {reviewQuote && (
-          <blockquote
-            style={{
-              marginTop: 32,
-              marginBottom: 0,
-              borderRadius: 12,
-              border: "1px solid #FCA5A5",
-              background: "#FEF2F2",
-              padding: "18px 22px",
-              boxShadow: "0 1px 2px rgba(0,0,0,0.05)",
-            }}
-          >
-            <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-              {typeof reviewQuote.rating === "number" && (
-                <span style={{ fontSize: 13, fontWeight: 600, color: "#B91C1C" }}>
-                  {"★".repeat(Math.round(reviewQuote.rating))}
-                  {"☆".repeat(5 - Math.round(reviewQuote.rating))}
+        {/* Review quote — styling reflects the review's real sentiment. A low
+            rating (<=3) is the emotional gut-check (red/alarm). A high rating
+            (>=4, e.g. a 5-star gym whose "lowest" review is still glowing)
+            is real social proof and must not look like a warning. */}
+        {reviewQuote && (() => {
+          const isPositive = typeof reviewQuote.rating === "number" && reviewQuote.rating >= 4;
+          const palette = isPositive
+            ? { border: "#BBF7D0", background: "#F0FDF4", starColor: "#15803D", metaColor: "#166534" }
+            : { border: "#FCA5A5", background: "#FEF2F2", starColor: "#B91C1C", metaColor: "#7F1D1D" };
+          return (
+            <blockquote
+              style={{
+                marginTop: 32,
+                marginBottom: 0,
+                borderRadius: 12,
+                border: `1px solid ${palette.border}`,
+                background: palette.background,
+                padding: "18px 22px",
+                boxShadow: "0 1px 2px rgba(0,0,0,0.05)",
+              }}
+            >
+              <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                {typeof reviewQuote.rating === "number" && (
+                  <span style={{ fontSize: 13, fontWeight: 600, color: palette.starColor }}>
+                    {"★".repeat(Math.round(reviewQuote.rating))}
+                    {"☆".repeat(5 - Math.round(reviewQuote.rating))}
+                  </span>
+                )}
+                <span style={{ fontSize: 12, color: palette.metaColor }}>
+                  Google review{reviewQuote.date ? `, ${reviewQuote.date}` : ""}
                 </span>
+              </div>
+              <p style={{ marginTop: 10, fontSize: 15, fontStyle: "italic", lineHeight: 1.6, color: "#1E293B" }}>
+                &ldquo;{reviewQuote.text}&rdquo;
+              </p>
+              {reviewQuote.reviewer_name && (
+                <p style={{ marginTop: 6, fontSize: 12, color: palette.metaColor }}>From {reviewQuote.reviewer_name}</p>
               )}
-              <span style={{ fontSize: 12, color: "#7F1D1D" }}>
-                Google review{reviewQuote.date ? `, ${reviewQuote.date}` : ""}
-              </span>
-            </div>
-            <p style={{ marginTop: 10, fontSize: 15, fontStyle: "italic", lineHeight: 1.6, color: "#1E293B" }}>
-              &ldquo;{reviewQuote.text}&rdquo;
-            </p>
-            {reviewQuote.reviewer_name && (
-              <p style={{ marginTop: 6, fontSize: 12, color: "#7F1D1D" }}>From {reviewQuote.reviewer_name}</p>
-            )}
-          </blockquote>
-        )}
+            </blockquote>
+          );
+        })()}
 
         {/* Estimated loss */}
         <section

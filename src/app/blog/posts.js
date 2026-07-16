@@ -1271,13 +1271,13 @@ Build a healthy business. Know where you stand. Get clear on what to fix. Then f
   {
     slug: "crm-service-businesses",
     title: "CRM for Service Businesses: Move Off Spreadsheets in 3 Weeks (2026)",
-    metaTitle: "CRM for Service Businesses: Ditch Spreadsheets",
+    metaTitle: "CRM for Service Businesses: Migrate Off Spreadsheets in 3 Weeks",
     subtitle: "When and how to upgrade from spreadsheets to a real CRM (and what will change)",
     category: "Operations",
     date: "February 10, 2026",
     readTime: "8 min read",
     keywords: ["CRM for service business", "customer relationship management", "CRM software", "business management system", "sales pipeline management", "crm implementation services", "moving off spreadsheets crm", "best crm implementation services for companies moving off spreadsheets"],
-    description: "Moving off spreadsheets? Delta Labs AI migrates your service business to a real CRM in under 3 weeks — zero disruption, no IT team. Free CRM audit →",
+    description: "The 7 signs you have outgrown spreadsheets, and how to migrate to a real CRM in 3 weeks — zero disruption, no IT team. Free CRM audit →",
     sections: [
       {
         heading: null,
@@ -3229,7 +3229,7 @@ To book a free 20-minute clinic audit — where Delta Labs AI calculates your cu
   {
     slug: "dental-clinic-automation-2026",
     title: "How to Automate Your Dental Clinic in 2026",
-    metaTitle: "How to Automate Your Dental Clinic in 2026",
+    metaTitle: "Dental Clinic Automation: Cut No-Shows 60% in 2 Weeks (2026)",
     subtitle: "Appointment scheduling, patient recall, WhatsApp reminders, and online reviews — set up in under two weeks, no code required",
     category: "Dental",
     date: "June 22, 2026",
