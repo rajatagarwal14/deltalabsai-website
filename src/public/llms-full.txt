@@ -1,0 +1,54 @@
+# Delta Labs AI — Full Reference
+
+> AI consulting and automation company for SMBs. This file gives condensed page content for AI assistants and LLM crawlers; see llms.txt for the short index.
+
+## Company
+
+Delta Labs AI helps small and mid-sized businesses systemize operations with AI automation. We work with healthcare and dental clinics, gyms and wellness studios, home services and trades (HVAC, plumbing, electrical), e-commerce and D2C brands, agencies and consultancies, and any growing service business that has outgrown manual processes. We are a registered WhatsApp Business Tech Provider. No lock-in contracts — engagements are project-based or month-to-month. We cap intake at a maximum of 5 new clients per month.
+
+## Homepage FAQ (deltalabsai.com)
+
+Q: How much does it cost?
+A: The free diagnostic is no-cost. Consulting engagements are customized to business size and needs, discussed on the discovery call. Digital products start at $19.
+
+Q: We're not very tech-savvy. Is this for us?
+A: Yes — most clients aren't technical. We handle the complex parts and give clear recommendations usable by anyone on the team.
+
+Q: How quickly will we see results?
+A: Most clients see measurable improvement within 6-12 weeks. Quick wins can show impact within days; larger transformations take 2-3 months.
+
+Q: Are we locked into a long-term contract?
+A: No. Engagements are project-based or month-to-month.
+
+Q: What if the discovery call isn't useful?
+A: If no actionable quick win is identified in the 30-minute call, the DX Roadmap Template ($79 value) is sent free.
+
+Q: What is SmileCRM?
+A: Purpose-built CRM for independent dental clinics — automated appointment reminders, patient recall, Google review requests, WhatsApp follow-ups. Starts at ₹2,999/month.
+
+Q: What is the AI BDR product?
+A: A fully automated business development system: researches leads, writes personalised outreach, follows up, hands over warm replies. ~200 personalised sequences/month, 48-hour setup, ₹15,000/month.
+
+Q: Do you offer an AI voice receptionist?
+A: Yes — answers the business phone 24/7, books appointments, handles FAQs, escalates to a human when needed. Currently waitlist, ₹2,999/month.
+
+Q: What's the AI Business Ecosystem?
+A: End-to-end automation package: CRM setup, n8n/Make.com workflow automation, custom AI agents, lead capture, monthly strategy review. Custom pricing.
+
+Q: How does the free diagnostic work?
+A: ~3 minutes, no credit card, scores the business across 9 dimensions, instant radar-chart results.
+
+Q: What happens on the discovery call?
+A: Free 30-minute call to identify at least one actionable quick win; if none is found, the DX Roadmap Template is sent free.
+
+## Solutions catalog (deltalabsai.com/solutions)
+
+1. SmileCRM (Dental Clinics) — ₹2,999–6,999/mo. Automated no-show reminders, automated patient recall, WhatsApp & SMS reminders, Google review automation.
+2. AI BDR (Sales & Outreach) — ₹15,000/mo. 200 personalised sequences/mo, 35–50% open rates, AI-written (not templated), 48-hour setup.
+3. AI Voice Receptionist (Clinics & SMBs) — ₹2,999/mo. 24/7 call answering, appointment booking, WhatsApp handoff, human escalation.
+4. AI Business Ecosystem (Any SMB) — Custom pricing. n8n/Make.com automations, custom AI agents, CRM + email integration, monthly strategy review.
+
+## Contact
+
+Discovery call: https://cal.com/ag-ventures-qbqxax/30min
+Website: https://deltalabsai.com
