@@ -53,6 +53,7 @@ const faqs = [
   { q: "What is the guarantee?", a: "We go live within 7 days or you pay nothing. And if you see no measurable lift in repeat bookings within 30 days, you get a full refund." },
   { q: "Which visit types does the recall timing cover?", a: "Vaccination boosters, deworming cycles, and annual checkups, each on their own cadence. Timing is set per service type when you upload your list." },
   { q: "Is this only for full-service animal hospitals?", a: "It's built for independent veterinary clinics in Jakarta: solo-practice vets and small klinik hewan that rely on repeat visits, not chain hospital networks." },
+  { q: "Will this take over our WhatsApp number?", a: "No. The automated messages run on a separate, dedicated WhatsApp number we set up for your clinic, not your existing patient-facing line. Your main number stays 100% yours, with your staff replying to owners as always. If an owner replies to the automation number, we forward that to you so nothing gets missed." },
 ];
 
 export default function PetRecallEnginePage() {

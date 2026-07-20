@@ -53,6 +53,7 @@ const faqs = [
   { q: "What is the guarantee?", a: "We go live within 7 days or you pay nothing. And if you see no measurable lift in repeat bookings within 30 days, you get a full refund." },
   { q: "Which treatments does the recall timing cover?", a: "Typically botox around 90 days, filler around 180 days, and laser on its own protocol interval. These are common defaults, not medical advice, and you set the exact timing per treatment type when you upload your list." },
   { q: "Is this only for medspas?", a: "It's built for independent aesthetic and skin clinics in Dubai and Sharjah: medspas, cosmetic dermatology clinics, and skin clinics that rely on repeat visits." },
+  { q: "Will this take over our WhatsApp number?", a: "No. The automated messages run on a separate, dedicated WhatsApp number we set up for your clinic, not your existing patient-facing line. Your main number stays 100% yours, with your staff replying to patients as always. If a patient replies to the automation number, we forward that to you so nothing gets missed." },
 ];
 
 export default function RepeatVisitEnginePage() {
