@@ -1,6 +1,6 @@
 export const metadata = {
-  title: "AI BDR Service — AI Does Your Business Development | Delta Labs AI",
-  description: "Our AI agents prospect, research, personalise, and send outreach at scale. 200 qualified outreach sequences per month for ₹15,000. You focus on closing — we handle the pipeline.",
+  title: "AI BDR for SMBs: Automate Lead Qualification & Outreach | Delta Labs AI",
+  description: "Supercharge your sales with an AI BDR from Delta Labs AI. Automate lead qualification, personalized outreach, and appointment setting for small businesses.",
   keywords: [
     "AI business development", "AI BDR", "AI outreach service", "automated lead generation",
     "AI sales development", "personalised email outreach", "B2B lead generation India",
