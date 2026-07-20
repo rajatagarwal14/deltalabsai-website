@@ -323,7 +323,7 @@ export default function BlogPostClient({ post, relatedPosts = [] }) {
           <p style={{ fontSize: "clamp(16px, 2vw, 19px)", color: "#4B5563", lineHeight: 1.65, margin: "0 0 28px", maxWidth: 620 }}>
             {post.subtitle}
           </p>
-          <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 28 }}>
             <div style={{ width: 40, height: 40, borderRadius: "50%", background: "#0F172A", display: "flex", alignItems: "center", justifyContent: "center", color: "#fff" }}>
               <Ic.Delta s={20} />
             </div>
@@ -332,6 +332,13 @@ export default function BlogPostClient({ post, relatedPosts = [] }) {
               <div style={{ fontSize: 13, color: "#6B7280" }}>{post.date}</div>
             </div>
           </div>
+          <a href="/diagnostic" style={{
+            display: "inline-flex", alignItems: "center", gap: 9, padding: "13px 24px", borderRadius: 11,
+            background: "#0F172A", color: "#fff", fontWeight: 700, fontSize: 14.5, textDecoration: "none", transition: "all 0.2s",
+          }}
+            onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-1px)"; e.currentTarget.style.boxShadow = "0 8px 22px rgba(15,23,42,0.22)"; }}
+            onMouseLeave={e => { e.currentTarget.style.transform = ""; e.currentTarget.style.boxShadow = ""; }}
+          >Get Your Free 3-Minute Business Diagnostic <Ic.Arr /></a>
         </div>
       </header>
 

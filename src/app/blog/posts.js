@@ -601,6 +601,10 @@ KEY: Every week you wait, these inefficiencies continue to compound. The systems
 
 <div style="margin: 32px 0; padding: 36px; background: linear-gradient(135deg, #0F172A, #1E293B); border-radius: 20px; text-align: center;"><h3 style="font-size: 22px; font-weight: 800; color: #fff; margin: 0 0 12px; letter-spacing: -0.02em;">Find out exactly where your business is losing money</h3><p style="font-size: 15px; color: #94A3B8; line-height: 1.65; max-width: 420px; margin: 0 auto 24px;">Free 2-minute diagnostic. Get your score across 9 dimensions and a specific quick win you can implement this week.</p><a href="/diagnostic" style="display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border-radius: 10px; background: #fff; color: #0F172A; font-weight: 700; font-size: 15px; text-decoration: none;">Start the free diagnostic →</a></div>`,
       },
+      {
+        heading: "Keep Reading",
+        body: `<div style="margin: 8px 0; padding: 24px 28px; background: #F8FAFC; border-radius: 14px; border: 1px solid #E5E7EB;"><div style="display: flex; flex-direction: column; gap: 10px;"><a href="/blog/ai-automations-small-business" style="color: #2563EB; font-weight: 600; font-size: 15px; text-decoration: none;">&rarr; AI Automation for Small Business: 7 Workflows That Save 15 Hours/Week</a><a href="/blog/automate-business-without-technical-skills" style="color: #2563EB; font-weight: 600; font-size: 15px; text-decoration: none;">&rarr; How to Automate Your Business Without Technical Skills</a><a href="/score" style="color: #2563EB; font-weight: 600; font-size: 15px; text-decoration: none;">&rarr; Check your business's free Reputation Score</a></div></div>`,
+      },
     ],
   },
   {
@@ -930,6 +934,10 @@ But if you want expert guidance on which automations will have the biggest impac
 Most of our clients recoup the cost of our service within the first month just by implementing the automations we recommend. The difference between picking the right automation and picking a random one can be thousands of dollars in reclaimed time.
 
 Stop manually doing work that machines can do. Let AI handle the routine stuff. Focus your energy on what you do best.`,
+      },
+      {
+        heading: "Keep Reading",
+        body: `<div style="margin: 8px 0; padding: 24px 28px; background: #F8FAFC; border-radius: 14px; border: 1px solid #E5E7EB;"><div style="display: flex; flex-direction: column; gap: 10px;"><a href="/blog/manual-processes-costing-money" style="color: #2563EB; font-weight: 600; font-size: 15px; text-decoration: none;">&rarr; 5 Signs Manual Processes Are Draining $36,000+/Year From Your Business</a><a href="/blog/automate-business-without-technical-skills" style="color: #2563EB; font-weight: 600; font-size: 15px; text-decoration: none;">&rarr; How to Automate Your Business Without Technical Skills</a><a href="/score" style="color: #2563EB; font-weight: 600; font-size: 15px; text-decoration: none;">&rarr; Check your business's free Reputation Score</a></div></div>`,
       },
     ],
   },
@@ -2279,6 +2287,10 @@ The third mistake is not measuring the result. Before you automate, measure how 
 The cost of a consultant setting up your automation properly is almost always less than the cost of doing it wrong and spending months troubleshooting. A good consultant will also identify automation opportunities you didn't know existed.
 
 Not sure where to start? Our free diagnostic assesses your business across 9 dimensions and identifies your highest-ROI automation opportunities. Take it at deltalabsai.com/diagnostic  - it takes 3 minutes.`,
+      },
+      {
+        heading: "Keep Reading",
+        body: `<div style="margin: 8px 0; padding: 24px 28px; background: #F8FAFC; border-radius: 14px; border: 1px solid #E5E7EB;"><div style="display: flex; flex-direction: column; gap: 10px;"><a href="/blog/ai-automations-small-business" style="color: #2563EB; font-weight: 600; font-size: 15px; text-decoration: none;">&rarr; AI Automation for Small Business: 7 Workflows That Save 15 Hours/Week</a><a href="/blog/manual-processes-costing-money" style="color: #2563EB; font-weight: 600; font-size: 15px; text-decoration: none;">&rarr; 5 Signs Manual Processes Are Draining $36,000+/Year From Your Business</a><a href="/score" style="color: #2563EB; font-weight: 600; font-size: 15px; text-decoration: none;">&rarr; Check your business's free Reputation Score</a></div></div>`,
       },
     ],
   },
