@@ -3489,6 +3489,380 @@ No — the cost of manual processes is an industry-agnostic problem. We have dep
       },
     ],
   },
+  {
+    slug: "whatsapp-automation-veterinary-clinics-india",
+    title: "WhatsApp Automation for Veterinary Clinics India: Fewer No-Shows, More Repeat Visits",
+    metaTitle: "WhatsApp Automation for Veterinary Clinics India",
+    subtitle: "How independent vet clinics across India use WhatsApp to handle vaccination reminders, no-show follow-up, and review requests without adding front-desk staff",
+    category: "Healthcare",
+    date: "July 21, 2026",
+    readTime: "7 min read",
+    keywords: ["WhatsApp automation for veterinary clinics India", "vet clinic WhatsApp reminders", "pet clinic no-show automation", "vaccination reminder automation India", "veterinary practice automation", "pet recall automation India"],
+    description: "Independent veterinary clinics in India are using WhatsApp automation to cut no-shows and keep pet owners coming back for vaccinations and checkups. Here is how the mechanism actually works.",
+    sections: [
+      {
+        heading: null,
+        body: `Most independent veterinary clinics in India run on the same manual loop: a receptionist (often the vet themselves, between appointments) tracks vaccination due dates on a register or spreadsheet, and calls owners when a booster is coming up. Calls go unanswered, owners forget, and a pet that should be back every few months quietly stops coming in.
+
+WhatsApp automation for veterinary clinics India fixes this specific gap. It does not replace your clinic software or your vet. It replaces the manual reminder work that gets skipped when the clinic gets busy.`,
+      },
+      {
+        heading: "Why Phone Calls Don't Work for Vet Recall Anymore",
+        body: `Pet owners in India are reachable, but not on a landline call from an unknown clinic number. Three patterns show up in almost every independent clinic:
+
+**Unknown numbers get ignored.** A call from the clinic during work hours is easy to miss or dismiss, especially for owners who don't recognize the number.
+
+**Vaccination and deworming schedules are easy to lose track of.** Rabies boosters, annual vaccinations, and deworming cycles each run on a different interval. Without a system tracking due dates per pet, staff either over-message everyone or under-message the pets who actually need a nudge.
+
+**No-shows rarely get a second touch.** When an owner misses a booked slot, most clinics move on to the next patient rather than circling back. That missed visit often becomes a lost patient permanently.`,
+      },
+      {
+        heading: "How the WhatsApp Automation Actually Works",
+        body: `The mechanism is straightforward and does not require replacing anything you already use:
+
+**Vaccination and checkup reminders.** Each pet's last-visit date and service type (vaccination, deworming, checkup) determines when its next reminder goes out. The system tracks this per pet, not per owner, so multi-pet households get accurate, individual reminders instead of one generic message.
+
+**No-show re-engagement.** When a booked slot is missed, an automatic WhatsApp message goes out same-day or next-day offering to rebook, instead of the visit quietly disappearing from the schedule.
+
+**Review requests after a completed visit.** Roughly a day after a visit, the owner gets a WhatsApp message asking for a Google review while the experience is still fresh. This is one of the more reliable ways small clinics build up their review count without asking in person.
+
+None of this requires the owner to download an app. Messages go out from a dedicated clinic WhatsApp number and any reply gets forwarded to clinic staff, so nothing gets missed on the owner's side either.`,
+      },
+      {
+        heading: "What This Means for a Typical Independent Clinic",
+        body: `Clinics that depend on repeat visits (vaccination cycles, deworming, wellness checkups) lose revenue slowly and invisibly when recall is manual. A pet that doesn't get a timely reminder often doesn't come back on schedule, and sometimes doesn't come back at all.
+
+Automating the reminder and follow-up layer does not change how you practice medicine. It changes whether the owner hears from you at the right time, every time, without your front desk having to remember 200+ individual due dates across every pet on your books.`,
+      },
+      {
+        heading: "Getting Started",
+        body: `Delta Labs AI built the [Pet Recall Engine](/pet-recall-engine) specifically for this problem: WhatsApp-based recall, no-show re-engagement, and review requests for independent veterinary clinics, set up from a simple patient list with no integration required.
+
+If your clinic loses track of vaccination due dates or watches no-shows disappear without follow-up, that's the exact gap this closes.`,
+      },
+      {
+        heading: "FAQ: WhatsApp Automation for Veterinary Clinics",
+        body: `**Q: Do I need to integrate my existing practice-management software?**
+
+No. WhatsApp recall automation for vet clinics typically runs off a simple patient list (owner name, pet name, WhatsApp number, last-visit date, service type), independent of whatever software you already use.
+
+**Q: Will this replace my clinic's WhatsApp number?**
+
+No. Automated messages run from a separate dedicated number, so your existing patient-facing line stays exactly as it is.
+
+**Q: Does this work for multi-pet households?**
+
+Yes. Reminders are tracked per pet, not per owner, so each pet's vaccination and checkup schedule is handled individually even when one owner has multiple animals registered.`,
+      },
+    ],
+  },
+  {
+    slug: "whatsapp-repeat-visit-automation-aesthetic-skin-clinics",
+    title: "WhatsApp Repeat-Visit Automation for Aesthetic and Skin Clinics",
+    metaTitle: "WhatsApp Repeat-Visit Automation for Skin Clinics",
+    subtitle: "How aesthetic and dermatology clinics use WhatsApp to keep treatment-cycle patients coming back on schedule instead of drifting away after one visit",
+    category: "Healthcare",
+    date: "July 21, 2026",
+    readTime: "7 min read",
+    keywords: ["WhatsApp repeat-visit automation aesthetic clinics", "skin clinic retention automation", "aesthetic clinic WhatsApp reminders", "dermatology clinic follow-up automation", "repeat visit engine skin clinic"],
+    description: "Aesthetic and skin clinics lose repeat revenue when treatment-cycle patients don't get followed up between sessions. Here is how WhatsApp repeat-visit automation closes that gap.",
+    sections: [
+      {
+        heading: null,
+        body: `Aesthetic and dermatology clinics run on repeat visits more than almost any other clinical category. Laser sessions, chemical peels, anti-aging treatments, and acne programs are all delivered in cycles, not one-off appointments. The business problem is not attracting a first-time patient. It's keeping that patient on schedule through session two, three, and four, and bringing them back for maintenance months later.
+
+That follow-up work is exactly what falls through the cracks when it depends on front-desk staff remembering to call.`,
+      },
+      {
+        heading: "Why Skin and Aesthetic Clinics Lose Repeat Patients",
+        body: `Three patterns show up consistently in independent aesthetic and skin clinics:
+
+**Treatment cycles need precise timing.** A laser or peel program often has a defined interval between sessions: two weeks, four weeks, six weeks. If the next-session reminder doesn't go out at the right time, patients space their visits out on their own, which reduces the results they see and makes them less likely to continue the program.
+
+**Maintenance patients are the easiest to lose.** A patient who finishes an initial program is a strong candidate for a maintenance visit six or twelve months later, but with no reminder system, that follow-up almost never happens on its own.
+
+**Reviews get requested inconsistently.** Aesthetic results are highly visual and reviews with before/after context are valuable, but asking in person feels awkward for staff and often gets skipped.`,
+      },
+      {
+        heading: "How the Automation Works",
+        body: `**Session-cycle reminders.** Each patient's treatment type and last-session date determine when the next reminder goes out, matching the actual interval for that program rather than a generic one-size-fits-all schedule.
+
+**No-show and reschedule recovery.** When a booked session is missed, an automatic WhatsApp follow-up offers to rebook rather than letting the gap in the treatment cycle grow.
+
+**Review requests timed to visible results.** A review request goes out after a session, timed to when the patient is most likely to feel good about the outcome and willing to share it.
+
+**Maintenance recall.** Patients who complete a program are re-engaged on a longer cycle (three, six, or twelve months) for maintenance visits, which is often pure incremental revenue that would otherwise never get captured.
+
+All of this runs over WhatsApp because that's where patients actually respond, not email, and not calls from a number they don't recognize.`,
+      },
+      {
+        heading: "The Retention Math",
+        body: `For a clinic running multi-session programs, a patient who drops off after session one or two doesn't just cost that program's revenue. It costs the maintenance visits, the referrals, and the reviews that a completed, well-managed treatment cycle would have generated. Retention automation is not a marketing add-on for aesthetic clinics. It's closer to protecting revenue that's already been earned but not yet collected.`,
+      },
+      {
+        heading: "Getting Started",
+        body: `Delta Labs AI built the [Repeat Visit Engine](/repeat-visit-engine) for exactly this kind of clinic: WhatsApp automation that tracks treatment cycles, recovers no-shows, and requests reviews at the right moment, without requiring a new booking system or app.
+
+If your clinic runs multi-session programs and depends on patients returning on schedule, this is built for that specific problem.`,
+      },
+      {
+        heading: "FAQ: WhatsApp Repeat-Visit Automation for Aesthetic Clinics",
+        body: `**Q: Does this work for clinics with multiple treatment types on different cycles?**
+
+Yes. Each patient's reminder timing is set per treatment type, so a laser program and a peel program can run on entirely different intervals for the same clinic.
+
+**Q: Do I need to change my booking system?**
+
+No. The automation runs on top of whatever you already use for scheduling, working off a patient list rather than replacing your booking software.
+
+**Q: How does this help with reviews specifically?**
+
+Review requests go out automatically after a session, timed to when results are visible and top of mind, rather than depending on staff remembering to ask in person.`,
+      },
+    ],
+  },
+  {
+    slug: "whatsapp-patient-recall-automation-dental-clinics-india",
+    title: "WhatsApp Patient Recall Automation for Dental Clinics India",
+    metaTitle: "WhatsApp Patient Recall for Dental Clinics India",
+    subtitle: "How independent dental clinics across India use WhatsApp to bring patients back for cleanings, checkups, and treatment follow-ups without a manual calling list",
+    category: "Dental",
+    date: "July 21, 2026",
+    readTime: "7 min read",
+    keywords: ["WhatsApp patient recall automation dental clinics India", "dental recall automation India", "dental clinic WhatsApp reminders", "dental appointment automation India", "patient recall software dental India"],
+    description: "Dental clinics in India lose recall revenue when six-month cleanings and treatment follow-ups depend on manual calling. Here is how WhatsApp patient recall automation fixes it.",
+    sections: [
+      {
+        heading: null,
+        body: `Every dental clinic depends on recall revenue: the six-month cleaning, the follow-up on a pending treatment plan, the crown that was recommended but never scheduled. In most independent Indian clinics, this recall list lives in a register or a spreadsheet, and calling through it is the first task to get dropped when the clinic gets busy.
+
+WhatsApp patient recall automation for dental clinics in India replaces that manual calling list with a system that reaches out on schedule, every time, without depending on front-desk bandwidth.`,
+      },
+      {
+        heading: "Where Dental Clinics Actually Lose Recall Revenue",
+        body: `**The six-month recall list grows faster than it gets worked.** A clinic seeing even 15-20 patients a day accumulates hundreds of recall-due patients within a year. Working through that list by phone, a few calls at a time between patients, means most of it simply never gets called.
+
+**Treatment plans get proposed but not followed up.** A patient told they need a filling, a root canal, or an implant often leaves without booking the next visit. Without a structured follow-up, that treatment plan often never converts, even though the patient was already told they need it.
+
+**No-shows silently drop off.** A missed cleaning or missed follow-up rarely gets a second outreach in a manual system. The slot gets filled with someone else and the patient is forgotten.`,
+      },
+      {
+        heading: "How WhatsApp Recall Automation Works for Dental Clinics",
+        body: `**Recall reminders tied to the patient's actual due date.** Each patient's last-visit date and recommended interval (typically six months for a cleaning) determines when their reminder goes out, rather than a blanket message sent to everyone at once.
+
+**Treatment-plan follow-up.** Patients with a pending treatment recommendation get a scheduled WhatsApp follow-up rather than being left to book on their own initiative.
+
+**No-show recovery.** A missed appointment triggers an automatic rebooking message instead of disappearing from the clinic's radar.
+
+**Review requests after completed visits.** A WhatsApp message goes out after a visit asking for a Google review, which is one of the more effective ways small dental clinics build local visibility without paid ads.
+
+This runs over WhatsApp specifically because Indian patients respond to a saved clinic contact far more reliably than to a call from an unfamiliar number.`,
+      },
+      {
+        heading: "Why This Matters More for Independent Clinics",
+        body: `Chain and corporate dental practices often have a dedicated recall coordinator. Independent clinics and solo practitioners rarely do. The same one or two front-desk staff handle bookings, billing, and patient calls. Recall calling is the first thing to slip, and it's also the highest-leverage revenue source a clinic already has, since these are existing patients who already trust the practice.`,
+      },
+      {
+        heading: "Getting Started",
+        body: `Delta Labs AI built [SmileCRM](/smilecrm) specifically for independent dental clinics in India: WhatsApp-based appointment reminders, patient recall, and review automation, priced from ₹2,999/month with no new hardware or systems to learn.
+
+If your recall list is growing faster than your front desk can call through it, this closes that specific gap.`,
+      },
+      {
+        heading: "FAQ: WhatsApp Patient Recall Automation for Dental Clinics",
+        body: `**Q: How is recall timing set for different patients?**
+
+Recall timing is based on each patient's last-visit date and recommended interval, so a six-month cleaning recall and a treatment-plan follow-up run on their own separate schedules.
+
+**Q: Do I need to replace my current dental software?**
+
+No. Recall automation works off your patient list and runs alongside whatever practice management or billing software you already use.
+
+**Q: What happens if a patient doesn't respond to a WhatsApp reminder?**
+
+Most systems send a follow-up reminder after a set number of days, and any patient reply gets routed to clinic staff so a real person can take over the conversation when needed.`,
+      },
+    ],
+  },
+  {
+    slug: "whatsapp-follow-up-automation-small-clinics",
+    title: "WhatsApp Follow-Up Automation for Small Clinics",
+    metaTitle: "WhatsApp Follow-Up Automation for Small Clinics",
+    subtitle: "Why small clinics of every kind lose patients to poor follow-up, and how WhatsApp automation closes the gap without adding staff",
+    category: "Healthcare",
+    date: "July 21, 2026",
+    readTime: "6 min read",
+    keywords: ["WhatsApp follow-up automation small clinics", "clinic follow-up automation", "small clinic patient reminders", "clinic WhatsApp automation", "patient follow-up software small clinic"],
+    description: "Small clinics across specialties lose patients to missed follow-up, not bad care. Here is how WhatsApp automation closes that gap for practices too small to have a dedicated recall staffer.",
+    sections: [
+      {
+        heading: null,
+        body: `Regardless of specialty (general practice, physiotherapy, eye care, ENT, pediatrics), small independent clinics tend to have the same structural problem. Clinical quality is rarely the issue. Follow-up is. A patient who is told to come back in a week, a month, or six months relies entirely on the clinic remembering to remind them, and small clinics rarely have a dedicated person whose job is exactly that.`,
+      },
+      {
+        heading: "The Follow-Up Gap in Small Clinics",
+        body: `**Front-desk staff wear too many hats.** The person answering phones is also handling billing, walk-ins, and insurance paperwork. Follow-up calls are the first task to get skipped when the clinic is busy, which is most of the time.
+
+**Follow-up needs vary by visit type.** A post-procedure check, a prescription refill reminder, and a routine annual visit all need different timing, and tracking that manually across every patient is unrealistic without a system.
+
+**Missed follow-ups don't show up as a visible loss.** Unlike a bounced payment or a bad review, a patient who simply never came back rarely triggers any alarm. The clinic doesn't see the revenue it didn't lose. It just never shows up.`,
+      },
+      {
+        heading: "How WhatsApp Follow-Up Automation Works",
+        body: `**Visit-based reminders.** Each patient's follow-up need is tied to their visit type and the clinician's recommended timing, so different patients get different reminder schedules automatically instead of one generic blast.
+
+**No-show recovery.** A missed follow-up appointment triggers a same-day or next-day WhatsApp message offering to rebook, rather than the visit quietly disappearing from the schedule.
+
+**Review requests.** A short WhatsApp message after a visit asks for a Google review while the experience is fresh, helping small clinics build the review count that drives local search visibility.
+
+The reason this runs over WhatsApp rather than SMS or email is simple: patients in India check WhatsApp far more consistently, and a message from a saved clinic contact reads as legitimate in a way an unknown-number call or an email in a crowded inbox does not.`,
+      },
+      {
+        heading: "Why This Is a Structural Fix, Not a Marketing Tactic",
+        body: `Follow-up automation is not about acquiring new patients. It is about making sure the clinic actually delivers the continuity of care it already intends to provide. A patient told to come back for a check-up who never hears from the clinic again isn't lost to a competitor. They're lost to silence. Fixing that silence is a low-cost, high-leverage change for any small clinic.`,
+      },
+      {
+        heading: "Getting Started",
+        body: `Delta Labs AI works with small independent clinics to set up WhatsApp-based follow-up, recall, and review automation matched to the specific visit types and timing your practice needs. If you run a clinic and want to see what this would look like for your patient list, [get in touch](/diagnostic) for a free assessment of where your current follow-up gaps are.`,
+      },
+      {
+        heading: "FAQ: WhatsApp Follow-Up Automation for Small Clinics",
+        body: `**Q: Does this work for clinics outside dental and veterinary specialties?**
+
+Yes. The mechanism (visit-based reminders, no-show recovery, review requests) applies to any clinic with a defined patient base and recurring or follow-up visits, not just dental or vet practices.
+
+**Q: How much staff time does this require to maintain?**
+
+Very little. Most of the ongoing work is keeping the patient list updated with visit dates, which takes a few minutes a day for most small clinics rather than the hours a manual calling list requires.
+
+**Q: Can follow-up timing differ by visit type within the same clinic?**
+
+Yes. Reminder timing is set per visit type, so a post-procedure check and a routine annual visit can each run on their own schedule for the same patient base.`,
+      },
+    ],
+  },
+  {
+    slug: "whatsapp-booking-follow-up-home-services-india",
+    title: "WhatsApp Booking Follow-Up for Home Services India",
+    metaTitle: "WhatsApp Booking Follow-Up for Home Services India",
+    subtitle: "Why plumbers, electricians, and cleaning businesses lose repeat bookings to poor follow-up, and what WhatsApp automation can realistically fix",
+    category: "Home Services",
+    date: "July 21, 2026",
+    readTime: "6 min read",
+    keywords: ["WhatsApp booking follow-up home services India", "home services WhatsApp automation India", "plumber electrician booking automation", "home services follow-up India", "service business WhatsApp reminders India"],
+    description: "Home service businesses in India lose repeat bookings when there's no follow-up after a job. Here is how WhatsApp-based booking follow-up works for plumbers, electricians, and cleaners.",
+    sections: [
+      {
+        heading: null,
+        body: `Home service businesses (plumbers, electricians, appliance repair, cleaning services, pest control) run on a booking model that's fundamentally different from a clinic's, but the follow-up problem is the same shape. A job gets done, and then nothing happens. No confirmation that the job went well, no reminder for the next service interval, no easy way for the customer to book again when the need comes back.`,
+      },
+      {
+        heading: "Why Follow-Up Gets Skipped in Home Services",
+        body: `**Bookings are reactive by nature.** Most home service businesses only hear from a customer when something breaks or needs attention right now. There's rarely a system nudging customers to book preventive or recurring work before a problem happens.
+
+**Job completion is where communication usually stops.** Once a plumber or electrician finishes a job, most small operators move straight to the next call. There's no confirmation message, no request for a rating, and no reminder set for whenever the next service is likely to be needed.
+
+**Recurring-service categories lose the most.** Pest control, deep cleaning, AC servicing, and appliance maintenance all have natural repeat cycles (quarterly, half-yearly, seasonal), but without a system tracking last-service dates per customer, that repeat business rarely gets captured on its own.`,
+      },
+      {
+        heading: "What WhatsApp Booking Follow-Up Actually Looks Like",
+        body: `For home service businesses, the mechanism has three parts:
+
+**Post-job confirmation and review request.** A WhatsApp message after a completed job confirms the work is done and asks for a quick review, timed while the customer's experience is still fresh.
+
+**Booking confirmation and reminder.** For scheduled jobs, an automatic confirmation and a reminder closer to the appointment time reduces the no-shows and last-minute cancellations that cost a technician's travel time.
+
+**Repeat-service reminders for recurring categories.** For services with a natural cycle (AC servicing, pest control, deep cleaning), a reminder goes out as the next service window approaches, based on the customer's last-service date rather than a generic blast to the full customer list.
+
+This works over WhatsApp specifically because most home service customers in India already expect to communicate with their plumber, electrician, or service provider that way rather than through an app or a phone call from an unknown number.`,
+      },
+      {
+        heading: "What This Doesn't Solve",
+        body: `Booking follow-up automation doesn't fix a bad job or generate new customers on its own. What it does is make sure a completed job doesn't just end in silence, that the customer hears from the business again, gets asked for a review, and gets reminded when the next service is due. For a business that depends on word of mouth and repeat calls, that follow-up layer is often the difference between a one-time customer and a recurring one.`,
+      },
+      {
+        heading: "A Note on Where This Stands Today",
+        body: `This is a genuine gap across the home services sector in India, and it's one Delta Labs AI is actively looking at. If you run a home service business and want to talk through what a follow-up system could look like for your specific workflow, [reach out for a free consultation](/diagnostic). There's no packaged product to pitch here, just a conversation about the problem.`,
+      },
+      {
+        heading: "FAQ: WhatsApp Booking Follow-Up for Home Services",
+        body: `**Q: Does this apply to one-off jobs or only recurring services?**
+
+Both. One-off jobs still benefit from a post-job confirmation and review request, while recurring-service categories (AC servicing, pest control) get additional value from repeat-cycle reminders.
+
+**Q: How do you track when a customer's next service is due?**
+
+Timing is based on the customer's last-service date and the typical interval for that service category, similar to how appointment recall works in clinics.
+
+**Q: Is this only useful for larger home service companies?**
+
+No. If anything, small and solo operators benefit more, since they're the ones least likely to have any structured follow-up process today.`,
+      },
+    ],
+  },
+  {
+    slug: "practo-alternative-small-dental-clinics",
+    title: "Practo Alternative for Small Dental Clinics",
+    metaTitle: "Practo Alternative for Small Dental Clinics",
+    subtitle: "Why Practo's model doesn't fit every independent dental clinic, and what to look for in an alternative built for solo and small practices",
+    category: "Dental",
+    date: "July 21, 2026",
+    readTime: "7 min read",
+    keywords: ["Practo alternative for small dental clinics", "Practo alternative dental India", "dental clinic software alternative to Practo", "SmileCRM vs Practo", "dental practice management software India small clinics"],
+    description: "Practo works well for clinics that want a patient-acquisition marketplace, but not every small dental clinic needs that. Here is what to look for in a Practo alternative built for solo and independent practices.",
+    sections: [
+      {
+        heading: null,
+        body: `Practo is the best-known name in Indian healthcare booking, and for many clinics it's a reasonable starting point. But Practo's core business model is a patient-acquisition marketplace: it's built to bring clinics new patients through its platform and directory, and its pricing and features are structured around that. For a solo dentist or small independent clinic that already has a steady local patient base, that's not always the problem that needs solving.
+
+The problem many small dental clinics actually have is different: no-shows, patients who fall off the recall list, and no simple way to keep in touch with existing patients between visits.`,
+      },
+      {
+        heading: "Where Practo Doesn't Fit Small Dental Clinics",
+        body: `**It's built around discovery, not retention.** Practo's strength is patient acquisition, getting new patients to find and book with your clinic through its marketplace. It's not primarily designed around recall automation for the patients you already have, which is where most independent clinics actually lose revenue.
+
+**Marketplace visibility depends on ongoing spend and reviews on Practo's platform**, not your own local reputation. A small clinic that wants Google reviews and direct patient relationships, rather than dependence on a marketplace listing, ends up fighting the tool rather than working with it.
+
+**It's a general healthcare platform, not dental-specific.** Practo serves every specialty from dermatology to general physicians. Dental clinics have specific recall patterns (six-month cleanings, treatment-plan follow-ups) that a general-purpose platform doesn't model natively.`,
+      },
+      {
+        heading: "What to Look For in a Dental-Specific Alternative",
+        body: `**WhatsApp-first communication**, since that's where Indian patients actually respond, rather than app notifications or SMS that get ignored.
+
+**Recall automation built around dental-specific cycles**: six-month cleaning intervals, treatment-plan follow-ups, and post-procedure check-ins, rather than a generic appointment reminder.
+
+**Review automation aimed at your own Google Business listing**, building your clinic's independent reputation rather than a marketplace profile you don't fully control.
+
+**Simple setup that doesn't require IT staff.** Independent clinics rarely have a practice manager dedicated to software administration, so anything that requires significant setup time or ongoing technical maintenance defeats the purpose.
+
+**Pricing that fits a single-location practice**, rather than enterprise pricing structured for hospital chains.`,
+      },
+      {
+        heading: "How SmileCRM Approaches This Differently",
+        body: `Delta Labs AI built [SmileCRM](/smilecrm) specifically for independent dental clinics in India, focused on the recall and retention problem rather than patient acquisition. It automates appointment reminders, six-month recall, treatment-plan follow-up, and Google review requests over WhatsApp, starting from ₹2,999/month.
+
+It isn't a marketplace and doesn't try to bring you new patients through a directory listing. It's built around one specific job: making sure the patients you already have keep coming back on schedule, without your front desk having to manually track and call through a growing recall list.`,
+      },
+      {
+        heading: "Which One Actually Fits Your Clinic",
+        body: `If your clinic's main challenge is getting discovered by new patients in a competitive local market, a marketplace platform like Practo may still be worth using alongside anything else. If your main challenge is retention (no-shows, recall lists that never get called, patients who don't come back for a recommended treatment), a tool built specifically around that problem, rather than around new-patient acquisition, is a better fit for a small independent practice.`,
+      },
+      {
+        heading: "FAQ: Practo Alternative for Small Dental Clinics",
+        body: `**Q: Can I use SmileCRM alongside Practo instead of replacing it?**
+
+Yes. Many clinics use a marketplace platform for new-patient discovery and a dedicated recall tool for retention of their existing patient base. The two solve different problems.
+
+**Q: Is SmileCRM only for clinics already using Practo?**
+
+No. SmileCRM is built for any independent dental clinic in India that wants WhatsApp-based recall and review automation, whether or not they use a marketplace platform at all.
+
+**Q: How is pricing different from a marketplace platform?**
+
+SmileCRM is priced as a flat monthly subscription starting at ₹2,999/month for a single-location clinic, rather than a pay-per-lead or marketplace commission model.`,
+      },
+    ],
+  },
 ];
 
 export function getPostBySlug(slug) {

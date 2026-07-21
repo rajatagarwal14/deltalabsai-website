@@ -105,8 +105,26 @@ function FAQ() {
       acceptedAnswer: { "@type": "Answer", text: f.a },
     })),
   };
+  // Organization schema — disambiguates "Delta Labs AI" / "DeltaLabs AI" name variants
+  // for search engines (name-collision fix vs. other "Delta Labs" entities).
+  const orgJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Delta Labs AI",
+    alternateName: ["DeltaLabs AI", "Delta Labs"],
+    url: "https://deltalabsai.com",
+    logo: "https://deltalabsai.com/logo.png",
+    sameAs: [
+      "https://www.linkedin.com/company/delta-labs-ai-consulting",
+      "https://www.facebook.com/profile.php?id=61588293766138",
+    ],
+  };
   return (
     <section id="faq" style={{ padding: "88px 24px", background: "#fff" }}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
