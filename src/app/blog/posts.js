@@ -1997,14 +1997,14 @@ The businesses that get the best results from AI consulting are the ones that wa
   },
   {
     slug: "reduce-dental-no-shows-scheduling-workflows",
-    title: "How to Reduce No-Shows in Dental Practices by 40% with Automation",
-    metaTitle: "Reduce Dental No-Shows With Scheduling Workflows",
-    subtitle: "Smart reminder systems and scheduling workflows that keep your chairs filled",
+    title: "Cut Dental No-Shows Without Hiring More Staff",
+    metaTitle: "Reduce Dental No-Shows With AI Scheduling Workflows",
+    subtitle: "AI-powered reminder and scheduling workflows that keep your chairs filled — no extra front-desk headcount required",
     category: "Healthcare",
     date: "February 6, 2026",
     readTime: "8 min read",
-    keywords: ["dental practice no shows", "reduce no shows dental", "dental appointment reminders", "dental practice automation", "patient scheduling automation", "dental office efficiency", "healthcare appointment management"],
-    description: "Learn how dental practices are cutting no-show rates by 40% using automated reminders, smart scheduling, and patient engagement workflows.",
+    keywords: ["reduce dental no-shows", "dental practice no shows", "reduce no shows dental", "dental appointment reminders", "dental practice automation", "patient scheduling automation", "dental office efficiency", "healthcare appointment management"],
+    description: "How dental practices reduce dental no-shows using AI-powered reminders, smart scheduling, and patient engagement workflows — without adding headcount.",
     sections: [
       {
         heading: null,
@@ -2014,7 +2014,7 @@ The businesses that get the best results from AI consulting are the ones that wa
 
 The frustrating part? Most dental practices still rely on a single phone call the day before to remind patients. That approach worked in 2005. It doesn't work now, when your patients are juggling three jobs and checking their phone 150 times a day but never answering calls from unknown numbers.
 
-Modern dental practices that have implemented automated reminder systems report **30-45% reductions in no-show rates.** Here's exactly how they do it.`,
+The good news: you don't need to add front-desk staff to fix this. AI-powered scheduling workflows can reduce dental no-shows by handling reminders, waitlist fills, and rescheduling automatically. Here's exactly how they do it.`,
       },
       {
         heading: "The Multi-Touch Reminder Sequence",
