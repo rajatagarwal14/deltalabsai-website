@@ -1,5 +1,44 @@
 export const posts = [
   {
+    slug: "spreadsheet-to-crm-cost-breakdown",
+    title: "What Staying on Spreadsheets Really Costs a Service Team (2026 Cost Breakdown)",
+    metaTitle: "Spreadsheet vs CRM Cost Breakdown: What Your Team Is Losing Monthly",
+    subtitle: "A worked cost comparison for service teams deciding between spreadsheets and a real CRM",
+    category: "Operations",
+    date: "July 30, 2026",
+    readTime: "6 min read",
+    keywords: ["spreadsheet to crm cost", "crm vs spreadsheet cost comparison", "best crm for a team moving off spreadsheets", "cost of not having a crm", "spreadsheet crm migration cost"],
+    description: "See the real monthly cost of running a service team on spreadsheets versus a CRM migration, worked out line by line. Free spreadsheet-to-CRM audit, no card required.",
+    sections: [
+      {
+        heading: null,
+        body: `Most service teams do not decide to leave spreadsheets because of a single bad day. They decide because someone finally adds up what the spreadsheet is costing every month, and the number is bigger than the CRM would have been.
+
+This is that math, worked out plainly, for a typical 10-15 person service team.`,
+      },
+      {
+        heading: "The hidden monthly cost of a spreadsheet",
+        body: `Three costs show up every month whether anyone tracks them or not:
+
+- **Duplicate data entry** — the same lead or client re-typed into the sheet, an email thread, and a calendar invite. At 15 minutes per record and 40 records a week, that is roughly 10 hours a month per team member touching the sheet.
+- **Lost or stale leads** — leads that fall out of a shared spreadsheet because a filter hid a row or a tab went untouched for a week. Even a 5% leak rate on a 200-lead pipeline is 10 leads a month with no follow-up.
+- **Reporting time** — someone manually pulling numbers into a summary before a Monday meeting. Typically 2-4 hours a week for a team lead.
+
+At a blended $25/hour loaded cost, that is commonly **$1,200-$2,000 a month** in time alone, before counting the revenue lost to leads that fell through.`,
+      },
+      {
+        heading: "What a migration costs instead",
+        body: `A real CRM migration for a team this size is a fixed, one-time cost plus a small monthly subscription, not a recurring leak. Delta Labs AI runs this migration in 3 weeks with zero data loss and zero downtime (see the full walkthrough on [CRM for Service Businesses](/blog/crm-service-businesses)).
+
+The comparison most teams need is not "CRM vs. no CRM" in the abstract. It is this month's spreadsheet cost against a fixed migration cost. For most 10-15 person teams, the spreadsheet cost repeats every month; the migration cost does not.`,
+      },
+      {
+        heading: "Get your own number",
+        body: `Book a free spreadsheet-to-CRM audit and Delta Labs AI will work out your team's actual monthly cost from your current setup, not a generic estimate. No card required.`,
+      },
+    ],
+  },
+  {
     slug: "dental-clinic-automation-abu-dhabi",
     title: "Dental Clinic Automation Abu Dhabi: Cut No-Shows 70%, Live in 2 Weeks",
     metaTitle: "Dental Clinic Automation Abu Dhabi (Cut No-Shows)",
