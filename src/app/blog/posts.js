@@ -944,13 +944,13 @@ Stop manually doing work that machines can do. Let AI handle the routine stuff. 
   {
     slug: "9-dimensions-healthy-business",
     title: "The 9 Dimensions of a Healthy Business — Most SMBs Score Well on 3 and Leak on the Other 6",
-    metaTitle: "AI Diagnostic for SMBs in India: 9 Dimensions of a Healthy Business",
+    metaTitle: "9 Signs Your Business Needs an AI Process Consultant in 2026 (Free 5-Min Score)",
     subtitle: "A diagnostic framework that reveals where your business is losing growth — and what to fix first",
     category: "Framework",
     date: "February 12, 2026",
     readTime: "11 min read",
     keywords: ["business health assessment", "AI diagnostic India", "business diagnostic India", "business framework", "operational excellence", "business diagnostic", "business metrics", "business evaluation"],
-    description: "A free AI diagnostic for SMBs in India and worldwide. These 9 dimensions show where you're losing growth without knowing it — most SMBs have 2-3 hidden leaks. Score yours free in 5 minutes.",
+    description: "Most SMBs leak growth in 6 of 9 areas without knowing it. This free 9-dimension AI diagnostic shows exactly where — get your score in 5 minutes, no signup required.",
     sections: [
       {
         heading: null,
@@ -1279,13 +1279,13 @@ Build a healthy business. Know where you stand. Get clear on what to fix. Then f
   {
     slug: "crm-service-businesses",
     title: "CRM for Service Businesses: Move Off Spreadsheets in 3 Weeks (2026)",
-    metaTitle: "CRM for Service Businesses: Migrate Off Spreadsheets in 3 Weeks",
+    metaTitle: "Best CRM for Teams Moving Off Spreadsheets (3-Week Migration, Zero Data Loss)",
     subtitle: "When and how to upgrade from spreadsheets to a real CRM (and what will change)",
     category: "Operations",
     date: "February 10, 2026",
     readTime: "8 min read",
     keywords: ["CRM for service business", "customer relationship management", "CRM software", "business management system", "sales pipeline management", "crm implementation services", "moving off spreadsheets crm", "best crm implementation services for companies moving off spreadsheets"],
-    description: "The 7 signs you have outgrown spreadsheets, and how to migrate to a real CRM in 3 weeks — zero disruption, no IT team. Free CRM audit →",
+    description: "Moving a service team off spreadsheets? See the exact 3-week CRM migration with zero data loss and zero downtime. Free spreadsheet-to-CRM audit, no card required →",
     sections: [
       {
         heading: null,
