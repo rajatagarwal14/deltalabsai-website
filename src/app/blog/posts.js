@@ -4004,7 +4004,7 @@ Yes, though the guidance in this article is written for the independent, single 
   {
     slug: "ai-readiness-assessment-free-diagnostic",
     title: "Is Your Small Business Ready for AI? Take the Free AI Readiness Assessment",
-    metaTitle: "Free AI Readiness Assessment for Small Business | Delta Labs AI",
+    metaTitle: "Free AI Readiness Assessment for Small Business",
     subtitle: "A 3-minute AI readiness assessment that scores your business and shows exactly where automation pays off first",
     category: "Strategy",
     date: "August 2, 2026",
