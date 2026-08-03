@@ -177,9 +177,7 @@ function AnnouncementBar() {
       gap: 12, flexWrap: "wrap",
     }}>
       <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 14, fontWeight: 600, color: "#fff", display: "flex", alignItems: "center", gap: 8 }}>
-        <style>{`@keyframes dl-free-pulse{0%,100%{opacity:1}50%{opacity:.55}}`}</style>
-        <span style={{ background: "#10B981", color: "#fff", borderRadius: 100, padding: "2px 10px", fontSize: 11, fontWeight: 800, letterSpacing: "0.04em", textTransform: "uppercase", whiteSpace: "nowrap", animation: "dl-free-pulse 1.4s infinite" }}>Free</span>
-        <span className="ann-text">Find where your business leaks revenue — AI scores you across 9 dimensions in 3 minutes.</span>
+        <span className="ann-text">Unlock Your AI Potential: Get a Free AI Diagnostic!</span>
       </span>
       <a href="/diagnostic" onClick={trackClick} style={{
         display: "inline-flex", alignItems: "center", gap: 6,
@@ -192,7 +190,7 @@ function AnnouncementBar() {
         onMouseEnter={e => { e.currentTarget.style.background = "#ECFDF5"; }}
         onMouseLeave={e => { e.currentTarget.style.background = "#fff"; }}
       >
-        Get Your Free AI Diagnostic <Ic.Arr />
+        Get Your Free Diagnostic <Ic.Arr />
       </a>
       <button onClick={() => setVisible(false)} aria-label="Dismiss" style={{
         position: "absolute", right: 12, top: "50%", transform: "translateY(-50%)",
