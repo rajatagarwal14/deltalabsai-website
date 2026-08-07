@@ -82,6 +82,12 @@ export default function sitemap() {
       priority: 0.8,
     },
     {
+      url: "https://deltalabsai.com/tools/missed-call-calculator",
+      lastModified: new Date("2026-08-07"),
+      changeFrequency: "monthly",
+      priority: 0.85,
+    },
+    {
       url: "https://deltalabsai.com/store",
       lastModified: new Date("2026-04-03"),
       changeFrequency: "weekly",
