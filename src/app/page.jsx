@@ -380,7 +380,7 @@ function HeroCTABand() {
             Free · 3 Minutes · Instant Results
           </p>
           <h2 style={{ fontFamily: "'DM Sans',sans-serif", fontSize: "clamp(22px, 3.5vw, 34px)", fontWeight: 800, color: "#fff", letterSpacing: "-0.02em", margin: "0 0 8px", lineHeight: 1.2 }}>
-            Ready to See How AI Can Transform Your Business?
+            Ready for Your Free AI Diagnostic?
           </h2>
           <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: "clamp(14px, 1.8vw, 17px)", color: "#94A3B8", margin: "0 0 28px", lineHeight: 1.6 }}>
             Our AI scans 9 dimensions of your business and pinpoints exactly where money is leaking — in minutes.
@@ -393,7 +393,7 @@ function HeroCTABand() {
             onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-2px)"; }}
             onMouseLeave={e => { e.currentTarget.style.transform = ""; }}
           >
-            Get Your Free AI Diagnostic <Ic.Arr />
+            Get My Free AI Diagnostic Now <Ic.Arr />
           </a>
           <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, color: "#64748B", margin: "14px 0 0" }}>No credit card required. No sales call needed.</p>
         </F>
