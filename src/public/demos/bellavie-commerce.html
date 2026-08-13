@@ -1,0 +1,532 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bellavie — WhatsApp Commerce Demo</title>
+<meta name="description" content="Delta Labs AI — see a live demo of a full WhatsApp catalog-to-checkout commerce flow.">
+<meta name="robots" content="noindex, follow">
+<style>
+  :root {
+    /* Fixed regardless of theme: these back a WHITE phone-card or sit under white text.
+       --clay/--sage lighten in dark mode for page-level text contrast; that lightened
+       value fails contrast when reused as a fill behind white text or inside the
+       always-white chat card. Kept as a separate, never-redefined pair. */
+    --clay-fill: #b8664f;
+    --sage-fill: #7a8b74;
+    --ink: #2b2420;
+    --ink-soft: #6b5f56;
+    --ground: #f6f1ea;
+    --paper: #ffffff;
+    --paper-raised: #fbf7f1;
+    --sage: #7a8b74;
+    --sage-soft: #99a892;
+    --clay: #b8664f;
+    --clay-soft: #d99a89;
+    --line: #e6ddd0;
+    --wa-green: #128c4a;
+    --wa-green-bubble: #dcf8c6;
+    --wa-bg: #e9ddc8;
+    --wa-header: #1f7a3d;
+    --focus: #b8664f;
+  }
+
+  :root[data-theme="dark"] {
+    --ink: #ece6dd;
+    --ink-soft: #b3a89b;
+    --ground: #1c1815;
+    --paper: #262119;
+    --paper-raised: #2e281f;
+    --sage: #9bb094;
+    --sage-soft: #7a8b74;
+    --clay: #d99a89;
+    --clay-soft: #b8664f;
+    --line: #3a3327;
+    --focus: #d99a89;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ink: #ece6dd;
+      --ink-soft: #b3a89b;
+      --ground: #1c1815;
+      --paper: #262119;
+      --paper-raised: #2e281f;
+      --sage: #9bb094;
+      --sage-soft: #7a8b74;
+      --clay: #d99a89;
+      --clay-soft: #b8664f;
+      --line: #3a3327;
+      --focus: #d99a89;
+    }
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: -apple-system, "Segoe UI", sans-serif;
+    min-height: 100vh;
+  }
+
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 40px 24px 72px; }
+
+  .eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--clay); }
+
+  h1 {
+    font-family: Georgia, "Iowan Old Style", serif;
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.15;
+    margin: 8px 0 6px;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+
+  .sub { max-width: 62ch; color: var(--ink-soft); font-size: 15px; line-height: 1.6; margin: 0 0 32px; }
+
+  .stage { display: grid; grid-template-columns: 1fr; gap: 28px; }
+  /* On narrow screens the controls and the phone are ~900px apart in scroll distance -
+     put the phone first so a prospect sees the chat change without hunting for it. */
+  .phone-shell { order: -1; }
+  @media (min-width: 860px) {
+    .stage { grid-template-columns: 300px 1fr; align-items: start; }
+    .phone-shell { order: 0; }
+  }
+
+  .rail { display: flex; flex-direction: column; gap: 2px; background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 8px; }
+
+  .step-btn {
+    display: flex; align-items: center; gap: 12px; width: 100%; text-align: left;
+    background: none; border: none; color: var(--ink-soft); padding: 11px 12px;
+    border-radius: 8px; cursor: pointer; font-size: 13.5px; font-family: inherit;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .step-btn:hover { background: var(--paper-raised); }
+  .step-btn:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+  .step-btn.active { background: var(--clay-fill); color: #fff; }
+
+  .step-num {
+    flex: 0 0 auto; width: 24px; height: 24px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; font-size: 11px;
+    font-weight: 700; background: var(--paper-raised); color: var(--clay);
+    font-variant-numeric: tabular-nums;
+  }
+  .step-btn.active .step-num { background: rgba(255,255,255,0.22); color: #fff; }
+  .step-label { font-weight: 600; }
+
+  .rail-controls { display: flex; gap: 8px; margin-top: 14px; }
+  .ctrl-btn { flex: 1; padding: 9px 10px; border-radius: 8px; border: 1px solid var(--line); background: var(--paper); color: var(--ink); font-size: 13px; font-weight: 600; cursor: pointer; font-family: inherit; }
+  .ctrl-btn:hover { border-color: var(--clay); }
+  .ctrl-btn:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+  .ctrl-btn.primary { background: var(--clay-fill); color: #fff; border-color: var(--clay-fill); }
+  .ctrl-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  .phone-shell { position: relative; background: #111; border-radius: 34px; padding: 12px; width: min(360px, 100%); margin: 0 auto; box-shadow: 0 24px 60px -20px rgba(0,0,0,0.6); }
+  .phone-notch { position: absolute; top: 12px; left: 50%; transform: translateX(-50%); width: 84px; height: 20px; background: #111; border-radius: 0 0 12px 12px; z-index: 5; }
+  .phone-screen {
+    background-color: var(--wa-bg);
+    background-image:
+      radial-gradient(circle at 15% 20%, rgba(0,0,0,0.04) 0 1px, transparent 1.6px),
+      radial-gradient(circle at 70% 15%, rgba(0,0,0,0.03) 0 1px, transparent 1.6px),
+      radial-gradient(circle at 40% 55%, rgba(0,0,0,0.035) 0 1px, transparent 1.6px),
+      radial-gradient(circle at 85% 65%, rgba(0,0,0,0.03) 0 1px, transparent 1.6px),
+      radial-gradient(circle at 10% 85%, rgba(0,0,0,0.035) 0 1px, transparent 1.6px),
+      radial-gradient(circle at 55% 90%, rgba(0,0,0,0.03) 0 1px, transparent 1.6px);
+    background-size: 120px 120px;
+    border-radius: 24px; overflow: hidden; display: flex; flex-direction: column; height: 640px;
+  }
+
+  .status-bar { background: var(--wa-header); color: #fff; display: flex; align-items: center; justify-content: space-between; padding: 6px 16px 3px; font-size: 12.5px; font-weight: 600; font-variant-numeric: tabular-nums; flex: 0 0 auto; letter-spacing: 0.2px; }
+  .status-bar .sb-icons { display: flex; align-items: center; gap: 5px; font-size: 12px; opacity: 0.95; }
+  .wa-header { background: var(--wa-header); color: #fff; padding: 8px 16px 12px; display: flex; align-items: center; gap: 10px; flex: 0 0 auto; }
+  .wa-header-icons { margin-left: auto; display: flex; align-items: center; gap: 13px; font-size: 15px; opacity: 0.92; flex-shrink: 0; }
+  .wa-avatar { width: 34px; height: 34px; border-radius: 50%; background: var(--clay-fill); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 800; letter-spacing: 0.02em; color: #fff; }
+  .wa-title { font-size: 14.5px; font-weight: 700; line-height: 1.2; }
+  .wa-status { font-size: 11px; opacity: 0.85; }
+
+  .wa-thread { flex: 1 1 auto; overflow-y: auto; padding: 14px 10px; display: flex; flex-direction: column; gap: 8px; }
+
+  .bubble { max-width: 84%; padding: 8px 10px 9px; border-radius: 9px; font-size: 13px; line-height: 1.42; box-shadow: 0 1px 1px rgba(0,0,0,0.12); animation: pop 0.28s ease both; flex-shrink: 0; }
+  @media (prefers-reduced-motion: reduce) { .bubble, .product-grid, .cart-card, .pay-card, .track-card { animation: none; } }
+  @keyframes pop { from { opacity: 0; transform: translateY(6px) scale(0.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+
+  .bubble.shop, .bubble.customer { position: relative; }
+  .bubble.shop { align-self: flex-start; background: #fff; color: #111; }
+  .bubble.customer { align-self: flex-end; background: var(--wa-green-bubble); color: #111; }
+  .bubble.grouped { margin-top: -5px; }
+  .bubble.shop:not(.grouped) { border-top-left-radius: 0; }
+  .bubble.shop:not(.grouped)::before { content: ""; position: absolute; top: 0; left: -7px; width: 14px; height: 16px; background: #fff; border-top-right-radius: 12px 10px; }
+  .bubble.shop:not(.grouped)::after { content: ""; position: absolute; top: 0; left: -14px; width: 10px; height: 16px; background: var(--wa-bg); }
+  .bubble.customer:not(.grouped) { border-top-right-radius: 0; }
+  .bubble.customer:not(.grouped)::before { content: ""; position: absolute; top: 0; right: -7px; width: 14px; height: 16px; background: var(--wa-green-bubble); border-top-left-radius: 12px 10px; }
+  .bubble.customer:not(.grouped)::after { content: ""; position: absolute; top: 0; right: -14px; width: 10px; height: 16px; background: var(--wa-bg); }
+  .bubble.system { align-self: center; background: rgba(0,0,0,0.08); color: #40392e; font-size: 11.5px; padding: 4px 10px; border-radius: 999px; }
+  .date-divider { align-self: center; margin: 2px 0 4px; }
+  .date-divider span { background: rgba(0,0,0,0.08); color: #40392e; font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 999px; letter-spacing: 0.02em; }
+  .msg-meta { display: block; text-align: right; font-size: 10px; color: rgba(0,0,0,0.42); margin-top: 3px; line-height: 1; }
+  .msg-meta .ticks { color: #53bdeb; font-weight: 700; margin-left: 3px; }
+  .card-meta { text-align: right; font-size: 10px; color: #9a9488; padding: 0 10px 8px; margin-top: -2px; }
+
+  .product-grid, .cart-card, .pay-card, .track-card {
+    align-self: flex-start; max-width: 90%; width: 90%; background: #fff; border-radius: 9px;
+    border-top-left-radius: 2px; overflow: hidden; box-shadow: 0 1px 1px rgba(0,0,0,0.12);
+    animation: pop 0.28s ease both; flex-shrink: 0;
+  }
+  .card-head { background: var(--clay-fill); color: #fff; padding: 8px 10px; font-size: 12px; font-weight: 700; }
+  .card-body { padding: 8px 10px; font-size: 12.5px; color: #111; }
+
+  .prod-row { display: flex; gap: 8px; padding: 7px 0; border-bottom: 1px dashed #e6ddd0; align-items: center; }
+  .prod-row:last-child { border-bottom: none; }
+  .prod-thumb { width: 34px; height: 34px; border-radius: 6px; background: linear-gradient(135deg, var(--sage-soft), var(--sage)); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 15px; }
+  .prod-info { flex: 1; min-width: 0; }
+  .prod-name { font-weight: 600; font-size: 12.5px; }
+  .prod-note { font-size: 10.5px; color: #8a8074; }
+  .prod-price { font-variant-numeric: tabular-nums; color: var(--clay-fill); font-weight: 700; white-space: nowrap; font-size: 12.5px; }
+  .prod-add { margin-left: 4px; background: var(--sage-fill); color: #fff; border: none; border-radius: 6px; padding: 4px 8px; font-size: 11px; font-weight: 700; flex-shrink: 0; }
+
+  .cart-total { display: flex; justify-content: space-between; margin-top: 6px; padding-top: 6px; border-top: 1px solid #e6ddd0; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .pay-btn { margin-top: 8px; background: var(--wa-header); color: #fff; text-align: center; padding: 8px; border-radius: 6px; font-weight: 700; font-size: 12.5px; }
+
+  .track-steps { display: flex; flex-direction: column; gap: 6px; }
+  .track-row { display: flex; gap: 8px; align-items: center; font-size: 12px; }
+  .track-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+  .track-dot.done { background: var(--wa-header); }
+  .track-dot.pending { background: #ddd; }
+  .track-row.pending-text { color: #999; }
+
+  .quick-replies { display: flex; flex-wrap: wrap; gap: 6px; padding: 4px 4px 0; flex-shrink: 0; }
+  .qr-chip { background: #fff; color: var(--wa-header); border: 1px solid #d7ecd9; border-radius: 999px; padding: 6px 12px; font-size: 12px; font-weight: 600; font-family: inherit; cursor: pointer; }
+  .qr-chip:hover { background: #eafbef; border-color: var(--wa-header); }
+  .qr-chip:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+
+  .wa-composer { flex: 0 0 auto; background: #f0ede5; padding: 8px 10px; display: flex; align-items: center; gap: 8px; }
+  .wa-composer .input { flex: 1; background: #fff; border-radius: 20px; padding: 8px 14px; font-size: 12.5px; color: #9a958a; }
+  .wa-composer .send { width: 34px; height: 34px; border-radius: 50%; background: var(--wa-header); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 15px; flex: 0 0 auto; }
+  .wa-composer .icon-btn { color: #54656f; flex: 0 0 auto; display: inline-flex; align-items: center; justify-content: center; }
+
+  .annot { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; margin-top: 16px; }
+  .annot-title { font-weight: 700; font-size: 13.5px; color: var(--clay); margin-bottom: 6px; }
+  .annot-body { font-size: 13px; color: var(--ink-soft); line-height: 1.55; }
+
+  .disclosure {
+    margin-top: 22px; padding: 12px 16px; border-radius: 10px; background: var(--paper);
+    border: 1px solid var(--line); font-size: 12px; color: var(--ink-soft); line-height: 1.55;
+  }
+  .disclosure b { color: var(--ink); }
+
+  .demo-cta { margin-top: 14px; padding: 18px 16px; border-radius: 10px; background: var(--wa-header); text-align: center; }
+  .demo-cta p { margin: 0 0 10px; font-size: 13px; color: rgba(255,255,255,0.92); font-weight: 600; }
+  .demo-cta a.cta-btn { display: inline-block; background: #fff; color: var(--wa-header); font-weight: 700; font-size: 13.5px; padding: 10px 22px; border-radius: 8px; text-decoration: none; }
+  .demo-home { display: block; text-align: center; margin-top: 14px; font-size: 12px; color: var(--ink-soft); text-decoration: none; }
+  .demo-home:hover { text-decoration: underline; }
+
+  @media (max-width: 480px) { .wrap { padding: 28px 16px 56px; } }
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+  <div class="eyebrow">Delta Labs AI — WhatsApp commerce demo</div>
+  <h1>Full catalog-to-checkout, inside WhatsApp</h1>
+  <p class="sub">
+    Styled on Bellavie, a fictional skincare brand invented for this demo — browsing multiple product categories, building a cart across items, checkout, and live order tracking, without ever leaving the chat.
+  </p>
+
+  <div class="stage">
+    <div>
+      <div class="rail" id="rail"></div>
+      <div class="rail-controls">
+        <button class="ctrl-btn" id="prevBtn">◀ Back</button>
+        <button class="ctrl-btn primary" id="nextBtn">Next ▶</button>
+      </div>
+      <div class="annot" id="annot"></div>
+    </div>
+
+    <div class="phone-shell">
+      <div class="phone-notch"></div>
+      <div class="phone-screen">
+        <div class="status-bar">
+          <span>9:41</span>
+          <span class="sb-icons">
+            <svg viewBox="0 0 18 12" width="16" height="11" fill="currentColor"><rect x="0" y="8" width="3" height="4"/><rect x="5" y="5.5" width="3" height="6.5"/><rect x="10" y="3" width="3" height="9"/><rect x="15" y="0.5" width="3" height="11.5"/></svg>
+            <svg viewBox="0 0 26 13" width="22" height="11"><rect x="0.5" y="0.5" width="22" height="12" rx="3" stroke="currentColor" fill="none"/><rect x="2" y="2" width="19" height="9" rx="1.5" fill="currentColor"/><rect x="23.5" y="4" width="2" height="5" rx="1" fill="currentColor"/></svg>
+          </span>
+        </div>
+        <div class="wa-header">
+          <div class="wa-avatar">BV</div>
+          <div>
+            <div class="wa-title">Bellavie Skincare</div>
+            <div class="wa-status" id="waStatus">online</div>
+          </div>
+          <div class="wa-header-icons">
+            <svg viewBox="0 0 20 16" width="18" height="15" fill="currentColor"><rect x="0" y="2" width="12" height="12" rx="2"/><polygon points="13,6 19,2.5 19,13.5 13,10"/></svg>
+            <svg viewBox="0 0 16 16" width="15" height="15" fill="currentColor"><path d="M3.5 1.5c-.8 0-1.5.7-1.5 1.5 0 6.5 5 11.5 11.5 11.5.8 0 1.5-.7 1.5-1.5v-2.2c0-.5-.3-.9-.8-1l-2.6-.7c-.4-.1-.8 0-1.1.3l-.9.9a9 9 0 01-4.4-4.4l.9-.9c.3-.3.4-.7.3-1.1l-.7-2.6c-.1-.5-.5-.8-1-.8H3.5z"/></svg>
+            <svg viewBox="0 0 4 16" width="4" height="16" fill="currentColor"><circle cx="2" cy="2" r="2"/><circle cx="2" cy="8" r="2"/><circle cx="2" cy="14" r="2"/></svg>
+          </div>
+        </div>
+        <div class="wa-thread" id="thread"></div>
+        <div class="wa-composer">
+          <span class="icon-btn"><svg viewBox="0 0 18 18" width="17" height="17"><circle cx="9" cy="9" r="7.5" fill="none" stroke="currentColor" stroke-width="1.3"/><circle cx="6" cy="7.5" r="1" fill="currentColor"/><circle cx="12" cy="7.5" r="1" fill="currentColor"/><path d="M5 11 Q9 13.5 13 11" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></span>
+          <div class="input" id="composerHint">Type a message</div>
+          <span class="icon-btn"><svg viewBox="0 0 16 16" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 6.5L8 13a3 3 0 01-4.2-4.2l6.4-6.4a2 2 0 012.8 2.8L6.6 11.6a1 1 0 01-1.4-1.4l5.6-5.6"/></svg></span>
+          <span class="icon-btn"><svg viewBox="0 0 18 14" width="17" height="13"><rect x="0" y="2" width="18" height="11" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="9" cy="7.5" r="3" fill="none" stroke="currentColor" stroke-width="1.2"/><rect x="6" y="0" width="6" height="2.5" rx="1" fill="currentColor"/></svg></span>
+          <div class="send">➤</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="disclosure"><b>This is a demo, not a client story.</b> Bellavie is a fictional brand invented to show what a full WhatsApp commerce flow can look like — catalog, cart, checkout, and order tracking, all native to chat. Delta Labs AI has no relationship with any business named Bellavie, and no part of this conversation is real.</div>
+  <div class="demo-cta">
+    <p>Want this built for your business?</p>
+    <a class="cta-btn" href="https://cal.com/ag-ventures-qbqxax/30min" target="_blank" rel="noopener noreferrer">Book a free 30-min call</a>
+  </div>
+  <a class="demo-home" href="/">&larr; Back to Delta Labs AI</a>
+</div>
+
+<script>
+  const cart = [];
+
+  function cartTotal() { return cart.reduce((s, i) => s + i.p * i.qty, 0); }
+  function cartLines() {
+    const merged = {};
+    cart.forEach(i => { merged[i.name] = merged[i.name] || { ...i, qty: 0 }; merged[i.name].qty += i.qty; });
+    return Object.values(merged);
+  }
+
+  let clockMinutes = 9 * 60 + 14; // demo clock, advances per rendered message
+  let msgIndex = 0;
+  function nextTime() {
+    msgIndex++;
+    clockMinutes += 1 + (msgIndex % 3); // varies 1-3 min so it doesn't read as a mechanical +2 tick
+    const h24 = Math.floor(clockMinutes / 60) % 24, m = clockMinutes % 60;
+    const h12 = ((h24 + 11) % 12) + 1, ampm = h24 < 12 ? "AM" : "PM";
+    return h12 + ":" + String(m).padStart(2, "0") + " " + ampm;
+  }
+
+  // Real WhatsApp only draws the bubble tail on the first message of a run from the
+  // same sender; consecutive messages sit flush with no tail. Tracked across bubbleHTML
+  // calls within one render() pass, reset whenever a card/system item breaks the run.
+  let lastSender = null;
+
+  const steps = [
+    {
+      label: "Customer messages the shop",
+      annotTitle: "Step 1 — First message",
+      annotBody: "Customer taps the WhatsApp link from Bellavie's Instagram bio or website — no app, no login, straight into a chat.",
+      status: "online",
+      bubbles: [
+        { type: "customer", en: "Hi, I saw your reel about the vitamin C serum" },
+        { type: "shop", en: "Hi! Welcome to Bellavie 🌿 Happy to help — want to see our full skincare range or just the serum you saw?", chips: ["🧴 Show full range", "✨ Just that serum"] }
+      ]
+    },
+    {
+      label: "Browse categories",
+      annotTitle: "Step 2 — Catalog",
+      annotBody: "Real product categories, images and prices — tap a category, no need to type product names or scroll a website.",
+      status: "online",
+      bubbles: [
+        { type: "customer", en: "Show full range" },
+        { type: "shop", en: "Here's what we've got — tap a category:", chips: ["🧼 Cleansers", "💧 Serums", "🧴 Moisturizers", "☀️ Sunscreen"] }
+      ]
+    },
+    {
+      label: "Add items to cart",
+      annotTitle: "Step 3 — Building the cart",
+      annotBody: "Customer can browse multiple categories in the same chat and keep adding — the cart accumulates across the whole conversation, not just one screen.",
+      status: "online",
+      bubbles: [
+        { type: "customer", en: "Serums" },
+        { type: "products", cat: "💧 Serums", items: [
+          { name: "Vitamin C Glow Serum", note: "30ml · brightening", p: 899, emoji: "✨" },
+          { name: "Hyaluronic Hydra Serum", note: "30ml · deep hydration", p: 749, emoji: "💧" },
+          { name: "Niacinamide 10%", note: "30ml · pore refining", p: 649, emoji: "🌿" }
+        ]},
+        { type: "cartAdd", item: { name: "Vitamin C Glow Serum", p: 899, qty: 1 } },
+        { type: "system", en: "✅ Added to cart — Vitamin C Glow Serum" }
+      ]
+    },
+    {
+      label: "Cross-category, then review cart",
+      annotTitle: "Step 4 — Cross-sell + cart review",
+      annotBody: "The bot naturally suggests a related category, then shows the live running cart the moment the customer wants to check out — same as any e-commerce cart, but never leaving chat.",
+      status: "online",
+      bubbles: [
+        { type: "shop", en: "Great pick! Pairs well with our sunscreen if you're using Vitamin C in the mornings ☀️", chips: ["☀️ Show sunscreen", "🛒 Just checkout"] },
+        { type: "customer", en: "Show sunscreen" },
+        { type: "products", cat: "☀️ Sunscreen", items: [
+          { name: "SPF 50 Matte Sunscreen", note: "50ml · no white cast", p: 599, emoji: "☀️" }
+        ]},
+        { type: "cartAdd", item: { name: "SPF 50 Matte Sunscreen", p: 599, qty: 1 } },
+        { type: "system", en: "✅ Added to cart — SPF 50 Matte Sunscreen" },
+        { type: "customer", en: "Show my cart" },
+        { type: "cart" }
+      ]
+    },
+    {
+      label: "Delivery address",
+      annotTitle: "Step 5 — Delivery",
+      annotBody: "One tap of WhatsApp's own location sharing, or a pincode typed directly — the bot confirms serviceability instantly.",
+      status: "online",
+      bubbles: [
+        { type: "shop", en: "Perfect — where should this ship?" },
+        { type: "customer", en: "📍 Location shared — Bandra West, Mumbai — 400050" },
+        { type: "shop", en: "We deliver there in 2-3 days ✅" }
+      ]
+    },
+    {
+      label: "Pay by UPI, in chat",
+      annotTitle: "Step 6 — Payment",
+      annotBody: "A UPI payment link inside the same chat, confirmed automatically the moment it clears — no manual checking on the shop's end.",
+      status: "online",
+      bubbles: [
+        { type: "shop", en: "Your total is ready — tap to pay:" },
+        { type: "pay" }
+      ]
+    },
+    {
+      label: "Order confirmed & tracked",
+      annotTitle: "Step 7 — Confirmation & tracking",
+      annotBody: "Payment confirms automatically, and status updates land right in the same thread — no separate tracking app or link to lose.",
+      status: "online",
+      bubbles: [
+        { type: "customer", en: "✅ Paid ₹1,498 via UPI" },
+        { type: "shop", en: "Payment received! Your order is confirmed 🌿" },
+        { type: "track" }
+      ]
+    }
+  ];
+
+  const railEl = document.getElementById("rail");
+  const threadEl = document.getElementById("thread");
+  const annotEl = document.getElementById("annot");
+  const statusEl = document.getElementById("waStatus");
+  const prevBtn = document.getElementById("prevBtn");
+  const nextBtn = document.getElementById("nextBtn");
+
+  let current = 0;
+
+  function renderRail() {
+    railEl.innerHTML = "";
+    steps.forEach((s, i) => {
+      const btn = document.createElement("button");
+      btn.className = "step-btn" + (i === current ? " active" : "");
+      btn.innerHTML = '<span class="step-num">' + (i + 1) + '</span><span class="step-label">' + s.label + '</span>';
+      btn.addEventListener("click", () => { current = i; render(); });
+      railEl.appendChild(btn);
+    });
+  }
+
+  function bubbleHTML(b) {
+    if (b.type !== "customer" && b.type !== "shop" && b.type !== "cartAdd") lastSender = null;
+    if (b.type === "system") return '<div class="bubble system">' + b.en + '</div>';
+    if (b.type === "cartAdd") {
+      cart.push(b.item);
+      return "";
+    }
+    if (b.type === "products") {
+      const rows = b.items.map(it =>
+        '<div class="prod-row"><div class="prod-thumb">' + it.emoji + '</div>' +
+        '<div class="prod-info"><div class="prod-name">' + it.name + '</div><div class="prod-note">' + it.note + '</div></div>' +
+        '<div class="prod-price">₹' + it.p + '</div><div class="prod-add">Add</div></div>'
+      ).join("");
+      return '<div class="product-grid"><div class="card-head">' + b.cat + '</div><div class="card-body">' + rows + '</div><div class="card-meta">' + nextTime() + '</div></div>';
+    }
+    if (b.type === "cart") {
+      const lines = cartLines();
+      const rows = lines.map(it =>
+        '<div class="prod-row"><div class="prod-info"><div class="prod-name">' + it.name + '</div><div class="prod-note">Qty: ' + it.qty + '</div></div>' +
+        '<div class="prod-price">₹' + (it.p * it.qty).toLocaleString('en-IN') + '</div></div>'
+      ).join("");
+      return '<div class="cart-card"><div class="card-head">🛒 Your cart</div><div class="card-body">' + rows +
+        '<div class="cart-total"><span>Total</span><span>₹' + cartTotal().toLocaleString('en-IN') + '</span></div></div><div class="card-meta">' + nextTime() + '</div></div>';
+    }
+    if (b.type === "pay") {
+      const lines = cartLines();
+      const rows = lines.map(it =>
+        '<div class="prod-row"><div class="prod-info"><div class="prod-name">' + it.name + ' × ' + it.qty + '</div></div>' +
+        '<div class="prod-price">₹' + (it.p * it.qty).toLocaleString('en-IN') + '</div></div>'
+      ).join("");
+      return '<div class="pay-card"><div class="card-head">🧾 Order total</div><div class="card-body">' + rows +
+        '<div class="cart-total"><span>Total</span><span>₹' + cartTotal().toLocaleString('en-IN') + '</span></div>' +
+        '<div class="pay-btn">Pay ₹' + cartTotal().toLocaleString('en-IN') + ' via UPI →</div></div><div class="card-meta">' + nextTime() + '</div></div>';
+    }
+    if (b.type === "track") {
+      return '<div class="track-card"><div class="card-head">📦 Order #B-2291</div><div class="card-body"><div class="track-steps">' +
+        '<div class="track-row"><span class="track-dot done"></span><span>Order confirmed</span></div>' +
+        '<div class="track-row"><span class="track-dot done"></span><span>Packed</span></div>' +
+        '<div class="track-row pending-text"><span class="track-dot pending"></span><span>Out for delivery</span></div>' +
+        '<div class="track-row pending-text"><span class="track-dot pending"></span><span>Delivered</span></div>' +
+        '</div></div><div class="card-meta">' + nextTime() + '</div></div>';
+    }
+    const cls = b.type === "customer" ? "customer" : "shop";
+    const grouped = cls === lastSender;
+    lastSender = cls;
+    const meta = '<span class="msg-meta">' + nextTime() + (cls === "customer" ? ' <span class="ticks">✓✓</span>' : '') + '</span>';
+    let chips = "";
+    if (b.chips) {
+      chips = '<div class="quick-replies">' + b.chips.map(c => '<button type="button" class="qr-chip">' + c + '</button>').join("") + '</div>';
+    }
+    return '<div class="bubble ' + cls + (grouped ? ' grouped' : '') + '"><div>' + b.en + '</div>' + meta + '</div>' + chips;
+  }
+
+  function render() {
+    // Only restore focus to the rail if the rail already had focus (keyboard nav) -
+    // otherwise this steals focus off Next/Prev/chip buttons on every click.
+    const hadRailFocus = document.activeElement && document.activeElement.classList.contains("step-btn");
+    renderRail();
+    clockMinutes = 9 * 60 + 14;
+    msgIndex = 0;
+    lastSender = null;
+    const step = steps[current];
+    statusEl.textContent = step.status;
+
+    annotEl.innerHTML = '<div class="annot-title">' + step.annotTitle + '</div><div class="annot-body">' + step.annotBody + '</div>';
+
+    cart.length = 0;
+    threadEl.innerHTML = "";
+    threadEl.insertAdjacentHTML("beforeend", '<div class="date-divider"><span>TODAY</span></div>');
+    for (let i = 0; i <= current; i++) {
+      steps[i].bubbles.forEach(b => {
+        const html = bubbleHTML(b);
+        if (html) threadEl.insertAdjacentHTML("beforeend", html);
+      });
+    }
+    threadEl.scrollTop = threadEl.scrollHeight;
+
+    prevBtn.disabled = current === 0;
+    nextBtn.textContent = current === steps.length - 1 ? "Restart" : "Next ▶";
+
+    // renderRail() just wiped and rebuilt every step button - without the hadRailFocus
+    // guard above, a click on Next/Prev/a chip would get its focus yanked back to the
+    // rail; this only restores focus for the keyboard-nav case that motivated it.
+    if (hadRailFocus) {
+      const activeBtn = railEl.children[current];
+      if (activeBtn) activeBtn.focus({ preventScroll: true });
+    }
+  }
+
+  // Quick-reply chips are the single most natural thing a prospect taps in a live demo -
+  // wire them to advance, mirroring a real customer having made that choice.
+  threadEl.addEventListener("click", (e) => {
+    const chip = e.target.closest(".qr-chip");
+    if (!chip) return;
+    if (current < steps.length - 1) current++;
+    render();
+  });
+
+  prevBtn.addEventListener("click", () => { if (current > 0) { current--; render(); } });
+  nextBtn.addEventListener("click", () => {
+    if (current === steps.length - 1) { current = 0; }
+    else { current++; }
+    render();
+  });
+
+  render();
+</script>
+
+</body>
+</html>

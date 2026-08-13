@@ -555,6 +555,129 @@ function Services() {
   );
 }
 
+// Video teaser — a real ~10s screen recording of the live demo (phone isolated, no
+// page chrome) plus a baked-in disclosure end-card. No `autoPlay`: an IntersectionObserver
+// starts playback only once the card is actually on screen and pauses it off-screen, so a
+// visitor who never scrolls this far never downloads or plays 500KB+ for nothing, and a
+// video scrolled past mid-loop doesn't sit frozen mid-frame when they come back to it.
+// prefers-reduced-motion users never get play() called at all - they see the poster only.
+function TeaserVideo({ src, poster, label }) {
+  const ref = useRef(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const io = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) el.play().catch(() => {});
+      else el.pause();
+    }, { threshold: 0.35 });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+  return (
+    <video
+      ref={ref}
+      src={src}
+      poster={poster}
+      muted
+      loop
+      playsInline
+      preload="none"
+      aria-label={label}
+      style={{ display: "block", width: "100%", aspectRatio: "460 / 760", objectFit: "cover", borderRadius: 12, border: "1px solid #E5E7EB", background: "#0b0b0b" }}
+    />
+  );
+}
+
+// Demos — real product, since we have no client case studies yet. A short auto-playing
+// video instead of a click-through: the demo's job here is to sell "this is real,"
+// not to walk a cold visitor through all 6-7 steps. The full interactive version is
+// still one tap away for anyone who wants to dig in (public/demos/*.html, self-hosted
+// rather than a private claude.ai artifact link, so it works for any visitor).
+function Demos() {
+  const demos = [
+    {
+      useCase: "Wholesale reordering & negotiation",
+      brand: "Shree Wholesale Traders",
+      initials: "ST",
+      desc: "A returning buyer reorders, negotiates bulk pricing, and settles on credit - all in one WhatsApp thread.",
+      href: "/demos/kirana-wholesale.html",
+      video: "/demos/video/kirana-wholesale.mp4",
+      poster: "/demos/video/kirana-wholesale-poster.jpg",
+      color: "#2563EB", bg: "#EFF6FF",
+      badge: "Negotiation",
+    },
+    {
+      useCase: "Full catalog-to-checkout commerce",
+      brand: "Bellavie Skincare",
+      initials: "BV",
+      desc: "Browse categories, build a cart, check out, and track delivery - a complete storefront that never leaves the chat.",
+      href: "/demos/bellavie-commerce.html",
+      video: "/demos/video/bellavie-commerce.mp4",
+      poster: "/demos/video/bellavie-commerce-poster.jpg",
+      color: "#7C3AED", bg: "#F5F3FF",
+      badge: "Full commerce",
+    },
+  ];
+  return (
+    <section style={{ padding: "88px 24px", background: "#fff" }}>
+      <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+        <F><div style={{ textAlign: "center", marginBottom: 48 }}>
+          <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, fontWeight: 700, color: "#2563EB", textTransform: "uppercase", letterSpacing: "0.1em" }}>See It In Action</span>
+          <h2 style={{ fontFamily: "'DM Sans',sans-serif", fontSize: "clamp(26px, 3.5vw, 36px)", fontWeight: 800, color: "#0F172A", letterSpacing: "-0.02em", margin: "8px 0 12px" }}>Watch it actually work</h2>
+          <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 15, color: "#6B7280", maxWidth: 560, margin: "0 auto" }}>
+            A peek at two live WhatsApp flows we've built - the full walkthrough is one tap away.
+          </p>
+        </div></F>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(270px, 1fr))", gap: 20 }}>
+          {demos.map((d, i) => (
+            <F key={i} d={i * 0.08}>
+              <div style={{ borderRadius: 16, border: "1px solid #E5E7EB", padding: 20, background: "#FAFBFC", height: "100%", display: "flex", flexDirection: "column" }}>
+                <TeaserVideo src={d.video} poster={d.poster} label={`${d.useCase} - demo`} />
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", margin: "16px 0 8px" }}>
+                  <h3 style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 16, fontWeight: 700, color: "#0F172A", margin: 0, lineHeight: 1.3 }}>{d.useCase}</h3>
+                  <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, fontWeight: 700, color: d.color, background: d.bg, padding: "3px 9px", borderRadius: 20, textTransform: "uppercase", letterSpacing: "0.04em", flexShrink: 0, marginLeft: 8 }}>{d.badge}</span>
+                </div>
+                <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, color: "#6B7280", margin: "0 0 8px", fontWeight: 600 }}>{d.brand}</p>
+                <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, color: "#6B7280", lineHeight: 1.6, margin: "0 0 18px", flex: 1 }}>{d.desc}</p>
+                <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+                  <button data-cal-link="ag-ventures-qbqxax/30min" data-cal-namespace="30min" data-cal-config='{"layout":"month_view"}' type="button" style={{
+                    fontFamily: "'DM Sans',sans-serif", fontWeight: 700, fontSize: 13.5, color: "#fff", background: d.color,
+                    border: "none", borderRadius: 8, padding: "11px 16px", cursor: "pointer", transition: "opacity 0.2s",
+                  }}
+                    onMouseEnter={e => { e.currentTarget.style.opacity = "0.88"; }}
+                    onMouseLeave={e => { e.currentTarget.style.opacity = "1"; }}
+                  >
+                    Get this for my business
+                  </button>
+                  <a href={d.href} target="_blank" rel="noopener noreferrer" style={{
+                    display: "flex", alignItems: "center", justifyContent: "center", gap: 4,
+                    fontFamily: "'DM Sans',sans-serif", fontSize: 12.5, fontWeight: 600, color: "#6B7280", textDecoration: "none",
+                  }}>
+                    See the full walkthrough <Ic.Arr />
+                  </a>
+                </div>
+              </div>
+            </F>
+          ))}
+          <F d={2 * 0.08}>
+            <div style={{ borderRadius: 16, border: "1px dashed #D1D5DB", padding: 20, background: "#F8FAFC", height: "100%", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", gap: 8 }}>
+              <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, fontWeight: 700, color: "#4B5563", background: "#EEF0F3", padding: "3px 9px", borderRadius: 20, textTransform: "uppercase", letterSpacing: "0.04em" }}>Coming soon</span>
+              <h3 style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 16, fontWeight: 700, color: "#374151", margin: "6px 0 4px" }}>Voice negotiation, hands-free</h3>
+              <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, color: "#6B7280", lineHeight: 1.6, margin: 0, maxWidth: 220 }}>The same wholesale negotiation, spoken instead of typed.</p>
+            </div>
+          </F>
+        </div>
+        <F d={0.3}>
+          <p style={{ textAlign: "center", fontFamily: "'DM Sans',sans-serif", fontSize: 12, color: "#6B7280", marginTop: 28 }}>
+            Illustrative demos built to show what's possible - not existing client engagements.
+          </p>
+        </F>
+      </div>
+    </section>
+  );
+}
+
 // Hero Product
 function HeroProduct() {
   return (
@@ -872,6 +995,7 @@ export default function App() {
       <WhoFor />
       <How />
       <Services />
+      <Demos />
       <HeroProduct />
       <ClinicScoreBanner />
       <FAQ />

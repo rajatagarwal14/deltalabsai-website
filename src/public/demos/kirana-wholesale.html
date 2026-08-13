@@ -1,0 +1,476 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kirana Wholesale — WhatsApp Ordering Demo</title>
+<meta name="description" content="Delta Labs AI — see a live demo of a WhatsApp wholesale reordering and bulk-price negotiation flow.">
+<meta name="robots" content="noindex, follow">
+<style>
+  :root {
+    /* Fixed regardless of theme: backs a white phone-card or sits under white text.
+       --leaf lightens in dark mode for page-level text contrast; that lightened value
+       fails contrast when reused as a fill behind white text or inside the always-white
+       chat card. Kept as a separate, never-redefined token. */
+    --leaf-fill: #4a7856;
+    --ink: #2a2418;
+    --ink-soft: #6b6252;
+    --ground: #f4f0e4;
+    --paper: #ffffff;
+    --paper-raised: #faf6ec;
+    --turmeric: #c8862b;
+    --turmeric-soft: #e0a94f;
+    --leaf: #4a7856;
+    --leaf-soft: #7a9e83;
+    --line: #e3dcc8;
+    --wa-green: #128c4a;
+    --wa-green-bubble: #dcf8c6;
+    --wa-bg: #e9ddc8;
+    --wa-header: #1f7a3d;
+    --focus: #c8862b;
+  }
+
+  :root[data-theme="dark"] {
+    --ink: #ece7d8;
+    --ink-soft: #b0a790;
+    --ground: #1a1710;
+    --paper: #241f16;
+    --paper-raised: #2c261a;
+    --turmeric: #e0a94f;
+    --turmeric-soft: #c8862b;
+    --leaf: #7a9e83;
+    --leaf-soft: #4a7856;
+    --line: #3a3220;
+    --focus: #e0a94f;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ink: #ece7d8; --ink-soft: #b0a790; --ground: #1a1710; --paper: #241f16;
+      --paper-raised: #2c261a; --turmeric: #e0a94f; --turmeric-soft: #c8862b;
+      --leaf: #7a9e83; --leaf-soft: #4a7856; --line: #3a3220; --focus: #e0a94f;
+    }
+  }
+
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--ground); color: var(--ink); font-family: -apple-system, "Segoe UI", "Noto Sans Devanagari", sans-serif; min-height: 100vh; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 40px 24px 72px; }
+  .eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--turmeric); }
+  h1 { font-family: Georgia, serif; font-size: clamp(26px, 4vw, 36px); line-height: 1.15; margin: 8px 0 6px; text-wrap: balance; color: var(--ink); }
+  .hi { font-size: 0.6em; color: var(--ink-soft); display: block; font-family: "Noto Sans Devanagari", sans-serif; font-weight: 500; margin-top: 2px; }
+  .sub { max-width: 62ch; color: var(--ink-soft); font-size: 15px; line-height: 1.6; margin: 0 0 32px; }
+
+  .stage { display: grid; grid-template-columns: 1fr; gap: 28px; }
+  .phone-shell { order: -1; }
+  @media (min-width: 860px) {
+    .stage { grid-template-columns: 300px 1fr; align-items: start; }
+    .phone-shell { order: 0; }
+  }
+
+  .rail { display: flex; flex-direction: column; gap: 2px; background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 8px; }
+  .step-btn { display: flex; align-items: center; gap: 12px; width: 100%; text-align: left; background: none; border: none; color: var(--ink-soft); padding: 11px 12px; border-radius: 8px; cursor: pointer; font-size: 13.5px; font-family: inherit; transition: background 0.15s ease, color 0.15s ease; }
+  .step-btn:hover { background: var(--paper-raised); }
+  .step-btn:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+  .step-btn.active { background: var(--leaf-fill); color: #fff; }
+  .step-num { flex: 0 0 auto; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; background: var(--paper-raised); color: var(--turmeric); font-variant-numeric: tabular-nums; }
+  .step-btn.active .step-num { background: rgba(255,255,255,0.22); color: #fff; }
+  .step-label-en { font-weight: 600; display: block; }
+  .step-label-hi { font-size: 12px; opacity: 0.85; margin-top: 1px; display: block; }
+
+  .rail-controls { display: flex; gap: 8px; margin-top: 14px; }
+  .ctrl-btn { flex: 1; padding: 9px 10px; border-radius: 8px; border: 1px solid var(--line); background: var(--paper); color: var(--ink); font-size: 13px; font-weight: 600; cursor: pointer; font-family: inherit; }
+  .ctrl-btn:hover { border-color: var(--turmeric); }
+  .ctrl-btn:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+  .ctrl-btn.primary { background: var(--turmeric); color: #2a2418; border-color: var(--turmeric); }
+  .ctrl-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  .phone-shell { position: relative; background: #111; border-radius: 34px; padding: 12px; width: min(360px, 100%); margin: 0 auto; box-shadow: 0 24px 60px -20px rgba(0,0,0,0.6); }
+  .phone-notch { position: absolute; top: 12px; left: 50%; transform: translateX(-50%); width: 84px; height: 20px; background: #111; border-radius: 0 0 12px 12px; z-index: 5; }
+  .phone-screen {
+    background-color: var(--wa-bg);
+    background-image:
+      radial-gradient(circle at 15% 20%, rgba(0,0,0,0.04) 0 1px, transparent 1.6px),
+      radial-gradient(circle at 70% 15%, rgba(0,0,0,0.03) 0 1px, transparent 1.6px),
+      radial-gradient(circle at 40% 55%, rgba(0,0,0,0.035) 0 1px, transparent 1.6px),
+      radial-gradient(circle at 85% 65%, rgba(0,0,0,0.03) 0 1px, transparent 1.6px),
+      radial-gradient(circle at 10% 85%, rgba(0,0,0,0.035) 0 1px, transparent 1.6px),
+      radial-gradient(circle at 55% 90%, rgba(0,0,0,0.03) 0 1px, transparent 1.6px);
+    background-size: 120px 120px;
+    border-radius: 24px; overflow: hidden; display: flex; flex-direction: column; height: 640px;
+  }
+  .status-bar { background: var(--wa-header); color: #fff; display: flex; align-items: center; justify-content: space-between; padding: 6px 16px 3px; font-size: 12.5px; font-weight: 600; font-variant-numeric: tabular-nums; flex: 0 0 auto; letter-spacing: 0.2px; }
+  .status-bar .sb-icons { display: flex; align-items: center; gap: 5px; font-size: 12px; opacity: 0.95; }
+  .wa-header { background: var(--wa-header); color: #fff; padding: 8px 16px 12px; display: flex; align-items: center; gap: 10px; flex: 0 0 auto; }
+  .wa-header-icons { margin-left: auto; display: flex; align-items: center; gap: 13px; font-size: 15px; opacity: 0.92; flex-shrink: 0; }
+  .wa-avatar { width: 34px; height: 34px; border-radius: 50%; background: var(--turmeric); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 800; letter-spacing: 0.02em; color: #fff; }
+  .wa-title { font-size: 14.5px; font-weight: 700; line-height: 1.2; }
+  .wa-status { font-size: 11px; opacity: 0.85; }
+  .wa-thread { flex: 1 1 auto; overflow-y: auto; padding: 14px 10px; display: flex; flex-direction: column; gap: 8px; }
+
+  .bubble { max-width: 86%; padding: 8px 10px 9px; border-radius: 9px; font-size: 13px; line-height: 1.42; box-shadow: 0 1px 1px rgba(0,0,0,0.12); animation: pop 0.28s ease both; flex-shrink: 0; }
+  @media (prefers-reduced-motion: reduce) { .bubble, .order-card, .price-card, .khata-card { animation: none; } }
+  @keyframes pop { from { opacity: 0; transform: translateY(6px) scale(0.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+  .bubble.shop, .bubble.customer { position: relative; }
+  .bubble.shop { align-self: flex-start; background: #fff; color: #111; }
+  .bubble.customer { align-self: flex-end; background: var(--wa-green-bubble); color: #111; }
+  .bubble.grouped { margin-top: -5px; }
+  .bubble.shop:not(.grouped) { border-top-left-radius: 0; }
+  .bubble.shop:not(.grouped)::before { content: ""; position: absolute; top: 0; left: -7px; width: 14px; height: 16px; background: #fff; border-top-right-radius: 12px 10px; }
+  .bubble.shop:not(.grouped)::after { content: ""; position: absolute; top: 0; left: -14px; width: 10px; height: 16px; background: var(--wa-bg); }
+  .bubble.customer:not(.grouped) { border-top-right-radius: 0; }
+  .bubble.customer:not(.grouped)::before { content: ""; position: absolute; top: 0; right: -7px; width: 14px; height: 16px; background: var(--wa-green-bubble); border-top-left-radius: 12px 10px; }
+  .bubble.customer:not(.grouped)::after { content: ""; position: absolute; top: 0; right: -14px; width: 10px; height: 16px; background: var(--wa-bg); }
+  .bubble.system { align-self: center; background: rgba(0,0,0,0.08); color: #40392e; font-size: 11.5px; padding: 4px 10px; border-radius: 999px; }
+  .date-divider { align-self: center; margin: 2px 0 4px; }
+  .date-divider span { background: rgba(0,0,0,0.08); color: #40392e; font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 999px; letter-spacing: 0.02em; }
+  .bubble .hi-line { color: #55524a; font-size: 12px; margin-top: 3px; font-family: "Noto Sans Devanagari", sans-serif; }
+  .msg-meta { display: block; text-align: right; font-size: 10px; color: rgba(0,0,0,0.42); margin-top: 3px; line-height: 1; }
+  .msg-meta .ticks { color: #53bdeb; font-weight: 700; margin-left: 3px; }
+  .card-meta { text-align: right; font-size: 10px; color: #9a9488; padding: 0 10px 8px; margin-top: -2px; }
+
+  .order-card, .price-card, .khata-card {
+    align-self: flex-start; max-width: 90%; width: 90%; background: #fff; border-radius: 9px;
+    border-top-left-radius: 2px; overflow: hidden; box-shadow: 0 1px 1px rgba(0,0,0,0.12);
+    animation: pop 0.28s ease both; flex-shrink: 0;
+  }
+  .card-head { background: var(--turmeric); color: #2a2418; padding: 8px 10px; font-size: 12px; font-weight: 700; }
+  .card-body { padding: 8px 10px; font-size: 12.5px; color: #111; }
+  .row { display: flex; justify-content: space-between; gap: 8px; padding: 5px 0; border-bottom: 1px dashed #e3dcc8; align-items: center; }
+  .row:last-child { border-bottom: none; }
+  .row .name { font-weight: 600; }
+  .row .hi-name { display: block; font-size: 10.5px; color: #8a8072; font-family: "Noto Sans Devanagari", sans-serif; }
+  .row .qty-strike { text-decoration: line-through; color: #b0a897; margin-right: 5px; }
+  .row .price { font-variant-numeric: tabular-nums; color: var(--leaf-fill); font-weight: 700; white-space: nowrap; }
+  .row .price-was { font-variant-numeric: tabular-nums; color: #6b6055; text-decoration: line-through; font-size: 11px; margin-right: 4px; }
+  .total-line { display: flex; justify-content: space-between; margin-top: 6px; padding-top: 6px; border-top: 1px solid #e3dcc8; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .khata-badge { display: inline-block; margin-top: 8px; background: var(--leaf-fill); color: #fff; text-align: center; padding: 8px; border-radius: 6px; font-weight: 700; font-size: 12.5px; width: 100%; }
+
+  .quick-replies { display: flex; flex-wrap: wrap; gap: 6px; padding: 4px 4px 0; flex-shrink: 0; }
+  .qr-chip { background: #fff; color: var(--wa-header); border: 1px solid #d7ecd9; border-radius: 999px; padding: 6px 12px; font-size: 12px; font-weight: 600; font-family: inherit; cursor: pointer; }
+  .qr-chip:hover { background: #eafbef; border-color: var(--wa-header); }
+  .qr-chip:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+
+  .wa-composer { flex: 0 0 auto; background: #f0ede5; padding: 8px 10px; display: flex; align-items: center; gap: 8px; }
+  .wa-composer .input { flex: 1; background: #fff; border-radius: 20px; padding: 8px 14px; font-size: 12.5px; color: #9a958a; }
+  .wa-composer .send { width: 34px; height: 34px; border-radius: 50%; background: var(--wa-header); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 15px; flex: 0 0 auto; }
+  .wa-composer .icon-btn { color: #54656f; flex: 0 0 auto; display: inline-flex; align-items: center; justify-content: center; }
+
+  .annot { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; margin-top: 16px; }
+  .annot-title { font-weight: 700; font-size: 13.5px; color: var(--turmeric); margin-bottom: 4px; }
+  .annot-body { font-size: 13px; color: var(--ink-soft); line-height: 1.55; }
+
+  .disclosure { margin-top: 22px; padding: 12px 16px; border-radius: 10px; background: var(--paper); border: 1px solid var(--line); font-size: 12px; color: var(--ink-soft); line-height: 1.55; }
+  .disclosure b { color: var(--ink); }
+
+  .demo-cta { margin-top: 14px; padding: 18px 16px; border-radius: 10px; background: var(--wa-header); text-align: center; }
+  .demo-cta p { margin: 0 0 10px; font-size: 13px; color: rgba(255,255,255,0.92); font-weight: 600; }
+  .demo-cta a.cta-btn { display: inline-block; background: #fff; color: var(--wa-header); font-weight: 700; font-size: 13.5px; padding: 10px 22px; border-radius: 8px; text-decoration: none; }
+  .demo-home { display: block; text-align: center; margin-top: 14px; font-size: 12px; color: var(--ink-soft); text-decoration: none; }
+  .demo-home:hover { text-decoration: underline; }
+
+  @media (max-width: 480px) { .wrap { padding: 28px 16px 56px; } }
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+  <div class="eyebrow">Delta Labs AI — WhatsApp wholesale ordering demo</div>
+  <h1>Recurring wholesale orders, negotiated in chat
+    <span class="hi" lang="hi">हर बार का थोक ऑर्डर, व्हाट्सएप पर मोल-भाव के साथ</span>
+  </h1>
+  <p class="sub">
+    A kirana/general-store owner reordering from their regular supplier — bot remembers the usual order, checks live stock, and handles the back-and-forth on bulk pricing, all in one thread.
+  </p>
+
+  <div class="stage">
+    <div>
+      <div class="rail" id="rail"></div>
+      <div class="rail-controls">
+        <button class="ctrl-btn" id="prevBtn">◀ Back / पीछे</button>
+        <button class="ctrl-btn primary" id="nextBtn">Next / आगे ▶</button>
+      </div>
+      <div class="annot" id="annot"></div>
+    </div>
+
+    <div class="phone-shell">
+      <div class="phone-notch"></div>
+      <div class="phone-screen">
+        <div class="status-bar">
+          <span>9:41</span>
+          <span class="sb-icons">
+            <svg viewBox="0 0 18 12" width="16" height="11" fill="currentColor"><rect x="0" y="8" width="3" height="4"/><rect x="5" y="5.5" width="3" height="6.5"/><rect x="10" y="3" width="3" height="9"/><rect x="15" y="0.5" width="3" height="11.5"/></svg>
+            <svg viewBox="0 0 26 13" width="22" height="11"><rect x="0.5" y="0.5" width="22" height="12" rx="3" stroke="currentColor" fill="none"/><rect x="2" y="2" width="19" height="9" rx="1.5" fill="currentColor"/><rect x="23.5" y="4" width="2" height="5" rx="1" fill="currentColor"/></svg>
+          </span>
+        </div>
+        <div class="wa-header">
+          <div class="wa-avatar">ST</div>
+          <div>
+            <div class="wa-title">Shree Wholesale Traders</div>
+            <div class="wa-status" id="waStatus">online</div>
+          </div>
+          <div class="wa-header-icons">
+            <svg viewBox="0 0 20 16" width="18" height="15" fill="currentColor"><rect x="0" y="2" width="12" height="12" rx="2"/><polygon points="13,6 19,2.5 19,13.5 13,10"/></svg>
+            <svg viewBox="0 0 16 16" width="15" height="15" fill="currentColor"><path d="M3.5 1.5c-.8 0-1.5.7-1.5 1.5 0 6.5 5 11.5 11.5 11.5.8 0 1.5-.7 1.5-1.5v-2.2c0-.5-.3-.9-.8-1l-2.6-.7c-.4-.1-.8 0-1.1.3l-.9.9a9 9 0 01-4.4-4.4l.9-.9c.3-.3.4-.7.3-1.1l-.7-2.6c-.1-.5-.5-.8-1-.8H3.5z"/></svg>
+            <svg viewBox="0 0 4 16" width="4" height="16" fill="currentColor"><circle cx="2" cy="2" r="2"/><circle cx="2" cy="8" r="2"/><circle cx="2" cy="14" r="2"/></svg>
+          </div>
+        </div>
+        <div class="wa-thread" id="thread"></div>
+        <div class="wa-composer">
+          <span class="icon-btn"><svg viewBox="0 0 18 18" width="17" height="17"><circle cx="9" cy="9" r="7.5" fill="none" stroke="currentColor" stroke-width="1.3"/><circle cx="6" cy="7.5" r="1" fill="currentColor"/><circle cx="12" cy="7.5" r="1" fill="currentColor"/><path d="M5 11 Q9 13.5 13 11" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></span>
+          <div class="input" id="composerHint">Type a message</div>
+          <span class="icon-btn"><svg viewBox="0 0 16 16" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 6.5L8 13a3 3 0 01-4.2-4.2l6.4-6.4a2 2 0 012.8 2.8L6.6 11.6a1 1 0 01-1.4-1.4l5.6-5.6"/></svg></span>
+          <span class="icon-btn"><svg viewBox="0 0 18 14" width="17" height="13"><rect x="0" y="2" width="18" height="11" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="9" cy="7.5" r="3" fill="none" stroke="currentColor" stroke-width="1.2"/><rect x="6" y="0" width="6" height="2.5" rx="1" fill="currentColor"/></svg></span>
+          <div class="send">➤</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="disclosure"><b>This is a demo, not a client story.</b> Shree Wholesale Traders and Sharma Kirana are fictional, invented to show what wholesale reordering can look like on WhatsApp — recognizing a returning buyer, checking stock, and handling bulk-pricing negotiation. Delta Labs AI has no relationship with any business by these names, and no part of this conversation is real.</div>
+  <div class="demo-cta">
+    <p>Want this built for your business?</p>
+    <a class="cta-btn" href="https://cal.com/ag-ventures-qbqxax/30min" target="_blank" rel="noopener noreferrer">Book a free 30-min call</a>
+  </div>
+  <a class="demo-home" href="/">&larr; Back to Delta Labs AI</a>
+</div>
+
+<script>
+  const steps = [
+    {
+      en: "Regular customer messages",
+      hi: "पुराना ग्राहक मैसेज करता है",
+      annotTitle: "Step 1 — Recognized returning buyer",
+      annotHi: "स्टेप 1 — पुराना ग्राहक पहचाना गया",
+      annotBody: "The bot recognizes the number and pulls up their last order automatically — no re-explaining who they are or what they usually buy.",
+      status: "online",
+      bubbles: [
+        { type: "customer", en: "Namaste, Sharma Kirana here, need stock", hi: "नमस्ते, शर्मा किराना बोल रहा हूँ, माल चाहिए" },
+        { type: "shop", en: "Namaste Sharma ji! Same order as last time — 5 bags Aata, 2 tins Oil, 10kg Sugar?", hi: "नमस्ते शर्मा जी! पिछली बार जैसा ऑर्डर — 5 बोरी आटा, 2 टिन तेल, 10 किलो चीनी?", chips: [{en:"✅ Same order", hi:"वही ऑर्डर"}, {en:"✏️ Change quantities", hi:"मात्रा बदलें"}] }
+      ]
+    },
+    {
+      en: "Change quantities",
+      hi: "मात्रा बदलें",
+      annotTitle: "Step 2 — Adjusting the order",
+      annotHi: "स्टेप 2 — ऑर्डर में बदलाव",
+      annotBody: "Customer wants more this time. Bot updates the order line by line — no pricing shown yet, since availability isn't confirmed until the next step.",
+      status: "online",
+      bubbles: [
+        { type: "customer", en: "Change quantities — need more Aata this time, 8 bags", hi: "मात्रा बदलनी है — इस बार ज़्यादा आटा चाहिए, 8 बोरी" },
+        { type: "shop", en: "Updated ✅", hi: "अपडेट कर दिया ✅" },
+        { type: "order", items: [
+          { name: "Aata (25kg bag)", hiName: "आटा (25 किलो की बोरी)", qty: 8, unit: "bag" },
+          { name: "Cooking Oil (15L tin)", hiName: "तेल (15 लीटर का टिन)", qty: 2, unit: "tin" },
+          { name: "Sugar", hiName: "चीनी", qty: "10kg", unit: "weight" }
+        ]}
+      ]
+    },
+    {
+      en: "Stock check & pricing",
+      hi: "स्टॉक चेक और भाव",
+      annotTitle: "Step 3 — Live stock check",
+      annotHi: "स्टेप 3 — स्टॉक चेक",
+      annotBody: "Bot checks real inventory before quoting anything — if something's short, it says so and offers a substitute instead of silently promising stock that isn't there. Per-item rates are shown here, once availability is actually confirmed — not invented later at checkout.",
+      status: "typing...",
+      bubbles: [
+        { type: "system", en: "🔎 Checking live stock…", hi: "🔎 स्टॉक चेक हो रहा है…" },
+        { type: "shop", en: "Aata and Oil are both in stock ✅ — Sugar is short right now, only 6kg available. Want that, or should I send Jaggery instead?", hi: "आटा और तेल दोनों स्टॉक में हैं ✅ — चीनी अभी कम है, सिर्फ 6 किलो है। 6 किलो ही भेज दूँ, या गुड़ चाहिए?", chips: [{en:"✅ 6kg Sugar is fine", hi:"6 किलो ठीक है"}, {en:"🍯 Switch to Jaggery", hi:"गुड़ भेज दो"}] },
+        { type: "customer", en: "6kg Sugar is fine", hi: "6 किलो ठीक है" },
+        { type: "price", items: [
+          { name: "Aata (25kg bag)", hiName: "आटा", rate: 1050, unit: "/bag" },
+          { name: "Cooking Oil (15L tin)", hiName: "तेल", rate: 1900, unit: "/tin" },
+          { name: "Sugar", hiName: "चीनी", rate: 40, unit: "/kg" }
+        ], note: "Standard rate — 8+ bags of Aata qualify for the next slab, shown in the next step" }
+      ]
+    },
+    {
+      en: "Negotiate the bulk slab",
+      hi: "बल्क स्लैब पर मोल-भाव",
+      annotTitle: "Step 4 — Price negotiation",
+      annotHi: "स्टेप 4 — भाव पर मोल-भाव",
+      annotBody: "The part that actually matters for wholesale: because the order grew (8 bags vs the usual 5), the bot offers the next volume-discount slab on its own — the same way a real distributor's counter staff would, without the customer having to ask twice.",
+      status: "online",
+      bubbles: [
+        { type: "customer", en: "8 bags is a big order — negotiate a bit on the rate", hi: "8 बोरी का बड़ा ऑर्डर है, थोड़ा रेट कम करो" },
+        { type: "shop", en: "You're right — our bulk slab kicks in at 8+ bags", hi: "आप सही कह रहे हैं — 8+ बोरी पर हमारा बल्क स्लैब लगता है" },
+        { type: "priceCut", items: [
+          { name: "Aata (25kg bag)", hiName: "आटा", was: 1050, now: 1000, unit: "/bag" }
+        ], note: "Slab rate applied automatically at 8+ bags" }
+      ]
+    },
+    {
+      en: "Order confirmed",
+      hi: "ऑर्डर कन्फर्म",
+      annotTitle: "Step 5 — Confirm & khata",
+      annotHi: "स्टेप 5 — कन्फर्म और खाता",
+      annotBody: "Final total, built from the exact rates already shown — nothing new appears at checkout. Most kirana-wholesale relationships run on credit (khata), not per-order payment — the bot supports that directly instead of forcing an online payment that doesn't match how this trade actually works.",
+      status: "online",
+      bubbles: [
+        { type: "customer", en: "Sounds good, confirm it", hi: "ठीक है, कन्फर्म करो" },
+        { type: "khata" }
+      ]
+    },
+    {
+      en: "Delivery scheduled",
+      hi: "डिलीवरी शेड्यूल हुई",
+      annotTitle: "Step 6 — Delivery",
+      annotHi: "स्टेप 6 — डिलीवरी",
+      annotBody: "Order goes straight to dispatch, no separate call needed to schedule pickup — the driver's ETA lands in the same thread.",
+      status: "online",
+      bubbles: [
+        { type: "shop", en: "Order confirmed — added to your khata. Delivery tomorrow morning, driver will call before arriving 🚚", hi: "ऑर्डर कन्फर्म — आपके खाते में जोड़ दिया। कल सुबह डिलीवरी होगी, पहुँचने से पहले ड्राइवर कॉल करेगा 🚚" },
+        { type: "system", en: "🔔 Order #WT-1187 — ready for tomorrow's delivery", hi: "🔔 ऑर्डर #WT-1187 — कल की डिलीवरी के लिए तैयार" }
+      ]
+    }
+  ];
+
+  // Aata negotiated rate (1000, not 1050) is used by both the price-cut card and the
+  // final khata total — computed once here so the two can never drift apart.
+  const AATA_QTY = 8, AATA_RATE = 1000, OIL_QTY = 2, OIL_RATE = 1900, SUGAR_QTY = 6, SUGAR_RATE = 40;
+  const SUBTOTAL = AATA_QTY * AATA_RATE + OIL_QTY * OIL_RATE + SUGAR_QTY * SUGAR_RATE;
+  const GST = Math.round(SUBTOTAL * 0.05);
+  const GRAND_TOTAL = SUBTOTAL + GST;
+  const inr = (n) => "₹" + n.toLocaleString("en-IN");
+
+  let clockMinutes = 9 * 60 + 14; // demo clock, advances per rendered message
+  let msgIndex = 0;
+  function nextTime() {
+    msgIndex++;
+    clockMinutes += 1 + (msgIndex % 3); // varies 1-3 min so it doesn't read as a mechanical +2 tick
+    const h24 = Math.floor(clockMinutes / 60) % 24, m = clockMinutes % 60;
+    const h12 = ((h24 + 11) % 12) + 1, ampm = h24 < 12 ? "AM" : "PM";
+    return h12 + ":" + String(m).padStart(2, "0") + " " + ampm;
+  }
+
+  // Real WhatsApp only draws the bubble tail on the first message of a run from the
+  // same sender; consecutive messages sit flush with no tail. Tracked across bubbleHTML
+  // calls within one render() pass, reset whenever a card/system item breaks the run.
+  let lastSender = null;
+
+  const railEl = document.getElementById("rail");
+  const threadEl = document.getElementById("thread");
+  const annotEl = document.getElementById("annot");
+  const statusEl = document.getElementById("waStatus");
+  const prevBtn = document.getElementById("prevBtn");
+  const nextBtn = document.getElementById("nextBtn");
+
+  let current = 0;
+
+  function renderRail() {
+    railEl.innerHTML = "";
+    steps.forEach((s, i) => {
+      const btn = document.createElement("button");
+      btn.className = "step-btn" + (i === current ? " active" : "");
+      btn.innerHTML = '<span class="step-num">' + (i + 1) + '</span><span><span class="step-label-en">' + s.en + '</span><span class="step-label-hi" lang="hi">' + s.hi + '</span></span>';
+      btn.addEventListener("click", () => { current = i; render(); });
+      railEl.appendChild(btn);
+    });
+  }
+
+  function bubbleHTML(b) {
+    if (b.type !== "customer" && b.type !== "shop") lastSender = null;
+    if (b.type === "system") {
+      const hiLine = b.hi ? '<div lang="hi" style="font-size:10.5px;opacity:0.85;margin-top:2px;">' + b.hi + '</div>' : "";
+      return '<div class="bubble system">' + b.en + hiLine + '</div>';
+    }
+    if (b.type === "order") {
+      const rows = b.items.map(it => {
+        const qtyLabel = it.unit === "weight" ? it.qty : ("×" + it.qty);
+        return '<div class="row"><span><span class="name">' + it.name + '</span><span class="hi-name" lang="hi">' + it.hiName + '</span></span><span class="price">' + qtyLabel + '</span></div>';
+      }).join("");
+      return '<div class="order-card"><div class="card-head">📋 Order / <span lang="hi">ऑर्डर</span></div><div class="card-body">' + rows + '</div><div class="card-meta">' + nextTime() + '</div></div>';
+    }
+    if (b.type === "price") {
+      const rows = b.items.map(it =>
+        '<div class="row"><span><span class="name">' + it.name + '</span><span class="hi-name" lang="hi">' + it.hiName + '</span></span>' +
+        '<span class="price">' + inr(it.rate) + it.unit + '</span></div>'
+      ).join("");
+      return '<div class="price-card"><div class="card-head">💰 Standard rate</div><div class="card-body">' + rows +
+        '<div style="font-size:11px;color:var(--ink-soft,#8a8072);margin-top:6px;">' + b.note + '</div></div><div class="card-meta">' + nextTime() + '</div></div>';
+    }
+    if (b.type === "priceCut") {
+      const rows = b.items.map(it =>
+        '<div class="row"><span><span class="name">' + it.name + '</span><span class="hi-name" lang="hi">' + it.hiName + '</span></span>' +
+        '<span><span class="price-was">' + inr(it.was) + it.unit + '</span><span class="price">' + inr(it.now) + it.unit + '</span></span></div>'
+      ).join("");
+      return '<div class="price-card"><div class="card-head">💰 Bulk slab applied</div><div class="card-body">' + rows +
+        '<div style="font-size:11px;color:var(--ink-soft,#8a8072);margin-top:6px;">' + b.note + '</div></div><div class="card-meta">' + nextTime() + '</div></div>';
+    }
+    if (b.type === "khata") {
+      const rows = [
+        { name: "Aata × " + AATA_QTY + " bags", price: AATA_QTY * AATA_RATE },
+        { name: "Oil × " + OIL_QTY + " tins", price: OIL_QTY * OIL_RATE },
+        { name: "Sugar × " + SUGAR_QTY + "kg", price: SUGAR_QTY * SUGAR_RATE }
+      ].map(it => '<div class="row"><span class="name">' + it.name + '</span><span class="price">' + inr(it.price) + '</span></div>').join("");
+      return '<div class="khata-card"><div class="card-head">🧾 Final order</div><div class="card-body">' + rows +
+        '<div class="row"><span class="name">Subtotal</span><span class="price">' + inr(SUBTOTAL) + '</span></div>' +
+        '<div class="row"><span class="name">GST (5%)</span><span class="price">' + inr(GST) + '</span></div>' +
+        '<div class="total-line"><span>Total</span><span>' + inr(GRAND_TOTAL) + '</span></div>' +
+        '<div class="khata-badge">📒 Added to khata (credit account)</div></div><div class="card-meta">' + nextTime() + '</div></div>';
+    }
+    const cls = b.type === "customer" ? "customer" : "shop";
+    const grouped = cls === lastSender;
+    lastSender = cls;
+    const hi = b.hi ? '<div class="hi-line" lang="hi">' + b.hi + '</div>' : "";
+    const meta = '<span class="msg-meta">' + nextTime() + (cls === "customer" ? ' <span class="ticks">✓✓</span>' : '') + '</span>';
+    let chips = "";
+    if (b.chips) {
+      chips = '<div class="quick-replies">' + b.chips.map(c => '<button type="button" class="qr-chip">' + c.en + ' / <span lang="hi">' + c.hi + '</span></button>').join("") + '</div>';
+    }
+    return '<div class="bubble ' + cls + (grouped ? ' grouped' : '') + '"><div>' + b.en + '</div>' + hi + meta + '</div>' + chips;
+  }
+
+  function render() {
+    // Only restore focus to the rail if the rail already had focus (keyboard nav) -
+    // otherwise this steals focus off Next/Prev/chip buttons on every click.
+    const hadRailFocus = document.activeElement && document.activeElement.classList.contains("step-btn");
+    renderRail();
+    clockMinutes = 9 * 60 + 14;
+    msgIndex = 0;
+    lastSender = null;
+    const step = steps[current];
+    statusEl.textContent = step.status;
+
+    annotEl.innerHTML = '<div class="annot-title">' + step.annotTitle + ' <span lang="hi" style="font-weight:400;opacity:0.75;">— ' + step.annotHi + '</span></div><div class="annot-body">' + step.annotBody + '</div>';
+
+    threadEl.innerHTML = "";
+    threadEl.insertAdjacentHTML("beforeend", '<div class="date-divider"><span>TODAY</span></div>');
+    for (let i = 0; i <= current; i++) {
+      steps[i].bubbles.forEach(b => threadEl.insertAdjacentHTML("beforeend", bubbleHTML(b)));
+    }
+    threadEl.scrollTop = threadEl.scrollHeight;
+
+    prevBtn.disabled = current === 0;
+    nextBtn.textContent = current === steps.length - 1 ? "Restart / फिर से शुरू" : "Next / आगे ▶";
+
+    // renderRail() just wiped and rebuilt every step button - without the hadRailFocus
+    // guard above, a click on Next/Prev/a chip would get its focus yanked back to the
+    // rail; this only restores focus for the keyboard-nav case that motivated it.
+    if (hadRailFocus) {
+      const activeBtn = railEl.children[current];
+      if (activeBtn) activeBtn.focus({ preventScroll: true });
+    }
+  }
+
+  // Quick-reply chips are the single most natural thing a prospect taps in a live demo -
+  // wire them to advance, mirroring a real customer having made that choice.
+  threadEl.addEventListener("click", (e) => {
+    const chip = e.target.closest(".qr-chip");
+    if (!chip) return;
+    if (current < steps.length - 1) current++;
+    render();
+  });
+
+  prevBtn.addEventListener("click", () => { if (current > 0) { current--; render(); } });
+  nextBtn.addEventListener("click", () => {
+    if (current === steps.length - 1) { current = 0; }
+    else { current++; }
+    render();
+  });
+
+  render();
+</script>
+
+</body>
+</html>
