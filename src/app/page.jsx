@@ -600,7 +600,7 @@ function Demos() {
       useCase: "Wholesale reordering & negotiation",
       brand: "Shree Wholesale Traders",
       initials: "ST",
-      desc: "A returning buyer reorders, negotiates bulk pricing, and settles on credit - all in one WhatsApp thread.",
+      desc: "A returning buyer reorders and negotiates bulk pricing in their own language - shown here in Hindi, works the same in any language your customers speak.",
       href: "/demos/kirana-wholesale.html",
       video: "/demos/video/kirana-wholesale.mp4",
       poster: "/demos/video/kirana-wholesale-poster.jpg",

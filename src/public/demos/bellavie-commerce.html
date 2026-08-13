@@ -341,11 +341,11 @@
       bubbles: [
         { type: "customer", en: "Serums" },
         { type: "products", cat: "💧 Serums", items: [
-          { name: "Vitamin C Glow Serum", note: "30ml · brightening", p: 899, emoji: "✨" },
-          { name: "Hyaluronic Hydra Serum", note: "30ml · deep hydration", p: 749, emoji: "💧" },
-          { name: "Niacinamide 10%", note: "30ml · pore refining", p: 649, emoji: "🌿" }
+          { name: "Vitamin C Glow Serum", note: "30ml · brightening", p: 34, emoji: "✨" },
+          { name: "Hyaluronic Hydra Serum", note: "30ml · deep hydration", p: 28, emoji: "💧" },
+          { name: "Niacinamide 10%", note: "30ml · pore refining", p: 24, emoji: "🌿" }
         ]},
-        { type: "cartAdd", item: { name: "Vitamin C Glow Serum", p: 899, qty: 1 } },
+        { type: "cartAdd", item: { name: "Vitamin C Glow Serum", p: 34, qty: 1 } },
         { type: "system", en: "✅ Added to cart — Vitamin C Glow Serum" }
       ]
     },
@@ -358,9 +358,9 @@
         { type: "shop", en: "Great pick! Pairs well with our sunscreen if you're using Vitamin C in the mornings ☀️", chips: ["☀️ Show sunscreen", "🛒 Just checkout"] },
         { type: "customer", en: "Show sunscreen" },
         { type: "products", cat: "☀️ Sunscreen", items: [
-          { name: "SPF 50 Matte Sunscreen", note: "50ml · no white cast", p: 599, emoji: "☀️" }
+          { name: "SPF 50 Matte Sunscreen", note: "50ml · no white cast", p: 22, emoji: "☀️" }
         ]},
-        { type: "cartAdd", item: { name: "SPF 50 Matte Sunscreen", p: 599, qty: 1 } },
+        { type: "cartAdd", item: { name: "SPF 50 Matte Sunscreen", p: 22, qty: 1 } },
         { type: "system", en: "✅ Added to cart — SPF 50 Matte Sunscreen" },
         { type: "customer", en: "Show my cart" },
         { type: "cart" }
@@ -373,14 +373,14 @@
       status: "online",
       bubbles: [
         { type: "shop", en: "Perfect — where should this ship?" },
-        { type: "customer", en: "📍 Location shared — Bandra West, Mumbai — 400050" },
+        { type: "customer", en: "📍 Location shared — 2.1 km away" },
         { type: "shop", en: "We deliver there in 2-3 days ✅" }
       ]
     },
     {
-      label: "Pay by UPI, in chat",
+      label: "Pay by card, in chat",
       annotTitle: "Step 6 — Payment",
-      annotBody: "A UPI payment link inside the same chat, confirmed automatically the moment it clears — no manual checking on the shop's end.",
+      annotBody: "A card payment link inside the same chat, confirmed automatically the moment it clears — no manual checking on the shop's end.",
       status: "online",
       bubbles: [
         { type: "shop", en: "Your total is ready — tap to pay:" },
@@ -393,7 +393,7 @@
       annotBody: "Payment confirms automatically, and status updates land right in the same thread — no separate tracking app or link to lose.",
       status: "online",
       bubbles: [
-        { type: "customer", en: "✅ Paid ₹1,498 via UPI" },
+        { type: "customer", en: "✅ Paid $56 via card" },
         { type: "shop", en: "Payment received! Your order is confirmed 🌿" },
         { type: "track" }
       ]
@@ -431,7 +431,7 @@
       const rows = b.items.map(it =>
         '<div class="prod-row"><div class="prod-thumb">' + it.emoji + '</div>' +
         '<div class="prod-info"><div class="prod-name">' + it.name + '</div><div class="prod-note">' + it.note + '</div></div>' +
-        '<div class="prod-price">₹' + it.p + '</div><div class="prod-add">Add</div></div>'
+        '<div class="prod-price">$' + it.p + '</div><div class="prod-add">Add</div></div>'
       ).join("");
       return '<div class="product-grid"><div class="card-head">' + b.cat + '</div><div class="card-body">' + rows + '</div><div class="card-meta">' + nextTime() + '</div></div>';
     }
@@ -439,20 +439,20 @@
       const lines = cartLines();
       const rows = lines.map(it =>
         '<div class="prod-row"><div class="prod-info"><div class="prod-name">' + it.name + '</div><div class="prod-note">Qty: ' + it.qty + '</div></div>' +
-        '<div class="prod-price">₹' + (it.p * it.qty).toLocaleString('en-IN') + '</div></div>'
+        '<div class="prod-price">$' + (it.p * it.qty).toLocaleString('en-US') + '</div></div>'
       ).join("");
       return '<div class="cart-card"><div class="card-head">🛒 Your cart</div><div class="card-body">' + rows +
-        '<div class="cart-total"><span>Total</span><span>₹' + cartTotal().toLocaleString('en-IN') + '</span></div></div><div class="card-meta">' + nextTime() + '</div></div>';
+        '<div class="cart-total"><span>Total</span><span>$' + cartTotal().toLocaleString('en-US') + '</span></div></div><div class="card-meta">' + nextTime() + '</div></div>';
     }
     if (b.type === "pay") {
       const lines = cartLines();
       const rows = lines.map(it =>
         '<div class="prod-row"><div class="prod-info"><div class="prod-name">' + it.name + ' × ' + it.qty + '</div></div>' +
-        '<div class="prod-price">₹' + (it.p * it.qty).toLocaleString('en-IN') + '</div></div>'
+        '<div class="prod-price">$' + (it.p * it.qty).toLocaleString('en-US') + '</div></div>'
       ).join("");
       return '<div class="pay-card"><div class="card-head">🧾 Order total</div><div class="card-body">' + rows +
-        '<div class="cart-total"><span>Total</span><span>₹' + cartTotal().toLocaleString('en-IN') + '</span></div>' +
-        '<div class="pay-btn">Pay ₹' + cartTotal().toLocaleString('en-IN') + ' via UPI →</div></div><div class="card-meta">' + nextTime() + '</div></div>';
+        '<div class="cart-total"><span>Total</span><span>$' + cartTotal().toLocaleString('en-US') + '</span></div>' +
+        '<div class="pay-btn">Pay $' + cartTotal().toLocaleString('en-US') + ' via card →</div></div><div class="card-meta">' + nextTime() + '</div></div>';
     }
     if (b.type === "track") {
       return '<div class="track-card"><div class="card-head">📦 Order #B-2291</div><div class="card-body"><div class="track-steps">' +
