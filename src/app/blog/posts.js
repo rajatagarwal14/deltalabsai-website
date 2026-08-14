@@ -1,5 +1,41 @@
 export const posts = [
   {
+    slug: "gym-membership-automation-dubai",
+    title: "Gym Membership Automation Dubai: Cut Member Churn With WhatsApp (2026)",
+    metaTitle: "Gym Churn Automation Dubai | WhatsApp Win-Back & Booking",
+    subtitle: "How Dubai gyms use WhatsApp automation to cut new-member churn without hiring more front-desk staff",
+    category: "Fitness",
+    date: "August 13, 2026",
+    readTime: "5 min read",
+    keywords: ["gym membership automation dubai", "gym churn management uae", "gym crm dubai", "reduce gym member churn dubai", "whatsapp gym booking automation"],
+    description: "Dubai gyms lose up to 70% of new members within 90 days. Automated WhatsApp check-in reminders, class booking and churn win-back \u2014 live in 2 weeks, from $300/mo. Free Dubai gym audit.",
+    sections: [
+      {
+        heading: null,
+        body: `Most Dubai gyms already know the number: roughly 70% of new members who join cancel within 90 days. What most gyms do not have is a system that catches that member before month three, instead of finding out when the card stops being swiped.`,
+      },
+      {
+        heading: "Why phone calls do not work here",
+        body: `A UAE member who misses two classes does not want a phone call. WhatsApp is how this market expects a business to reach it, a short check-in message, not a cold call from an unknown number. Any win-back system built for Dubai gyms has to be WhatsApp-first, text only.`,
+      },
+      {
+        heading: "What the automation actually does",
+        body: `Delta Labs AI sets up four WhatsApp sequences for a gym:
+
+- **Check-in reminders** - a message when a member has not scanned in for 10+ days, before they mentally quit.
+- **Class booking** - members book and rebook classes over WhatsApp, no app download.
+- **Churn win-back** - a scripted 3-message sequence for members approaching their 90-day cancel window.
+- **Review requests** - automated ask after a member hits a streak, timed to when they are most likely to say yes.
+
+This is the same WhatsApp-automation approach already live for Delta Labs AI's UAE dental clients, see [Dental Clinic Automation Abu Dhabi](/blog/dental-clinic-automation-abu-dhabi) for the same pattern applied to no-shows instead of churn.`,
+      },
+      {
+        heading: "Get your Dubai gym's number",
+        body: `Book a free Dubai gym audit and Delta Labs AI will show your actual 90-day churn rate and where the automation would catch it. Live in 2 weeks, from $300/mo, no lock-in. See the full generic playbook at [Reduce Gym Member Churn With Automation](/blog/gym-membership-churn-automation).`,
+      },
+    ],
+  },
+  {
     slug: "spreadsheet-to-crm-cost-breakdown",
     title: "What Staying on Spreadsheets Really Costs a Service Team (2026 Cost Breakdown)",
     metaTitle: "Spreadsheet vs CRM Cost Breakdown: What Your Team Is Losing Monthly",
