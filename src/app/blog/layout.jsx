@@ -1,7 +1,7 @@
 export const metadata = {
-  title: "Blog — Delta Labs AI | AI & Operations Insights for Growing Businesses",
+  title: "AI Automation Playbooks: Dental, Gyms, D2C & Home Services | Delta Labs AI",
   description:
-    "Practical AI automation guides for small businesses. No jargon, just results. By Delta Labs AI.",
+    "Real automation playbooks for cutting no-shows, recovering lost revenue, and closing follow-up gaps — for dental clinics, gyms, e-commerce, and home service businesses.",
   keywords: [
     "AI business blog",
     "business automation insights",
