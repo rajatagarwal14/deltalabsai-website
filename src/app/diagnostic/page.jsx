@@ -548,6 +548,21 @@ export default function IntakeForm() {
                 }}>{opt}</button>
               ))}
             </div>
+            {info.industry === "Home Services (HVAC, Plumbing, etc.)" && (
+              <div style={{
+                marginTop: 14, padding: "12px 16px", borderRadius: 10,
+                background: "#FEF3C7", border: "1px solid #FDE68A",
+                display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10, flexWrap: "wrap",
+              }}>
+                <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, color: "#78350F" }}>
+                  Home service businesses lose ~$126K/yr to missed calls. Want that number for your business first?
+                </span>
+                <a href="/tools/missed-call-calculator" target="_blank" rel="noopener noreferrer" style={{
+                  fontFamily: "'DM Sans',sans-serif", fontSize: 12.5, fontWeight: 700, color: "#92400E",
+                  textDecoration: "underline", whiteSpace: "nowrap",
+                }}>See your missed-call cost →</a>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -749,25 +764,35 @@ export default function IntakeForm() {
                   body: JSON.stringify(payload),
                   mode: "no-cors",
                 });
-                // Sync to Delta Labs CRM (silent — won't break form if CRM is down)
-                fetch("https://delta-labs-ecosystem.vercel.app/api/leads/capture", {
-                  method: "POST",
-                  headers: { "Content-Type": "application/json" },
-                  body: JSON.stringify({
-                    name: info.name, email: info.email, company_name: info.company, website: info.website,
-                    industry: info.industry, source: "diagnostic_tool",
-                    score: Math.round((Object.values(scores).reduce((a, b) => a + b, 0) / 45) * 100),
-                    notes: "Diagnostic: " + info.urgency + ". Challenge: " + info.biggestChallenge,
-                    tags: leadTags,
-                    metadata: {
-                      diagnostic_answers: {
-                        teamSize: info.teamSize, revenue: info.revenue, urgency: info.urgency,
-                        biggestChallenge: info.biggestChallenge, tool_stack: toolStack,
-                        tool_spend: toolSpend, tool_satisfaction: toolSatisfaction,
-                      }
-                    },
-                  }),
-                }).catch(() => {});
+                // Sync to Delta Labs CRM — same-origin route (was a cross-origin call to
+                // delta-labs-ecosystem.vercel.app with no CORS headers on that route, so the
+                // browser silently blocked it and .catch(() => {}) hid the failure entirely.
+                // This is why diagnostic submissions never reached the CRM.
+                let crmOk = false;
+                try {
+                  const crmRes = await fetch("/api/leads/capture", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                      name: info.name, email: info.email, company_name: info.company, website: info.website,
+                      industry: info.industry, source: "diagnostic_tool",
+                      score: Math.round((Object.values(scores).reduce((a, b) => a + b, 0) / 45) * 100),
+                      notes: "Diagnostic: " + info.urgency + ". Challenge: " + info.biggestChallenge,
+                      tags: leadTags,
+                      metadata: {
+                        diagnostic_answers: {
+                          teamSize: info.teamSize, revenue: info.revenue, urgency: info.urgency,
+                          biggestChallenge: info.biggestChallenge, tool_stack: toolStack,
+                          tool_spend: toolSpend, tool_satisfaction: toolSatisfaction,
+                        }
+                      },
+                    }),
+                  });
+                  crmOk = crmRes.ok;
+                  if (!crmRes.ok) console.error("[diagnostic] CRM sync failed:", crmRes.status, await crmRes.text());
+                } catch (crmErr) {
+                  console.error("[diagnostic] CRM sync error:", crmErr);
+                }
                 setSubmitted(true);
                 trackGa4Event("diagnostic_complete", { score: scoreData.pct, industry: info.industry });
               } catch (err) {
