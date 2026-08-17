@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import DiagnosticBanner from "./DiagnosticBanner";
 
 const CAL = "https://cal.com/ag-ventures-qbqxax/30min";
 const FORM = "/diagnostic";
@@ -988,6 +989,7 @@ export default function App() {
     <div style={{ margin: 0, padding: 0 }}>
       <AnnouncementBar />
       <Nav />
+      <DiagnosticBanner />
       <Hero />
       <HeroCTABand />
       <Proof />
