@@ -1,5 +1,41 @@
 export const posts = [
   {
+    slug: "home-services-automation-dubai",
+    title: "Home Services Booking Automation Dubai: Stop Losing Jobs to Slow WhatsApp Replies",
+    metaTitle: "Home Services Automation Dubai | WhatsApp Booking",
+    subtitle: "How Dubai plumbers, electricians and cleaning companies automate booking, confirmation and follow-up over WhatsApp — text only, no missed jobs",
+    category: "Home Services",
+    date: "August 20, 2026",
+    readTime: "5 min read",
+    keywords: ["home services automation dubai", "plumber booking automation dubai", "electrician whatsapp booking uae", "cleaning service automation dubai", "home services crm dubai"],
+    description: "Dubai home service businesses lose jobs to slow WhatsApp replies while a customer books the next number on Google. Automated booking, instant confirmation, and job follow-up — live in 2 weeks, from $300/mo. Free Dubai audit.",
+    sections: [
+      {
+        heading: null,
+        body: `A customer in Dubai looking for a plumber, electrician, or cleaner does not wait. They message two or three businesses on WhatsApp at once and book whoever replies first with a clear time slot. A job sitting unanswered for even 20 minutes is a job going to a competitor.`,
+      },
+      {
+        heading: "Why this has to run on WhatsApp, not a call center",
+        body: `UAE customers expect to book, confirm, and reschedule home services the same way they already message everyone else: WhatsApp, text only. A missed call from an unlisted number gets ignored. A WhatsApp message from a saved business contact gets answered in minutes. Any booking system built for this market has to be WhatsApp-first.`,
+      },
+      {
+        heading: "What the automation actually does",
+        body: `Delta Labs AI sets up four WhatsApp sequences for a home services business:
+
+- **Instant booking confirmation** - a WhatsApp reply within seconds of an enquiry, with the next available slot, so the customer never has to wait for a human.
+- **Job reminders** - a confirm/reschedule message before the appointment, cutting down on no-shows and wasted call-outs.
+- **Repeat-job follow-up** - an automatic check-in for recurring services (AC servicing, deep cleaning, pest control) timed to when the job is next due.
+- **Review requests** - sent right after a completed job, while the customer is still satisfied.
+
+This is the same WhatsApp-automation pattern already live for Delta Labs AI's UAE gym and dental clients, see [Gym Membership Automation Dubai](/blog/gym-membership-automation-dubai) for the same structure applied to member churn instead of missed jobs.`,
+      },
+      {
+        heading: "Get your Dubai number",
+        body: `Book a free Dubai home services audit and Delta Labs AI will show exactly where enquiries are going cold in your current process. Live in 2 weeks, from $300/mo, no lock-in. Take the [free 3-minute diagnostic](/diagnostic) to see your specific automation roadmap.`,
+      },
+    ],
+  },
+  {
     slug: "gym-membership-automation-dubai",
     title: "Gym Membership Automation Dubai: Cut Member Churn With WhatsApp (2026)",
     metaTitle: "Gym Churn Automation Dubai | WhatsApp Win-Back & Booking",
@@ -828,8 +864,8 @@ Don't let another quarter go by operating in chaos. Get clear on where you're go
   },
   {
     slug: "ai-automations-small-business",
-    title: "AI Automation for Small Business: 7 Workflows That Save 15 Hours/Week (No-Code)",
-    metaTitle: "AI Automation for Small Business: 7 Workflows",
+    title: "7 No-Code AI Automations That Save Small Businesses 15 Hrs/Week",
+    metaTitle: "7 No-Code AI Automations: Save 15 Hrs/Week",
     subtitle: "The 7 highest-ROI automations for small businesses — ranked by payback speed, no code or IT team required",
     category: "AI & Automation",
     date: "February 14, 2026",
@@ -892,7 +928,9 @@ How to set it up:
 
 The math: You spend 30 minutes per week on manual follow-ups. An automated system does it 24/7 without you thinking about it. Plus, your cash flow improves because invoices get paid faster. Saves you 2-3 hours/week in labor, plus improves cash flow by 5-10%.
 
-Tools: QuickBooks ($15/month), Freshbooks ($15/month), Wave (free), or Zapier ($10-15/month with your existing system)`,
+Tools: QuickBooks ($15/month), Freshbooks ($15/month), Wave (free), or Zapier ($10-15/month with your existing system)
+
+Running a clinic instead of chasing invoices? See [WhatsApp Follow-Up Automation for Small Clinics](/blog/whatsapp-follow-up-automation-small-clinics) for the same pattern applied to patient recall.`,
       },
       {
         heading: "4. Social Media Scheduling (Save 2-3 hours/week)",

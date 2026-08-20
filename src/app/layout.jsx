@@ -2,9 +2,9 @@ import "./globals.css";
 import WhatsAppFloat from "./WhatsAppFloat";
 
 export const metadata = {
-  title: "AI Automation for Small Business | Free AI Diagnostic | Delta Labs AI",
+  title: "Free 3-Min AI Diagnostic: Find Your Automation Gaps | Delta Labs AI",
   description:
-    "AI automation for small businesses and dental clinics. Free 3-min AI diagnostic that scores 9 dimensions, finds revenue leaks, and gives your automation roadmap. No lock-in.",
+    "Take the free 3-minute AI diagnostic — score your business on 9 dimensions, find revenue leaks, get a custom automation roadmap for your dental clinic, gym, or SMB. No lock-in, no sales call.",
   keywords: [
     "free AI diagnostic for small business",
     "AI consulting for dental clinics",
