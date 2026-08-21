@@ -983,6 +983,87 @@ function Footer() {
   );
 }
 
+// SmileCRM WhatsApp Demo Widget — DELA-4673: live interactive demo so visitors see the product working in the first 5 seconds, not just read copy
+function WhatsAppDemoWidget() {
+  const MSGS = [
+    { from: "user", text: "Hi! Do you have anything open this week for a cleaning?" },
+    { from: "bot", text: "Hi Priya! We have Tue 2:30pm or Thu 11:00am with Dr. Patel \u2014 which works?" },
+    { from: "user", text: "Thu 11am works" },
+    { from: "bot", text: "Booked \u2705 Thu 11:00am with Dr. Patel. I'll remind you the day before." },
+    { from: "bot", text: "Reminder: your cleaning is tomorrow at 11:00am. Reply C to confirm or R to reschedule.", gap: true },
+    { from: "user", text: "C" },
+    { from: "bot", text: "Confirmed \u2014 see you tomorrow \ud83e\uddb7" },
+  ];
+  const wrapRef = useRef(null);
+  const [on, setOn] = useState(false);
+  const [step, setStep] = useState(0);
+  const [typing, setTyping] = useState(false);
+
+  useEffect(() => {
+    const el = wrapRef.current;
+    if (!el) return;
+    const o = new IntersectionObserver(([e]) => { if (e.isIntersecting) setOn(true); }, { threshold: 0.3 });
+    o.observe(el);
+    return () => o.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!on) return;
+    const reduce = typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce) { setStep(MSGS.length); return; }
+    if (step >= MSGS.length) {
+      const t = setTimeout(() => setStep(0), 2600);
+      return () => clearTimeout(t);
+    }
+    const msg = MSGS[step];
+    const pause = msg.from === "bot" ? (msg.gap ? 1500 : 900) : 700;
+    setTyping(msg.from === "bot");
+    const t = setTimeout(() => { setTyping(false); setStep(s => s + 1); }, pause);
+    return () => clearTimeout(t);
+  }, [on, step]);
+
+  return (
+    <section style={{ padding: "0 24px 88px", background: "linear-gradient(160deg, #0B1220 0%, #0F1B33 100%)" }}>
+      <div className="wa-demo-grid" style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: "minmax(0,1fr) minmax(280px,380px)", gap: 48, alignItems: "center", paddingTop: 8 }}>
+        <F>
+          <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, fontWeight: 700, color: "#34D399", textTransform: "uppercase", letterSpacing: "0.1em" }}>Live Product Demo</span>
+          <h2 style={{ fontFamily: "'DM Sans',sans-serif", fontSize: "clamp(24px, 3.2vw, 34px)", fontWeight: 800, color: "#fff", letterSpacing: "-0.02em", margin: "10px 0 14px", lineHeight: 1.2 }}>
+            This is SmileCRM booking a patient \u2014 while you read this.
+          </h2>
+          <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 15, color: "#94A3B8", lineHeight: 1.7, margin: "0 0 24px", maxWidth: 460 }}>
+            No forms, no phone tag. A patient texts, SmileCRM books the slot and sends the reminder automatically \u2014 this is exactly what your patients see.
+          </p>
+          <Btn href="/smilecrm" style={{ background: "#25D366", fontSize: 15, padding: "14px 28px" }}>See SmileCRM for your clinic <Ic.Arr /></Btn>
+        </F>
+        <F d={0.15}>
+          <div ref={wrapRef} style={{ background: "#0B141A", borderRadius: 24, border: "1px solid rgba(255,255,255,0.08)", padding: 8, boxShadow: "0 24px 60px rgba(0,0,0,0.4)" }}>
+            <div style={{ background: "#075E54", borderRadius: "16px 16px 0 0", padding: "12px 14px", display: "flex", alignItems: "center", gap: 10 }}>
+              <div style={{ width: 34, height: 34, borderRadius: "50%", background: "#128C7E", display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", fontFamily: "'DM Sans',sans-serif", fontWeight: 700, fontSize: 13, flexShrink: 0 }}>SC</div>
+              <div>
+                <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13.5, fontWeight: 700, color: "#fff" }}>SmileCRM \u00b7 Bright Smile Dental</div>
+                <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, color: "rgba(255,255,255,0.7)" }}>{typing ? "typing..." : "online"}</div>
+              </div>
+            </div>
+            <div style={{ background: "#0B141A", minHeight: 280, padding: "16px 12px", display: "flex", flexDirection: "column", gap: 8, justifyContent: "flex-end" }}>
+              {MSGS.slice(0, step).map((m, i) => (
+                <div key={i} style={{ alignSelf: m.from === "user" ? "flex-end" : "flex-start", maxWidth: "82%", background: m.from === "user" ? "#005C4B" : "#1F2C34", color: "#E9EDEF", fontFamily: "'DM Sans',sans-serif", fontSize: 13.5, lineHeight: 1.5, padding: "8px 11px", borderRadius: 10 }}>
+                  {m.text}
+                </div>
+              ))}
+              {typing && (
+                <div style={{ alignSelf: "flex-start", background: "#1F2C34", padding: "10px 13px", borderRadius: 10, display: "flex", gap: 4 }}>
+                  {[0, 1, 2].map(i => <span key={i} style={{ width: 6, height: 6, borderRadius: "50%", background: "#8696A0", animation: `waDot 1.2s infinite ${i * 0.15}s` }} />)}
+                </div>
+              )}
+            </div>
+          </div>
+          <style>{`@keyframes waDot{0%,60%,100%{opacity:0.3}30%{opacity:1}} @media(max-width:860px){.wa-demo-grid{grid-template-columns:1fr!important}}`}</style>
+        </F>
+      </div>
+    </section>
+  );
+}
+
 // App
 export default function App() {
   return (
@@ -991,6 +1072,7 @@ export default function App() {
       <Nav />
       <DiagnosticBanner />
       <Hero />
+      <WhatsAppDemoWidget />
       <HeroCTABand />
       <Proof />
       <DiagnosticCTA />
