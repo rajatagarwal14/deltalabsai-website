@@ -1026,12 +1026,12 @@ function WhatsAppDemoWidget() {
     <section style={{ padding: "0 24px 88px", background: "linear-gradient(160deg, #0B1220 0%, #0F1B33 100%)" }}>
       <div className="wa-demo-grid" style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: "minmax(0,1fr) minmax(280px,380px)", gap: 48, alignItems: "center", paddingTop: 8 }}>
         <F>
-          <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, fontWeight: 700, color: "#34D399", textTransform: "uppercase", letterSpacing: "0.1em" }}>Live Product Demo</span>
+          <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, fontWeight: 700, color: "#34D399", textTransform: "uppercase", letterSpacing: "0.1em" }}>How It Works</span>
           <h2 style={{ fontFamily: "'DM Sans',sans-serif", fontSize: "clamp(24px, 3.2vw, 34px)", fontWeight: 800, color: "#fff", letterSpacing: "-0.02em", margin: "10px 0 14px", lineHeight: 1.2 }}>
-            This is SmileCRM booking a patient \u2014 while you read this.
+            This is how SmileCRM books a patient over WhatsApp.
           </h2>
           <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 15, color: "#94A3B8", lineHeight: 1.7, margin: "0 0 24px", maxWidth: 460 }}>
-            No forms, no phone tag. A patient texts, SmileCRM books the slot and sends the reminder automatically \u2014 this is exactly what your patients see.
+            No forms, no phone tag. A patient texts, SmileCRM books the slot and sends the reminder automatically. This is exactly what your patients see.
           </p>
           <Btn href="/smilecrm" style={{ background: "#25D366", fontSize: 15, padding: "14px 28px" }}>See SmileCRM for your clinic <Ic.Arr /></Btn>
         </F>
@@ -1040,7 +1040,7 @@ function WhatsAppDemoWidget() {
             <div style={{ background: "#075E54", borderRadius: "16px 16px 0 0", padding: "12px 14px", display: "flex", alignItems: "center", gap: 10 }}>
               <div style={{ width: 34, height: 34, borderRadius: "50%", background: "#128C7E", display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", fontFamily: "'DM Sans',sans-serif", fontWeight: 700, fontSize: 13, flexShrink: 0 }}>SC</div>
               <div>
-                <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13.5, fontWeight: 700, color: "#fff" }}>SmileCRM \u00b7 Bright Smile Dental</div>
+                <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13.5, fontWeight: 700, color: "#fff" }}>SmileCRM · Bright Smile Dental</div>
                 <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, color: "rgba(255,255,255,0.7)" }}>{typing ? "typing..." : "online"}</div>
               </div>
             </div>
