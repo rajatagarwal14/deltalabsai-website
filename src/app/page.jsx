@@ -1072,8 +1072,8 @@ export default function App() {
       <Nav />
       <DiagnosticBanner />
       <Hero />
-      <WhatsAppDemoWidget />
       <HeroCTABand />
+      <WhatsAppDemoWidget />
       <Proof />
       <DiagnosticCTA />
       <WhoFor />
