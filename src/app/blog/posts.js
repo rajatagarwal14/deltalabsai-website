@@ -865,13 +865,13 @@ Don't let another quarter go by operating in chaos. Get clear on where you're go
   {
     slug: "ai-automations-small-business",
     title: "7 No-Code AI Automations That Save Small Businesses 15 Hrs/Week",
-    metaTitle: "7 No-Code AI Automations: Save 15 Hrs/Week",
+    metaTitle: "AI Automations for Small Business: Boost Efficiency & Profits",
     subtitle: "The 7 highest-ROI automations for small businesses — ranked by payback speed, no code or IT team required",
     category: "AI & Automation",
     date: "February 14, 2026",
     readTime: "9 min read",
     keywords: ["AI for small business", "business automation", "workflow automation", "AI automation tools", "small business automation", "process automation", "ai automation for small business owners no-code"],
-    description: "Most small businesses lose 15+ hours/week to tasks AI handles automatically. These 7 automations — follow-up, booking, reviews, invoicing — pay for themselves in week 1. No code, no IT team. Free diagnostic →",
+    description: "Discover powerful AI automations designed for small businesses. Delta Labs AI helps you streamline operations, save time, and increase profitability.",
     sections: [
       {
         heading: null,
