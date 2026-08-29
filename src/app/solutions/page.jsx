@@ -128,7 +128,7 @@ export default function SolutionsPage() {
         <F>
           <p style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.1em", color: "#6366f1", textTransform: "uppercase", marginBottom: 12 }}>Solutions</p>
           <h1 style={{ fontSize: "clamp(32px, 5vw, 52px)", fontWeight: 800, letterSpacing: -1.5, lineHeight: 1.1, marginBottom: 20 }}>
-            AI automation for<br />every small business
+            AI automation for <br />every small business
           </h1>
           <p style={{ fontSize: 17, color: "#52525b", maxWidth: 540, margin: "0 auto 36px", lineHeight: 1.65 }}>
             Pick the solution that fits your industry. From dental clinics to home services — Delta Labs AI has you covered.
