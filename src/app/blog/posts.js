@@ -1390,6 +1390,78 @@ Build a healthy business. Know where you stand. Get clear on what to fix. Then f
     ],
   },
   {
+    slug: "virtual-receptionist-cost",
+    title: "How Much Does a Virtual Receptionist Cost?",
+    metaTitle: "How Much Does a Virtual Receptionist Cost? 2026 Pricing Breakdown",
+    subtitle: "Real monthly costs for human answering services, virtual receptionists and AI reception, including the overage and after-hours charges that are rarely quoted upfront",
+    category: "Operations",
+    date: "August 29, 2026",
+    readTime: "6 min read",
+    keywords: ["how much is a virtual receptionist", "how much does a virtual receptionist cost", "virtual receptionist cost", "answering service cost", "virtual assistant phone", "virtual receptionist pricing"],
+    description: "What a virtual receptionist actually costs per month in 2026: human services $800 to $2,400, per-minute billing at $0.75 to $1.50, AI reception at $29 to $79 flat, plus the overage and after-hours charges most quotes leave out.",
+    sections: [
+      {
+        heading: null,
+        body: `Published pricing for virtual receptionists is unusually hard to compare, because three different billing models get quoted under the same name. This page sets out what each model actually costs per month, and which charges tend to appear on the invoice rather than the pricing page.
+
+All figures below are published market rates as of 2026. Where a provider does not publish pricing, that is stated rather than estimated.`,
+      },
+      {
+        heading: "The three pricing models",
+        body: `**Per-minute billing.** You pay for agent talk time, typically **$0.75 to $1.50 per minute**. Predictable if your call volume is steady, expensive if it is not.
+
+**Bundled minutes.** A monthly plan with an included allowance. Basic answering services start around **$235 per month for 50 minutes**. Once the allowance runs out, overage rates apply.
+
+**Flat monthly.** AI answering services generally charge **$29 to $79 per month with no per-minute component**. Cost does not move with call volume.`,
+      },
+      {
+        heading: "What a human virtual receptionist costs",
+        body: `Human virtual receptionists sit at **$800 to $2,400 per month** for typical small business usage.
+
+At a benchmark of **100 calls per month**, published rates put **Ruby at $470 and above**, and **Smith.ai at $975 and above**. The spread reflects how much of the call the agent handles: simple message-taking sits at the lower end, appointment booking and qualification at the upper end.
+
+For most small businesses the practical range is **$50 to $300 per month** at low call volumes, rising quickly once volume or complexity increases.`,
+      },
+      {
+        heading: "The charges that are not on the pricing page",
+        body: `This is where quoted cost and actual invoice diverge, and it is the part worth checking before signing.
+
+**Overage rates run 1.5 to 2 times the base rate**, roughly **$1.50 to $3.00 per extra minute**. A plan that looks affordable at the included allowance can double if your volume is seasonal.
+
+**After-hours coverage typically adds 10 to 30 percent** to the base plan.
+
+Also worth asking about before committing: minimum contract length, setup or onboarding fees, whether hold time and voicemail count toward billed minutes, and whether call transfers are billed separately.
+
+Per-minute billing means a busy month costs more precisely when you can least predict it. That is the single biggest difference between per-minute and flat-rate models, and it matters more than the headline rate.`,
+      },
+      {
+        heading: "What AI reception costs",
+        body: `AI answering sits at **$29 to $79 per month, flat, with no per-minute charges**. The cost does not change with call volume, which removes the overage problem entirely.
+
+The tradeoff is real and worth stating plainly. AI handles structured calls well: answering common questions, taking details, booking appointments, routing. It handles unstructured, emotional or high-stakes conversations less well than a trained human.`,
+      },
+      {
+        heading: "When a human receptionist is the better choice",
+        body: `A human service is the right answer, and worth the higher cost, when:
+
+- Calls are consultative or high-value, where a single mishandled conversation costs more than a year of service fees.
+- Callers are distressed or the subject is sensitive. Legal intake, medical triage and complaints handling are examples where empathy is the service.
+- Conversations are genuinely unpredictable and cannot be anticipated in a script or a set of intents.
+- Your brand depends on a specific human tone that you are not willing to approximate.
+
+If most of your inbound calls fall into these categories, the $800 to $2,400 range is buying something an automated system does not currently provide.`,
+      },
+      {
+        heading: "Working out your own number",
+        body: `Take your actual monthly call count and average call length. Multiply by the per-minute rate for a like-for-like comparison against a flat monthly plan. Then add the two charges above: expected overage in your busiest month, and after-hours if you need coverage outside business hours.
+
+Most businesses that find AI reception cheaper are ones with high call volume and short, repetitive calls. Most businesses that find a human service worth the premium have low volume and long, consequential calls.
+
+Delta Labs AI builds automated reception for small businesses. Whether that is cheaper than a human service depends entirely on the two numbers above, and for some businesses it is not. See [automated reception and front desk automation](/voice-receptionist) for what the automated option covers.`,
+      },
+    ],
+  },
+  {
     slug: "crm-data-migration-tools",
     title: "CRM Data Migration Tools: 7 Options Compared (2026)",
     metaTitle: "CRM Data Migration Tools Compared: Free vs Paid (2026)",
