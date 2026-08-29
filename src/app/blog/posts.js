@@ -1391,14 +1391,14 @@ Build a healthy business. Know where you stand. Get clear on what to fix. Then f
   },
   {
     slug: "crm-service-businesses",
-    title: "CRM for Service Businesses: Move Off Spreadsheets in 3 Weeks (2026)",
-    metaTitle: "Best CRM for Teams Moving Off Spreadsheets (3-Week Migration, Zero Data Loss)",
-    subtitle: "When and how to upgrade from spreadsheets to a real CRM (and what will change)",
+    title: "CRM Data Migration: The Complete Step-by-Step Guide",
+    metaTitle: "CRM Data Migration: Step-by-Step Guide, Checklist & Tools (2026)",
+    subtitle: "How to migrate customer, order and pricing data into a new CRM — from spreadsheets or another CRM — without losing records or downtime",
     category: "Operations",
     date: "February 10, 2026",
     readTime: "8 min read",
-    keywords: ["CRM for service business", "customer relationship management", "CRM software", "business management system", "sales pipeline management", "crm implementation services", "moving off spreadsheets crm", "best crm implementation services for companies moving off spreadsheets"],
-    description: "Moving a service team off spreadsheets? See the exact 3-week CRM migration with zero data loss and zero downtime. Free spreadsheet-to-CRM audit, no card required →",
+    keywords: ["crm data migration", "crm migration", "data migration crm", "crm migration service", "data migration checklist", "crm migration tool", "crm data migration tool", "spreadsheet to crm migration", "CRM for service business"],
+    description: "Migrate from spreadsheets or another CRM in 3 weeks with zero data loss. Step-by-step CRM data migration process, a free migration checklist, and when to hire a migration service.",
     sections: [
       {
         heading: null,
