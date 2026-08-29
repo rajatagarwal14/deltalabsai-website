@@ -194,6 +194,7 @@ export default function SolutionsPage() {
             <a href="/ai-bdr" style={{ color: "#71717a", textDecoration: "none" }}>AI BDR</a>
             <a href="/voice-receptionist" style={{ color: "#71717a", textDecoration: "none" }}>Voice Receptionist</a>
             <a href="/dental" style={{ color: "#71717a", textDecoration: "none" }}>SmileCRM</a>
+            <a href="/crm-migration-services" style={{ color: "#71717a", textDecoration: "none" }}>CRM Migration</a>
             <a href="/privacy" style={{ color: "#71717a", textDecoration: "none" }}>Privacy</a>
           </div>
           <p style={{ fontSize: 12, color: "#a1a1aa", margin: 0 }}>© {new Date().getFullYear()} Delta Labs AI. All rights reserved.</p>

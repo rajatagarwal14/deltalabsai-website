@@ -32,6 +32,20 @@ export default function CrmMigrationServicesPage() {
 
   return (
     <main style={wrap}>
+      {/* Nav */}
+      <nav style={{ position: "sticky", top: 0, zIndex: 50, background: "rgba(255,255,255,0.92)", backdropFilter: "blur(12px)", borderBottom: "1px solid #f4f4f5", padding: "14px 0" }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 24px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+          <a href="/" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none", color: "#18181b" }}>
+            <span style={{ fontSize: 20, fontWeight: 800, color: "#6366f1" }}>{"\u0394"}</span>
+            <span style={{ fontSize: 17, fontWeight: 700, letterSpacing: -0.5 }}>Delta Labs AI</span>
+          </a>
+          <div style={{ display: "flex", gap: 16, alignItems: "center" }}>
+            <a href="/solutions" style={{ fontSize: 14, color: "#52525b", textDecoration: "none" }}>Solutions</a>
+            <a href="/blog" style={{ fontSize: 14, color: "#52525b", textDecoration: "none" }}>Blog</a>
+            <a href="/diagnostic" style={{ fontSize: 14, color: "#52525b", textDecoration: "none" }}>Diagnostic</a>
+          </div>
+        </div>
+      </nav>
       <section style={{ ...section, padding: "80px 24px 44px", textAlign: "center" }}>
         <p style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.1em", color: "#6366f1", textTransform: "uppercase", marginBottom: 14 }}>
           CRM Migration Services
@@ -99,6 +113,11 @@ export default function CrmMigrationServicesPage() {
         </p>
         <a href={CAL} style={btn}>Book a migration scoping call</a>
       </section>
+      {/* Footer */}
+      <footer style={{ borderTop: "1px solid #f4f4f5", padding: "32px 24px", textAlign: "center", marginTop: 64 }}>
+        <p style={{ fontSize: 13, color: "#a1a1aa" }}>Delta Labs AI. All rights reserved.</p>
+        <p style={{ fontSize: 12, color: "#a1a1aa", marginTop: 4 }}>neil@mail.deltalabsai.com</p>
+      </footer>
     </main>
   );
 }

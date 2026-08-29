@@ -91,7 +91,7 @@ export default function DentalPage() {
         <F>
           <div style={{ display: "inline-block", padding: "6px 16px", borderRadius: 20, background: "#f0fdf4", color: "#16a34a", fontSize: 13, fontWeight: 600, marginBottom: 24 }}>Built for Independent Dental Clinics</div>
           <h1 style={{ fontSize: "clamp(32px, 5vw, 52px)", fontWeight: 800, lineHeight: 1.1, letterSpacing: -1.5, margin: "0 0 20px" }}>
-            Dental Clinic Automation Services<br />Built to Cut No-Shows
+            Patient Recall and Appointment Reminders <br />for Dental Clinics
           </h1>
           <p style={{ fontSize: 18, color: "#52525b", maxWidth: 600, margin: "0 auto 32px", lineHeight: 1.6 }}>
             SmileCRM automates appointment reminders, patient recall, and review collection for your dental clinic. Simple setup. Affordable pricing. Real results.

@@ -17,6 +17,14 @@ export const metadata = {
       "Audit, mapping, staged load and verification against source counts before cutover. About three weeks.",
     url: "https://deltalabsai.com/crm-migration-services",
     type: "website",
+    images: [
+      {
+        url: "https://deltalabsai.com/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Delta Labs AI",
+      },
+    ],
   },
 };
 

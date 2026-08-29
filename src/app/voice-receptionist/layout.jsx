@@ -13,6 +13,14 @@ export const metadata = {
       "AI answers your phone 24/7, books appointments, and never misses a call — even after hours.",
     url: "https://deltalabsai.com/voice-receptionist",
     type: "website",
+    images: [
+      {
+        url: "https://deltalabsai.com/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Delta Labs AI",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",

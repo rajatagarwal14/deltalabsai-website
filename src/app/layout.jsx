@@ -222,18 +222,6 @@ const serviceJsonLd = {
 };
 
 // BreadcrumbList schema for homepage
-const breadcrumbJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://deltalabsai.com",
-    },
-  ],
-};
 
 // WebSite schema for sitelinks search box
 const webSiteJsonLd = {
@@ -289,10 +277,6 @@ export default function RootLayout({ children }) {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
         />
         <script
           type="application/ld+json"

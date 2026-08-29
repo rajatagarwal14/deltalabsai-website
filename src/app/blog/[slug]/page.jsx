@@ -44,6 +44,7 @@ export async function generateMetadata({ params }) {
 
   const url = `https://deltalabsai.com/blog/${post.slug}`;
   const publishedTime = parseDate(post.date);
+  const modifiedTime = post.dateModified ? parseDate(post.dateModified) : publishedTime;
   const metaTitle = post.metaTitle || post.title;
 
   return {
@@ -61,7 +62,7 @@ export async function generateMetadata({ params }) {
       type: "article",
       locale: "en_US",
       publishedTime,
-      modifiedTime: publishedTime,
+      modifiedTime,
       authors: ["Delta Labs AI"],
       section: post.category,
       tags: post.keywords || [],
@@ -99,6 +100,7 @@ export default function BlogPostPage({ params }) {
 
   const relatedPosts = getRelatedPosts(post.slug, post.category);
   const publishedTime = parseDate(post.date);
+  const modifiedTime = post.dateModified ? parseDate(post.dateModified) : publishedTime;
   const wordCount = estimateWordCount(post.sections);
   const faqPairs = extractFaqPairs(post.sections);
   const faqJsonLd = faqPairs.length > 0 ? {
@@ -119,7 +121,7 @@ export default function BlogPostPage({ params }) {
     description: post.description || post.subtitle,
     image: post.ogImage ? `https://deltalabsai.com${post.ogImage}` : "https://deltalabsai.com/og-image.png",
     datePublished: publishedTime,
-    dateModified: publishedTime,
+    dateModified: modifiedTime,
     wordCount,
     articleSection: post.category,
     keywords: (post.keywords || []).join(", "),
