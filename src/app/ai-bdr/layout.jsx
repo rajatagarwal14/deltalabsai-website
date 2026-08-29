@@ -12,6 +12,14 @@ export const metadata = {
     description: "200 qualified outreach sequences per month. Lead research, personalised email, follow-up, and warm handoff — all automated.",
     url: "https://deltalabsai.com/ai-bdr",
     type: "website",
+    images: [
+      {
+        url: "https://deltalabsai.com/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Delta Labs AI",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",

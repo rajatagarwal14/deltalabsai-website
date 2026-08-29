@@ -36,6 +36,14 @@ export async function generateMetadata({ params }) {
       siteName: "Delta Labs AI",
       type: "website",
       locale: "en_US",
+    images: [
+      {
+        url: "https://deltalabsai.com/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Delta Labs AI",
+      },
+    ],
     },
   };
 }

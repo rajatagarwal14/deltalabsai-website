@@ -14,6 +14,14 @@ export const metadata = {
       "Find out how much your business loses every year to calls that ring out, unanswered. 30 seconds, any industry.",
     url: "https://deltalabsai.com/tools/missed-call-calculator",
     type: "website",
+    images: [
+      {
+        url: "https://deltalabsai.com/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Delta Labs AI",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
