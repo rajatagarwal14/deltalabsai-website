@@ -1,16 +1,14 @@
 export const metadata = {
-  title: "Automated Reception & Front Desk Automation for Small Business | Delta Labs AI",
+  title: "AI Voice Receptionist Pilot Programme (Beta) | Delta Labs AI",
   description:
-    "Automated reception for small businesses: an AI receptionist answers your phone 24/7, books appointments, handles FAQs and hands off to WhatsApp. Front desk automation without hiring.",
+    "Delta Labs AI is running a pilot programme for its AI voice receptionist, currently in beta. It answers calls, books appointments and hands off to WhatsApp. Apply for a pilot setup call.",
   keywords: [
-    "automated reception", "front desk automation", "automated front desk",
-    "automated reception system", "AI voice receptionist",
-    "AI appointment booking", "virtual receptionist for clinics",
-    "missed call recovery",
+    "AI voice receptionist pilot", "AI receptionist beta",
+    "AI appointment booking", "missed call recovery",
   ],
   alternates: { canonical: "https://deltalabsai.com/voice-receptionist" },
   openGraph: {
-    title: "Automated Reception & Front Desk Automation for Small Business | Delta Labs AI",
+    title: "AI Voice Receptionist Pilot Programme (Beta) | Delta Labs AI",
     description:
       "AI answers your phone 24/7, books appointments, and never misses a call — even after hours.",
     url: "https://deltalabsai.com/voice-receptionist",

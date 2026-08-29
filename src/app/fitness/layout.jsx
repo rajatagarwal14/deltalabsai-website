@@ -1,13 +1,13 @@
 export const metadata = {
-  title: "Yoga Studio Software for Scheduling, Retention and Reviews | Delta Labs AI",
+  title: "Class Scheduling and Member Retention Automation for Gyms and Yoga Studios | Delta Labs AI",
   description:
-    "Yoga studio and gym software that handles class scheduling, member retention and review collection. Automated reminders to cut no-shows, built for independent studios.",
+    "Automated class reminders, member retention sequences and review collection for independent gyms and yoga studios. Set up on the tools you already use, no new software to learn.",
   keywords: [
-    "yoga studio software",
-    "fitness crm",
-    "gym crm",
-    "class scheduling software",
     "gym automation",
+    "class reminder automation",
+    "gym member retention",
+    "yoga studio automation",
+    "fitness booking system",
     "gym member retention",
     "class scheduling software",
     "fitness booking system",
@@ -20,7 +20,7 @@ export const metadata = {
     canonical: "https://deltalabsai.com/fitness",
   },
   openGraph: {
-    title: "Yoga Studio Software for Scheduling, Retention and Reviews | Delta Labs AI",
+    title: "Class Scheduling and Member Retention Automation for Gyms and Yoga Studios | Delta Labs AI",
     description:
       "Automate class scheduling, member retention, and review collection for independent fitness studios. Affordable and easy to set up.",
     url: "https://deltalabsai.com/fitness",

@@ -90,7 +90,7 @@ export default function FitnessPage() {
         <F>
           <div style={{ display: "inline-block", padding: "6px 16px", borderRadius: 20, background: "#eff6ff", color: "#2563eb", fontSize: 13, fontWeight: 600, marginBottom: 24 }}>Built for Independent Gyms, Yoga Studios & Trainers</div>
           <h1 style={{ fontSize: "clamp(32px, 5vw, 52px)", fontWeight: 800, lineHeight: 1.1, letterSpacing: -1.5, margin: "0 0 20px" }}>
-            Yoga Studio and Gym Software<br />for Scheduling, Retention and Reviews
+            Class Scheduling and Member Retention<br />Automation for Gyms and Yoga Studios
           </h1>
           <p style={{ fontSize: 18, color: "#52525b", maxWidth: 600, margin: "0 auto 32px", lineHeight: 1.6 }}>
             Class scheduling, member retention, and review collection on autopilot. Built for independent fitness businesses that want to grow without burning out.
