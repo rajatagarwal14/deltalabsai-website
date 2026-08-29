@@ -794,11 +794,15 @@ export default function IntakeForm() {
                   console.error("[diagnostic] CRM sync error:", crmErr);
                 }
                 setSubmitted(true);
-                trackGa4Event("diagnostic_complete", { score: scoreData.pct, industry: info.industry });
               } catch (err) {
                 // Even with no-cors, data is sent. Mark as submitted.
                 setSubmitted(true);
               } finally {
+                // Fires on both paths. It used to sit at the end of the try, so any throw
+                // from the FORM_ENDPOINT fetch skipped it while the user still saw a
+                // completed diagnostic. That is why GA4 recorded form_submit but
+                // diagnostic_complete never fired once in 90 days.
+                trackGa4Event("diagnostic_complete", { score: scoreData.pct, industry: info.industry });
                 setSubmitting(false);
               }
             }} disabled={submitting} style={{
