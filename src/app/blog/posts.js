@@ -1573,15 +1573,69 @@ For the full process, including the field-mapping audit that prevents most failu
     sections: [
       {
         heading: null,
-        body: `Spreadsheets are the small business default. They're free. They're flexible. They feel like you're in control because you built them.
+        body: `A CRM migration moves customer, order and pricing records out of one system and into another without losing data, breaking relationships between records, or stopping the team from working while it happens.
 
-But spreadsheets are also a silent killer of growth.
+The source is usually one of three things: a spreadsheet, an older CRM, or several disconnected tools at once. The process below is the same in all three cases. What changes is how much cleaning the data needs before it moves.
 
-At first, when you have 10 clients and $100K in revenue, a spreadsheet works fine. You can see everything at a glance. But as you grow to 30 clients, then 50, then 100, the spreadsheet becomes unwieldy. Data gets duplicated in multiple places. Updates don't sync. Information gets lost. Your team spends hours trying to find basic information. You can't generate reports without manual work.
+This guide covers the five phases, a pre-migration checklist, the failure modes that cause most data loss, and when hiring a migration service is worth it. For the software options, see the [comparison of CRM data migration tools](/blog/crm-data-migration-tools).`,
+      },
+      {
+        heading: "The five phases of a CRM data migration",
+        body: `**1. Audit.** Count what you actually have: records per object, custom fields, attachments, and which fields are genuinely in use versus historical clutter. Most teams discover here that a third of their fields are empty and a tenth of their records are duplicates.
 
-Most business owners don't realize they've outgrown their spreadsheet until they're losing money and capability to it. They're paying their team to be data managers instead of client managers.
+**2. Map.** Decide where every source field lands in the destination. This is where migrations fail, not in the data transfer. Unmapped fields get silently dropped, and nobody notices until someone looks for a record that is no longer there.
 
-Here's the brutal truth: a spreadsheet-based business doesn't scale. At some point, you need to move to a proper CRM (Customer Relationship Management system). The question isn't whether you'll move, but when -and whether you'll do it proactively (capturing growth) or reactively (trying to patch a broken system).`,
+**3. Clean.** Deduplicate, standardise formats, and fix the records that will fail validation on import. Migrating dirty data faithfully reproduces the mess in a more expensive system.
+
+**4. Stage.** Load into a sandbox or test environment first. Verify counts against the source, object by object, before touching production.
+
+**5. Cut over.** Load production, freeze the old system as read-only, and keep it accessible for a period rather than deleting it. Verify counts again after the load.
+
+The audit and mapping phases take longer than the transfer itself. Teams that skip them are the ones who lose data.`,
+      },
+      {
+        heading: "Pre-migration checklist",
+        body: `Work through this before any data moves:
+
+- Record count per object in the source system, written down for later comparison
+- List of custom fields, and which are actually populated
+- Owner assigned for every field mapping decision
+- Duplicate check run on the source, not the destination
+- Required fields in the destination identified, so imports do not fail on validation
+- Attachments, notes and activity history accounted for, since these are frequently forgotten
+- Relationships between records mapped, for example contacts to companies to deals
+- Date and currency formats standardised
+- A rollback plan, meaning the old system stays intact and read-only rather than being switched off
+- A named cutover date, and agreement that no new records are created in the source after it
+
+If a step here has no owner, that is the step the migration will fail on.`,
+      },
+      {
+        heading: "What actually goes wrong",
+        body: `**Silent field drops.** A field exists in the source, has no mapping in the destination, and is simply not imported. No error is raised. This is the most common cause of data loss and the reason the audit count matters.
+
+**Broken relationships.** Records import fine individually but the links between them do not. Contacts arrive without their companies, deals without their contacts.
+
+**Duplicate explosion.** Importing without deduplicating first, then importing a corrected batch, doubles the problem rather than fixing it.
+
+**Validation failures mid-load.** A required field in the destination is empty in the source, the import stops halfway, and you are left with a partially migrated system.
+
+**History left behind.** Notes, call logs and activity timelines are often stored differently in the destination and get skipped. Teams notice weeks later when they need context on an account.
+
+Every one of these is caught by verifying record counts against the source after each phase, which is why that step is not optional.`,
+      },
+      {
+        heading: "When to hire a migration service",
+        body: `Doing it yourself makes sense when the record count is low, the data is clean, and one person can own the mapping decisions.
+
+Hiring makes sense when any of these are true:
+
+- Records are revenue-critical and a partial migration would stop the team working
+- Two different CRM schemas are involved rather than a flat export
+- Custom objects and relationships need preserving
+- Nobody internally owns the project, which is the most reliable predictor of a stalled migration
+
+Delta Labs AI runs CRM migrations as a fixed-scope engagement: audit, mapping, staged load, and verification against source counts before cutover, in about three weeks. Whether that is worth it depends on the numbers above. For small, clean datasets a free loader is the honest answer, and the [tools comparison](/blog/crm-data-migration-tools) says so.`,
       },
       {
         heading: "7 Signs You've Outgrown Your Spreadsheet",
