@@ -1,18 +1,14 @@
 export const metadata = {
-  title: "Home Services Business Automation | Delta Labs AI",
+  title: "Best CRM for a Cleaning Business: Choosing and Setting It Up | Delta Labs AI",
   description:
-    "Automate booking, follow-ups, and customer management for cleaning, pest control, plumbing, and HVAC businesses. Never miss a booking again. Affordable plans for small teams.",
+    "How to choose a CRM for a cleaning, janitorial or home services business, and get it set up without losing your job history. Scheduling, reminders and follow-up handled.",
   keywords: [
-    "home services automation",
-    "cleaning business CRM",
-    "pest control scheduling software",
-    "plumber booking system",
-    "HVAC business automation",
-    "field service management small business",
-    "home services booking software",
-    "cleaning company CRM",
-    "service business automation",
-    "home services customer management",
+    "best crm for cleaning business",
+    "cleaning business management",
+    "janitorial crm software",
+    "accounting software for cleaning business",
+    "home services crm",
+    "cleaning business scheduling",
   ],
   alternates: {
     canonical: "https://deltalabsai.com/home-services",
