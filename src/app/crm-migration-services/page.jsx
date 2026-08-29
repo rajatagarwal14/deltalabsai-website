@@ -23,6 +23,35 @@ const NOT_FOR_YOU = [
   "You have someone internally who owns the mapping decisions and the time to do it",
 ];
 
+const PAIRS = [
+  { h: "Spreadsheets to a CRM", b: "The hard part is not the export, it is that a spreadsheet has no schema. The same customer appears three times with three spellings, dates are text, and one column holds two facts. Most of the work is deciding what a record is before anything gets loaded." },
+  { h: "HubSpot to Salesforce", b: "Different object models. HubSpot treats companies and contacts as loosely associated; Salesforce enforces Account and Contact relationships and validation rules on import. Lifecycle stages and deal stages need an explicit mapping, and Salesforce will reject records that HubSpot accepted happily." },
+  { h: "Salesforce to HubSpot", b: "The usual loss is custom objects and the reporting built on them. Salesforce records that depend on record types and page-layout logic flatten out, so the decision is which of that structure to rebuild as HubSpot properties and which to retire." },
+  { h: "Zoho to HubSpot or Pipedrive", b: "Zoho modules map cleanly enough, but Zoho installs tend to accumulate custom fields that nobody uses. The audit usually removes more fields than it migrates, and that is the point of doing one." },
+  { h: "Pipedrive to HubSpot", b: "Pipedrive is deal-centric, HubSpot is contact-centric. Deals carry the history in Pipedrive, so activity and note history needs a deliberate home on the HubSpot side or it silently does not come across." },
+  { h: "Practo Ray, Dentrix and other vertical systems", b: "Vertical clinic and practice systems often expose limited or no export. Whether a migration is even possible has to be established first, before scope or price means anything." },
+];
+
+const FAQ = [
+  { q: "How long does a CRM migration take?", a: "A fixed-scope migration is normally about three weeks: roughly a week on audit and mapping, a week on cleaning and the staged load, and a week on verification and cutover. Migrations that need custom-object work or that uncover unusable source data take longer, and we say so at scoping rather than mid-project." },
+  { q: "What does it cost?", a: "Published industry ranges put a partner-led CRM transition for a 5 to 50 seat team at roughly $1,500 to $12,000, driven by record volume and custom field mapping. We scope to a fixed number before starting. Below a few thousand clean records in a single system, a migration service is usually not worth paying for and we will tell you that." },
+  { q: "Will the team be locked out during the move?", a: "No. The load runs into a sandbox first and is verified against the audit counts object by object. The source system is frozen read-only at cutover rather than deleted, so it stays available if something needs checking afterwards." },
+  { q: "What happens to the old system?", a: "It stays intact and readable. Deleting the source is the customer's decision to make later, once they are satisfied the new system holds everything. Nothing in our process depends on destroying it." },
+  { q: "Do custom fields and record relationships survive?", a: "Where the destination supports them, yes, and that is mapped explicitly during the audit. Where it does not, that becomes a written decision before the load rather than a surprise afterwards. Unmapped fields are the most common cause of silent data loss in a migration." },
+  { q: "What if the data is a mess?", a: "That is the normal case and it is why the clean phase exists. Deduplication and format standardisation happen before the load, because migrating dirty data faithfully reproduces the mess in a more expensive system." },
+  { q: "Can you migrate from a system with no export?", a: "Sometimes, and sometimes not. Establishing whether the source can be exported at all is the first thing we check, because it determines whether there is a project here." },
+];
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: FAQ.map((x) => ({
+    "@type": "Question",
+    name: x.q,
+    acceptedAnswer: { "@type": "Answer", text: x.a },
+  })),
+};
+
 export default function CrmMigrationServicesPage() {
   const wrap = { fontFamily: "'Inter', -apple-system, sans-serif", color: "#18181b", background: "#fff" };
   const section = { maxWidth: 860, margin: "0 auto", padding: "0 24px" };
@@ -32,6 +61,10 @@ export default function CrmMigrationServicesPage() {
 
   return (
     <main style={wrap}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       {/* Nav */}
       <nav style={{ position: "sticky", top: 0, zIndex: 50, background: "rgba(255,255,255,0.92)", backdropFilter: "blur(12px)", borderBottom: "1px solid #f4f4f5", padding: "14px 0" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 24px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
@@ -99,6 +132,34 @@ export default function CrmMigrationServicesPage() {
           <Link href="/blog/crm-data-migration-tools" style={{ color: "#6366f1" }}>comparison of CRM data migration tools</Link>{" "}
           sets out which tool fits which record count, including the free ones.
         </p>
+      </section>
+
+      <section style={{ ...section, padding: "44px 24px" }}>
+        <h2 style={h2}>Migrations we take</h2>
+        <p style={p}>
+          The platform pair decides most of the work. These are the moves we scope most often and what is actually
+          difficult about each.
+        </p>
+        {PAIRS.map((x) => (
+          <div key={x.h} style={{ marginBottom: 22 }}>
+            <h3 style={{ fontSize: 18, fontWeight: 700, margin: "0 0 8px" }}>{x.h}</h3>
+            <p style={{ ...p, margin: 0 }}>{x.b}</p>
+          </div>
+        ))}
+        <p style={{ ...p, marginTop: 26 }}>
+          If your pair is not listed, the process is the same. What changes is how much of the source schema survives
+          the move, and that is what the audit establishes before anyone quotes a number.
+        </p>
+      </section>
+
+      <section style={{ ...section, padding: "44px 24px" }}>
+        <h2 style={h2}>Common questions</h2>
+        {FAQ.map((x) => (
+          <div key={x.q} style={{ marginBottom: 22 }}>
+            <h3 style={{ fontSize: 18, fontWeight: 700, margin: "0 0 8px" }}>{x.q}</h3>
+            <p style={{ ...p, margin: 0 }}>{x.a}</p>
+          </div>
+        ))}
       </section>
 
       <section style={{ ...section, padding: "44px 24px 80px" }}>
