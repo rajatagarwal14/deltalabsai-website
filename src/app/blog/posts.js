@@ -1552,7 +1552,7 @@ The most common and most expensive mistake is choosing a tool before auditing th
       },
       {
         heading: "How Delta Labs AI does this",
-        body: `Delta Labs AI runs CRM data migrations as a fixed-scope, three-week engagement with zero data loss and zero downtime — audit, mapping, staged migration, and verification against source counts before cutover.
+        body: `Delta Labs AI runs [CRM migration services](/crm-migration-services) as a fixed-scope, three-week engagement with zero data loss and zero downtime — audit, mapping, staged migration, and verification against source counts before cutover.
 
 Whether that is the right answer depends on the numbers above. If the record count is small and the data is clean, a free loader is the honest recommendation and this page has said so.
 
@@ -1635,7 +1635,7 @@ Hiring makes sense when any of these are true:
 - Custom objects and relationships need preserving
 - Nobody internally owns the project, which is the most reliable predictor of a stalled migration
 
-Delta Labs AI runs CRM migrations as a fixed-scope engagement: audit, mapping, staged load, and verification against source counts before cutover, in about three weeks. Whether that is worth it depends on the numbers above. For small, clean datasets a free loader is the honest answer, and the [tools comparison](/blog/crm-data-migration-tools) says so.`,
+Delta Labs AI runs [CRM migration services](/crm-migration-services) as a fixed-scope engagement: audit, mapping, staged load, and verification against source counts before cutover, in about three weeks. Whether that is worth it depends on the numbers above. For small, clean datasets a free loader is the honest answer, and the [tools comparison](/blog/crm-data-migration-tools) says so.`,
       },
       {
         heading: "7 Signs You've Outgrown Your Spreadsheet",
