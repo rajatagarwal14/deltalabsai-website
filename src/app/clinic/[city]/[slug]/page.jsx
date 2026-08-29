@@ -39,6 +39,8 @@ export default async function ClinicReportPage({ params }) {
   const facts = report.source_data || [];
   const breakdown = report.estimate_breakdown || null;
   const gaps = report.gaps || [];
+  const reviewQuote = facts.find((f) => f && f.type === "review_quote") || null;
+  const hasTopCompetitor = Boolean(report.top_competitor_name);
   const currency = report.currency || "INR";
   const currencyDisplay = CURRENCY_DISPLAY[currency] || CURRENCY_DISPLAY.INR;
   const leakAmount = report.estimated_leak ?? report.estimated_leak_inr ?? 0;
@@ -155,6 +157,39 @@ export default async function ClinicReportPage({ params }) {
           </ul>
         </section>
 
+        {/* Real bad review — emotional gut-check, right before the leak card */}
+        {reviewQuote && (
+          <blockquote
+            style={{
+              marginTop: 32,
+              marginBottom: 0,
+              borderRadius: 12,
+              border: "1px solid #FCA5A5",
+              background: "#FEF2F2",
+              padding: "18px 22px",
+              boxShadow: "0 1px 2px rgba(0,0,0,0.05)",
+            }}
+          >
+            <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+              {typeof reviewQuote.rating === "number" && (
+                <span style={{ fontSize: 13, fontWeight: 600, color: "#B91C1C" }}>
+                  {"★".repeat(Math.round(reviewQuote.rating))}
+                  {"☆".repeat(5 - Math.round(reviewQuote.rating))}
+                </span>
+              )}
+              <span style={{ fontSize: 12, color: "#7F1D1D" }}>
+                Google review{reviewQuote.date ? `, ${reviewQuote.date}` : ""}
+              </span>
+            </div>
+            <p style={{ marginTop: 10, fontSize: 15, fontStyle: "italic", lineHeight: 1.6, color: "#1E293B" }}>
+              &ldquo;{reviewQuote.text}&rdquo;
+            </p>
+            {reviewQuote.reviewer_name && (
+              <p style={{ marginTop: 6, fontSize: 12, color: "#7F1D1D" }}>— {reviewQuote.reviewer_name}</p>
+            )}
+          </blockquote>
+        )}
+
         {/* Estimated leak */}
         <section
           style={{
@@ -221,6 +256,31 @@ export default async function ClinicReportPage({ params }) {
             </details>
           )}
         </section>
+
+        {/* Top competitor comparison */}
+        {hasTopCompetitor && (
+          <section
+            style={{
+              marginTop: 32,
+              borderRadius: 12,
+              border: "1px solid #E2E8F0",
+              background: "#fff",
+              padding: "16px 20px",
+              boxShadow: "0 1px 2px rgba(0,0,0,0.05)",
+            }}
+          >
+            <p style={{ fontSize: 14, lineHeight: 1.6, color: "#1E293B" }}>
+              <strong>{report.top_competitor_name}</strong> is getting the patients you&apos;re not
+              {typeof report.top_competitor_rating === "number" || report.top_competitor_reviews
+                ? " — "
+                : "."}
+              {typeof report.top_competitor_rating === "number" && `${report.top_competitor_rating}★`}
+              {typeof report.top_competitor_rating === "number" && report.top_competitor_reviews ? ", " : ""}
+              {report.top_competitor_reviews ? `${report.top_competitor_reviews} reviews` : ""}
+              {(typeof report.top_competitor_rating === "number" || report.top_competitor_reviews) && "."}
+            </p>
+          </section>
+        )}
 
         {/* Gaps */}
         {gaps.length > 0 && (

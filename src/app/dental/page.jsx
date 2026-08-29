@@ -91,7 +91,7 @@ export default function DentalPage() {
         <F>
           <div style={{ display: "inline-block", padding: "6px 16px", borderRadius: 20, background: "#f0fdf4", color: "#16a34a", fontSize: 13, fontWeight: 600, marginBottom: 24 }}>Built for Independent Dental Clinics</div>
           <h1 style={{ fontSize: "clamp(32px, 5vw, 52px)", fontWeight: 800, lineHeight: 1.1, letterSpacing: -1.5, margin: "0 0 20px" }}>
-            SmileCRM: Dental Clinic Automation<br />Built to Cut No-Shows
+            Dental Clinic Automation Services<br />Built to Cut No-Shows
           </h1>
           <p style={{ fontSize: 18, color: "#52525b", maxWidth: 600, margin: "0 auto 32px", lineHeight: 1.6 }}>
             SmileCRM automates appointment reminders, patient recall, and review collection for your dental clinic. Simple setup. Affordable pricing. Real results.
@@ -209,9 +209,9 @@ export default function DentalPage() {
       <section style={{ background: "#fafafa", padding: "72px 24px" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           <F><h2 style={{ fontSize: 28, fontWeight: 700, marginBottom: 8, textAlign: "center" }}>SmileCRM for Dental Clinics Across India</h2></F>
-          <F d={0.1}><p style={{ textAlign: "center", color: "#71717a", fontSize: 15, marginBottom: 48 }}>Available in {cities.length} cities. Find your city for local pricing and setup details.</p></F>
+          <F d={0.1}><p style={{ textAlign: "center", color: "#71717a", fontSize: 15, marginBottom: 48 }}>Available in {cities.length}+ cities. Find your city for local pricing and setup details.</p></F>
           <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(180px, 1fr))", gap: 12 }}>
-            {cities.map((city, i) => (
+            {cities.filter((city) => city.tier === 1).map((city, i) => (
               <F key={city.slug} d={i * 0.02}>
                 <li>
                   <Link href={`/smilecrm/${city.slug}`} style={{ display: "block", padding: "12px 16px", borderRadius: 10, border: "1px solid #e4e4e7", background: "#fff", color: "#18181b", textDecoration: "none", fontSize: 14, fontWeight: 500 }}>
