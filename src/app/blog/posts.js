@@ -1,5 +1,47 @@
 export const posts = [
   {
+    slug: "ai-prototype-to-production-silent-failure",
+    title: "Your AI Build Is Not Broken. Its Instruments Are.",
+    metaTitle: "AI Prototype to Production: Why Systems Fail Silently (2026)",
+    subtitle: "The dangerous failure in an AI-assisted build is not the one that crashes. It is the one that keeps reporting success.",
+    category: "Operations",
+    date: "August 30, 2026",
+    keywords: ["ai prototype to production", "why ai projects fail", "ai automation production ready", "ai build vs run", "silent failure monitoring", "ai system reliability small business"],
+    description: "Building software with AI takes an afternoon. Running it takes instrumentation. Five real silent failures, why AI-assisted builds are prone to them, and what to check in your own.",
+    readTime: "6 min read",
+    sections: [
+      {
+        heading: null,
+        body: `You can describe an idea to a model and have something working before lunch. That part is real, and it is not going away.\n\nWhat almost nobody talks about is the second half. Not because running software is glamorous, but because the way these systems fail is genuinely counterintuitive, and the usual advice does not prepare you for it.`,
+      },
+      {
+        heading: "The failure that matters does not look like failure",
+        body: `Most warnings about AI-built software describe a collapse. It cannot handle the load. It leaks data. The bill arrives.\n\nThose are real, and they share a useful property: **you find out.** Something falls over, somebody notices, you fix it.\n\nThe expensive failure is the opposite. The system keeps running. The dashboard stays green. The weekly report arrives on time with a number in it. And the number is wrong, or the thing being measured stopped happening months ago.\n\nNobody investigates a system that reports success. That is what makes it expensive.`,
+      },
+      {
+        heading: "Five that we found in our own systems",
+        body: `These are ours, found in a single review of infrastructure we had built and believed was working.\n\n**Links that were not links.** Our blog renderer handled bold and italic but not links. Forty-nine of them across thirty-two articles displayed as raw text to every reader. Eight pointed at our main signup page. Search rankings looked normal throughout, because rank tracking measures position, not whether the anchors on the page exist.\n\n**A conversion event that never fired once.** Our signup form recorded ten submissions in ninety days. The completion event recorded zero, from the same click handler a few lines away. The tracking call sat at the end of a try block, after a network request that was failing, so every completion took the error path and skipped it. Users saw a finished form. We saw nothing.\n\n**Bounce notices in a folder nothing read.** Our mail provider files delivery failures into a separate folder. Our monitor read the inbox. Bounce detection worked perfectly and was simply never shown a bounce, so the database reported zero while sixty accumulated.\n\n**A health check that ran no checks.** It required credentials that were never set, exited before its first test, and alerted "production check FAILED" four times a day. The alert was real. The check behind it had never executed.\n\n**A task reporting zero on a hard failure.** A scheduled job caught a database connection error, returned an empty list, and logged "processed 0 records". Clean output, every day, for months. The connection had never once succeeded.`,
+      },
+      {
+        heading: "Why AI-assisted builds are unusually prone to this",
+        body: `Not because the generated code is bad. Ours was mostly fine, and a person would have written the same thing.\n\nThe pattern is narrower than that.\n\n**The happy path gets tested. The error path gets written.** When you build fast, you check that the thing works. You rarely simulate the fetch failing, and that is exactly where our tracking call was sitting.\n\n**Swallowing errors looks like robustness.** Catching a failure and returning an empty result reads as defensive code. It is the single most effective way to convert a loud failure into a silent one, and it appears constantly in generated code because it makes things stop crashing.\n\n**Correct-looking is not the same as correct.** A tracking pixel pointing at a valid URL, a monitor reading a real inbox, a health check with sensible checks in it. Every one of ours reviewed as fine. The defect was in what they were connected to, which no amount of reading the code reveals.\n\n**Nobody re-reads working code.** Once something ships and does not complain, it leaves your attention permanently. Ours stayed broken for months for that reason alone.`,
+      },
+      {
+        heading: "What to check in your own build",
+        body: `Not a maturity model. Five questions that would have caught all five of ours.\n\n1. **Has this number ever been non-zero?** A metric that reads zero and always has is far more likely to be broken than genuinely zero. Check the first value, not the latest.\n\n2. **Where does the data actually land?** We had two databases. The tracking wrote to one, the reports read the other, and they had drifted apart. Follow one real record end to end.\n\n3. **What does every catch block do?** Find every place you swallow an error. If any returns a default and carries on, that is a silent failure waiting to happen.\n\n4. **Does anything look at the output a human sees?** Rank, uptime and response codes can all be healthy while the rendered page is wrong. Something has to check the artefact itself.\n\n5. **What happens when a check cannot run?** If it reports pass, or nothing, you have a monitor whose failure mode is silence. It must say it could not run.`,
+      },
+      {
+        heading: "The honest summary",
+        body: `Building is genuinely faster now. That part of the excitement is earned.\n\nWhat has not changed is that a system running unattended needs to be able to tell you the truth about itself, and that instrumentation is the part nobody prompts for. It is unglamorous, it is invisible when it works, and it is the difference between a prototype and something a business can rely on.\n\nIf you have built something with AI and it has been quietly running for a few months, the most useful hour you can spend is not adding a feature. It is confirming that the numbers it reports are real.`,
+      },
+      {
+        heading: "How we work on this",
+        body: `Delta Labs AI builds and runs automation for small businesses, and the review above was of our own systems, not a client's. We are early and we would rather show you the work than claim a result.\n\nIf you have a prototype that works and you are unsure whether it is reporting the truth, that is a conversation worth having. [Run the free diagnostic](/diagnostic) or reply and tell us what you have built.`,
+      },
+    ],
+  },
+
+  {
     slug: "home-services-automation-dubai",
     title: "Home Services Booking Automation Dubai: Stop Losing Jobs to Slow WhatsApp Replies",
     metaTitle: "Home Services Automation Dubai | WhatsApp Booking",
