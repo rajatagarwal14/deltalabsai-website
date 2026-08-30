@@ -455,7 +455,7 @@ export default function MissedCallCalculator() {
               {" "}These are blended US-market benchmarks used as an editable starting point — not audited figures for any specific business or market, and India is shown for reference only (inbound market, not an outbound target).
             </p>
             <p style={{ fontSize: 12, color: "#374151", textAlign: "center", marginTop: 24 }}>
-              © 2026 Delta Labs AI · <a href="/tools/no-show-calculator" style={{ color: "#4b5563", textDecoration: "none" }}>No-show calculator</a> · <a href="/privacy" style={{ color: "#4b5563", textDecoration: "none" }}>Privacy</a>
+              © 2026 Delta Labs AI · <a href="/dental/no-show-calculator" style={{ color: "#4b5563", textDecoration: "none" }}>No-show calculator</a> · <a href="/privacy" style={{ color: "#4b5563", textDecoration: "none" }}>Privacy</a>
             </p>
           </div>
         </F>
