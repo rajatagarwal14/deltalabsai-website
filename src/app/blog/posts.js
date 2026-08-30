@@ -36,7 +36,7 @@ export const posts = [
       },
       {
         heading: "How we work on this",
-        body: `Delta Labs AI builds and runs automation for small businesses. The review above was of our own systems, not a client's. We are early, and we would rather show you how we find problems than claim results we do not have yet.\n\nIf you have a prototype that works and you are not sure the numbers it reports are real, [run the free diagnostic](/diagnostic), or email neil@mail.deltalabsai.com and tell us what you built. The worst case is an hour spent confirming your instruments are honest.\n\nNeil`,
+        body: `Delta Labs AI builds and runs automation for small businesses. The review above was of our own systems, not a client's. We are early, and we would rather show you how we find problems than claim results we do not have yet.\n\nIf you have a prototype that works and you are not sure the numbers it reports are real, [run the free diagnostic](/diagnostic) and tell us what you built. The worst case is an hour spent confirming your instruments are honest.\n\nNeil`,
       },
     ],
   },
