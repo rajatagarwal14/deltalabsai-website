@@ -1044,7 +1044,7 @@ After that, pick your second automation. By the time you've implemented three or
 
 But if you want expert guidance on which automations will have the biggest impact specifically for your business, book a free 30-minute discovery call with our team. We audit your current processes, identify the highest-impact automation opportunities, and give you a specific implementation roadmap.
 
-Most of our clients recoup the cost of our service within the first month just by implementing the automations we recommend. The difference between picking the right automation and picking a random one can be thousands of dollars in reclaimed time.
+A well-chosen automation can pay for itself quickly, because the time it gives back is time that was already being paid for. The difference between picking the right automation and picking a random one can be thousands of dollars in reclaimed time.
 
 Stop manually doing work that machines can do. Let AI handle the routine stuff. Focus your energy on what you do best.`,
       },
@@ -2660,8 +2660,8 @@ Gyms with structured cancellation intervention retain 15–25% of members who in
 **Price range**: Gym management software ranges from $79–$299/month depending on size and features. For a gym with 200+ members, the math is simple: retaining one member who would have cancelled pays for the software for 3–6 months.`,
       },
       {
-        heading: "Case Study: Studio Cut Member Churn from 38% to 14%",
-        body: `A boutique fitness studio in Melbourne — 340 members, one location, HIIT and yoga classes — was losing about 38% of its new members within 90 days. Month-over-month growth was flat despite consistent new member acquisition. They were running on a treadmill (literally).
+        heading: "Worked Example: Cutting Member Churn from 38% to 14%",
+        body: `This is an illustrative worked example, not a Delta Labs AI client. Take a boutique fitness studio with 340 members, one location, HIIT and yoga classes, losing about 38% of its new members within 90 days. Month-over-month growth was flat despite consistent new member acquisition. They were running on a treadmill (literally).
 
 **The problem**: New members were joining, not forming habits, and quietly cancelling. The studio had no attendance monitoring, no onboarding process, and no re-engagement system. When a member stopped coming, nobody noticed until they cancelled.
 
@@ -2726,7 +2726,7 @@ If you want to see exactly where your fitness business is losing member lifetime
 
 A structured business process audit cuts through that overwhelm. It gives you a systematic way to examine how work actually flows through your organization, identify where things break down, and prioritize which fixes will have the biggest impact.
 
-You don't need a consultant to do this. Here's the same 7-step framework we use with our clients, simplified for a DIY approach.`,
+You don't need a consultant to do this. Here's the same 7-step framework, simplified for a DIY approach.`,
       },
       {
         heading: "Step 1: List Every Core Process",

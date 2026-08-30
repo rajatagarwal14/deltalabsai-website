@@ -314,7 +314,7 @@ export default function NoShowCalculator() {
                   SmileCRM could recover {f(recovery)}/month for your clinic
                 </div>
                 <div style={{ fontSize: 13, color: "#94a3b8", lineHeight: 1.6 }}>
-                  Automated reminders, recall and WhatsApp follow-ups typically recover around 65% of no-show revenue. That's about {f(recovery * 12)}/year — on a flat monthly plan, running 24/7. It's the same system running live in a real dental clinic today.
+                  Automated reminders, recall and WhatsApp follow-ups typically recover around 65% of no-show revenue. That's about {f(recovery * 12)}/year — on a flat monthly plan, running 24/7.
                 </div>
               </div>
             </div>
@@ -397,7 +397,7 @@ export default function NoShowCalculator() {
                 { n: "~65%", l: "Typical no-show revenue recovery" },
                 { n: "24/7", l: "Reminders + recall, fully automated" },
                 { n: "2 weeks", l: "Typical setup time" },
-                { n: "Live", l: "Running in a real dental clinic today" },
+                { n: "Beta", l: "In active development, early access open" },
               ].map(({ n, l }) => (
                 <div key={l} style={{ textAlign: "center", flex: 1, minWidth: 100 }}>
                   <div style={{ fontSize: 26, fontWeight: 800, color: "#6366f1" }}>{n}</div>

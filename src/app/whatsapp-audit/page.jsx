@@ -304,7 +304,7 @@ export default function WhatsappAudit() {
                   SmileCRM's WhatsApp module could recover {f(recovery)}/month for your clinic
                 </div>
                 <div style={{ fontSize: 13, color: "#94a3b8", lineHeight: 1.6 }}>
-                  Instant text replies, appointment booking and recall — all inside WhatsApp, all text-based (no voice, no video). Typically recovers around 70% of the slow-reply leak. That's about {f(recovery * 12)}/year, on a flat monthly plan (~AED 1,200/mo). Same system running live in a real dental clinic today.
+                  Instant text replies, appointment booking and recall — all inside WhatsApp, all text-based (no voice, no video). Typically recovers around 70% of the slow-reply leak. That's about {f(recovery * 12)}/year, on a flat monthly plan (~AED 1,200/mo).
                 </div>
               </div>
             </div>
@@ -387,7 +387,7 @@ export default function WhatsappAudit() {
                 { n: "~70%", l: "Typical slow-reply revenue recovery" },
                 { n: "Text", l: "WhatsApp automation, no voice or video" },
                 { n: "2 weeks", l: "Typical setup time" },
-                { n: "Live", l: "Running in a real dental clinic today" },
+                { n: "Beta", l: "In active development, early access open" },
               ].map(({ n, l }) => (
                 <div key={l} style={{ textAlign: "center", flex: 1, minWidth: 100 }}>
                   <div style={{ fontSize: 26, fontWeight: 800, color: "#25D366" }}>{n}</div>
