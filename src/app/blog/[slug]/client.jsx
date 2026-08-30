@@ -100,17 +100,26 @@ function BulletList({ items }) {
 function NumberedList({ items }) {
   return (
     <div style={{ margin: "16px 0 20px", display: "grid", gap: 12 }}>
-      {items.map((item, i) => (
+      {items.map((item, i) => {
+        // Use the number the author wrote, not the index within this list.
+        // Bodies are split on blank lines, so "1." and "2." separated by a blank line
+        // become two SEPARATE one-item lists, and an index-based badge rendered every
+        // item as "1". Parsing the literal keeps a hand-authored sequence intact however
+        // the paragraphs happen to be split.
+        const authored = item.match(/^(\d+)\.\s/);
+        const label = authored ? authored[1] : String(i + 1);
+        return (
         <div key={i} style={{ display: "flex", gap: 14, alignItems: "flex-start" }}>
           <span style={{
             minWidth: 28, height: 28, borderRadius: 8, background: "#EFF6FF", color: "#2563EB",
             display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13, fontWeight: 700, flexShrink: 0, marginTop: 2
-          }}>{i + 1}</span>
+          }}>{label}</span>
           <span style={{ fontSize: 15.5, lineHeight: 1.7, color: "#374151" }}>
             <RichText text={item.replace(/^\d+\.\s*/, "")} />
           </span>
         </div>
-      ))}
+        );
+      })}
     </div>
   );
 }
