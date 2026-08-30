@@ -126,9 +126,9 @@ export default function BlogPostPage({ params }) {
     articleSection: post.category,
     keywords: (post.keywords || []).join(", "),
     author: {
-      "@type": "Person",
-      name: "Neil",
-      url: "https://deltalabsai.com/about",
+      "@type": "Organization",
+      name: "Delta Labs AI",
+      url: "https://deltalabsai.com",
     },
     publisher: {
       "@type": "Organization",
