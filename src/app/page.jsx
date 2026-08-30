@@ -77,7 +77,7 @@ function FAQ() {
   const [open, setOpen] = useState(null);
   const faqs = [
     { q: "How much does it cost?", a: "Our free diagnostic gives you immediate insights at no cost. Consulting engagements are customized to your business size and needs  - we'll discuss pricing on your discovery call after we understand your situation. Digital products start at $19." },
-    { q: "We're not very tech-savvy. Is this for us?", a: "Absolutely. Most of our clients aren't technical. We handle the complex stuff and give you simple, clear recommendations. If you can use email and a spreadsheet, you're good. Our AI tools are designed to be used by anyone on your team." },
+    { q: "We're not very tech-savvy. Is this for us?", a: "Absolutely. It is built for people who are not technical. We handle the complex stuff and give you simple, clear recommendations. If you can use email and a spreadsheet, you're good. Our AI tools are designed to be used by anyone on your team." },
     { q: "How quickly will we see results?", a: "Most clients see measurable improvements within 6-12 weeks. Quick wins (like process bottleneck fixes) often show impact within days. Larger transformations typically take 2-3 months to fully implement." },
     { q: "Are we locked into a long-term contract?", a: "No. We don't do lock-in contracts. Engagements are project-based or month-to-month. You stay because you're getting results, not because of a contract." },
     { q: "What if the discovery call isn't useful?", a: "If we can't identify at least one actionable quick win in your 30-minute call, we'll send you our DX Roadmap Template ($79 value) completely free. We've never had to do this." },
