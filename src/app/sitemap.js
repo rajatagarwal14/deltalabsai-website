@@ -118,6 +118,12 @@ export default function sitemap() {
       priority: 0.7,
     },
     {
+      url: "https://deltalabsai.com/clients",
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.6,
+    },
+    {
       url: "https://deltalabsai.com/answers/hvac-invoicing-automation",
       lastModified: new Date("2026-07-13"),
       changeFrequency: "monthly",
