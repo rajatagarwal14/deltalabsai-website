@@ -129,7 +129,7 @@ function ClientCard({ c }) {
 
         <p style={{ fontSize: 15.5, lineHeight: 1.7, color: "#374151", margin: "0 0 18px" }}>{c.relationship}</p>
 
-        <div style={{ fontSize: 11.5, fontWeight: 600, letterSpacing: ".08em", textTransform: "uppercase", color: "#94A3B8", marginBottom: 9 }}>
+        <div style={{ fontSize: 11.5, fontWeight: 600, letterSpacing: ".08em", textTransform: "uppercase", color: "#64748B", marginBottom: 9 }}>
           What we operate
         </div>
         <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "grid", gap: 7 }}>
@@ -151,38 +151,52 @@ function ClientCard({ c }) {
 }
 
 function DemoCard({ d }) {
+  // Deliberately an <article>, not one giant <a>. Wrapping the whole card in a link gave
+  // a screen-reader user a single ~50-word link whose accessible name swallowed the
+  // "not a client" disclaimer. The link now covers the poster and the heading only, so
+  // the disclaimer is read as its own text.
   return (
-    <a href={d.href} className="demo-card" style={{
+    <article className="demo-card" style={{
       display: "grid", gridTemplateColumns: "minmax(0, 300px) minmax(0, 1fr)", alignItems: "stretch",
-      border: "1px dashed #CBD5E1", borderRadius: 20, overflow: "hidden", textDecoration: "none",
-      color: "inherit", background: "#FCFCFD",
+      border: "1px dashed #CBD5E1", borderRadius: 20, overflow: "hidden", background: "#FCFCFD",
     }}>
-      <div style={{ background: "#0F172A", position: "relative", minHeight: 180 }}>
+      <a href={d.href} style={{ background: "#0F172A", position: "relative", minHeight: 180, display: "block" }}
+        aria-label={`Watch the ${d.name} demo`}>
         <img src={d.poster} alt="" width={300} height={180}
           style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", opacity: 0.92 }} />
         <span style={{ position: "absolute", left: 14, bottom: 14, display: "inline-flex", alignItems: "center", gap: 7, background: "rgba(15,23,42,.82)", color: "#fff", fontSize: 12, fontWeight: 600, padding: "6px 11px", borderRadius: 999 }}>
           <Ic.Play /> Watch the demo
         </span>
-      </div>
+      </a>
 
       <div style={{ padding: "26px 30px" }}>
-        {/* Deliberately not the client badge. A demo must never be mistaken for a customer. */}
-        <div style={{ display: "inline-flex", alignItems: "center", gap: 6, background: "#F1F5F9", color: "#64748B", fontSize: 11, fontWeight: 700, letterSpacing: ".06em", textTransform: "uppercase", padding: "4px 10px", borderRadius: 6, marginBottom: 12 }}>
+        <div style={{ display: "inline-flex", alignItems: "center", gap: 6, background: "#F1F5F9", color: "#475569", fontSize: 11, fontWeight: 700, letterSpacing: ".06em", textTransform: "uppercase", padding: "4px 10px", borderRadius: 6, marginBottom: 12 }}>
           Live demo
         </div>
-        <h3 style={{ fontSize: 20, fontWeight: 700, margin: "0 0 8px", lineHeight: 1.25 }}>{d.name}</h3>
-        <p style={{ fontSize: 15, lineHeight: 1.65, color: "#374151", margin: "0 0 12px" }}>{d.desc}</p>
-        <p style={{ fontSize: 13, color: "#94A3B8", margin: 0, lineHeight: 1.6 }}>
-          {d.subject} is an illustrative business created to show the product. It is not a Delta Labs AI client.
+        {/* "Demo:" sits in the heading text itself, so the distinction survives a
+            screen-reader headings list, a print stylesheet and a greyscale screenshot,
+            none of which carry the badge or the dashed border. */}
+        <h3 style={{ fontSize: 20, fontWeight: 700, margin: "0 0 8px", lineHeight: 1.25 }}>
+          Demo: {d.name}
+        </h3>
+        {/* Leads with what it is. Darkened from #94A3B8 (2.50:1, below WCAG AA) to
+            #475569 (7.5:1) because this is the one sentence that stops a demo being
+            read as a customer, and it was the faintest text on the page. */}
+        <p style={{ fontSize: 13.5, color: "#475569", margin: "0 0 10px", lineHeight: 1.6, fontWeight: 500 }}>
+          Illustrative demo, not a client. {d.subject} is a fictional business created to show the product.
         </p>
+        <p style={{ fontSize: 15, lineHeight: 1.65, color: "#374151", margin: "0 0 12px" }}>{d.desc}</p>
+        <a href={d.href} style={{ fontSize: 14, fontWeight: 600, color: "#2563EB", textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 6 }}>
+          Open the demo <Ic.Arr />
+        </a>
       </div>
-    </a>
+    </article>
   );
 }
 
 export default function Clients() {
   return (
-    <div style={{ fontFamily: "'DM Sans',sans-serif", color: "#0F172A", background: "#fff", minHeight: "100vh" }}>
+    <div className="clients-page" style={{ fontFamily: "'DM Sans',sans-serif", color: "#0F172A", background: "#fff", minHeight: "100vh" }}>
 
       <section style={{ maxWidth: 1100, margin: "0 auto", padding: "72px 24px 36px" }}>
         <F>
@@ -193,10 +207,26 @@ export default function Clients() {
             What we build, and who we build it for
           </h1>
           <p style={{ fontSize: 17, color: "#52525b", lineHeight: 1.65, margin: 0, maxWidth: 640 }}>
-            Delta Labs AI builds and operates WhatsApp booking and commerce on behalf of small businesses.
-            Clients are named here with their permission. Demos are marked as demos.
+            Delta Labs AI builds and operates WhatsApp booking and commerce for small businesses.
+            Demos on this page are marked as demos and are not customers.
           </p>
         </F>
+      </section>
+
+      {/* The one fact a platform reviewer is looking for, stated before anything else and
+          rendered statically. Previously it appeared only at the foot of the page, below
+          two demo cards, and inside a fade wrapper that starts at opacity 0. */}
+      <section style={{ maxWidth: 1100, margin: "0 auto", padding: "0 24px 4px" }}>
+        <p style={{
+          fontSize: 15.5, lineHeight: 1.7, color: "#374151", margin: "0 0 28px", maxWidth: 760,
+          background: "#F8FAFC", border: "1px solid #E5E7EB", borderRadius: 12, padding: "16px 18px",
+        }}>
+          <strong>Dent-Ox | The Dental Studio is a client of Delta Labs AI.</strong>{" "}
+          Delta Labs AI operates its WhatsApp Business number +91 99717 19706 on the clinic's behalf.{" "}
+          <a href="#verification" style={{ color: "#2563EB", textDecoration: "none", fontWeight: 500 }}>
+            Full verification details
+          </a>.
+        </p>
       </section>
 
       {/* Use-case index. Real anchors, so the sections below are linkable. */}
@@ -221,19 +251,22 @@ export default function Clients() {
           </F>
           <div style={{ display: "grid", gap: 18 }}>
             {u.entries.map((e, j) => (
-              <F key={e.name} d={j * 0.06}>
-                {e.kind === "client" ? <ClientCard c={e} /> : <DemoCard d={e} />}
-              </F>
+              // A client card is evidence, not decoration. It must not depend on JS to
+              // become visible: an automated screenshot, reader mode or a JS-off crawler
+              // would otherwise capture a blank page.
+              e.kind === "client"
+                ? <ClientCard key={e.name} c={e} />
+                : <F key={e.name} d={j * 0.06}><DemoCard d={e} /></F>
             ))}
           </div>
         </section>
       ))}
 
       {/* For platform reviewers. Says the one thing they need, in plain terms. */}
-      <section style={{ maxWidth: 1100, margin: "0 auto", padding: "48px 24px 72px" }}>
-        <F>
+      <section id="verification" style={{ maxWidth: 1100, margin: "0 auto", padding: "48px 24px 72px", scrollMarginTop: 24 }}>
+        <div>
           <div style={{ background: "#F8FAFC", border: "1px solid #E5E7EB", borderRadius: 16, padding: "28px 30px" }}>
-            <div style={{ fontSize: 12, fontWeight: 600, letterSpacing: ".08em", textTransform: "uppercase", color: "#94A3B8", marginBottom: 12 }}>
+            <div style={{ fontSize: 12, fontWeight: 600, letterSpacing: ".08em", textTransform: "uppercase", color: "#64748B", marginBottom: 12 }}>
               Platform and partner verification
             </div>
             <p style={{ fontSize: 15, lineHeight: 1.75, color: "#374151", margin: "0 0 14px", maxWidth: 760 }}>
@@ -244,12 +277,12 @@ export default function Clients() {
             </p>
             <p style={{ fontSize: 13.5, lineHeight: 1.7, color: "#64748B", margin: 0, maxWidth: 760 }}>
               For verification queries, contact{" "}
-              <a href="mailto:neil@mail.deltalabsai.com" style={{ color: "#2563EB", textDecoration: "none", fontWeight: 500 }}>
-                neil@mail.deltalabsai.com
+              <a href="mailto:deltalabsai@mail.deltalabsai.com" style={{ color: "#2563EB", textDecoration: "none", fontWeight: 500 }}>
+                deltalabsai@mail.deltalabsai.com
               </a>.
             </p>
           </div>
-        </F>
+        </div>
       </section>
 
       <section style={{ maxWidth: 700, margin: "0 auto", padding: "0 24px 80px", textAlign: "center" }}>
@@ -265,7 +298,11 @@ export default function Clients() {
         </F>
       </section>
 
-      <footer style={{ borderTop: "1px solid #f4f4f5", padding: "32px 24px", textAlign: "center" }}>
+      {/* The site's floating chat and support widgets are position:fixed in the bottom
+          corners. Extra bottom padding keeps the footer and the last CTA out from under
+          them. Mid-scroll overlap is inherent to a fixed widget and affects every page
+          equally, so it is not fixed here. */}
+      <footer style={{ borderTop: "1px solid #f4f4f5", padding: "32px 24px 108px", textAlign: "center" }}>
         <p style={{ fontSize: 13, color: "#a1a1aa", margin: 0 }}>Delta Labs AI. All rights reserved.</p>
         <p style={{ fontSize: 12, color: "#a1a1aa", marginTop: 4 }}>neil@mail.deltalabsai.com</p>
       </footer>
@@ -275,7 +312,10 @@ export default function Clients() {
           .client-card, .demo-card { grid-template-columns: 1fr !important; }
         }
         .demo-card:hover { border-color: #94A3B8; }
-        @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+        .clients-page a:focus-visible { outline: 2px solid #2563EB; outline-offset: 3px; border-radius: 4px; }
+        /* Scoped: an unscoped * rule here applied to the whole document, including the
+           site's fixed widgets, for as long as this page was mounted. */
+        @media (prefers-reduced-motion: reduce) { .clients-page * { transition: none !important; } }
       `}</style>
     </div>
   );
