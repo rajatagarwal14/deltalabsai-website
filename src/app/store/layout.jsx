@@ -156,28 +156,6 @@ function StoreJsonLd() {
         },
       },
     },
-    // ✅ FIX 4 (non-critical): aggregateRating
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.9",
-      "reviewCount": "12",
-      "bestRating": "5",
-      "worstRating": "1",
-    },
-    // ✅ FIX 5 (non-critical): review
-    "review": {
-      "@type": "Review",
-      "reviewRating": {
-        "@type": "Rating",
-        "ratingValue": "5",
-        "bestRating": "5",
-      },
-      "author": {
-        "@type": "Person",
-        "name": "Verified Customer",
-      },
-      "reviewBody": "Saved us hours every week. Setup was smooth and the automation just works.",
-    },
     "category": p.category,
   }));
 

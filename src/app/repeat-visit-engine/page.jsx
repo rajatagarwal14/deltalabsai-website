@@ -48,7 +48,7 @@ const steps = [
 
 const faqs = [
   { q: "Do I need to connect my EMR or booking software?", a: "No. The Repeat-Visit Engine runs standalone off a simple patient list. You upload a CSV or enter patients manually: name, WhatsApp number, last-visit-date, treatment type." },
-  { q: "Does that mean I have to update visit dates myself?", a: "Yes, to be upfront about it. There is no live sync with your booking system yet, so visit dates are entered manually as patients come in. It takes a couple of minutes a day for most clinics." },
+  { q: "Does that mean I have to update visit dates myself?", a: "Yes, to be upfront about it. There is no live sync with your booking system yet, so visit dates are entered manually as patients come in. It should take only a couple of minutes a day." },
   { q: "What exactly happens if I sign up?", a: "We set up your three automations: recall messages timed to each treatment's interval, no-show re-booking prompts, and 24-hour post-visit review requests. Nothing beyond those three." },
   { q: "What is the guarantee?", a: "We go live within 7 days or you pay nothing. And if you see no measurable lift in repeat bookings within 30 days, you get a full refund." },
   { q: "Which treatments does the recall timing cover?", a: "Typically botox around 90 days, filler around 180 days, and laser on its own protocol interval. These are common defaults, not medical advice, and you set the exact timing per treatment type when you upload your list." },

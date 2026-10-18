@@ -212,7 +212,7 @@ const Ic = {
   Sparkle: () => <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.2L22 12l-7.6 2.8L12 22l-2.4-7.2L2 12l7.6-2.8L12 2z"/></svg>,
 };
 
-// 9-Dimension Questions
+// 5-Dimension Questions
 const dimensions = [
   {
     id: "revenue",
@@ -310,11 +310,11 @@ function getDimensionLabel(score) {
 }
 
 const quickWins = {
-  revenue: { title: "Revenue Engine Quick Win", tip: "This week, list your top 5 clients and ask each one: 'Who else do you know that could benefit from what we do?' Referral requests from happy clients convert 4x better than cold outreach  - and cost nothing.", action: "Ask 5 clients for referrals this week" },
+  revenue: { title: "Revenue Engine Quick Win", tip: "This week, list your top 5 clients and ask each one: 'Who else do you know that could benefit from what we do?' Referral requests to happy clients often work better than cold outreach  - and cost nothing.", action: "Ask 5 clients for referrals this week" },
   operations: { title: "Operations Quick Win", tip: "Pick your most repeated task. Open Loom, record yourself doing it once. Share that video with your team. You just created your first SOP in under 10 minutes  - and it'll save hours of training.", action: "Record one Loom SOP this week" },
   technology: { title: "Technology Quick Win", tip: "Identify the one task where you copy-paste data between two tools. Set up a free Zapier account and automate that single transfer. One automation saves 2-5 hours per week on average.", action: "Automate one copy-paste task with Zapier" },
   team: { title: "Team Quick Win", tip: "Write down every task that ONLY YOU can do. Pick the easiest one and teach it to someone else this week. Key-person dependency is the #1 business risk for companies your size.", action: "Delegate one founder-only task this week" },
-  data: { title: "Data & Decisions Quick Win", tip: "Create a simple weekly scorecard with just 5 numbers: revenue, new leads, conversion rate, cash balance, and customer satisfaction. Review it every Monday. Companies that track weekly metrics grow 30% faster.", action: "Build a 5-metric weekly scorecard" },
+  data: { title: "Data & Decisions Quick Win", tip: "Create a simple weekly scorecard with just 5 numbers: revenue, new leads, conversion rate, cash balance, and customer satisfaction. Review it every Monday.", action: "Build a 5-metric weekly scorecard" },
 };
 
 function getLowestDimension(scores) {
@@ -742,10 +742,6 @@ export default function IntakeForm() {
             Our team will review your diagnostic results before your call. We&apos;ll come prepared with specific recommendations for <strong>{info.company}</strong> based on your scores. You&apos;ll receive a detailed breakdown of quick wins, strategic priorities, and estimated ROI -all in your 30-minute discovery call.
           </p>
         </div>
-
-        <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, color: "#6B7280", textAlign: "center", marginTop: 16 }}>
-          We take on a maximum of 5 new consulting clients per month. Limited discovery call slots available.
-        </p>
 
         {!submitted ? (
           <div>

@@ -38,9 +38,9 @@ const CHALLENGES = [
 ];
 
 const SOCIAL_PROOF = [
-  { initials: "A", name: "Aryan, 26", quote: "I'd been on the apps for 2 years with no real dates. Would love a coach that actually gets the Indian dating scene." },
-  { initials: "P", name: "Priya, 29", quote: "My friends keep saying just be yourself but that advice is useless. I need someone who can actually tell me what I'm doing wrong." },
-  { initials: "R", name: "Rahul, 31", quote: "I'm decent at my job but completely clueless when it comes to dating. An AI coach available at 11pm when I'm overthinking? Yes please." },
+  
+  
+  
 ];
 
 async function saveWaitlistLead(data) {
@@ -178,25 +178,6 @@ export default function AIDatingCoachPage() {
         </div>
       </section>
 
-      {/* Social proof */}
-      <section style={{ background: "#fafafa", padding: "56px 24px" }}>
-        <div style={{ maxWidth: 860, margin: "0 auto" }}>
-          <F><h2 style={{ fontSize: 22, fontWeight: 700, textAlign: "center", marginBottom: 36 }}>From people just like you</h2></F>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: 20 }}>
-            {SOCIAL_PROOF.map((s, i) => (
-              <F key={i} d={i * 0.08}>
-                <div style={{ background: "#fff", border: "1px solid #e4e4e7", borderRadius: 12, padding: "24px 20px" }}>
-                  <p style={{ fontSize: 14, color: "#52525b", lineHeight: 1.7, marginBottom: 16, fontStyle: "italic" }}>"{s.quote}"</p>
-                  <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                    <div style={{ width: 32, height: 32, borderRadius: "50%", background: "#f4f4f5", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13, fontWeight: 700 }}>{s.initials}</div>
-                    <span style={{ fontSize: 13, fontWeight: 600, color: "#71717a" }}>{s.name}</span>
-                  </div>
-                </div>
-              </F>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Pricing teaser */}
       <section style={{ maxWidth: 560, margin: "0 auto", padding: "72px 24px", textAlign: "center" }}>

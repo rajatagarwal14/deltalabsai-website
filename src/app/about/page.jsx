@@ -34,9 +34,9 @@ function Btn({ children, href, v = "primary", ...p }) {
 }
 
 const proofPoints = [
-  "Built on Fortune 500 consulting frameworks",
-  "AI analysis across 48 data points",
-  "9-dimension diagnostic — free audit",
+  "5-dimension diagnostic",
+  "Free, about 3 minutes",
+  "No credit card needed",
 ];
 
 const services = [
@@ -110,7 +110,7 @@ export default function AboutPage() {
             Delta Labs AI was built to close that gap. We combine consulting frameworks with practical AI automation to find exactly where a business is leaking revenue, then fix it — with systems that keep running long after the engagement ends.
           </p>
           <p style={{ fontSize: 16, color: "#52525b", lineHeight: 1.7, marginTop: 16 }}>
-            SmileCRM, our dental practice management product, is one example of that approach: a purpose-built system born from working closely with independent dental clinics. It's one product in a broader, founder-led practice focused on solving the same problem across every industry we serve.
+            SmileCRM, our dental practice management product, is one example of that approach: a purpose-built system for independent dental clinics. It's one product in a broader, founder-led practice focused on solving the same problem across the industries we target.
           </p>
         </F>
       </section>
@@ -145,7 +145,7 @@ export default function AboutPage() {
       {/* Industries */}
       <section style={{ background: "#fafafa", padding: "72px 24px" }}>
         <div style={{ maxWidth: 1000, margin: "0 auto" }}>
-          <F><h2 style={{ fontSize: 28, fontWeight: 700, marginBottom: 40, textAlign: "center" }}>Who we work with</h2></F>
+          <F><h2 style={{ fontSize: 28, fontWeight: 700, marginBottom: 40, textAlign: "center" }}>Who we build for</h2></F>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 24 }}>
             {industries.map((s, i) => (
               <F key={s.name} d={i * 0.06}>

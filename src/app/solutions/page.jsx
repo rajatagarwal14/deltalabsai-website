@@ -79,7 +79,7 @@ const solutions = [
     tag: "Sales & Outreach",
     name: "AI BDR",
     desc: "A fully automated business development system that researches leads, writes personalised emails, follows up, and hands warm replies to you.",
-    features: ["200 personalised sequences/mo", "35–50% open rates", "AI-written, not templates", "48-hour setup"],
+    features: ["200 personalised sequences/mo", "Replies flagged in your dashboard", "AI-written, not templates", "48-hour setup"],
     price: "₹15,000/mo",
     href: "/ai-bdr",
     cta: "See AI BDR",
@@ -88,7 +88,7 @@ const solutions = [
   {
     tag: "Clinics & SMBs",
     name: "AI Voice Receptionist",
-    desc: "An AI that answers your business phone 24/7, books appointments, handles FAQs, and never misses a call — even after hours.",
+    desc: "An AI that answers your business phone 24/7, books appointments, and handles FAQs — including after hours.",
     features: ["24/7 call answering", "Appointment booking", "WhatsApp handoff", "Human escalation"],
     price: "₹2,999/mo",
     href: "/voice-receptionist",

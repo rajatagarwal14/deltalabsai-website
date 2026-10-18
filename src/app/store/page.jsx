@@ -279,9 +279,9 @@ const TRUST = ["Dental Clinics", "Fitness Studios", "Real Estate Agencies", "Hom
 
 // ── Reviews ───────────────────────────────────────────────────────────────────
 const REVIEWS = [
-  { name: "Dr. Anita Sharma", role: "Dentist, Bengaluru", quote: "SmileCRM's WhatsApp automation cut my no-shows noticeably in the first month. It's magic.", stars: 5 },
-  { name: "Ravi Kumar", role: "Gym Owner, Hyderabad", quote: "Set up in under 10 minutes. The AI handles follow-ups I used to do manually every evening.", stars: 5 },
-  { name: "Priya Nair", role: "E-commerce Founder", quote: "The outreach agent booked 3 B2B calls in the first week. I didn't have to do anything.", stars: 5 },
+
+
+
 ];
 
 // ── Main Page ─────────────────────────────────────────────────────────────────
@@ -355,9 +355,9 @@ export default function StorePage() {
   ];
 
   const STAT_ITEMS = [
-    { n: "300+", l: "Leads in our CRM" },
-    { n: "9%", l: "Cold email open rate" },
-    { n: "48h", l: "Setup to first result" },
+    
+    
+    { n: "48h", l: "Free trial length" },
     { n: "Auto", l: "No-show reminders built-in" },
   ];
 
@@ -369,14 +369,14 @@ export default function StorePage() {
       <div style={{ background: "linear-gradient(160deg, #0F172A 0%, #1E293B 50%, #0F172A 100%)", paddingTop: 120, paddingBottom: 80, paddingLeft: 24, paddingRight: 24, textAlign: "center" }}>
         <div style={{ maxWidth: 780, margin: "0 auto" }}>
           <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(16,185,129,0.15)", border: "1px solid rgba(16,185,129,0.3)", borderRadius: 100, padding: "6px 16px", marginBottom: 24 }}>
-            <span style={{ color: "#10B981", fontSize: 12, fontWeight: 700, letterSpacing: "0.04em" }}>🟢 ALL SYSTEMS LIVE · NO THEATRICS</span>
+            <span style={{ color: "#10B981", fontSize: 12, fontWeight: 700, letterSpacing: "0.04em" }}>FREE 2-DAY TRIAL · NO CREDIT CARD</span>
           </div>
           <h1 style={{ fontSize: "clamp(32px,5.5vw,58px)", fontWeight: 900, color: "#fff", margin: "0 0 20px", lineHeight: 1.1, letterSpacing: "-0.03em" }}>
             AI tools for small businesses.<br />
             <span style={{ background: "linear-gradient(90deg, #10B981, #059669)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Ready in 2 minutes.</span>
           </h1>
           <p style={{ fontSize: 18, color: "#94A3B8", lineHeight: 1.7, margin: "0 0 36px", maxWidth: 580, marginLeft: "auto", marginRight: "auto" }}>
-            From dental CRMs to cold email agents — real tools, real automation. Start a 2-day free trial and see results before you pay.
+            From dental CRMs to cold email agents — real tools, real automation. Start a 2-day free trial and try them before you pay.
           </p>
           <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
             <button onClick={() => openTrial("general", "AI Business Suite", "other")} style={{ background: "#059669", color: "#fff", border: "none", padding: "15px 32px", borderRadius: 12, fontSize: 16, fontWeight: 700, cursor: "pointer", display: "flex", alignItems: "center", gap: 8 }}>
@@ -404,7 +404,7 @@ export default function StorePage() {
 
       {/* ── TRUST BAR ────────────────────────────────────────────────── */}
       <div style={{ padding: "24px", textAlign: "center", borderBottom: "1px solid #E5E7EB" }}>
-        <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, fontWeight: 700, color: "#9CA3AF", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 16 }}>USED BY SMALL BUSINESSES IN</p>
+        <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, fontWeight: 700, color: "#9CA3AF", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 16 }}>BUILT FOR SMALL BUSINESSES IN</p>
         <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
           {TRUST.map(t => <Pill key={t} color="#374151" bg="#F3F4F6">{t}</Pill>)}
         </div>
@@ -436,7 +436,7 @@ export default function StorePage() {
             {[
               { n: "01", title: "Pick your product", body: "Choose the tool that fits your business. Click Start Free Trial — takes 30 seconds." },
               { n: "02", title: "Magic link to inbox", body: "We email you a secure link — no password, no install. Click to open your trial dashboard." },
-              { n: "03", title: "Use it for real", body: "Real AI, real data, real automation. See results before the 48-hour trial ends." },
+              { n: "03", title: "Use it for real", body: "Real AI, real data, real automation. Try it on your own work before the 48-hour trial ends." },
             ].map(({ n, title, body }, i) => (
               <F key={n} d={i * 0.1}>
                 <div style={{ background: "#fff", borderRadius: 16, border: "1px solid #E5E7EB", padding: "28px 24px" }}>
@@ -453,7 +453,7 @@ export default function StorePage() {
       {/* ── REVIEWS ──────────────────────────────────────────────────── */}
       <div style={{ padding: "80px 24px" }}>
         <div style={{ maxWidth: 1000, margin: "0 auto" }}>
-          <SectionHead pill="WHAT CUSTOMERS SAY" title="Results, not promises" />
+          {REVIEWS.length > 0 && <SectionHead pill="WHAT CUSTOMERS SAY" title="Results, not promises" />}
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: 24 }}>
             {REVIEWS.map(({ name, role, quote, stars }, i) => (
               <F key={name} d={i * 0.1}>

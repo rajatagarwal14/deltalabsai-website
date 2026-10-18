@@ -6,9 +6,10 @@ import { usePathname } from "next/navigation";
 // Pre-filled "Hi" message routes to the active number wa.me/917011402167.
 export default function WhatsAppFloat() {
   const pathname = usePathname();
+  // Hide on /international too: that page says nothing we build depends on a messaging app, and its contact is email.
   // Hide on standalone report pages — they are a focused conversion surface and
   // the float overlaps the report content. Keep it on all marketing pages.
-  if (pathname && (pathname.startsWith("/clinic") || pathname.startsWith("/score"))) return null;
+  if (pathname && (pathname.startsWith("/clinic") || pathname.startsWith("/score") || pathname.startsWith("/international"))) return null;
 
   const href =
     "https://wa.me/917011402167?text=" +

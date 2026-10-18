@@ -202,7 +202,7 @@ const STEPS = [
     icon: Ic.phone,
     n: "01",
     title: "Patient calls your clinic",
-    desc: "Your existing number — no change for patients. The AI picks up on the first ring, every time, including nights and weekends.",
+    desc: "Your existing number — no change for patients. The AI picks up around the clock, including nights and weekends.",
   },
   {
     icon: Ic.bot,
@@ -221,7 +221,7 @@ const STEPS = [
 const FEATURES = [
   { icon: Ic.lang, title: "Hindi + English", desc: "Seamlessly switches language mid-call. Patients speak in whatever they're comfortable with." },
   { icon: Ic.clock, title: "24/7 availability", desc: "Handles calls at 11 PM and 6 AM — no overtime, no missed Sunday appointments." },
-  { icon: Ic.calendar, title: "Practo 2-way sync", desc: "Live availability check before confirming. No double-bookings, ever." },
+  { icon: Ic.calendar, title: "Practo 2-way sync", desc: "Live availability check before confirming." },
   { icon: Ic.phone, title: "Reschedule & cancel", desc: "Full appointment lifecycle — not just new bookings. Patients don't need to call back." },
   { icon: Ic.shield, title: "Sounds professional", desc: "Introduces itself as your clinic's virtual receptionist. Patients appreciate 24/7 availability." },
   { icon: Ic.zap, title: "Zero setup for patients", desc: "Same phone number they already have. Works on any mobile, landline, or VOIP line." },
@@ -234,7 +234,7 @@ const FAQS = [
   },
   {
     q: "What happens if the AI can't handle a query?",
-    a: "Complex queries (insurance, medical advice) are gracefully escalated — the AI offers to take a message or asks the patient to call back during clinic hours. No lead is ever dropped.",
+    a: "Complex queries (insurance, medical advice) are gracefully escalated — the AI offers to take a message or asks the patient to call back during clinic hours.",
   },
   {
     q: "Does it work with my existing phone number?",
@@ -242,7 +242,7 @@ const FAQS = [
   },
   {
     q: "What if Practo goes down?",
-    a: "The AI takes the patient's details and flags it for your staff to confirm manually. The call is never wasted.",
+    a: "The AI takes the patient's details and flags it for your staff to confirm manually.",
   },
   {
     q: "How long does setup take?",
@@ -351,7 +351,7 @@ export default function VoiceReceptionist() {
                   flexShrink: 0,
                 }}
               />
-              Live pilot — Delhi dental clinic, 15 days
+              Pilot programme (beta) — waitlist open
             </div>
           </F>
           <F d={0.05}>
@@ -381,7 +381,7 @@ export default function VoiceReceptionist() {
                 marginRight: "auto",
               }}
             >
-              Never miss a patient call. Books, reschedules and cancels Practo
+              Stop missing patient calls. Books, reschedules and cancels Practo
               appointments automatically — while your staff focuses on care.
             </p>
           </F>
@@ -430,9 +430,9 @@ export default function VoiceReceptionist() {
           }}
         >
           {[
-            { n: "3–5", label: "calls missed per day by the average clinic" },
-            { n: isIntl ? "$$$" : "₹800+", label: "revenue lost per missed appointment" },
-            { n: "68%", label: "of patients won't call back after no answer" },
+            { n: "Daily", label: "calls missed by a typical clinic (estimates vary)" },
+            { n: "Each", label: "unanswered appointment call is a booking that may go elsewhere" },
+            { n: "Many", label: "patients won't call back after no answer (estimates vary)" },
           ].map(({ n, label }) => (
             <F key={n}>
               <div
@@ -886,7 +886,7 @@ export default function VoiceReceptionist() {
               {Ic.arrow}&nbsp;{waitlistCta}
             </Btn>
             <p style={{ marginTop: 18, fontSize: 13, color: C.textMuted }}>
-              Currently in 15-day pilot with a Delhi dental clinic
+              Pilot programme currently in beta
             </p>
           </F>
         </div>

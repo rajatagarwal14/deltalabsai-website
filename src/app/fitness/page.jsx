@@ -35,8 +35,8 @@ function Btn({ children, href, v = "primary", ...p }) {
 }
 
 const painPoints = [
-  { title: "Members ghost after month one", desc: "50% of new members cancel within 90 days. Without automated engagement, they quietly disappear and you only notice when revenue drops." },
-  { title: "Scheduling is a full-time job", desc: "WhatsApp messages, phone calls, walk-ins. Managing class bookings manually eats 10+ hours per week that should go toward training clients." },
+  { title: "Members ghost after month one", desc: "Many new members cancel within their first few months. Without automated engagement, they quietly disappear and you only notice when revenue drops." },
+  { title: "Scheduling is a full-time job", desc: "WhatsApp messages, phone calls, walk-ins. Managing class bookings manually eats hours every week that should go toward training clients." },
   { title: "Empty slots from no-shows", desc: "Members book classes but do not show up. The spot goes wasted. The waitlisted member never gets notified. Revenue lost, twice." },
   { title: "Reviews do not match your quality", desc: "Your studio delivers great results but has 12 Google reviews. The franchise gym down the road has 200. Guess who new members find first." },
 ];
@@ -59,10 +59,10 @@ const stats = [
 
 const faqs = [
   { q: "Does this work for yoga studios, gyms, and personal trainers?", a: "Yes. Our tools are designed for any independent fitness business, whether you run group classes, one-on-one training, or both." },
-  { q: "How long does setup take?", a: "Most studios are fully set up within 48 hours. We handle the configuration and import your existing member data." },
+  { q: "How long does setup take?", a: "We handle the configuration and import your existing member data." },
   { q: "What if my members are not tech-savvy?", a: "The booking system works through a simple link. If someone can use WhatsApp, they can book a class. No app download required." },
   { q: "How much does it cost?", a: "Plans start at Rs 2,999/month for small studios. Custom pricing available for larger facilities. 14-day free trial on all plans." },
-  { q: "Can I try it before committing?", a: "Absolutely. We offer a 14-day free trial with no credit card required. See the results before you pay anything." },
+  { q: "Can I try it before committing?", a: "Absolutely. We offer a 14-day free trial with no credit card required. Try it before you pay anything." },
 ];
 
 export default function FitnessPage() {
@@ -179,7 +179,7 @@ export default function FitnessPage() {
         <F>
           <h2 style={{ fontSize: 28, fontWeight: 700, marginBottom: 16 }}>Ready to grow your studio?</h2>
           <p style={{ fontSize: 16, color: "#52525b", marginBottom: 32, lineHeight: 1.6, maxWidth: 500, margin: "0 auto 32px" }}>
-            Independent fitness businesses across India and worldwide are automating their operations. Start your 14-day free trial today.
+            Built for independent fitness businesses in India and worldwide. Start your 14-day free trial today.
           </p>
           <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
             <Btn href="#cal-book">Book a Free Demo <Ic.Arr /></Btn>

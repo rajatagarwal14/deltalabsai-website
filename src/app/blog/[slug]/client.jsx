@@ -426,7 +426,7 @@ export default function BlogPostClient({ post, relatedPosts = [] }) {
               Find out where your business is leaking money
             </h3>
             <p style={{ fontSize: 16, color: "#94A3B8", lineHeight: 1.7, maxWidth: 480, margin: "0 auto 28px" }}>
-              Take our free 3-minute diagnostic. Get your 9-dimension score, a radar chart, and one specific quick win you can implement this week.
+              Take our free 3-minute diagnostic. Get your 5-dimension score, a radar chart, and one specific quick win you can implement this week.
             </p>
             <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
               <a href="/diagnostic" style={{
@@ -441,9 +441,6 @@ export default function BlogPostClient({ post, relatedPosts = [] }) {
                 background: "transparent", color: "#94A3B8", border: "1.5px solid #334155", fontWeight: 600, fontSize: 15, textDecoration: "none", transition: "all 0.2s",
               }}>Book a Free Call</a>
             </div>
-            <p style={{ fontSize: 12, color: "#475569", marginTop: 16 }}>
-              We take on a maximum of 5 new clients per month.
-            </p>
           </div>
         </div>
       </article>

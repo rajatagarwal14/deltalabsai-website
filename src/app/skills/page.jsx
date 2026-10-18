@@ -48,7 +48,7 @@ const skills = [
       "3-step follow-up sequence (day 3, day 7)",
       "Open/click tracking synced to your CRM",
     ],
-    stat: "Production stats: 222 emails sent, 9% open rate, 0 spam complaints",
+    stat: "Used in Delta Labs AI's own outreach stack",
   },
   {
     name: "LinkedIn Company Page Automation",
@@ -60,7 +60,7 @@ const skills = [
       "Publishes to your company page, not a personal profile",
       "Every post logged with URL and engagement data",
     ],
-    stat: "Production stats: daily posts since March 2026, 100% first-pass approval",
+    stat: "Used for Delta Labs AI's own LinkedIn company page",
   },
 ];
 

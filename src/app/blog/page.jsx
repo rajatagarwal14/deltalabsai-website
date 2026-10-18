@@ -196,7 +196,7 @@ export default function BlogIndexPage() {
             Ready to transform your business?
           </h2>
           <p style={{ fontSize: 16, color: "#94A3B8", lineHeight: 1.7, margin: "0 0 28px" }}>
-            Start with our free 3-minute diagnostic. Get your 9-dimension score and a specific quick win you can implement this week.
+            Start with our free 3-minute diagnostic. Get your 5-dimension score and a specific quick win you can implement this week.
           </p>
           <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
             <a href="/diagnostic" style={{

@@ -34,7 +34,7 @@ const PAIRS = [
 
 const FAQ = [
   { q: "How long does a CRM migration take?", a: "A fixed-scope migration is normally about three weeks: roughly a week on audit and mapping, a week on cleaning and the staged load, and a week on verification and cutover. Migrations that need custom-object work or that uncover unusable source data take longer, and we say so at scoping rather than mid-project." },
-  { q: "What does it cost?", a: "Published industry ranges put a partner-led CRM transition for a 5 to 50 seat team at roughly $1,500 to $12,000, driven by record volume and custom field mapping. We scope to a fixed number before starting. Below a few thousand clean records in a single system, a migration service is usually not worth paying for and we will tell you that." },
+  { q: "What does it cost?", a: "Estimates vary widely with record volume and custom field mapping. We scope to a fixed number before starting. Below a few thousand clean records in a single system, a migration service is usually not worth paying for and we will tell you that." },
   { q: "Will the team be locked out during the move?", a: "No. The load runs into a sandbox first and is verified against the audit counts object by object. The source system is frozen read-only at cutover rather than deleted, so it stays available if something needs checking afterwards." },
   { q: "What happens to the old system?", a: "It stays intact and readable. Deleting the source is the customer's decision to make later, once they are satisfied the new system holds everything. Nothing in our process depends on destroying it." },
   { q: "Do custom fields and record relationships survive?", a: "Where the destination supports them, yes, and that is mapped explicitly during the audit. Where it does not, that becomes a written decision before the load rather than a surprise afterwards. Unmapped fields are the most common cause of silent data loss in a migration." },
@@ -137,7 +137,7 @@ export default function CrmMigrationServicesPage() {
       <section style={{ ...section, padding: "44px 24px" }}>
         <h2 style={h2}>Migrations we take</h2>
         <p style={p}>
-          The platform pair decides most of the work. These are the moves we scope most often and what is actually
+          The platform pair decides most of the work. These are common moves and what is actually
           difficult about each.
         </p>
         {PAIRS.map((x) => (

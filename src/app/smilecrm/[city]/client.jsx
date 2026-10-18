@@ -61,11 +61,11 @@ export default function SmileCRMCityClient({ city }) {
   const [openFaq, setOpenFaq] = useState(null);
 
   const faqs = [
-    { q: `Is SmileCRM available for dental clinics in ${city.name}?`, a: `Yes! SmileCRM is available for dental clinics across India, including ${city.name}, ${city.state}. We handle remote setup and onboarding — most clinics in ${city.name} are live within 48 hours.` },
-    { q: "Is SmileCRM difficult to set up?", a: "Not at all. We handle the entire setup for you. Most clinics are up and running within 48 hours. No technical skills required." },
-    { q: "Will my staff need training?", a: "SmileCRM is designed to be intuitive. We provide a 30-minute walkthrough and most staff members are comfortable within a day." },
+    { q: `Is SmileCRM available for dental clinics in ${city.name}?`, a: `Yes! SmileCRM is available for dental clinics across India, including ${city.name}, ${city.state}. We handle remote setup and onboarding.` },
+    { q: "Is SmileCRM difficult to set up?", a: "Not at all. We handle the entire setup for you. No technical skills required." },
+    { q: "Will my staff need training?", a: "SmileCRM is designed to be intuitive. We provide a 30-minute walkthrough." },
     { q: "What if I already use another software?", a: "SmileCRM integrates with most existing systems. We can import your patient data and run alongside your current tools." },
-    { q: "Is there a free trial?", a: "Yes, we offer a 14-day free trial on all plans. No credit card required. See the results before you commit." },
+    { q: "Is there a free trial?", a: "Yes, we offer a 14-day free trial on all plans. No credit card required. Try it before you commit." },
     { q: "Can I use SmileCRM for multiple locations?", a: `Yes, the Premium plan supports multiple locations under one dashboard — ideal if you have more than one clinic in ${city.name} or across ${city.state}.` },
   ];
 
@@ -106,7 +106,7 @@ export default function SmileCRMCityClient({ city }) {
             SmileCRM for Dental Clinics<br />in {city.name}
           </h1>
           <p style={{ fontSize: 18, color: "#52525b", maxWidth: 620, margin: "0 auto 32px", lineHeight: 1.65 }}>
-            Automate appointment reminders, patient recall, and Google review collection for your {city.name} dental clinic. Simple setup. Affordable pricing. Real results from day one.
+            Automate appointment reminders, patient recall, and Google review collection for your {city.name} dental clinic. Simple setup. Affordable pricing.
           </p>
           <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
             <Btn href="#cal-book">Book a Free Demo <Ic.Arr /></Btn>
@@ -212,7 +212,7 @@ export default function SmileCRMCityClient({ city }) {
             Ready to transform your {city.name} clinic?
           </h2>
           <p style={{ fontSize: 16, color: "#52525b", marginBottom: 32, lineHeight: 1.6 }}>
-            Join independent dental clinics across {city.state} and India that are recovering revenue, reducing no-shows, and growing their online reputation with SmileCRM.
+            Built for independent dental clinics across {city.state} and India that want to recover revenue, reduce no-shows, and grow their online reputation.
           </p>
           <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
             <Btn href="#cal-book">Book a Free Demo <Ic.Arr /></Btn>
@@ -224,7 +224,7 @@ export default function SmileCRMCityClient({ city }) {
       {/* Footer */}
       <footer style={{ borderTop: "1px solid #f4f4f5", padding: "32px 24px", textAlign: "center" }}>
         <p style={{ fontSize: 13, color: "#a1a1aa" }}>
-          <a href="/dental" style={{ color: "#a1a1aa", textDecoration: "none" }}>SmileCRM</a> by Delta Labs AI. Serving dental clinics in {city.name}, {city.state} and across India.
+          <a href="/dental" style={{ color: "#a1a1aa", textDecoration: "none" }}>SmileCRM</a> by Delta Labs AI. Built for dental clinics in {city.name}, {city.state} and across India.
         </p>
         <p style={{ fontSize: 12, color: "#a1a1aa", marginTop: 4 }}>neil@mail.deltalabsai.com</p>
       </footer>

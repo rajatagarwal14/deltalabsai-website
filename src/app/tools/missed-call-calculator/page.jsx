@@ -366,10 +366,10 @@ export default function MissedCallCalculator() {
               <div style={{ fontSize: 28 }}>💡</div>
               <div>
                 <div style={{ fontSize: 15, fontWeight: 700, color: "#e2e8f0", marginBottom: 6 }}>
-                  A missed-call text-back closes this gap without hiring anyone
+                  A missed-call text-back can help close this gap without hiring anyone
                 </div>
                 <div style={{ fontSize: 13, color: "#94a3b8", lineHeight: 1.6 }}>
-                  When a call rings out, an automatic text goes to the caller within seconds — before they've called your competitor. It doesn't recover every missed call, but it recovers the ones that would otherwise be gone for good.
+                  When a call rings out, an automatic text goes to the caller within seconds — before they've called your competitor. It won't recover every missed call, but it gives you a second chance at the ones that would otherwise be gone for good.
                 </div>
               </div>
             </div>

@@ -10,7 +10,7 @@ export const metadata = {
   openGraph: {
     title: "AI Voice Receptionist Pilot Programme (Beta) | Delta Labs AI",
     description:
-      "AI answers your phone 24/7, books appointments, and never misses a call — even after hours.",
+      "AI answers your phone 24/7 and books appointments — even after hours.",
     url: "https://deltalabsai.com/voice-receptionist",
     type: "website",
     images: [

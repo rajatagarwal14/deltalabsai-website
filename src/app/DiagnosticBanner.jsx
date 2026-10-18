@@ -95,7 +95,7 @@ export default function DiagnosticBanner() {
             fontSize: 11,
             lineHeight: 1.3,
           }}>
-            AI Diagnostic scores your business across 9 dimensions. No signup needed.
+            AI Diagnostic scores your business across 5 dimensions. No signup needed.
           </p>
         </div>
 
