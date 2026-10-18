@@ -876,7 +876,7 @@ export default function VoiceReceptionist() {
                 lineHeight: 1.65,
               }}
             >
-              Join the waitlist. We&apos;ll reach out within 48 hours to schedule your
+              Join the waitlist. We&apos;ll reach out to schedule your
               pilot setup call.
             </p>
             <Btn

@@ -214,11 +214,11 @@ See the full breakdown of the underlying math in our [free no-show cost calculat
       },
       {
         heading: "Setup in Abu Dhabi: What to Expect",
-        body: `**Week 1**: SmileCRM connects to your existing booking system (spreadsheet, Clinicmaster, Zoho, or other), and your WhatsApp Business number is configured. Message templates go to Meta for approval — usually 1–3 business days.
+        body: `**Step 1**: SmileCRM connects to your existing booking system (spreadsheet, Clinicmaster, Zoho, or other), and your WhatsApp Business number is configured. Message templates go to Meta for approval — usually 1–3 business days.
 
-**Week 2**: Reminder sequences go live.
+**Step 2**: Reminder sequences go live.
 
-**After 30 days**: Recall automation runs against your inactive list, and review requests go out after each completed visit.
+**Step 3**: Recall automation runs against your inactive list, and review requests go out after each completed visit.
 
 No IT team required. Pricing is quoted after a short call, based on practice size and setup, with no lock-in contract.
 
@@ -280,7 +280,7 @@ How much these three gaps cost varies by store, and estimates vary. But it is no
 
 **Quick answer: D2C sellers on any platform lose revenue to abandoned carts without recovery sequences, unresolved support tickets that cancel orders, and manual order errors from disconnected tools. Three targeted automations — cart recovery, ticket triage, and inventory sync — close that gap. Specific tools and trigger logic below.**
 
-This guide covers what those automations are and how to set them up in 48 hours. Internal links to [Delta Labs AI's full solution suite](https://deltalabsai.com/solutions) and the [free business diagnostic](https://deltalabsai.com/diagnostic) where applicable.`
+This guide covers what those automations are and how to set them up. Internal links to [Delta Labs AI's full solution suite](https://deltalabsai.com/solutions) and the [free business diagnostic](https://deltalabsai.com/diagnostic) where applicable.`
       },
       {
         heading: "The Problem: Revenue You Earned Is Leaving Through Three Holes",
@@ -392,7 +392,7 @@ For a D2C seller doing $25,000/month in GMV, an illustrative worked example (ass
 **Illustrative combined recovery: $4,250–$6,900 a month, against $100–$300/month in automation cost.** Your own numbers will differ; measure before and after.`
       },
       {
-        heading: "Getting Started in 48 Hours",
+        heading: "Getting Started",
         body: `A practical sequence you can follow without a developer.
 
 ### Step 1: Audit Your Three Leak Points (Day 1, 2 hours)
@@ -531,7 +531,7 @@ No dashboards to check. No analysts to hire. Just a report in your inbox.
       },
       {
         heading: "How It Works",
-        body: `**Setup takes 48 hours. No credentials needed.**
+        body: `**No credentials needed.**
 
 1. Tell us your product name and industry
 2. Our AI agent starts scanning 12+ sources immediately
@@ -3104,11 +3104,11 @@ After each completed appointment, patients receive a WhatsApp message thanking t
         heading: "Setup in Dubai: What to Expect",
         body: `Every clinic asks about setup complexity. Here is the honest answer:
 
-**Week 1**: Delta Labs AI connects SmileCRM to your existing appointment system (whether that is a spreadsheet, Zoho, Clinicmaster, or another tool). WhatsApp Business API is configured for your clinic number. Message templates are submitted to Meta for approval; approval time varies.
+**Step 1**: Delta Labs AI connects SmileCRM to your existing appointment system (whether that is a spreadsheet, Zoho, Clinicmaster, or another tool). WhatsApp Business API is configured for your clinic number. Message templates are submitted to Meta for approval; approval time varies.
 
-**Week 2**: Automation flows go live. Your first reminder sequences run.
+**Step 2**: Automation flows go live. Your first reminder sequences run.
 
-**After 30 days**: Full recall automation is running. Your inactive patient list is being worked systematically. Review requests are going out after every completed appointment.
+**Step 3**: Full recall automation is running. Your inactive patient list is being worked systematically. Review requests are going out after every completed appointment.
 
 No IT team required. No technical knowledge required. Delta Labs AI handles the entire setup and remains available on WhatsApp for support.
 
@@ -3192,7 +3192,7 @@ The goal: less admin time, faster cash, and fewer billing errors.`,
 Those three numbers tell you whether the automation is paying for itself.`,
       },
       {
-        heading: "Getting Started in 48 Hours",
+        heading: "Getting Started",
         body: `Delta Labs AI connects to your existing scheduling tool (ServiceTitan, Housecall Pro, or even a shared Google Calendar), configures the automation flows, and runs a test invoice before going live.
 
 There's no lock-in and no IT team required. If you want to see exactly where your invoicing process is losing money before committing to anything, take the [free business diagnostic at deltalabsai.com/diagnostic](/diagnostic) — it scores your operations across 5 dimensions and gives you a specific quick-win recommendation.
@@ -3203,7 +3203,7 @@ You can also learn more about Delta Labs AI's [home services automation](/home-s
         heading: "FAQ: HVAC Automated Invoicing",
         body: `**Q: How does Delta Labs AI's automated invoicing integrate with my existing scheduling tools?**
 
-The system connects to popular field service platforms including ServiceTitan, Housecall Pro, and Jobber via API. For shops using simpler setups (Google Calendar, spreadsheets), Delta Labs AI provides a lightweight job-completion form that triggers the same automation. Setup takes less than 48 hours with no IT involvement required.
+The system connects to popular field service platforms including ServiceTitan, Housecall Pro, and Jobber via API. For shops using simpler setups (Google Calendar, spreadsheets), Delta Labs AI provides a lightweight job-completion form that triggers the same automation. Setup needs no IT involvement.
 
 **Q: Can I customize invoice templates to match my brand?**
 
@@ -3505,7 +3505,7 @@ The fix is not motivation. It is information. Once you know the number — ₹5,
 **1. AI Booking Bot**
 WhatsApp-enabled chat captures appointment requests 24/7, syncs to Google Calendar, and sends booking confirmations automatically. Staff move from call handlers to value-adding work.
 
-Setup time: under 48 hours. Tools required: WhatsApp Business, Google Calendar (or any calendar with an API). No code required.
+Tools required: WhatsApp Business, Google Calendar (or any calendar with an API). No code required.
 
 **2. Smart Invoice Engine**
 Pulls line items from your POS or spreadsheet, generates GST-compliant PDF invoices, emails them on completion, and sends automatic payment reminders at 3 days before due, 3 days overdue, and 10 days overdue. Manual chasing disappears.
@@ -3515,12 +3515,12 @@ Setup time: 1–2 days. Tools required: your existing spreadsheet or POS, email.
 **3. Recall and Review Automation**
 After each service interaction, the system sends a personalized follow-up via WhatsApp: satisfied customers get a one-tap Google Review prompt; negative feedback goes directly to the manager for recovery. No-show rates fall as recall becomes systematic.
 
-Setup time: under 24 hours. Tools required: WhatsApp Business, Google Business Profile.
+Tools required: WhatsApp Business, Google Business Profile.
 
 These three modules together address the largest cost categories. We quote the cost after a short call, based on business size.`,
       },
       {
-        heading: "Getting Started in 48 Hours",
+        heading: "Getting Started",
         body: `You do not need an IT team, a developer, or months of onboarding. The first step is a decision: stop measuring in hours and start measuring in rupees.
 
 **Step 1: Book a free 30-minute diagnostic at [/diagnostic](https://deltalabsai.com/diagnostic).**
@@ -3529,7 +3529,7 @@ We map your specific manual processes, put an hourly cost against each one, and 
 **Step 2: We identify the highest-impact automation for your business.**
 For most SMBs, that is WhatsApp reminders (appointment-based) or the invoice engine (service businesses). We prioritize based on your numbers, not a generic playbook.
 
-**Step 3: Go live within 48 hours.**
+**Step 3: Go live.**
 We handle the setup. Your staff do not need training — the automation works in the background.
 
 The cost of doing nothing compounds every year. The cost of starting is a 30-minute call.

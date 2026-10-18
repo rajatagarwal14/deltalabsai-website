@@ -79,7 +79,7 @@ const solutions = [
     tag: "Sales & Outreach",
     name: "AI BDR",
     desc: "A fully automated business development system that researches leads, writes personalised emails, follows up, and hands warm replies to you.",
-    features: ["200 personalised sequences/mo", "Replies flagged in your dashboard", "AI-written, not templates", "48-hour setup"],
+    features: ["200 personalised sequences/mo", "Replies flagged in your dashboard", "AI-written, not templates"],
     price: "₹15,000/mo",
     href: "/ai-bdr",
     cta: "See AI BDR",

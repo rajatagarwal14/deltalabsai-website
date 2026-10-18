@@ -27,7 +27,7 @@ Q: What is SmileCRM?
 A: Purpose-built CRM for independent dental clinics — automated appointment reminders, patient recall, Google review requests, WhatsApp follow-ups. Pricing is quoted after a short call.
 
 Q: What is the AI BDR product?
-A: A fully automated business development system: researches leads, writes personalised outreach, follows up, hands over warm replies. ~200 personalised sequences/month, 48-hour setup. Pricing is quoted after a short call.
+A: A fully automated business development system: researches leads, writes personalised outreach, follows up, hands over warm replies. ~200 personalised sequences/month. Pricing is quoted after a short call.
 
 Q: Do you offer an AI voice receptionist?
 A: Yes — answers the business phone 24/7, books appointments, handles FAQs, escalates to a human when needed. Currently a beta pilot with a waitlist; pricing is shared when you join.
@@ -44,7 +44,7 @@ A: Free 30-minute call to identify at least one actionable quick win; if none is
 ## Solutions catalog (deltalabsai.com/solutions)
 
 1. SmileCRM (Dental Clinics) — pricing quoted after a short call. Automated no-show reminders, automated patient recall, WhatsApp & SMS reminders, Google review automation.
-2. AI BDR (Sales & Outreach) — pricing quoted after a short call. 200 personalised sequences/mo, AI-written (not templated), 48-hour setup.
+2. AI BDR (Sales & Outreach) — pricing quoted after a short call. 200 personalised sequences/mo, AI-written (not templated).
 3. AI Voice Receptionist (Clinics & SMBs) — beta pilot, waitlist open. 24/7 call answering, appointment booking, WhatsApp handoff, human escalation.
 4. AI Business Ecosystem (Any SMB) — Custom pricing. n8n/Make.com automations, custom AI agents, CRM + email integration, monthly strategy review.
 
