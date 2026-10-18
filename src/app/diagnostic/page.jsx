@@ -456,6 +456,7 @@ export default function IntakeForm() {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
+  const [crmFailed, setCrmFailed] = useState(false);
   const containerRef = useRef(null);
   const [abVariant, setAbVariant] = useState("A");
   const [showEmailModal, setShowEmailModal] = useState(false);
@@ -766,7 +767,7 @@ export default function IntakeForm() {
                 // This is why diagnostic submissions never reached the CRM.
                 let crmOk = false;
                 try {
-                  const crmRes = await fetch("/api/leads/capture", {
+                  const crmReq = () => fetch("/api/leads/capture", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
@@ -784,10 +785,16 @@ export default function IntakeForm() {
                       },
                     }),
                   });
+                  let crmRes = await crmReq();
+                  if (!crmRes.ok && crmRes.status >= 500) crmRes = await crmReq();
                   crmOk = crmRes.ok;
                   if (!crmRes.ok) console.error("[diagnostic] CRM sync failed:", crmRes.status, await crmRes.text());
                 } catch (crmErr) {
                   console.error("[diagnostic] CRM sync error:", crmErr);
+                }
+                if (!crmOk) {
+                  setCrmFailed(true);
+                  trackGa4Event("diagnostic_crm_failed", { industry: info.industry });
                 }
                 setSubmitted(true);
               } catch (err) {
@@ -821,7 +828,7 @@ export default function IntakeForm() {
               <div style={{ fontSize: 36, marginBottom: 8 }}>{"\u2713"}</div>
               <h3 style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 20, fontWeight: 700, color: "#065F46", margin: "0 0 6px" }}>You&apos;re all set, {info.name}!</h3>
               <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 14, color: "#047857", lineHeight: 1.6, margin: 0 }}>
-                Your diagnostic has been received. Book your free 30-min discovery call below \u2014 no redirect needed.
+                Your diagnostic has been received. Book your free 30-min discovery call below, no redirect needed.{crmFailed ? " We could not save your details automatically, so please email neil@mail.deltalabsai.com and we will pick this up." : ""}
               </p>
             </div>
             {/* Inline Cal.com embed */}

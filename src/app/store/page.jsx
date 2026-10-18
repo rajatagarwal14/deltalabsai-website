@@ -308,7 +308,7 @@ export default function StorePage() {
       id: "smilecrm", emoji: "🦷", name: "SmileCRM", defaultBiz: "dental", highlight: true, ribbon: "MOST POPULAR",
       badge: "For Dental Clinics", badgeColor: "#059669", badgeBg: "#F0FDF4",
       desc: "Purpose-built CRM for dental clinics. Appointment automation, patient recall, WhatsApp follow-ups, and analytics — all in one.",
-      price: "₹2,999", pricePeriod: "/mo · Free 14-day trial",
+      price: "₹2,999", pricePeriod: "/mo · Free trial",
       features: ["Appointment calendar + queue management", "Patient records & treatment history", "WhatsApp reminder automation", "No-show reduction workflows", "Revenue & analytics dashboard", "Practo sync (optional)"],
     },
     {

@@ -24,13 +24,13 @@ Q: What if the discovery call isn't useful?
 A: If no actionable quick win is identified in the 30-minute call, the DX Roadmap Template ($79 value) is sent free.
 
 Q: What is SmileCRM?
-A: Purpose-built CRM for independent dental clinics — automated appointment reminders, patient recall, Google review requests, WhatsApp follow-ups. Starts at ₹2,999/month.
+A: Purpose-built CRM for independent dental clinics — automated appointment reminders, patient recall, Google review requests, WhatsApp follow-ups. Starts at ₹2,999/month in India; pricing for other markets is quoted separately.
 
 Q: What is the AI BDR product?
 A: A fully automated business development system: researches leads, writes personalised outreach, follows up, hands over warm replies. ~200 personalised sequences/month, 48-hour setup, ₹15,000/month.
 
 Q: Do you offer an AI voice receptionist?
-A: Yes — answers the business phone 24/7, books appointments, handles FAQs, escalates to a human when needed. Currently waitlist, ₹2,999/month.
+A: Yes — answers the business phone 24/7, books appointments, handles FAQs, escalates to a human when needed. Currently a beta pilot with a waitlist; pilot price ₹2,999/month.
 
 Q: What's the AI Business Ecosystem?
 A: End-to-end automation package: CRM setup, n8n/Make.com workflow automation, custom AI agents, lead capture, monthly strategy review. Custom pricing.
@@ -43,9 +43,9 @@ A: Free 30-minute call to identify at least one actionable quick win; if none is
 
 ## Solutions catalog (deltalabsai.com/solutions)
 
-1. SmileCRM (Dental Clinics) — ₹2,999–6,999/mo. Automated no-show reminders, automated patient recall, WhatsApp & SMS reminders, Google review automation.
+1. SmileCRM (Dental Clinics) — ₹2,999–6,999/mo in India (other markets quoted separately). Automated no-show reminders, automated patient recall, WhatsApp & SMS reminders, Google review automation.
 2. AI BDR (Sales & Outreach) — ₹15,000/mo. 200 personalised sequences/mo, AI-written (not templated), 48-hour setup.
-3. AI Voice Receptionist (Clinics & SMBs) — ₹2,999/mo. 24/7 call answering, appointment booking, WhatsApp handoff, human escalation.
+3. AI Voice Receptionist (Clinics & SMBs) — beta pilot, waitlist price ₹2,999/mo. 24/7 call answering, appointment booking, WhatsApp handoff, human escalation.
 4. AI Business Ecosystem (Any SMB) — Custom pricing. n8n/Make.com automations, custom AI agents, CRM + email integration, monthly strategy review.
 
 ## Contact

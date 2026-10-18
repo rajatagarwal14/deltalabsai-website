@@ -50,7 +50,7 @@ export const posts = [
     date: "August 20, 2026",
     readTime: "5 min read",
     keywords: ["home services automation dubai", "plumber booking automation dubai", "electrician whatsapp booking uae", "cleaning service automation dubai", "home services crm dubai"],
-    description: "Dubai home service businesses lose jobs to slow WhatsApp replies while a customer books the next number on Google. Automated booking, instant confirmation, and job follow-up — live in 2 weeks, from $300/mo. Free Dubai audit.",
+    description: "Dubai home service businesses lose jobs to slow WhatsApp replies while a customer books the next number on Google. Automated booking, instant confirmation, and job follow-up — fixed scope and fixed price. Free Dubai audit.",
     sections: [
       {
         heading: null,
@@ -73,7 +73,7 @@ The same WhatsApp-automation pattern applies to member churn instead of missed j
       },
       {
         heading: "Get your Dubai number",
-        body: `Book a free Dubai home services audit and Delta Labs AI will show exactly where enquiries are going cold in your current process. Live in 2 weeks, from $300/mo, no lock-in. Take the [free 3-minute diagnostic](/diagnostic) to see your specific automation roadmap.`,
+        body: `Book a free Dubai home services audit and Delta Labs AI will show exactly where enquiries are going cold in your current process. Fixed scope and fixed price, no lock-in. Take the [free 3-minute diagnostic](/diagnostic) to see your specific automation roadmap.`,
       },
     ],
   },
@@ -86,7 +86,7 @@ The same WhatsApp-automation pattern applies to member churn instead of missed j
     date: "August 13, 2026",
     readTime: "5 min read",
     keywords: ["gym membership automation dubai", "gym churn management uae", "gym crm dubai", "reduce gym member churn dubai", "whatsapp gym booking automation"],
-    description: "Dubai gyms lose many new members within the first 90 days. Automated WhatsApp check-in reminders, class booking and churn win-back \u2014 live in 2 weeks, from $300/mo. Free Dubai gym audit.",
+    description: "Dubai gyms lose many new members within the first 90 days. Automated WhatsApp check-in reminders, class booking and churn win-back \u2014 fixed scope and fixed price. Free Dubai gym audit.",
     sections: [
       {
         heading: null,
@@ -109,7 +109,7 @@ The same approach applies to no-shows instead of churn: see [Dental Clinic Autom
       },
       {
         heading: "Get your Dubai gym's number",
-        body: `Book a free Dubai gym audit and Delta Labs AI will show your actual 90-day churn rate and where the automation would catch it. Live in 2 weeks, from $300/mo, no lock-in. See the full generic playbook at [Reduce Gym Member Churn With Automation](/blog/gym-membership-churn-automation).`,
+        body: `Book a free Dubai gym audit and Delta Labs AI will show your actual 90-day churn rate and where the automation would catch it. Fixed scope and fixed price, no lock-in. See the full generic playbook at [Reduce Gym Member Churn With Automation](/blog/gym-membership-churn-automation).`,
       },
     ],
   },
@@ -161,7 +161,7 @@ The comparison most teams need is not "CRM vs. no CRM" in the abstract. It is th
     date: "July 9, 2026",
     readTime: "8 min read",
     keywords: ["dental clinic automation Abu Dhabi", "dental practice management software Abu Dhabi", "SmileCRM Abu Dhabi", "WhatsApp dental reminders Abu Dhabi", "dental no-show solution UAE", "dental clinic software Abu Dhabi", "patient recall automation Abu Dhabi", "AI for dentists Abu Dhabi"],
-    description: "SmileCRM automates WhatsApp reminders, recall & reviews for Abu Dhabi dental clinics — live in 2 weeks, from $300/mo. Book your free Abu Dhabi demo →",
+    description: "SmileCRM automates WhatsApp reminders, recall & reviews for Abu Dhabi dental clinics — fixed scope and fixed price. Book your free Abu Dhabi demo →",
     sections: [
       {
         heading: null,
@@ -192,7 +192,7 @@ This page shows how WhatsApp automation can fix this without adding staff, witho
 - **Lost revenue per day**: AED 1,800–2,400
 - **Lost revenue per month**: AED 36,000–48,000
 
-If that no-show rate were cut in half — from 20% to 10% — that would be roughly AED 18,000–24,000 per month, from a system that costs **$300/month (≈AED 1,100)**.
+If that no-show rate were cut in half — from 20% to 10% — that would be roughly AED 18,000–24,000 per month, from a system whose price we quote after a short call.
 
 Add recall: if a 250-patient inactive list converted 15–20% back into booked visits (an assumption, not a measured result), at AED 600 per visit that is 37–50 appointments, or **AED 22,000–30,000 in reactivated revenue** from patients who were already on the books.`,
       },
@@ -220,7 +220,7 @@ See the full breakdown of the underlying math in our [free no-show cost calculat
 
 **After 30 days**: Recall automation runs against your inactive list, and review requests go out after each completed visit.
 
-No IT team required. Pricing starts at **$300/month**, inclusive of setup and support — no lock-in, cancel anytime.
+No IT team required. Pricing is quoted after a short call, based on practice size and setup, with no lock-in contract.
 
 Related reading: [how Dubai clinics are automating with SmileCRM](/blog/dental-clinic-automation-dubai) and [the full SmileCRM UAE overview](/blog/smilecrm-uae-dental-clinic-management).`,
       },
@@ -242,7 +242,7 @@ Yes. SmileCRM connects to spreadsheets, Clinicmaster, Zoho, and most common book
 
 **Q: What does SmileCRM cost for an independent Abu Dhabi practice?**
 
-Pricing starts at $300/month (roughly AED 1,100), inclusive of setup and ongoing support, with no lock-in contract.`,
+Pricing is quoted after a short call, based on practice size and setup, with no lock-in contract.`,
       },
       {
         heading: "Get a Free Clinic Audit",
@@ -3073,7 +3073,7 @@ Your patient list includes Arabic, English, Hindi, and Tagalog speakers. Manual 
 - **Lost revenue per day**: AED 3,250–3,900
 - **Lost revenue per month**: AED 65,000–78,000
 
-Even cutting that no-show rate in half — from 22% to 11% — recovers AED 32,000–39,000 per month. That's from a system that costs AED 1,100–2,500 per month.
+Even cutting that no-show rate in half — from 22% to 11% — recovers AED 32,000–39,000 per month. That's from a system whose price we quote after a short call.
 
 Add patient recall: suppose a 300-patient inactive list, contacted over 30 days, converts 15–20% back into booked appointments (again an assumption). At AED 650 per visit, that's 45–60 appointments — **AED 29,000–39,000 in reactivated revenue** from patients who were already yours.
 
@@ -3112,7 +3112,7 @@ After each completed appointment, patients receive a WhatsApp message thanking t
 
 No IT team required. No technical knowledge required. Delta Labs AI handles the entire setup and remains available on WhatsApp for support.
 
-Pricing starts at **$300/month** for independent practices, inclusive of setup and ongoing support. No lock-in — cancel anytime.`,
+Pricing is quoted after a short call, based on practice size and setup. No lock-in contract.`,
       },
       {
         heading: "Who This Is For (And Who It Isn't)",
@@ -3300,7 +3300,7 @@ No IT team is required at any stage. Delta Labs AI handles every technical step 
       },
       {
         heading: "Pricing and What's Included",
-        body: `SmileCRM is priced at **$300–$500/month** for independent dental practices, based on practice size and patient volume. This is inclusive of:
+        body: `SmileCRM pricing for independent dental practices is quoted after a short call, based on practice size and patient volume. It includes:
 
 - Full setup and WhatsApp API configuration
 - All automation flows (reminders, recall, reviews)

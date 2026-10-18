@@ -65,7 +65,7 @@ export default function SmileCRMCityClient({ city }) {
     { q: "Is SmileCRM difficult to set up?", a: "Not at all. We handle the entire setup for you. No technical skills required." },
     { q: "Will my staff need training?", a: "SmileCRM is designed to be intuitive. We provide a 30-minute walkthrough." },
     { q: "What if I already use another software?", a: "SmileCRM integrates with most existing systems. We can import your patient data and run alongside your current tools." },
-    { q: "Is there a free trial?", a: "Yes, we offer a 14-day free trial on all plans. No credit card required. Try it before you commit." },
+    { q: "Is there a free trial?", a: "Yes, we offer a free trial. Ask us for the current terms. Try it before you commit." },
     { q: "Can I use SmileCRM for multiple locations?", a: `Yes, the Premium plan supports multiple locations under one dashboard — ideal if you have more than one clinic in ${city.name} or across ${city.state}.` },
   ];
 
@@ -162,7 +162,7 @@ export default function SmileCRMCityClient({ city }) {
       {/* Pricing */}
       <section style={{ maxWidth: 1000, margin: "0 auto", padding: "72px 24px" }}>
         <F><h2 style={{ fontSize: 28, fontWeight: 700, marginBottom: 8, textAlign: "center" }}>Simple, transparent pricing for {city.name} clinics</h2></F>
-        <F d={0.1}><p style={{ textAlign: "center", color: "#71717a", marginBottom: 40, fontSize: 15 }}>14-day free trial on all plans. No credit card required.</p></F>
+        <F d={0.1}><p style={{ textAlign: "center", color: "#71717a", marginBottom: 40, fontSize: 15 }}>Free trial available. Ask us for the current terms.</p></F>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 24 }}>
           {plans.map((p, i) => (
             <F key={i} d={i * 0.1}>

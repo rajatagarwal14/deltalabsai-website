@@ -14,7 +14,7 @@ export async function generateMetadata({ params }) {
 
   return {
     title: `SmileCRM for Dental Clinics in ${city.name} | Delta Labs AI`,
-    description: `Automate appointment reminders, patient recall & Google reviews for dental clinics in ${city.name}, ${city.state}. SmileCRM by Delta Labs AI. Starting at Rs 2,999/month. 14-day free trial.`,
+    description: `Automate appointment reminders, patient recall & Google reviews for dental clinics in ${city.name}, ${city.state}. SmileCRM by Delta Labs AI. Starting at Rs 2,999/month.`,
     keywords: [
       `SmileCRM ${city.name}`,
       `dental clinic CRM ${city.name}`,
@@ -101,7 +101,7 @@ export default function SmileCRMCityPage({ params }) {
             name: "Is there a free trial?",
             acceptedAnswer: {
               "@type": "Answer",
-              text: "Yes, we offer a 14-day free trial on all plans. No credit card required.",
+              text: "Yes, we offer a free trial. Ask us for the current terms.",
             },
           },
         ],
