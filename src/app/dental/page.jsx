@@ -46,9 +46,9 @@ const features = [
 ];
 
 const plans = [
-  { name: "Starter", price: "2,999", period: " quote after a short call", features: ["Appointment reminders (SMS)", "Basic patient dashboard", "Up to 200 patients", "Email support"], cta: "Start Free Trial" },
-  { name: "Professional", price: "4,999", period: " quote after a short call", popular: true, features: ["Everything in Starter", "WhatsApp reminders + follow-ups", "Google review automation", "Patient recall system", "Up to 1,000 patients", "Priority support"], cta: "Start Free Trial" },
-  { name: "Premium", price: "6,999", period: " quote after a short call", features: ["Everything in Professional", "Multi-location support", "Unlimited patients", "Custom integrations", "Dedicated account manager", "Analytics dashboard"], cta: "Contact Us" },
+  { name: "Starter", price: "Custom", period: " quote after a short call", features: ["Appointment reminders (SMS)", "Basic patient dashboard", "Up to 200 patients", "Email support"], cta: "Start Free Trial" },
+  { name: "Professional", price: "Custom", period: " quote after a short call", popular: true, features: ["Everything in Starter", "WhatsApp reminders + follow-ups", "Google review automation", "Patient recall system", "Up to 1,000 patients", "Priority support"], cta: "Start Free Trial" },
+  { name: "Premium", price: "Custom", period: " quote after a short call", features: ["Everything in Professional", "Multi-location support", "Unlimited patients", "Custom integrations", "Dedicated account manager", "Analytics dashboard"], cta: "Contact Us" },
 ];
 
 const stats = [

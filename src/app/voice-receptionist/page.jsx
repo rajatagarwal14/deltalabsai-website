@@ -699,7 +699,7 @@ export default function VoiceReceptionist() {
                   lineHeight: 1,
                 }}
               >
-                {price("₹2,999")}
+                {price("Custom")}
                 <span
                   style={{
                     fontSize: 18,

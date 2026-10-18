@@ -214,7 +214,7 @@ See the full breakdown of the underlying math in our [free no-show cost calculat
       },
       {
         heading: "Setup in Abu Dhabi: What to Expect",
-        body: `**Step 1**: SmileCRM connects to your existing booking system (spreadsheet, Clinicmaster, Zoho, or other), and your WhatsApp Business number is configured. Message templates go to Meta for approval — usually 1–3 business days.
+        body: `**Step 1**: SmileCRM connects to your existing booking system (spreadsheet, Clinicmaster, Zoho, or other), and your WhatsApp Business number is configured. Message templates go to Meta for approval; approval time varies.
 
 **Step 2**: Reminder sequences go live.
 
@@ -3510,7 +3510,7 @@ Tools required: WhatsApp Business, Google Calendar (or any calendar with an API)
 **2. Smart Invoice Engine**
 Pulls line items from your POS or spreadsheet, generates GST-compliant PDF invoices, emails them on completion, and sends automatic payment reminders at 3 days before due, 3 days overdue, and 10 days overdue. Manual chasing disappears.
 
-Setup time: 1–2 days. Tools required: your existing spreadsheet or POS, email.
+Tools required: your existing spreadsheet or POS, email.
 
 **3. Recall and Review Automation**
 After each service interaction, the system sends a personalized follow-up via WhatsApp: satisfied customers get a one-tap Google Review prompt; negative feedback goes directly to the manager for recovery. No-show rates fall as recall becomes systematic.

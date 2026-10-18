@@ -251,7 +251,7 @@ export default function AIBDRPage() {
             <div style={{ border: "2px solid #18181b", borderRadius: 18, padding: "36px 32px", background: "#fff", textAlign: "left", boxShadow: "0 8px 40px rgba(0,0,0,0.07)" }}>
               <div style={{ display: "inline-block", background: "#18181b", color: "#fff", borderRadius: 6, fontSize: 12, fontWeight: 700, padding: "4px 12px", marginBottom: 20, letterSpacing: 0.5 }}>STANDARD PLAN</div>
               <div style={{ display: "flex", alignItems: "flex-end", gap: 6, marginBottom: 6 }}>
-                <span style={{ fontSize: 44, fontWeight: 800, letterSpacing: -2, lineHeight: 1 }}>{price("₹15,000")}</span>
+                <span style={{ fontSize: 44, fontWeight: 800, letterSpacing: -2, lineHeight: 1 }}>{price("Custom")}</span>
                 <span style={{ fontSize: 16, color: "#71717a", paddingBottom: 6 }}>{isIntl ? "— book a call" : "/month"}</span>
               </div>
               <p style={{ fontSize: 14, color: "#52525b", marginBottom: 28 }}>200 qualified outreach sequences per month</p>

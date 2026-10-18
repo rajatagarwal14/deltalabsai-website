@@ -80,7 +80,7 @@ const plans = [
   },
   {
     name: "Enterprise Support",
-    price: "4,999",
+    price: "Custom",
     period: "quote after a short call",
     popular: true,
     features: [
