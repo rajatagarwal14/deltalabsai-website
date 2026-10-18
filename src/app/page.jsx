@@ -381,7 +381,7 @@ function HeroCTABand() {
             Ready for Your Free AI Diagnostic?
           </h2>
           <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: "clamp(14px, 1.8vw, 17px)", color: "#94A3B8", margin: "0 0 28px", lineHeight: 1.6 }}>
-            Our AI scans 5 dimensions of your business and pinpoints exactly where money is leaking — in minutes.
+            A short self-assessment across 5 dimensions of your business that points to where money may be leaking, in minutes.
           </p>
           <a href={FORM} onClick={trackClick} style={{
             display: "inline-flex", alignItems: "center", gap: 8, textDecoration: "none",
@@ -513,7 +513,7 @@ function How() {
 // Services
 function Services() {
   const svcs = [
-    { icon: Ic.Search, title: "Find out where you're losing money", desc: "Our diagnostic uncovers revenue leaks, operational bottlenecks, and hidden inefficiencies. You'll know exactly what's costing you  - backed by data, not guesswork.", features: ["5-dimension business health score", "Competitor & market intelligence", "Revenue leak identification", "Prioritized fix-it roadmap"], color: "#2563EB", bg: "#EFF6FF" },
+    { icon: Ic.Search, title: "Find out where you're losing money", desc: "Our self-assessment points to likely revenue leaks, operational bottlenecks and inefficiencies, based on your own answers.", features: ["5-dimension business health score", "Competitor & market intelligence", "Likely revenue-leak pointers", "Prioritized fix-it roadmap"], color: "#2563EB", bg: "#EFF6FF" },
     { icon: Ic.Wrench, title: "Fix what's broken  - fast", desc: "We redesign your processes, set up proper systems, and eliminate the chaos. SOPs, CRM, workflows  - everything your business needs to run without you micromanaging.", features: ["Process redesign & SOPs", "CRM setup and optimization", "Workflow automation", "Team structure & role clarity"], color: "#059669", bg: "#ECFDF5" },
     { icon: Ic.Bot, title: "Build AI that works while you sleep", desc: "Custom AI agents that handle the repetitive stuff  - answering calls, qualifying leads, checking compliance, generating reports. Your team focuses on what humans do best.", features: ["AI receptionist & lead qualifier", "Document review automation", "Compliance monitoring bots", "Custom industry-specific agents"], color: "#7C3AED", bg: "#F5F3FF" },
   ];

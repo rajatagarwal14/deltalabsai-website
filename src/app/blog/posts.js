@@ -718,7 +718,7 @@ Setting this up doesn't require expensive BI software. A simple Google Sheet wit
 
 For client onboarding specifically, the first 30 days of a new relationship set the tone for everything that follows. A disorganized onboarding experience -late welcome emails, missing contracts, unclear next steps -signals to the client that your operations are sloppy. And clients who lose confidence early are far more likely to churn within the first 90 days.
 
-Employee onboarding is equally costly when handled inconsistently. Research from the Brandon Hall Group has found that organizations with a strong onboarding process see materially better new hire retention and productivity. Conversely, a poor onboarding experience makes new hires twice as likely to seek other opportunities.
+Employee onboarding is equally costly when handled inconsistently. Research from the Brandon Hall Group has found that organizations with a strong onboarding process see materially better new hire retention and productivity. Conversely, a poor onboarding experience can make new hires more likely to seek other opportunities.
 
 The fix is templatization. Create a single, standardized onboarding checklist for each type -client, employee, vendor -with every step, every email, every document, and every timeline mapped out. Then automate what you can: welcome email sequences, document collection forms, task assignments, and calendar invitations should all fire automatically when a new onboarding is initiated.
 
@@ -2706,7 +2706,7 @@ Lost revenue per cancellation = (average monthly membership fee × average month
 The most common reasons gym members cancel: (1) "Not using it enough" (habit failure, not satisfaction failure); (2) Moving to a new location; (3) Financial reasons; (4) Found a better option nearby; (5) Poor experience or staff issue. Surveys differ on the exact split, but "not using it enough" is consistently the largest bucket — and it is almost entirely preventable with attendance monitoring and re-engagement automation.
 
 ### How quickly does gym automation pay for itself?
-For a gym paying $150/month for membership software with automated retention features: if the software prevents 3 additional cancellations per month that would have otherwise happened, and each membership is worth $50/month with an expected 8-month tenure, that's $1,200/month in retained revenue vs. $150/month in cost. Payback is roughly 2 weeks.
+For a gym paying $150/month for membership software with automated retention features: if the software prevents 3 additional cancellations per month that would have otherwise happened, and each membership is worth $50/month with an expected 8-month tenure, that is about $150/month in retained revenue at first (3 x $50), and up to $1,200 over the eight-month tenure of those members, against $150/month in cost. The payback depends on how many cancellations are really prevented.
 
 ### Is automated messaging too impersonal for fitness studios?
 Done right, automated messages feel more personal than no communication at all. A member who gets a message saying "We noticed you haven't been in this week — is everything okay?" feels seen, not spammed. The key is behavior-triggered messaging (based on what the member actually did or didn't do) vs. generic bulk newsletters. Fitness studios with strong community cultures often personalize their automated messages with the studio owner's voice — same content, same triggers, just written in a warm, community tone.`,
@@ -2989,7 +2989,7 @@ If your professional services firm is struggling with profitability, scope creep
         heading: null,
         body: `There's a breaking point that every property manager hits. Managing 10-15 units is a side hustle. Managing 20-30 is a full-time job. And **managing 50+ without systems is a nightmare** of missed maintenance requests, late rent follow-ups, and tenants who can never reach you.
 
-The traditional response is to hire more staff. But each new hire adds **significant overhead** and creates management complexity. The smarter approach  - the one that actually scales  - is to **automate the repetitive 80%** of property management so your existing team can handle a much larger portfolio.`,
+The traditional response is to hire more staff. But each new hire adds **significant overhead** and creates management complexity. The smarter approach  - the one that actually scales  - is to **automate the repetitive parts** of property management so your existing team can handle a much larger portfolio.`,
       },
       {
         heading: "Automated Tenant Communication",

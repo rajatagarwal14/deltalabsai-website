@@ -35,7 +35,7 @@ function fmt(n, curCode = "AED") {
 // Grade benchmarks a slow/missed-reply rate against a healthy WhatsApp-first clinic (healthy band ≈ under 10% left over 1hr)
 function gradeFor(rate) {
   if (rate <= 10) return { g: "A+", color: "#22c55e", label: "Excellent — patients rarely wait",              tone: "Your front desk is on top of WhatsApp. Protect it." };
-  if (rate <= 20) return { g: "A",  color: "#4ade80", label: "Healthy — within our assumed healthy band",          tone: "A few inquiries slip through. Automation closes the gap as inquiries grow." };
+  if (rate <= 20) return { g: "A",  color: "#4ade80", label: "Healthy — slower than our assumed ideal (under 10%) but acceptable",          tone: "A few inquiries slip through. Automation closes the gap as inquiries grow." };
   if (rate <= 30) return { g: "B",  color: "#a3e635", label: "Average — above our assumed healthy band",           tone: "Average still means real patients going elsewhere. Recoverable." };
   if (rate <= 45) return { g: "C",  color: "#facc15", label: "Leaking — noticeably above the healthy band",    tone: "This is the zone where an instant auto-reply has the most room to help." };
   if (rate <= 60) return { g: "D",  color: "#fb923c", label: "Serious leak — well above the healthy band",     tone: "At this rate, slow WhatsApp replies are one of your biggest silent costs." };
