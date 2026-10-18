@@ -50,7 +50,7 @@ export const posts = [
     date: "August 20, 2026",
     readTime: "5 min read",
     keywords: ["home services automation dubai", "plumber booking automation dubai", "electrician whatsapp booking uae", "cleaning service automation dubai", "home services crm dubai"],
-    description: "Dubai home service businesses lose jobs to slow WhatsApp replies while a customer books the next number on Google. Automated booking, instant confirmation, and job follow-up — live in 2 weeks, from $300/mo. Free Dubai audit.",
+    description: "Dubai home service businesses lose jobs to slow WhatsApp replies while a customer books the next number on Google. Automated booking, instant confirmation, and job follow-up — fixed scope and fixed price. Free Dubai audit.",
     sections: [
       {
         heading: null,
@@ -73,7 +73,7 @@ The same WhatsApp-automation pattern applies to member churn instead of missed j
       },
       {
         heading: "Get your Dubai number",
-        body: `Book a free Dubai home services audit and Delta Labs AI will show exactly where enquiries are going cold in your current process. Live in 2 weeks, from $300/mo, no lock-in. Take the [free 3-minute diagnostic](/diagnostic) to see your specific automation roadmap.`,
+        body: `Book a free Dubai home services audit and Delta Labs AI will show exactly where enquiries are going cold in your current process. Fixed scope and fixed price, no lock-in. Take the [free 3-minute diagnostic](/diagnostic) to see your specific automation roadmap.`,
       },
     ],
   },
@@ -86,7 +86,7 @@ The same WhatsApp-automation pattern applies to member churn instead of missed j
     date: "August 13, 2026",
     readTime: "5 min read",
     keywords: ["gym membership automation dubai", "gym churn management uae", "gym crm dubai", "reduce gym member churn dubai", "whatsapp gym booking automation"],
-    description: "Dubai gyms lose many new members within the first 90 days. Automated WhatsApp check-in reminders, class booking and churn win-back \u2014 live in 2 weeks, from $300/mo. Free Dubai gym audit.",
+    description: "Dubai gyms lose many new members within the first 90 days. Automated WhatsApp check-in reminders, class booking and churn win-back \u2014 fixed scope and fixed price. Free Dubai gym audit.",
     sections: [
       {
         heading: null,
@@ -109,7 +109,7 @@ The same approach applies to no-shows instead of churn: see [Dental Clinic Autom
       },
       {
         heading: "Get your Dubai gym's number",
-        body: `Book a free Dubai gym audit and Delta Labs AI will show your actual 90-day churn rate and where the automation would catch it. Live in 2 weeks, from $300/mo, no lock-in. See the full generic playbook at [Reduce Gym Member Churn With Automation](/blog/gym-membership-churn-automation).`,
+        body: `Book a free Dubai gym audit and Delta Labs AI will show your actual 90-day churn rate and where the automation would catch it. Fixed scope and fixed price, no lock-in. See the full generic playbook at [Reduce Gym Member Churn With Automation](/blog/gym-membership-churn-automation).`,
       },
     ],
   },
@@ -161,7 +161,7 @@ The comparison most teams need is not "CRM vs. no CRM" in the abstract. It is th
     date: "July 9, 2026",
     readTime: "8 min read",
     keywords: ["dental clinic automation Abu Dhabi", "dental practice management software Abu Dhabi", "SmileCRM Abu Dhabi", "WhatsApp dental reminders Abu Dhabi", "dental no-show solution UAE", "dental clinic software Abu Dhabi", "patient recall automation Abu Dhabi", "AI for dentists Abu Dhabi"],
-    description: "SmileCRM automates WhatsApp reminders, recall & reviews for Abu Dhabi dental clinics — live in 2 weeks, from $300/mo. Book your free Abu Dhabi demo →",
+    description: "SmileCRM automates WhatsApp reminders, recall & reviews for Abu Dhabi dental clinics — fixed scope and fixed price. Book your free Abu Dhabi demo →",
     sections: [
       {
         heading: null,
@@ -192,7 +192,7 @@ This page shows how WhatsApp automation can fix this without adding staff, witho
 - **Lost revenue per day**: AED 1,800–2,400
 - **Lost revenue per month**: AED 36,000–48,000
 
-If that no-show rate were cut in half — from 20% to 10% — that would be roughly AED 18,000–24,000 per month, from a system that costs **$300/month (≈AED 1,100)**.
+If that no-show rate were cut in half — from 20% to 10% — that would be roughly AED 18,000–24,000 per month, from a system whose price we quote after a short call.
 
 Add recall: if a 250-patient inactive list converted 15–20% back into booked visits (an assumption, not a measured result), at AED 600 per visit that is 37–50 appointments, or **AED 22,000–30,000 in reactivated revenue** from patients who were already on the books.`,
       },
@@ -214,13 +214,13 @@ See the full breakdown of the underlying math in our [free no-show cost calculat
       },
       {
         heading: "Setup in Abu Dhabi: What to Expect",
-        body: `**Week 1**: SmileCRM connects to your existing booking system (spreadsheet, Clinicmaster, Zoho, or other), and your WhatsApp Business number is configured. Message templates go to Meta for approval — usually 1–3 business days.
+        body: `**Step 1**: SmileCRM connects to your existing booking system (spreadsheet, Clinicmaster, Zoho, or other), and your WhatsApp Business number is configured. Message templates go to Meta for approval; approval time varies.
 
-**Week 2**: Reminder sequences go live.
+**Step 2**: Reminder sequences go live.
 
-**After 30 days**: Recall automation runs against your inactive list, and review requests go out after each completed visit.
+**Step 3**: Recall automation runs against your inactive list, and review requests go out after each completed visit.
 
-No IT team required. Pricing starts at **$300/month**, inclusive of setup and support — no lock-in, cancel anytime.
+No IT team required. Pricing is quoted after a short call, based on practice size and setup, with no lock-in contract.
 
 Related reading: [how Dubai clinics are automating with SmileCRM](/blog/dental-clinic-automation-dubai) and [the full SmileCRM UAE overview](/blog/smilecrm-uae-dental-clinic-management).`,
       },
@@ -242,7 +242,7 @@ Yes. SmileCRM connects to spreadsheets, Clinicmaster, Zoho, and most common book
 
 **Q: What does SmileCRM cost for an independent Abu Dhabi practice?**
 
-Pricing starts at $300/month (roughly AED 1,100), inclusive of setup and ongoing support, with no lock-in contract.`,
+Pricing is quoted after a short call, based on practice size and setup, with no lock-in contract.`,
       },
       {
         heading: "Get a Free Clinic Audit",
@@ -280,7 +280,7 @@ How much these three gaps cost varies by store, and estimates vary. But it is no
 
 **Quick answer: D2C sellers on any platform lose revenue to abandoned carts without recovery sequences, unresolved support tickets that cancel orders, and manual order errors from disconnected tools. Three targeted automations — cart recovery, ticket triage, and inventory sync — close that gap. Specific tools and trigger logic below.**
 
-This guide covers what those automations are and how to set them up in 48 hours. Internal links to [Delta Labs AI's full solution suite](https://deltalabsai.com/solutions) and the [free business diagnostic](https://deltalabsai.com/diagnostic) where applicable.`
+This guide covers what those automations are and how to set them up. Internal links to [Delta Labs AI's full solution suite](https://deltalabsai.com/solutions) and the [free business diagnostic](https://deltalabsai.com/diagnostic) where applicable.`
       },
       {
         heading: "The Problem: Revenue You Earned Is Leaving Through Three Holes",
@@ -392,7 +392,7 @@ For a D2C seller doing $25,000/month in GMV, an illustrative worked example (ass
 **Illustrative combined recovery: $4,250–$6,900 a month, against $100–$300/month in automation cost.** Your own numbers will differ; measure before and after.`
       },
       {
-        heading: "Getting Started in 48 Hours",
+        heading: "Getting Started",
         body: `A practical sequence you can follow without a developer.
 
 ### Step 1: Audit Your Three Leak Points (Day 1, 2 hours)
@@ -531,7 +531,7 @@ No dashboards to check. No analysts to hire. Just a report in your inbox.
       },
       {
         heading: "How It Works",
-        body: `**Setup takes 48 hours. No credentials needed.**
+        body: `**No credentials needed.**
 
 1. Tell us your product name and industry
 2. Our AI agent starts scanning 12+ sources immediately
@@ -3073,7 +3073,7 @@ Your patient list includes Arabic, English, Hindi, and Tagalog speakers. Manual 
 - **Lost revenue per day**: AED 3,250–3,900
 - **Lost revenue per month**: AED 65,000–78,000
 
-Even cutting that no-show rate in half — from 22% to 11% — recovers AED 32,000–39,000 per month. That's from a system that costs AED 1,100–2,500 per month.
+Even cutting that no-show rate in half — from 22% to 11% — recovers AED 32,000–39,000 per month. That's from a system whose price we quote after a short call.
 
 Add patient recall: suppose a 300-patient inactive list, contacted over 30 days, converts 15–20% back into booked appointments (again an assumption). At AED 650 per visit, that's 45–60 appointments — **AED 29,000–39,000 in reactivated revenue** from patients who were already yours.
 
@@ -3104,15 +3104,15 @@ After each completed appointment, patients receive a WhatsApp message thanking t
         heading: "Setup in Dubai: What to Expect",
         body: `Every clinic asks about setup complexity. Here is the honest answer:
 
-**Week 1**: Delta Labs AI connects SmileCRM to your existing appointment system (whether that is a spreadsheet, Zoho, Clinicmaster, or another tool). WhatsApp Business API is configured for your clinic number. Message templates are submitted to Meta for approval; approval time varies.
+**Step 1**: Delta Labs AI connects SmileCRM to your existing appointment system (whether that is a spreadsheet, Zoho, Clinicmaster, or another tool). WhatsApp Business API is configured for your clinic number. Message templates are submitted to Meta for approval; approval time varies.
 
-**Week 2**: Automation flows go live. Your first reminder sequences run.
+**Step 2**: Automation flows go live. Your first reminder sequences run.
 
-**After 30 days**: Full recall automation is running. Your inactive patient list is being worked systematically. Review requests are going out after every completed appointment.
+**Step 3**: Full recall automation is running. Your inactive patient list is being worked systematically. Review requests are going out after every completed appointment.
 
 No IT team required. No technical knowledge required. Delta Labs AI handles the entire setup and remains available on WhatsApp for support.
 
-Pricing starts at **$300/month** for independent practices, inclusive of setup and ongoing support. No lock-in — cancel anytime.`,
+Pricing is quoted after a short call, based on practice size and setup. No lock-in contract.`,
       },
       {
         heading: "Who This Is For (And Who It Isn't)",
@@ -3192,7 +3192,7 @@ The goal: less admin time, faster cash, and fewer billing errors.`,
 Those three numbers tell you whether the automation is paying for itself.`,
       },
       {
-        heading: "Getting Started in 48 Hours",
+        heading: "Getting Started",
         body: `Delta Labs AI connects to your existing scheduling tool (ServiceTitan, Housecall Pro, or even a shared Google Calendar), configures the automation flows, and runs a test invoice before going live.
 
 There's no lock-in and no IT team required. If you want to see exactly where your invoicing process is losing money before committing to anything, take the [free business diagnostic at deltalabsai.com/diagnostic](/diagnostic) — it scores your operations across 5 dimensions and gives you a specific quick-win recommendation.
@@ -3203,7 +3203,7 @@ You can also learn more about Delta Labs AI's [home services automation](/home-s
         heading: "FAQ: HVAC Automated Invoicing",
         body: `**Q: How does Delta Labs AI's automated invoicing integrate with my existing scheduling tools?**
 
-The system connects to popular field service platforms including ServiceTitan, Housecall Pro, and Jobber via API. For shops using simpler setups (Google Calendar, spreadsheets), Delta Labs AI provides a lightweight job-completion form that triggers the same automation. Setup takes less than 48 hours with no IT involvement required.
+The system connects to popular field service platforms including ServiceTitan, Housecall Pro, and Jobber via API. For shops using simpler setups (Google Calendar, spreadsheets), Delta Labs AI provides a lightweight job-completion form that triggers the same automation. Setup needs no IT involvement.
 
 **Q: Can I customize invoice templates to match my brand?**
 
@@ -3300,7 +3300,7 @@ No IT team is required at any stage. Delta Labs AI handles every technical step 
       },
       {
         heading: "Pricing and What's Included",
-        body: `SmileCRM is priced at **$300–$500/month** for independent dental practices, based on practice size and patient volume. This is inclusive of:
+        body: `SmileCRM pricing for independent dental practices is quoted after a short call, based on practice size and patient volume. It includes:
 
 - Full setup and WhatsApp API configuration
 - All automation flows (reminders, recall, reviews)
@@ -3420,7 +3420,7 @@ This last point matters. A proactive internal feedback loop lets you fix problem
 - Patient history, treatment notes, and billing in one place
 - No-show predictor that flags high-risk appointments so your team can follow up manually
 
-**Pricing:** Rs 2,999–6,999 per month depending on clinic size. Setup takes under two weeks. No lock-in contracts — month-to-month.`,
+**Pricing:** quoted after a short call, based on clinic size. No lock-in contracts, month-to-month.`,
       },
       {
         heading: "Getting Started with Dental Clinic Automation No Code",
@@ -3505,22 +3505,22 @@ The fix is not motivation. It is information. Once you know the number — ₹5,
 **1. AI Booking Bot**
 WhatsApp-enabled chat captures appointment requests 24/7, syncs to Google Calendar, and sends booking confirmations automatically. Staff move from call handlers to value-adding work.
 
-Setup time: under 48 hours. Tools required: WhatsApp Business, Google Calendar (or any calendar with an API). No code required.
+Tools required: WhatsApp Business, Google Calendar (or any calendar with an API). No code required.
 
 **2. Smart Invoice Engine**
 Pulls line items from your POS or spreadsheet, generates GST-compliant PDF invoices, emails them on completion, and sends automatic payment reminders at 3 days before due, 3 days overdue, and 10 days overdue. Manual chasing disappears.
 
-Setup time: 1–2 days. Tools required: your existing spreadsheet or POS, email.
+Tools required: your existing spreadsheet or POS, email.
 
 **3. Recall and Review Automation**
 After each service interaction, the system sends a personalized follow-up via WhatsApp: satisfied customers get a one-tap Google Review prompt; negative feedback goes directly to the manager for recovery. No-show rates fall as recall becomes systematic.
 
-Setup time: under 24 hours. Tools required: WhatsApp Business, Google Business Profile.
+Tools required: WhatsApp Business, Google Business Profile.
 
-These three modules together address the largest cost categories. The combined investment is typically ₹3,000–7,000 per month depending on business size.`,
+These three modules together address the largest cost categories. We quote the cost after a short call, based on business size.`,
       },
       {
-        heading: "Getting Started in 48 Hours",
+        heading: "Getting Started",
         body: `You do not need an IT team, a developer, or months of onboarding. The first step is a decision: stop measuring in hours and start measuring in rupees.
 
 **Step 1: Book a free 30-minute diagnostic at [/diagnostic](https://deltalabsai.com/diagnostic).**
@@ -3529,7 +3529,7 @@ We map your specific manual processes, put an hourly cost against each one, and 
 **Step 2: We identify the highest-impact automation for your business.**
 For most SMBs, that is WhatsApp reminders (appointment-based) or the invoice engine (service businesses). We prioritize based on your numbers, not a generic playbook.
 
-**Step 3: Go live within 48 hours.**
+**Step 3: Go live.**
 We handle the setup. Your staff do not need training — the automation works in the background.
 
 The cost of doing nothing compounds every year. The cost of starting is a 30-minute call.
@@ -3735,7 +3735,7 @@ This runs over WhatsApp specifically because Indian patients respond to a saved 
       },
       {
         heading: "Getting Started",
-        body: `Delta Labs AI built [SmileCRM](/smilecrm) specifically for independent dental clinics in India: WhatsApp-based appointment reminders, patient recall, and review automation, priced from ₹2,999/month with no new hardware or systems to learn.
+        body: `Delta Labs AI built [SmileCRM](/smilecrm) specifically for independent dental clinics in India: WhatsApp-based appointment reminders, patient recall, and review automation, with no new hardware or systems to learn.
 
 If your recall list is growing faster than your front desk can call through it, this closes that specific gap.`,
       },
@@ -3910,7 +3910,7 @@ The problem many small dental clinics actually have is different: no-shows, pati
       },
       {
         heading: "How SmileCRM Approaches This Differently",
-        body: `Delta Labs AI built [SmileCRM](/smilecrm) specifically for independent dental clinics in India, focused on the recall and retention problem rather than patient acquisition. It automates appointment reminders, six-month recall, treatment-plan follow-up, and Google review requests over WhatsApp, starting from ₹2,999/month.
+        body: `Delta Labs AI built [SmileCRM](/smilecrm) specifically for independent dental clinics in India, focused on the recall and retention problem rather than patient acquisition. It automates appointment reminders, six-month recall, treatment-plan follow-up, and Google review requests over WhatsApp.
 
 It isn't a marketplace and doesn't try to bring you new patients through a directory listing. It's built around one specific job: making sure the patients you already have keep coming back on schedule, without your front desk having to manually track and call through a growing recall list.`,
       },
@@ -3930,7 +3930,7 @@ No. SmileCRM is built for any independent dental clinic in India that wants What
 
 **Q: How is pricing different from a marketplace platform?**
 
-SmileCRM is priced as a flat monthly subscription starting at ₹2,999/month for a single-location clinic, rather than a pay-per-lead or marketplace commission model.`,
+SmileCRM is priced as a flat monthly subscription for a single-location clinic, quoted after a short call, rather than a pay-per-lead or marketplace commission model.`,
       },
     ],
   },
@@ -3983,7 +3983,7 @@ The smart routing step matters as much as the volume. Sending every patient stra
         heading: "Why generic review software doesn't fit small Indian clinics",
         body: `Most review management tools on the market — Podium, ReviewInc, and similar platforms — are built for the US market, priced from roughly $99 to $400 a month, and assume SMS as the default channel. That model doesn't fit a solo or two-chair clinic in India or the UAE, where WhatsApp is the channel patients actually use and a $400/month tool costs more than the clinic's entire monthly marketing budget.
 
-SmileCRM builds review automation into the same WhatsApp-based platform the clinic is already using for appointment reminders and patient recall, at a flat ₹2,999 to ₹6,999/month depending on clinic size — not a separate $400/month add-on bolted onto practice management software designed for a different market.`,
+SmileCRM builds review automation into the same WhatsApp-based platform the clinic is already using for appointment reminders and patient recall, as a flat monthly subscription quoted by clinic size, not a separate add-on bolted onto practice management software designed for a different market.`,
       },
       {
         heading: "What review automation won't fix",

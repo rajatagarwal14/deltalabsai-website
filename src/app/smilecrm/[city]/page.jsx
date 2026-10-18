@@ -14,7 +14,7 @@ export async function generateMetadata({ params }) {
 
   return {
     title: `SmileCRM for Dental Clinics in ${city.name} | Delta Labs AI`,
-    description: `Automate appointment reminders, patient recall & Google reviews for dental clinics in ${city.name}, ${city.state}. SmileCRM by Delta Labs AI. Starting at Rs 2,999/month. 14-day free trial.`,
+    description: `Automate appointment reminders, patient recall & Google reviews for dental clinics in ${city.name}, ${city.state}. SmileCRM by Delta Labs AI.`,
     keywords: [
       `SmileCRM ${city.name}`,
       `dental clinic CRM ${city.name}`,
@@ -31,7 +31,7 @@ export async function generateMetadata({ params }) {
     },
     openGraph: {
       title: `SmileCRM for Dental Clinics in ${city.name}`,
-      description: `Automated WhatsApp reminders built to cut no-shows, automate patient recall, and grow Google reviews for your ${city.name} dental clinic. Starting at Rs 2,999/month.`,
+      description: `Automated WhatsApp reminders built to cut no-shows, automate patient recall, and grow Google reviews for your ${city.name} dental clinic.`,
       url,
       siteName: "Delta Labs AI",
       type: "website",
@@ -64,13 +64,6 @@ export default function SmileCRMCityPage({ params }) {
         applicationCategory: "BusinessApplication",
         operatingSystem: "Web",
         description: `SmileCRM automates appointment reminders, patient recall, and review collection for dental clinics in ${city.name}, ${city.state}.`,
-        offers: {
-          "@type": "AggregateOffer",
-          lowPrice: "2999",
-          highPrice: "6999",
-          priceCurrency: "INR",
-          offerCount: "3",
-        },
         provider: {
           "@type": "Organization",
           name: "Delta Labs AI",
@@ -101,7 +94,7 @@ export default function SmileCRMCityPage({ params }) {
             name: "Is there a free trial?",
             acceptedAnswer: {
               "@type": "Answer",
-              text: "Yes, we offer a 14-day free trial on all plans. No credit card required.",
+              text: "Yes, we offer a free trial. Ask us for the current terms.",
             },
           },
         ],

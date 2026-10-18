@@ -109,9 +109,9 @@ const stats = [
 
 const faqs = [
   { q: "Who is this service for?", a: "Any SMB or founder who needs a consistent pipeline of warm leads but doesn't have a sales team to do outreach. If you close deals well but hate prospecting — this is for you." },
-  { q: "How is this different from hiring a BDR?", a: "A human BDR costs a full salary plus benefits and can only send so many emails a day. Our AI sends 200 personalised sequences per month at ₹15,000 — and works 24/7 without sick days or ramp time." },
+  { q: "How is this different from hiring a BDR?", a: "A human BDR costs a full salary plus benefits and can only send so many emails a day. Our AI sends 200 personalised sequences per month and works 24/7 without sick days or ramp time." },
   { q: "What industries do you serve?", a: "AI BDR suits any business whose customers can be reached by email and that wants a steady flow of warm replies. Tell us who your customer is and we will say honestly whether outbound email is the right channel." },
-  { q: "How quickly can you start?", a: "Typically within 48 hours of onboarding. We gather your ICP brief, set up your sending infrastructure, and launch the first batch." },
+  { q: "How quickly can you start?", a: "We agree the start date once we have reviewed your setup. We gather your ICP brief, set up your sending infrastructure, and launch the first batch." },
   { q: "What happens when someone replies?", a: "We flag the reply in your dashboard and send you an instant notification with full context — who they are, what they said, and suggested next steps. You take it from there." },
   { q: "Is my domain safe?", a: "Yes. We send from a dedicated subdomain or sending domain we set up for you, following email best practices (SPF, DKIM, DMARC). Using a separate sending domain keeps cold email away from your main domain, but no setup removes deliverability risk entirely." },
 ];
@@ -251,7 +251,7 @@ export default function AIBDRPage() {
             <div style={{ border: "2px solid #18181b", borderRadius: 18, padding: "36px 32px", background: "#fff", textAlign: "left", boxShadow: "0 8px 40px rgba(0,0,0,0.07)" }}>
               <div style={{ display: "inline-block", background: "#18181b", color: "#fff", borderRadius: 6, fontSize: 12, fontWeight: 700, padding: "4px 12px", marginBottom: 20, letterSpacing: 0.5 }}>STANDARD PLAN</div>
               <div style={{ display: "flex", alignItems: "flex-end", gap: 6, marginBottom: 6 }}>
-                <span style={{ fontSize: 44, fontWeight: 800, letterSpacing: -2, lineHeight: 1 }}>{price("₹15,000")}</span>
+                <span style={{ fontSize: 44, fontWeight: 800, letterSpacing: -2, lineHeight: 1 }}>{price("Custom")}</span>
                 <span style={{ fontSize: 16, color: "#71717a", paddingBottom: 6 }}>{isIntl ? "— book a call" : "/month"}</span>
               </div>
               <p style={{ fontSize: 14, color: "#52525b", marginBottom: 28 }}>200 qualified outreach sequences per month</p>

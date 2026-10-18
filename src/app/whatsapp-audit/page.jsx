@@ -304,7 +304,7 @@ export default function WhatsappAudit() {
                   At an assumed 70% recovery, that is {f(recovery)}/month for your clinic
                 </div>
                 <div style={{ fontSize: 13, color: "#94a3b8", lineHeight: 1.6 }}>
-                  Instant text replies, appointment booking and recall — all inside WhatsApp, all text-based (no voice, no video). The 70% recovery rate is our own assumption for this estimate, not a measured or promised result. At that rate it would be about {f(recovery * 12)}/year, on a flat monthly plan (~AED 1,200/mo).
+                  Instant text replies, appointment booking and recall — all inside WhatsApp, all text-based (no voice, no video). The 70% recovery rate is our own assumption for this estimate, not a measured or promised result. At that rate it would be about {f(recovery * 12)}/year.
                 </div>
               </div>
             </div>

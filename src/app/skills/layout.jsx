@@ -1,7 +1,7 @@
 export const metadata = {
   title: "Delta Labs AI Skills — Free Automation Packages | Delta Labs AI",
   description:
-    "Free, open-source Claude/Paperclip skills from Delta Labs AI's production stack: Cold Email Outreach and LinkedIn Company Page Automation. Free forever, or get Enterprise Support at Rs 4,999/month.",
+    "Free, open-source Claude/Paperclip skills from Delta Labs AI's production stack: Cold Email Outreach and LinkedIn Company Page Automation. Free forever, with optional Enterprise Support.",
   keywords: [
     "Delta Labs AI skills",
     "free Claude skills",
@@ -16,7 +16,7 @@ export const metadata = {
   openGraph: {
     title: "Delta Labs AI Skills — Free Automation Packages",
     description:
-      "Free, open-source Claude/Paperclip skills from our production stack. Cold Email Outreach + LinkedIn Company Page Automation. Free forever, or get Enterprise Support at Rs 4,999/month.",
+      "Free, open-source Claude/Paperclip skills from our production stack. Cold Email Outreach + LinkedIn Company Page Automation. Free forever, with optional Enterprise Support.",
     url: "https://deltalabsai.com/skills",
     siteName: "Delta Labs AI",
     type: "website",

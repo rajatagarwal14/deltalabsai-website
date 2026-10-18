@@ -46,9 +46,9 @@ const features = [
 ];
 
 const plans = [
-  { name: "Starter", price: "2,999", period: "/month", features: ["Appointment reminders (SMS)", "Basic patient dashboard", "Up to 200 patients", "Email support"], cta: "Start Free Trial" },
-  { name: "Professional", price: "4,999", period: "/month", popular: true, features: ["Everything in Starter", "WhatsApp reminders + follow-ups", "Google review automation", "Patient recall system", "Up to 1,000 patients", "Priority support"], cta: "Start Free Trial" },
-  { name: "Premium", price: "6,999", period: "/month", features: ["Everything in Professional", "Multi-location support", "Unlimited patients", "Custom integrations", "Dedicated account manager", "Analytics dashboard"], cta: "Contact Us" },
+  { name: "Starter", price: "Custom", period: " quote after a short call", features: ["Appointment reminders (SMS)", "Basic patient dashboard", "Up to 200 patients", "Email support"], cta: "Start Free Trial" },
+  { name: "Professional", price: "Custom", period: " quote after a short call", popular: true, features: ["Everything in Starter", "WhatsApp reminders + follow-ups", "Google review automation", "Patient recall system", "Up to 1,000 patients", "Priority support"], cta: "Start Free Trial" },
+  { name: "Premium", price: "Custom", period: " quote after a short call", features: ["Everything in Professional", "Multi-location support", "Unlimited patients", "Custom integrations", "Dedicated account manager", "Analytics dashboard"], cta: "Contact Us" },
 ];
 
 const stats = [
@@ -62,7 +62,7 @@ const faqs = [
   { q: "Is SmileCRM difficult to set up?", a: "Not at all. We handle the entire setup for you. No technical skills required." },
   { q: "Will my staff need training?", a: "SmileCRM is designed to be intuitive. We provide a 30-minute walkthrough." },
   { q: "What if I already use another software?", a: "SmileCRM integrates with most existing systems. We can import your patient data and run alongside your current tools." },
-  { q: "Is there a free trial?", a: "Yes, we offer a 14-day free trial on all plans. No credit card required. Try it before you commit." },
+  { q: "Is there a free trial?", a: "Yes, we offer a free trial. Ask us for the current terms. Try it before you commit." },
   { q: "Can I use SmileCRM for multiple locations?", a: "Yes, the Premium plan supports multiple locations under one dashboard with location-specific settings and reporting." },
 ];
 
@@ -148,7 +148,7 @@ export default function DentalPage() {
       {/* Pricing */}
       <section style={{ maxWidth: 1000, margin: "0 auto", padding: "72px 24px" }}>
         <F><h2 style={{ fontSize: 28, fontWeight: 700, marginBottom: 8, textAlign: "center" }}>Simple, transparent pricing</h2></F>
-        <F d={0.1}><p style={{ textAlign: "center", color: "#71717a", marginBottom: 40, fontSize: 15 }}>14-day free trial on all plans. No credit card required.</p></F>
+        <F d={0.1}><p style={{ textAlign: "center", color: "#71717a", marginBottom: 40, fontSize: 15 }}>Free trial available. Ask us for the current terms.</p></F>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 24 }}>
           {plans.map((p, i) => (
             <F key={i} d={i * 0.1}>
@@ -156,7 +156,7 @@ export default function DentalPage() {
                 {p.popular && <div style={{ position: "absolute", top: -12, left: "50%", transform: "translateX(-50%)", background: "#18181b", color: "#fff", fontSize: 12, fontWeight: 600, padding: "4px 14px", borderRadius: 20 }}>Most Popular</div>}
                 <h3 style={{ fontSize: 20, fontWeight: 700, marginBottom: 4 }}>{p.name}</h3>
                 <div style={{ marginBottom: 20 }}>
-                  <span style={{ fontSize: 36, fontWeight: 800 }}>Rs {p.price}</span>
+                  <span style={{ fontSize: 30, fontWeight: 800 }}>Custom</span>
                   <span style={{ color: "#71717a", fontSize: 14 }}>{p.period}</span>
                 </div>
                 <ul style={{ listStyle: "none", padding: 0, margin: "0 0 24px", flex: 1 }}>

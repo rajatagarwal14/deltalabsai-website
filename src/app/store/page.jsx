@@ -299,7 +299,7 @@ export default function StorePage() {
       setRegion(tz === "Asia/Kolkata" || tz === "Asia/Calcutta" ? "in" : "intl");
     } catch { setRegion("in"); }
   }, []);
-  const isIntl = region === "intl";
+  const isIntl = true; // no prices shown anywhere on the site (founder decision, 18 Oct 2026)
   const px = (raw) => (isIntl ? "Custom" : raw);
   const pxPeriod = (raw) => (isIntl ? "— book a call" : raw);
 
@@ -308,50 +308,50 @@ export default function StorePage() {
       id: "smilecrm", emoji: "🦷", name: "SmileCRM", defaultBiz: "dental", highlight: true, ribbon: "MOST POPULAR",
       badge: "For Dental Clinics", badgeColor: "#059669", badgeBg: "#F0FDF4",
       desc: "Purpose-built CRM for dental clinics. Appointment automation, patient recall, WhatsApp follow-ups, and analytics — all in one.",
-      price: "₹2,999", pricePeriod: "/mo · Free 14-day trial",
+      price: "Custom", pricePeriod: "/mo · Free trial",
       features: ["Appointment calendar + queue management", "Patient records & treatment history", "WhatsApp reminder automation", "No-show reduction workflows", "Revenue & analytics dashboard", "Practo sync (optional)"],
     },
     {
       id: "fitbiz", emoji: "💪", name: "FitBiz Dashboard", defaultBiz: "fitness",
       badge: "For Gyms & Studios", badgeColor: "#7C3AED", badgeBg: "#F5F3FF",
       desc: "Member management, churn prevention, class scheduling, and AI-powered retention campaigns for fitness businesses.",
-      price: "₹1,999", pricePeriod: "/mo · Free trial",
+      price: "Custom", pricePeriod: "/mo · Free trial",
       features: ["Member attendance & tracking", "Churn prediction alerts", "Automated renewal reminders", "Class schedule management", "Revenue dashboard"],
     },
     {
       id: "lead-gen", emoji: "🎯", name: "Lead Gen Agent", defaultBiz: "other",
       badge: "For Any Business", badgeColor: "#2563EB", badgeBg: "#EFF6FF",
       desc: "AI agent that scrapes, qualifies, and delivers high-intent leads for your industry — with emails, phone numbers, and AI scoring.",
-      price: "₹3,499", pricePeriod: "/mo",
+      price: "Custom", pricePeriod: "/mo",
       features: ["300+ pre-qualified leads", "Email + phone contacts", "AI lead scoring (0-100)", "Industry-specific filters", "Weekly lead delivery"],
     },
     {
       id: "outreach", emoji: "📧", name: "Outreach Agent", defaultBiz: "other",
       badge: "Cold Email AI", badgeColor: "#D97706", badgeBg: "#FFFBEB",
       desc: "AI writes, sends, and follows up on cold emails for you. Tracks opens, clicks, bounces. All on autopilot.",
-      price: "₹2,499", pricePeriod: "/mo",
+      price: "Custom", pricePeriod: "/mo",
       features: ["AI-written personalized emails", "Automated follow-up sequences", "Open & click tracking", "Bounce handling + blocklist", "Zoho Mail integration"],
     },
     {
       id: "content", emoji: "✍️", name: "Content Agent", defaultBiz: "other",
       badge: "LinkedIn + Blog", badgeColor: "#0891B2", badgeBg: "#ECFEFF",
       desc: "Generates LinkedIn posts, blog drafts, and social content for your business — tailored to your industry and voice.",
-      price: "₹1,499", pricePeriod: "/mo",
+      price: "Custom", pricePeriod: "/mo",
       features: ["Daily LinkedIn posts", "Blog article drafts", "Industry-relevant topics", "Engagement optimization", "Approval workflow"],
     },
     {
       id: "crm-agent", emoji: "🤖", name: "CRM Agent", defaultBiz: "other",
       badge: "AI CRM Assistant", badgeColor: "#6D28D9", badgeBg: "#EDE9FE",
       desc: "Automates your CRM workflows — follow-ups, status updates, lead scoring, pipeline management — without you lifting a finger.",
-      price: "₹2,999", pricePeriod: "/mo",
+      price: "Custom", pricePeriod: "/mo",
       features: ["Auto follow-up sequences", "Lead scoring & prioritization", "Pipeline health alerts", "Activity logging", "Telegram notifications"],
     },
   ];
 
   const CONSULT_PRODUCTS = [
-    { emoji: "🧠", name: "AI Strategy Sprint", desc: "2-week intensive: map your business, identify automation opportunities, build a 90-day AI roadmap.", price: "₹24,999", highlight: false },
-    { emoji: "⚡", name: "Automation Setup", desc: "We build your custom automation stack — CRM, outreach, follow-ups, reporting — from scratch, end to end.", price: "₹49,999+", highlight: true },
-    { emoji: "📊", name: "Monthly AI Retainer", desc: "Ongoing AI & automation partnership. We operate as your embedded AI team: strategy + execution + reporting.", price: "₹19,999/mo", highlight: false },
+    { emoji: "🧠", name: "AI Strategy Sprint", desc: "2-week intensive: map your business, identify automation opportunities, build a 90-day AI roadmap.", price: "Custom", highlight: false },
+    { emoji: "⚡", name: "Automation Setup", desc: "We build your custom automation stack — CRM, outreach, follow-ups, reporting — from scratch, end to end.", price: "Custom", highlight: true },
+    { emoji: "📊", name: "Monthly AI Retainer", desc: "Ongoing AI & automation partnership. We operate as your embedded AI team: strategy + execution + reporting.", price: "Custom", highlight: false },
   ];
 
   const STAT_ITEMS = [

@@ -61,8 +61,8 @@ const faqs = [
   { q: "Does this work for yoga studios, gyms, and personal trainers?", a: "Yes. Our tools are designed for any independent fitness business, whether you run group classes, one-on-one training, or both." },
   { q: "How long does setup take?", a: "We handle the configuration and import your existing member data." },
   { q: "What if my members are not tech-savvy?", a: "The booking system works through a simple link. If someone can use WhatsApp, they can book a class. No app download required." },
-  { q: "How much does it cost?", a: "Plans start at Rs 2,999/month for small studios. Custom pricing available for larger facilities. 14-day free trial on all plans." },
-  { q: "Can I try it before committing?", a: "Absolutely. We offer a 14-day free trial with no credit card required. Try it before you pay anything." },
+  { q: "How much does it cost?", a: "Pricing depends on studio size and setup, and is quoted after a short call. Free trial available." },
+  { q: "Can I try it before committing?", a: "Absolutely. We offer a free trial. Ask us for the current terms. Try it before you pay anything." },
 ];
 
 export default function FitnessPage() {
@@ -179,7 +179,7 @@ export default function FitnessPage() {
         <F>
           <h2 style={{ fontSize: 28, fontWeight: 700, marginBottom: 16 }}>Ready to grow your studio?</h2>
           <p style={{ fontSize: 16, color: "#52525b", marginBottom: 32, lineHeight: 1.6, maxWidth: 500, margin: "0 auto 32px" }}>
-            Built for independent fitness businesses in India and worldwide. Start your 14-day free trial today.
+            Built for independent fitness businesses in India and worldwide. Start a free trial today.
           </p>
           <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
             <Btn href="#cal-book">Book a Free Demo <Ic.Arr /></Btn>
