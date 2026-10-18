@@ -69,6 +69,12 @@ export default function sitemap() {
       changeFrequency: "monthly",
       priority: 0.85,
     },
+      {
+      url: "https://deltalabsai.com/crm-migration-services",
+      lastModified: new Date("2026-05-31"),
+      changeFrequency: "monthly",
+      priority: 0.85,
+    },
     {
       url: "https://deltalabsai.com/voice-receptionist",
       lastModified: new Date("2026-05-31"),
@@ -110,6 +116,12 @@ export default function sitemap() {
       lastModified: new Date("2026-07-13"),
       changeFrequency: "monthly",
       priority: 0.7,
+    },
+    {
+      url: "https://deltalabsai.com/clients",
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.6,
     },
     {
       url: "https://deltalabsai.com/answers/hvac-invoicing-automation",

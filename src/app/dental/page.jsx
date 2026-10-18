@@ -59,10 +59,10 @@ const stats = [
 ];
 
 const faqs = [
-  { q: "Is SmileCRM difficult to set up?", a: "Not at all. We handle the entire setup for you. Most clinics are up and running within 48 hours. No technical skills required." },
-  { q: "Will my staff need training?", a: "SmileCRM is designed to be intuitive. We provide a 30-minute walkthrough and most staff members are comfortable within a day." },
+  { q: "Is SmileCRM difficult to set up?", a: "Not at all. We handle the entire setup for you. No technical skills required." },
+  { q: "Will my staff need training?", a: "SmileCRM is designed to be intuitive. We provide a 30-minute walkthrough." },
   { q: "What if I already use another software?", a: "SmileCRM integrates with most existing systems. We can import your patient data and run alongside your current tools." },
-  { q: "Is there a free trial?", a: "Yes, we offer a 14-day free trial on all plans. No credit card required. See the results before you commit." },
+  { q: "Is there a free trial?", a: "Yes, we offer a 14-day free trial on all plans. No credit card required. Try it before you commit." },
   { q: "Can I use SmileCRM for multiple locations?", a: "Yes, the Premium plan supports multiple locations under one dashboard with location-specific settings and reporting." },
 ];
 
@@ -91,10 +91,10 @@ export default function DentalPage() {
         <F>
           <div style={{ display: "inline-block", padding: "6px 16px", borderRadius: 20, background: "#f0fdf4", color: "#16a34a", fontSize: 13, fontWeight: 600, marginBottom: 24 }}>Built for Independent Dental Clinics</div>
           <h1 style={{ fontSize: "clamp(32px, 5vw, 52px)", fontWeight: 800, lineHeight: 1.1, letterSpacing: -1.5, margin: "0 0 20px" }}>
-            Dental Clinic Automation Services<br />Built to Cut No-Shows
+            Patient Recall and Appointment Reminders <br />for Dental Clinics
           </h1>
           <p style={{ fontSize: 18, color: "#52525b", maxWidth: 600, margin: "0 auto 32px", lineHeight: 1.6 }}>
-            SmileCRM automates appointment reminders, patient recall, and review collection for your dental clinic. Simple setup. Affordable pricing. Real results.
+            SmileCRM automates appointment reminders, patient recall, and review collection for your dental clinic. Simple setup. Affordable pricing.
           </p>
           <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
             <Btn href="#cal-book">Book a Free Demo <Ic.Arr /></Btn>
@@ -196,7 +196,7 @@ export default function DentalPage() {
         <F>
           <h2 style={{ fontSize: 28, fontWeight: 700, marginBottom: 16 }}>Ready to transform your clinic?</h2>
           <p style={{ fontSize: 16, color: "#52525b", marginBottom: 32, lineHeight: 1.6 }}>
-            Join independent dental clinics across India that are recovering revenue, reducing no-shows, and growing their online reputation with SmileCRM.
+            Built for independent dental clinics across India that want to recover revenue, reduce no-shows, and grow their online reputation.
           </p>
           <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
             <Btn href="#cal-book">Book a Free Demo <Ic.Arr /></Btn>

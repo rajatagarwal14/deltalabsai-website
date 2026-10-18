@@ -94,7 +94,7 @@ const steps = [
 
 const included = [
   { title: "ICP Definition & Targeting", desc: "We map your ideal customer profile and identify exactly the right decision-makers — title, company size, industry, intent signals." },
-  { title: "Verified Contact Data", desc: "Every contact is verified before outreach. No bounces eating your sender reputation. Email + LinkedIn as backup." },
+  { title: "Verified Contact Data", desc: "Every contact is verified before outreach. Fewer bounces eating your sender reputation. Email + LinkedIn as backup." },
   { title: "AI-Written Sequences", desc: "Multi-touch sequences (email + optional LinkedIn) written by AI with human-level personalisation. Tested for deliverability." },
   { title: "Open & Reply Tracking", desc: "Real-time visibility into who opened, clicked, and replied. Full activity feed in your shared dashboard." },
   { title: "Bounce & Unsubscribe Handling", desc: "Automatic bounce processing, unsubscribe compliance, and sender health monitoring — so your domain stays clean." },
@@ -103,18 +103,17 @@ const included = [
 
 const stats = [
   { num: "200", label: "Outreach sequences / mo" },
-  { num: "35-50%", label: "Average open rate" },
   { num: "48 hrs", label: "Setup to first send" },
   { num: "100%", label: "Done-for-you" },
 ];
 
 const faqs = [
   { q: "Who is this service for?", a: "Any SMB or founder who needs a consistent pipeline of warm leads but doesn't have a sales team to do outreach. If you close deals well but hate prospecting — this is for you." },
-  { q: "How is this different from hiring a BDR?", a: "A human BDR costs ₹40,000–80,000/month and can send 30-50 emails/day. Our AI sends 200 personalised sequences per month at ₹15,000 — and works 24/7 without sick days or ramp time." },
-  { q: "What industries do you serve?", a: "We've run outreach for dental clinics, SaaS companies, e-commerce brands, professional services, fitness studios, and home service businesses. If your customer has an email address, we can reach them." },
-  { q: "How quickly can you start?", a: "Typically within 48 hours of onboarding. We gather your ICP brief, set up your sending infrastructure, and launch the first batch. You see results in the first week." },
+  { q: "How is this different from hiring a BDR?", a: "A human BDR costs a full salary plus benefits and can only send so many emails a day. Our AI sends 200 personalised sequences per month at ₹15,000 — and works 24/7 without sick days or ramp time." },
+  { q: "What industries do you serve?", a: "AI BDR suits any business whose customers can be reached by email and that wants a steady flow of warm replies. Tell us who your customer is and we will say honestly whether outbound email is the right channel." },
+  { q: "How quickly can you start?", a: "Typically within 48 hours of onboarding. We gather your ICP brief, set up your sending infrastructure, and launch the first batch." },
   { q: "What happens when someone replies?", a: "We flag the reply in your dashboard and send you an instant notification with full context — who they are, what they said, and suggested next steps. You take it from there." },
-  { q: "Is my domain safe?", a: "Yes. We send from a dedicated subdomain or sending domain we set up for you, following email best practices (SPF, DKIM, DMARC). Your primary domain is never at risk." },
+  { q: "Is my domain safe?", a: "Yes. We send from a dedicated subdomain or sending domain we set up for you, following email best practices (SPF, DKIM, DMARC). Using a separate sending domain keeps cold email away from your main domain, but no setup removes deliverability risk entirely." },
 ];
 
 export default function AIBDRPage() {
@@ -124,7 +123,7 @@ export default function AIBDRPage() {
   // market-neutral version that points to a call for local pricing.
   const faqList = faqs.map((f, i) =>
     i === 1 && isIntl
-      ? { ...f, a: "A human BDR costs a full salary plus benefits and sends only 30-50 emails/day. Our AI sends 200 personalised sequences every month at a flat fee — and works 24/7 without sick days or ramp time. Book a call for pricing in your market." }
+      ? { ...f, a: "A human BDR costs a full salary plus benefits and can only send so many emails a day. Our AI sends 200 personalised sequences every month at a flat fee — and works 24/7 without sick days or ramp time. Book a call for pricing in your market." }
       : f
   );
 
@@ -246,7 +245,7 @@ export default function AIBDRPage() {
           <F>
             <p style={{ fontSize: 13, fontWeight: 600, letterSpacing: 1, color: "#2563EB", textTransform: "uppercase", marginBottom: 12 }}>Pricing</p>
             <h2 style={{ fontSize: "clamp(26px, 3.5vw, 38px)", fontWeight: 800, letterSpacing: -1, marginBottom: 12 }}>Simple, flat pricing</h2>
-            <p style={{ fontSize: 16, color: "#52525b", marginBottom: 40 }}>No per-lead fees. No long-term contracts. Just results.</p>
+            <p style={{ fontSize: 16, color: "#52525b", marginBottom: 40 }}>No per-lead fees. No long-term contracts.</p>
           </F>
           <F d={0.1}>
             <div style={{ border: "2px solid #18181b", borderRadius: 18, padding: "36px 32px", background: "#fff", textAlign: "left", boxShadow: "0 8px 40px rgba(0,0,0,0.07)" }}>
@@ -287,13 +286,13 @@ export default function AIBDRPage() {
         <F>
           <div style={{ maxWidth: 640, margin: "0 auto" }}>
             <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(255,255,255,0.08)", borderRadius: 999, padding: "6px 16px", fontSize: 13, color: "rgba(255,255,255,0.7)", marginBottom: 20 }}>
-              <Ic.Bot /> Built on battle-tested infrastructure
+              <Ic.Bot /> How we run it
             </div>
             <h2 style={{ fontSize: "clamp(22px, 3vw, 30px)", fontWeight: 700, color: "#fff", lineHeight: 1.3, marginBottom: 16 }}>
               Powered by the same system that runs Delta Labs AI's own outreach
             </h2>
             <p style={{ fontSize: 15, color: "rgba(255,255,255,0.6)", lineHeight: 1.7, marginBottom: 32 }}>
-              We don't sell software — we run your outreach using the exact pipeline we built for ourselves. 222+ emails sent, open rates tracked, bounces handled automatically. You're getting a proven system, not a promise.
+              We don't sell software. We run your outreach using the same pipeline we built for ourselves. Replies are flagged in your dashboard and bounces are handled automatically.
             </p>
             <Btn href={FORM} style={{ background: "#fff", color: "#18181b", padding: "13px 28px" }}>
               Get a Free Quote <Ic.Arr />

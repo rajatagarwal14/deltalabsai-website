@@ -125,3 +125,46 @@ Consulted on the retarget decision. Four changes to the plan:
 
 ### ⚠️ Separate flag worth its own decision
 **This cluster is the strongest paid-search arbitrage signal on the site: $14–20 CPC at KD 1–4.** People pay ~$20/click for `crm data migration utility`. A small exact-match search-ads test would validate whether this traffic converts to migration-service leads **before** committing 2–4 months to the organic climb. Consistent with `distribution-is-the-constraint` in memory. **Not actioned — flagged for CEO decision.**
+
+---
+
+## KEYWORD GAP vs SYNCMATTERS + FAYEDIGITAL (2026-08-29)
+
+Run after Semrush's auto competitor-detection returned **nothing usable** — every suggested competitor (Gartner, Figma, Miro) showed **relevance 0.00 with 1 shared keyword**. We do not rank for enough to overlap with anyone. Competitors therefore taken from actual SERP analysis instead.
+
+**Terms both competitors rank for and we do not:**
+
+| Keyword | SyncMatters | Faye | Volume | CPC | KD |
+|---|---|---|---|---|---|
+| crm migration services | **4** | **2** | 260 | — | **11** |
+| data migration crm | **3** | 18 | 170 | **$14.32** | **11** |
+| crm migration project plan | 7 | 14 | 210 | — | **14** |
+| migration crm | **2** | 12 | 70 | **$22.29** | 17 |
+| crm migration | **5** | 14 | 480 | **$22.29** | 24 |
+| **crm roi** | 44 | **3** | 320 | **$19.05** | **19** |
+| crm return on investment | 45 | 7 | 260 | **$19.05** | 18 |
+| roi for crm | 40 | 3 | 110 | **$19.05** | 19 |
+| how to track/calculate roi of crm | 30 | 5 | 90 | — | 19 |
+| how to fix broken integrations in crm systems | 9 | 8 | 70 | — | **1** |
+| netsuite crm vs salesforce crm | 23 | 24 | 90 | — | **5** |
+| bad crm data | 25 | 48 | 90 | — | **8** |
+| crm that integrates with import2 | 57 | 24 | 110 | — | **10** |
+| pipedrive integration with quickbooks | 10 | 5 | 70 | **$37.19** | 24 |
+| crm integration services | 26 | 57 | 1,000 | **$14.72** | 28 |
+| why companies struggle to get value from crm software | 14 | 12 | **3,600** | — | 20 |
+| crm challenges / crm problems / problems of crm | 15–24 | 15–61 | ~630 | — | 22–24 |
+| why crm implementations fail | 26 | 24 | 70 | — | 28 |
+
+### The structural insight
+
+**Neither competitor won by publishing "we do CRM migrations."** They built a cluster around **CRM problems, failures and ROI** — the questions people ask *before* they know they need a migration. Then the migration service sits at the end of that funnel.
+
+Two coherent sub-clusters worth owning:
+
+**ROI cluster** — crm roi (320) + crm return on investment (260) + roi for crm (110) + how to track roi of crm (90) + roi in crm (70) = **~850 searches at $19.05 CPC, KD 17–19.** Commercially valuable, winnable, and we have zero presence.
+
+**Problems/failure cluster** — why companies struggle to get value from crm (3,600) + crm challenges/problems (~630) + why crm implementations fail (70) + bad crm data (90). Mostly $0.00 CPC, but very large top-of-funnel that feeds the migration service.
+
+**Near-free wins** — how to fix broken integrations in crm systems (**KD 1**), netsuite crm vs salesforce crm (**KD 5**), bad crm data (**KD 8**), crm that integrates with import2 (**KD 10**).
+
+**Status: recorded, not yet built. Pending Fable validation of overall strategy.**

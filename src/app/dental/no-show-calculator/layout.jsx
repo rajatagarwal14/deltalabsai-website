@@ -14,6 +14,14 @@ export const metadata = {
       "Find your clinic's exact no-show revenue loss in 30 seconds — and how much automation could recover.",
     url: "https://deltalabsai.com/dental/no-show-calculator",
     type: "website",
+    images: [
+      {
+        url: "https://deltalabsai.com/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Delta Labs AI",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",

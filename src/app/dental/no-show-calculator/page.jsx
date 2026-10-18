@@ -36,12 +36,12 @@ function fmt(n, curCode = "USD") {
 
 // No-show grade — benchmarked against a healthy clinic (industry healthy band ≈ under 10%)
 function gradeFor(rate) {
-  if (rate <= 6)  return { g: "A+", color: "#22c55e", label: "Excellent — better than almost every clinic",        tone: "Your front desk is doing something right. Protect it." };
-  if (rate <= 9)  return { g: "A",  color: "#4ade80", label: "Healthy — at the good end of the industry band",      tone: "Small leaks only. Automation keeps it that way as you grow." };
-  if (rate <= 12) return { g: "B",  color: "#a3e635", label: "Average — right at the industry norm",                tone: "Average still means real money walking out. Recoverable." };
-  if (rate <= 16) return { g: "C",  color: "#facc15", label: "Leaking — noticeably above the healthy band",         tone: "This is the zone where reminders + recall pay for themselves fastest." };
+  if (rate <= 6)  return { g: "A+", color: "#22c55e", label: "Excellent — well below our assumed healthy band",        tone: "Your front desk is doing something right. Protect it." };
+  if (rate <= 9)  return { g: "A",  color: "#4ade80", label: "Healthy — within our assumed healthy band",      tone: "Small leaks only. Automation keeps it that way as you grow." };
+  if (rate <= 12) return { g: "B",  color: "#a3e635", label: "Average — just above our assumed healthy band",                tone: "Average still means real money walking out. Recoverable." };
+  if (rate <= 16) return { g: "C",  color: "#facc15", label: "Leaking — noticeably above the healthy band",         tone: "This is the zone where reminders + recall have the most room to help." };
   if (rate <= 22) return { g: "D",  color: "#fb923c", label: "Serious leak — well above the healthy band",          tone: "At this rate, no-shows are one of your biggest silent costs." };
-  return            { g: "F",  color: "#ef4444", label: "Critical — among the highest no-show rates",          tone: "Every week without follow-up automation is real revenue lost." };
+  return            { g: "F",  color: "#ef4444", label: "Critical — far above our assumed healthy band",          tone: "Every week without follow-up automation is real revenue lost." };
 }
 
 function SliderInput({ label, min, max, step, value, onChange, prefix = "", suffix = "" }) {
@@ -229,7 +229,7 @@ export default function NoShowCalculator() {
             SmileCRM by Delta Labs AI
           </div>
           <h1 style={S.h1}>{clinicName ? `${clinicName}: what's your no-show grade?` : "What's your clinic's no-show grade?"}</h1>
-          <p style={S.sub}>Most clinics lose thousands every year to missed appointments — and don't even know it. Get your clinic's report card in 30 seconds.</p>
+          <p style={S.sub}>Missed appointments can quietly cost a clinic real money every year. Get your clinic's report card in 30 seconds.</p>
         </F>
 
         <F d={0.1}>
@@ -265,7 +265,7 @@ export default function NoShowCalculator() {
               <span style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "#9ca3af" }}>
                 📋 No-Show Report Card{clinicName ? ` — ${clinicName}` : ""}
               </span>
-              <span style={{ fontSize: 11, color: "#6b7280" }}>benchmark: healthy clinics stay under 10%</span>
+              <span style={{ fontSize: 11, color: "#6b7280" }}>benchmark: our assumed healthy band is under 10%</span>
             </div>
             <div style={{ padding: "28px", display: "flex", gap: 28, alignItems: "center", flexWrap: "wrap" }}>
               <div style={{
@@ -281,7 +281,7 @@ export default function NoShowCalculator() {
                 <div style={{ fontSize: 14, color: "#94a3b8", lineHeight: 1.6, marginBottom: 12 }}>{grade.tone}</div>
                 <div style={{ fontSize: 14, color: "#e2e8f0" }}>
                   Annual leak: <strong style={{ color: grade.color, fontSize: 17 }}>{f(annualLoss)}</strong>
-                  <span style={{ color: "#6b7280" }}> · recoverable with automation: ~{f(recovery * 12)}/yr</span>
+                  <span style={{ color: "#6b7280" }}> · if 65% were recovered (an assumption): ~{f(recovery * 12)}/yr</span>
                 </div>
               </div>
             </div>
@@ -311,10 +311,10 @@ export default function NoShowCalculator() {
               <div style={{ fontSize: 28 }}>💡</div>
               <div>
                 <div style={{ fontSize: 15, fontWeight: 700, color: "#e2e8f0", marginBottom: 6 }}>
-                  SmileCRM could recover {f(recovery)}/month for your clinic
+                  At an assumed 65% recovery, that is {f(recovery)}/month for your clinic
                 </div>
                 <div style={{ fontSize: 13, color: "#94a3b8", lineHeight: 1.6 }}>
-                  Automated reminders, recall and WhatsApp follow-ups typically recover around 65% of no-show revenue. That's about {f(recovery * 12)}/year — on a flat monthly plan, running 24/7. It's the same system running live in a real dental clinic today.
+                  If reminders, recall and WhatsApp follow-ups recovered 65% of no-show revenue, that would be about {f(recovery * 12)}/year. The 65% recovery rate is our own assumption for this estimate. It is not a measured or promised result.
                 </div>
               </div>
             </div>
@@ -345,7 +345,7 @@ export default function NoShowCalculator() {
             <div style={S.card}>
               <div style={S.sectionLabel}>Get your personalised recovery plan</div>
               <p style={{ fontSize: 14, color: "#94a3b8", marginBottom: 20 }}>
-                We'll send a custom plan showing exactly how SmileCRM would recover <strong style={{ color: "#a5b4fc" }}>{f(recovery)}/month</strong> for your clinic (grade {grade.g} → A) — plus a free 30-min consultation.
+                We'll send a custom plan showing how SmileCRM could help recover an estimated <strong style={{ color: "#a5b4fc" }}>{f(recovery)}/month</strong> for your clinic, based on the assumptions above — plus a free 30-min consultation.
               </p>
               <form onSubmit={handleCapture}>
                 <input style={S.input} placeholder="Your name" value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))} required />
@@ -394,10 +394,10 @@ export default function NoShowCalculator() {
           <div style={{ marginTop: 48, borderTop: "1px solid rgba(255,255,255,0.06)", paddingTop: 32 }}>
             <div style={{ display: "flex", gap: 32, flexWrap: "wrap", marginBottom: 24 }}>
               {[
-                { n: "~65%", l: "Typical no-show revenue recovery" },
+                { n: "65%", l: "Recovery rate assumed in this estimate" },
                 { n: "24/7", l: "Reminders + recall, fully automated" },
-                { n: "2 weeks", l: "Typical setup time" },
-                { n: "Live", l: "Running in a real dental clinic today" },
+                { n: "2 weeks", l: "Target setup time" },
+                { n: "Beta", l: "In active development, early access open" },
               ].map(({ n, l }) => (
                 <div key={l} style={{ textAlign: "center", flex: 1, minWidth: 100 }}>
                   <div style={{ fontSize: 26, fontWeight: 800, color: "#6366f1" }}>{n}</div>

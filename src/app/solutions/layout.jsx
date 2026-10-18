@@ -9,6 +9,14 @@ export const metadata = {
       "From dental clinics to home services — find the AI solution that fits your industry. SmileCRM, AI BDR, Voice Receptionist, and custom automation.",
     url: "https://deltalabsai.com/solutions",
     type: "website",
+    images: [
+      {
+        url: "https://deltalabsai.com/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Delta Labs AI",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",

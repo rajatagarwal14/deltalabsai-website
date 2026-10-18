@@ -35,9 +35,9 @@ function fmt(n, curCode = "AED") {
 // Grade benchmarks a slow/missed-reply rate against a healthy WhatsApp-first clinic (healthy band ≈ under 10% left over 1hr)
 function gradeFor(rate) {
   if (rate <= 10) return { g: "A+", color: "#22c55e", label: "Excellent — patients rarely wait",              tone: "Your front desk is on top of WhatsApp. Protect it." };
-  if (rate <= 20) return { g: "A",  color: "#4ade80", label: "Healthy — at the good end of the band",          tone: "A few inquiries slip through. Automation closes the gap as inquiries grow." };
-  if (rate <= 30) return { g: "B",  color: "#a3e635", label: "Average — right at the industry norm",           tone: "Average still means real patients going elsewhere. Recoverable." };
-  if (rate <= 45) return { g: "C",  color: "#facc15", label: "Leaking — noticeably above the healthy band",    tone: "This is the zone where an instant auto-reply pays for itself fastest." };
+  if (rate <= 20) return { g: "A",  color: "#4ade80", label: "Healthy — slower than our assumed ideal (under 10%) but acceptable",          tone: "A few inquiries slip through. Automation closes the gap as inquiries grow." };
+  if (rate <= 30) return { g: "B",  color: "#a3e635", label: "Average — above our assumed healthy band",           tone: "Average still means real patients going elsewhere. Recoverable." };
+  if (rate <= 45) return { g: "C",  color: "#facc15", label: "Leaking — noticeably above the healthy band",    tone: "This is the zone where an instant auto-reply has the most room to help." };
   if (rate <= 60) return { g: "D",  color: "#fb923c", label: "Serious leak — well above the healthy band",     tone: "At this rate, slow WhatsApp replies are one of your biggest silent costs." };
   return              { g: "F",  color: "#ef4444", label: "Critical — most inquiries go unanswered in time", tone: "Every week without an instant reply is patients booking elsewhere." };
 }
@@ -255,7 +255,7 @@ export default function WhatsappAudit() {
               <span style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "#9ca3af" }}>
                 📱 WhatsApp Response Report Card{clinicName ? ` — ${clinicName}` : ""}
               </span>
-              <span style={{ fontSize: 11, color: "#6b7280" }}>benchmark: healthy clinics stay under 10% slow/missed</span>
+              <span style={{ fontSize: 11, color: "#6b7280" }}>benchmark: our assumed healthy band is under 10% slow/missed</span>
             </div>
             <div style={{ padding: "28px", display: "flex", gap: 28, alignItems: "center", flexWrap: "wrap" }}>
               <div style={{
@@ -271,7 +271,7 @@ export default function WhatsappAudit() {
                 <div style={{ fontSize: 14, color: "#94a3b8", lineHeight: 1.6, marginBottom: 12 }}>{grade.tone}</div>
                 <div style={{ fontSize: 14, color: "#e2e8f0" }}>
                   Annual leak: <strong style={{ color: grade.color, fontSize: 17 }}>{f(annualLoss)}</strong>
-                  <span style={{ color: "#6b7280" }}> · recoverable with instant replies: ~{f(recovery * 12)}/yr</span>
+                  <span style={{ color: "#6b7280" }}> · if 70% were recovered (an assumption): ~{f(recovery * 12)}/yr</span>
                 </div>
               </div>
             </div>
@@ -301,10 +301,10 @@ export default function WhatsappAudit() {
               <div style={{ fontSize: 28 }}>💬</div>
               <div>
                 <div style={{ fontSize: 15, fontWeight: 700, color: "#e2e8f0", marginBottom: 6 }}>
-                  SmileCRM's WhatsApp module could recover {f(recovery)}/month for your clinic
+                  At an assumed 70% recovery, that is {f(recovery)}/month for your clinic
                 </div>
                 <div style={{ fontSize: 13, color: "#94a3b8", lineHeight: 1.6 }}>
-                  Instant text replies, appointment booking and recall — all inside WhatsApp, all text-based (no voice, no video). Typically recovers around 70% of the slow-reply leak. That's about {f(recovery * 12)}/year, on a flat monthly plan (~AED 1,200/mo). Same system running live in a real dental clinic today.
+                  Instant text replies, appointment booking and recall — all inside WhatsApp, all text-based (no voice, no video). The 70% recovery rate is our own assumption for this estimate, not a measured or promised result. At that rate it would be about {f(recovery * 12)}/year, on a flat monthly plan (~AED 1,200/mo).
                 </div>
               </div>
             </div>
@@ -335,7 +335,7 @@ export default function WhatsappAudit() {
             <div style={S.card}>
               <div style={S.sectionLabel}>Get your personalised recovery plan</div>
               <p style={{ fontSize: 14, color: "#94a3b8", marginBottom: 20 }}>
-                We'll send a custom plan showing exactly how SmileCRM's WhatsApp module would recover <strong style={{ color: "#86efac" }}>{f(recovery)}/month</strong> for your clinic (grade {grade.g} → A).
+                We'll send a custom plan showing how SmileCRM's WhatsApp module could help recover an estimated <strong style={{ color: "#86efac" }}>{f(recovery)}/month</strong> for your clinic, based on the assumptions above.
               </p>
               <form onSubmit={handleCapture}>
                 <input style={S.input} placeholder="Your name" value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))} required />
@@ -384,10 +384,10 @@ export default function WhatsappAudit() {
           <div style={{ marginTop: 48, borderTop: "1px solid rgba(255,255,255,0.06)", paddingTop: 32 }}>
             <div style={{ display: "flex", gap: 32, flexWrap: "wrap", marginBottom: 24 }}>
               {[
-                { n: "~70%", l: "Typical slow-reply revenue recovery" },
+                { n: "~70%", l: "Recovery rate assumed in this estimate" },
                 { n: "Text", l: "WhatsApp automation, no voice or video" },
-                { n: "2 weeks", l: "Typical setup time" },
-                { n: "Live", l: "Running in a real dental clinic today" },
+                { n: "2 weeks", l: "Target setup time" },
+                { n: "Beta", l: "In active development, early access open" },
               ].map(({ n, l }) => (
                 <div key={l} style={{ textAlign: "center", flex: 1, minWidth: 100 }}>
                   <div style={{ fontSize: 26, fontWeight: 800, color: "#25D366" }}>{n}</div>

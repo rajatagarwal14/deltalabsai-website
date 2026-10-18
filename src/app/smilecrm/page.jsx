@@ -2,9 +2,16 @@ import Link from "next/link";
 import { cities } from "./cities";
 
 export const metadata = {
-  title: "SmileCRM — Dental Clinic CRM for Indian Cities | Delta Labs AI",
+  title: "Dental Clinic Software and CRM for Indian Clinics | SmileCRM",
   description:
-    "SmileCRM automates appointment reminders, patient recall, and Google review collection for independent dental clinics across India. Starting at Rs 2,999/month.",
+    "Dental clinic management software for independent Indian clinics. SmileCRM automates appointment reminders, patient recall and Google review collection over WhatsApp. From Rs 2,999/month.",
+  keywords: [
+    "dental clinic software",
+    "dental crm",
+    "dental clinic management software",
+    "dental practice management software",
+    "dental software india",
+  ],
   alternates: {
     canonical: "https://deltalabsai.com/smilecrm",
   },

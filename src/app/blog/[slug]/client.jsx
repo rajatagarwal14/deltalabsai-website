@@ -16,19 +16,63 @@ const Ic = {
   FB: () => <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>,
 };
 
-// Rich text renderer -handles **bold**, *italic*, and inline formatting
+// Renders [label](href) inside a run of text. Used on its own and on the inside of
+// bold/italic runs: regex alternation matches leftmost-first, so a link wrapped in
+// **...** is swallowed whole by the bold alternative and never link-parsed otherwise.
+function InlineLinks({ text }) {
+  if (!text) return null;
+  const parts = text.split(/(\[[^\]]+\]\([^)\s]+\))/g);
+  return (
+    <>
+      {parts.map((part, i) => {
+        const m = part.match(/^\[([^\]]+)\]\(([^)\s]+)\)$/);
+        if (!m) return <span key={i}>{part}</span>;
+        const [, label, href] = m;
+        const external = /^https?:\/\//.test(href) && !href.includes("deltalabsai.com");
+        return (
+          <a
+            key={i}
+            href={href}
+            {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+            style={{ color: "#2563EB", textDecoration: "underline", textUnderlineOffset: 2 }}
+          >
+            {label}
+          </a>
+        );
+      })}
+    </>
+  );
+}
+
+// Rich text renderer -handles [links](/url), **bold**, *italic*, and inline formatting
 function RichText({ text, style = {} }) {
   if (!text) return null;
-  // Split by **bold** and *italic* markers
-  const parts = text.split(/(\*\*[^*]+\*\*|\*[^*]+\*)/g);
+  // Split by [link](url), **bold** and *italic* markers. Links first so a URL
+  // containing * is never mistaken for an emphasis marker.
+  const parts = text.split(/(\[[^\]]+\]\([^)\s]+\)|\*\*[^*]+\*\*|\*[^*]+\*)/g);
   return (
     <span style={style}>
       {parts.map((part, i) => {
+        const link = part.match(/^\[([^\]]+)\]\(([^)\s]+)\)$/);
+        if (link) {
+          const [, label, href] = link;
+          const external = /^https?:\/\//.test(href);
+          return (
+            <a
+              key={i}
+              href={href}
+              {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+              style={{ color: "#2563EB", textDecoration: "underline", textUnderlineOffset: 2 }}
+            >
+              {label}
+            </a>
+          );
+        }
         if (part.startsWith("**") && part.endsWith("**")) {
-          return <strong key={i} style={{ fontWeight: 700, color: "#0F172A" }}>{part.slice(2, -2)}</strong>;
+          return <strong key={i} style={{ fontWeight: 700, color: "#0F172A" }}><InlineLinks text={part.slice(2, -2)} /></strong>;
         }
         if (part.startsWith("*") && part.endsWith("*")) {
-          return <em key={i} style={{ fontStyle: "italic" }}>{part.slice(1, -1)}</em>;
+          return <em key={i} style={{ fontStyle: "italic" }}><InlineLinks text={part.slice(1, -1)} /></em>;
         }
         return <span key={i}>{part}</span>;
       })}
@@ -56,17 +100,26 @@ function BulletList({ items }) {
 function NumberedList({ items }) {
   return (
     <div style={{ margin: "16px 0 20px", display: "grid", gap: 12 }}>
-      {items.map((item, i) => (
+      {items.map((item, i) => {
+        // Use the number the author wrote, not the index within this list.
+        // Bodies are split on blank lines, so "1." and "2." separated by a blank line
+        // become two SEPARATE one-item lists, and an index-based badge rendered every
+        // item as "1". Parsing the literal keeps a hand-authored sequence intact however
+        // the paragraphs happen to be split.
+        const authored = item.match(/^(\d+)\.\s/);
+        const label = authored ? authored[1] : String(i + 1);
+        return (
         <div key={i} style={{ display: "flex", gap: 14, alignItems: "flex-start" }}>
           <span style={{
             minWidth: 28, height: 28, borderRadius: 8, background: "#EFF6FF", color: "#2563EB",
             display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13, fontWeight: 700, flexShrink: 0, marginTop: 2
-          }}>{i + 1}</span>
+          }}>{label}</span>
           <span style={{ fontSize: 15.5, lineHeight: 1.7, color: "#374151" }}>
             <RichText text={item.replace(/^\d+\.\s*/, "")} />
           </span>
         </div>
-      ))}
+        );
+      })}
     </div>
   );
 }
@@ -373,7 +426,7 @@ export default function BlogPostClient({ post, relatedPosts = [] }) {
               Find out where your business is leaking money
             </h3>
             <p style={{ fontSize: 16, color: "#94A3B8", lineHeight: 1.7, maxWidth: 480, margin: "0 auto 28px" }}>
-              Take our free 3-minute diagnostic. Get your 9-dimension score, a radar chart, and one specific quick win you can implement this week.
+              Take our free 3-minute diagnostic. Get your 5-dimension score, a radar chart, and one specific quick win you can implement this week.
             </p>
             <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
               <a href="/diagnostic" style={{
@@ -388,9 +441,6 @@ export default function BlogPostClient({ post, relatedPosts = [] }) {
                 background: "transparent", color: "#94A3B8", border: "1.5px solid #334155", fontWeight: 600, fontSize: 15, textDecoration: "none", transition: "all 0.2s",
               }}>Book a Free Call</a>
             </div>
-            <p style={{ fontSize: 12, color: "#475569", marginTop: 16 }}>
-              We take on a maximum of 5 new clients per month.
-            </p>
           </div>
         </div>
       </article>

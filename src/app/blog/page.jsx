@@ -5,6 +5,18 @@ import { posts } from "./posts";
 
 const CAL = "https://cal.com/ag-ventures-qbqxax/30min";
 
+// BreadcrumbList for the blog index only. Post pages emit their own full trail
+// in blog/[slug]/page.jsx; emitting this from the layout too made them conflict.
+const blogBreadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://deltalabsai.com" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://deltalabsai.com/blog" },
+  ],
+};
+
+
 // Icons
 const Ic = {
   Delta: ({ s = 28 }) => <svg width={s} height={s} viewBox="0 0 40 40" fill="none"><polygon points="20,5 35,33 5,33" stroke="currentColor" strokeWidth="2.5" fill="none" strokeLinejoin="round"/><circle cx="20" cy="22" r="3.5" fill="currentColor" opacity="0.3"/></svg>,
@@ -21,6 +33,10 @@ export default function BlogIndexPage() {
 
   return (
     <div style={{ margin: 0, padding: 0, fontFamily: "'DM Sans', sans-serif", color: "#0F172A" }}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogBreadcrumbJsonLd) }}
+      />
       {/* Nav */}
       <nav style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, background: sc ? "rgba(255,255,255,0.97)" : "rgba(255,255,255,0.95)", backdropFilter: "blur(12px)", borderBottom: "1px solid #E5E7EB", transition: "all 0.3s" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto", padding: "13px 24px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
@@ -180,7 +196,7 @@ export default function BlogIndexPage() {
             Ready to transform your business?
           </h2>
           <p style={{ fontSize: 16, color: "#94A3B8", lineHeight: 1.7, margin: "0 0 28px" }}>
-            Start with our free 3-minute diagnostic. Get your 9-dimension score and a specific quick win you can implement this week.
+            Start with our free 3-minute diagnostic. Get your 5-dimension score and a specific quick win you can implement this week.
           </p>
           <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
             <a href="/diagnostic" style={{

@@ -2,11 +2,22 @@ export const metadata = {
   title: "Store — Delta Labs AI | Templates, AI Agents & Consulting",
   description:
     "Ready-to-use automation templates, AI agents, and consulting packages for small businesses. 2-day free trial on all products. No credit card required.",
+  alternates: {
+    canonical: "https://deltalabsai.com/store",
+  },
   openGraph: {
     title: "Store — Delta Labs AI | Templates, AI Agents & Consulting",
     description:
       "Ready-to-use automation templates, AI agents, and consulting packages for small businesses. 2-day free trial on all products.",
     url: "https://deltalabsai.com/store",
+    images: [
+      {
+        url: "https://deltalabsai.com/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Delta Labs AI",
+      },
+    ],
   },
 };
 
@@ -144,28 +155,6 @@ function StoreJsonLd() {
           "addressCountry": "US",
         },
       },
-    },
-    // ✅ FIX 4 (non-critical): aggregateRating
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.9",
-      "reviewCount": "12",
-      "bestRating": "5",
-      "worstRating": "1",
-    },
-    // ✅ FIX 5 (non-critical): review
-    "review": {
-      "@type": "Review",
-      "reviewRating": {
-        "@type": "Rating",
-        "ratingValue": "5",
-        "bestRating": "5",
-      },
-      "author": {
-        "@type": "Person",
-        "name": "Verified Customer",
-      },
-      "reviewBody": "Saved us hours every week. Setup was smooth and the automation just works.",
     },
     "category": p.category,
   }));

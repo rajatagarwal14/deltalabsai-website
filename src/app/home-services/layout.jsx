@@ -1,18 +1,13 @@
 export const metadata = {
-  title: "Home Services Business Automation | Delta Labs AI",
+  title: "Cleaning and Home Services Business Automation: Scheduling, Reminders, Follow-Up | Delta Labs AI",
   description:
-    "Automate booking, follow-ups, and customer management for cleaning, pest control, plumbing, and HVAC businesses. Never miss a booking again. Affordable plans for small teams.",
+    "Automated job scheduling, customer reminders and follow-up for cleaning, janitorial and home services businesses. Set up on the tools you already use, without switching systems.",
   keywords: [
+    "cleaning business management",
     "home services automation",
-    "cleaning business CRM",
-    "pest control scheduling software",
-    "plumber booking system",
-    "HVAC business automation",
-    "field service management small business",
-    "home services booking software",
-    "cleaning company CRM",
-    "service business automation",
-    "home services customer management",
+    "cleaning business scheduling",
+    "janitorial business automation",
+    "home services crm setup",
   ],
   alternates: {
     canonical: "https://deltalabsai.com/home-services",
@@ -25,6 +20,14 @@ export const metadata = {
     siteName: "Delta Labs AI",
     type: "website",
     locale: "en_US",
+    images: [
+      {
+        url: "https://deltalabsai.com/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Delta Labs AI",
+      },
+    ],
   },
 };
 

@@ -64,9 +64,9 @@ const stats = [
 const faqs = [
   { q: "I am not tech-savvy. Can I still use this?", a: "Absolutely. We set everything up for you. If you can use WhatsApp, you can use our tools. No technical skills needed." },
   { q: "How much does it cost?", a: "Plans start at Rs 2,999/month (or $49/month for international businesses). 14-day free trial, no credit card required." },
-  { q: "Will my customers actually book online?", a: "Yes. We have seen 70%+ of customers prefer online booking when given the option. It is faster for them and easier for you." },
-  { q: "How quickly can I get started?", a: "Most businesses are set up within 48 hours. We handle the configuration, import your customer data, and train you on the dashboard." },
-  { q: "Does this work for businesses outside India?", a: "Yes. We work with home service businesses globally, including UAE, UK, USA, and Australia. Pricing adapts to your market." },
+  { q: "Will my customers actually book online?", a: "Often, but it depends on your customers. Online booking is faster for them and easier for you, and we can look at your own enquiry data before recommending it." },
+  { q: "How quickly can I get started?", a: "We handle the configuration, import your customer data, and train you on the dashboard." },
+  { q: "Does this work for businesses outside India?", a: "Yes. We can work with home service businesses outside India, including the UAE, UK, USA, and Australia. Pricing adapts to your market." },
 ];
 
 export default function HomeServicesPage() {
@@ -94,7 +94,7 @@ export default function HomeServicesPage() {
         <F>
           <div style={{ display: "inline-block", padding: "6px 16px", borderRadius: 20, background: "#fefce8", color: "#ca8a04", fontSize: 13, fontWeight: 600, marginBottom: 24 }}>Built for Home Service Businesses</div>
           <h1 style={{ fontSize: "clamp(32px, 5vw, 52px)", fontWeight: 800, lineHeight: 1.1, letterSpacing: -1.5, margin: "0 0 20px" }}>
-            Never miss a booking.<br />Never lose a customer.
+            Stop missing bookings.<br />Keep more customers.
           </h1>
           <p style={{ fontSize: 18, color: "#52525b", maxWidth: 600, margin: "0 auto 24px", lineHeight: 1.6 }}>
             Automated booking, reminders, follow-ups, and reviews for cleaning, pest control, plumbing, HVAC, and every home service business. Built for small teams.
@@ -188,7 +188,7 @@ export default function HomeServicesPage() {
         <F>
           <h2 style={{ fontSize: 28, fontWeight: 700, marginBottom: 16 }}>Ready to grow your business?</h2>
           <p style={{ fontSize: 16, color: "#52525b", marginBottom: 32, lineHeight: 1.6, maxWidth: 500, margin: "0 auto 32px" }}>
-            Home service businesses across India, Dubai, UK, and USA are automating their operations. Start your 14-day free trial today.
+            Built for home service businesses in India, Dubai, the UK, and the USA. Start your 14-day free trial today.
           </p>
           <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
             <Btn href="#cal-book">Book a Free Demo <Ic.Arr /></Btn>

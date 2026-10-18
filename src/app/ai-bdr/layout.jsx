@@ -1,6 +1,6 @@
 export const metadata = {
   title: "AI BDR for SMBs: Qualify & Book Leads 24/7 (No New Hire) | Delta Labs AI",
-  description: "Delta Labs AI's AI BDR qualifies leads and books demos around the clock, so no follow-up falls through. See it running on a free diagnostic call — no card required.",
+  description: "Delta Labs AI's AI BDR qualifies leads and books demos around the clock. See it running on a free diagnostic call — no card required.",
   keywords: [
     "AI business development", "AI BDR", "AI outreach service", "automated lead generation",
     "AI sales development", "personalised email outreach", "B2B lead generation India",
@@ -12,6 +12,14 @@ export const metadata = {
     description: "200 qualified outreach sequences per month. Lead research, personalised email, follow-up, and warm handoff — all automated.",
     url: "https://deltalabsai.com/ai-bdr",
     type: "website",
+    images: [
+      {
+        url: "https://deltalabsai.com/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Delta Labs AI",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",

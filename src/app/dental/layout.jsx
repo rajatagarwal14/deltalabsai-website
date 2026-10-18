@@ -1,30 +1,33 @@
 export const metadata = {
-  title: "Dental Clinic Automation Services | Delta Labs AI",
+  title: "Patient Recall Software and Appointment Reminders for Dental Clinics | Delta Labs AI",
   description:
-    "Delta Labs AI automates appointment reminders, patient recall, and Google review collection for independent dental clinics. Automated reminders built to cut no-shows. Starting at Rs 2,999/month.",
+    "Patient recall software and automated appointment reminders for dental clinics. Bring lapsed patients back, cut no-shows with WhatsApp and SMS reminders, and collect reviews without front-desk effort.",
   keywords: [
+    "patient recall software",
+    "dental appointment reminder software",
+    "dental patient recall system",
     "dental clinic automation",
-    "dental practice automation services",
-    "dental appointment automation",
-    "dental practice management software",
-    "reduce no-shows dental",
-    "patient recall system",
-    "dental clinic software India",
-    "appointment reminder dentist",
-    "Google reviews dental clinic",
-    "SmileCRM",
+    "appointment reminder software dental",
   ],
   alternates: {
     canonical: "https://deltalabsai.com/dental",
   },
   openGraph: {
-    title: "Dental Clinic Automation Services | Delta Labs AI",
+    title: "Patient Recall Software and Appointment Reminders for Dental Clinics | Delta Labs AI",
     description:
       "Automate appointment reminders, patient recall, and review collection. Automated reminders built to cut no-shows. Starting at Rs 2,999/month.",
     url: "https://deltalabsai.com/dental",
     siteName: "Delta Labs AI",
     type: "website",
     locale: "en_US",
+    images: [
+      {
+        url: "https://deltalabsai.com/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Delta Labs AI",
+      },
+    ],
   },
 };
 

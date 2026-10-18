@@ -114,7 +114,7 @@ const QUESTIONS = [
       { label: "No", points: 0 },
     ],
     improvementLabel: "Google Business Profile",
-    improvementTip: "A verified Google Business Profile makes your clinic visible in local search and maps — it's the #1 source of new patients.",
+    improvementTip: "A verified Google Business Profile makes your clinic visible in local search and maps — it's one of the main sources of new patients.",
   },
   {
     id: "reviews",
@@ -126,7 +126,7 @@ const QUESTIONS = [
       { label: "None", points: 0 },
     ],
     improvementLabel: "Google reviews",
-    improvementTip: "Clinics with 50+ Google reviews get 3× more new patient inquiries. Automated review requests after each visit close this gap fast.",
+    improvementTip: "Automated review requests after each visit help close this gap.",
   },
   {
     id: "review_response",
@@ -170,15 +170,15 @@ const QUESTIONS = [
       { label: "Never", points: 0 },
     ],
     improvementLabel: "Post-treatment follow-up",
-    improvementTip: "Post-treatment follow-ups drive recall visits and online reviews. Automated messages cost nothing and run 24/7.",
+    improvementTip: "Post-treatment follow-ups drive recall visits and online reviews. Automated messages run 24/7 without front-desk time.",
   },
 ];
 
 const TIERS = [
   { min: 0,  max: 30,  name: "Digital Newcomer",  emoji: "🌱", stars: 1, color: "#ef4444", message: "Competitors are pulling ahead. Here's where to start." },
   { min: 31, max: 55,  name: "Getting Started",   emoji: "📈", stars: 2, color: "#f97316", message: "You're doing the basics. These gaps are costing you patients." },
-  { min: 56, max: 75,  name: "Digital-Forward",   emoji: "⭐", stars: 3, color: "#eab308", message: "Ahead of most clinics. One more step to the top 10%." },
-  { min: 76, max: 100, name: "AI-Ready Clinic",   emoji: "🏆", stars: 4, color: "#22c55e", message: "Your clinic is in the top 10% for digital readiness." },
+  { min: 56, max: 75,  name: "Digital-Forward",   emoji: "⭐", stars: 3, color: "#eab308", message: "Ahead of our illustrative benchmark. One more step to the top tier." },
+  { min: 76, max: 100, name: "AI-Ready Clinic",   emoji: "🏆", stars: 4, color: "#22c55e", message: "Your clinic is in the top tier of our scoring for digital readiness." },
 ];
 
 const CITIES = [
@@ -389,9 +389,7 @@ export default function ClinicScorePage() {
   }
 
   function buildShareText() {
-    const locationText = isGlobalPercentile || !city ? "globally" : `in ${city}`;
-    const pctText = percentile != null ? `top ${percentile}% ` : "";
-    return `Just checked how my clinic compares to dental clinics worldwide. Scored ${score}/100 — ${pctText}${locationText} for digital readiness. Get yours free: deltalabsai.com/clinic-score`;
+    return `Just checked my clinic's digital readiness score and got ${score}/100. Get yours free: deltalabsai.com/clinic-score`;
   }
 
   function buildWhatsAppLink() {
@@ -421,12 +419,12 @@ export default function ClinicScorePage() {
           <div style={{ textAlign: "center", marginBottom: 32 }}>
             <div style={badge}>🏥 Free Benchmark Tool</div>
             <h1 style={h1}>How does your dental clinic rank globally?</h1>
-            <p style={sub}>Free 90-second benchmark. See how your clinic compares worldwide. No email required to see your score.</p>
+            <p style={sub}>Free 90-second benchmark against an illustrative dataset (not real clinic data). No email required to see your score.</p>
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: 16, marginBottom: 32 }}>
             {[
               { icon: "⚡", t: "6 quick questions", d: "Takes under 90 seconds" },
-              { icon: "📊", t: "Global percentile rank", d: "See how you compare worldwide" },
+              { icon: "📊", t: "Percentile rank", d: "Against an illustrative benchmark dataset" },
               { icon: "🎯", t: "Top 3 improvement areas", d: "Specific, actionable gaps" },
             ].map(f => (
               <div key={f.t} style={featureRow}>
@@ -587,7 +585,7 @@ export default function ClinicScorePage() {
           {percentile != null && (
             <div style={percentileBox}>
               <div style={{ fontSize: 28, fontWeight: 800, color: "#818cf8" }}>Top {percentile}%</div>
-              <div style={{ color: "#94a3b8", fontSize: 14 }}>{isGlobalPercentile ? "of dental clinics globally" : `of ${city} dental clinics`}</div>
+              <div style={{ color: "#94a3b8", fontSize: 14 }}>{isGlobalPercentile ? "of our illustrative global benchmark" : "of our illustrative " + city + " benchmark"}</div>
             </div>
           )}
 
@@ -621,7 +619,7 @@ export default function ClinicScorePage() {
           <div style={ctaBox}>
             <div style={{ fontSize: 20, marginBottom: 6 }}>🔥</div>
             <p style={{ color: "#f1f5f9", fontWeight: 600, marginBottom: 4, fontSize: 15 }}>
-              Want to jump 20+ points in 30 days?
+              Want to close these gaps?
             </p>
             <p style={{ color: "#94a3b8", fontSize: 13, marginBottom: 16 }}>
               SmileCRM automates reminders, reviews, and follow-ups in one setup.

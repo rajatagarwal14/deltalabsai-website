@@ -36,6 +36,14 @@ export async function generateMetadata({ params }) {
       siteName: "Delta Labs AI",
       type: "website",
       locale: "en_US",
+    images: [
+      {
+        url: "https://deltalabsai.com/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Delta Labs AI",
+      },
+    ],
     },
   };
 }
@@ -85,7 +93,7 @@ export default function SmileCRMCityPage({ params }) {
             name: `Is SmileCRM available for dental clinics in ${city.name}?`,
             acceptedAnswer: {
               "@type": "Answer",
-              text: `Yes! SmileCRM is available for dental clinics across India, including ${city.name}, ${city.state}. We handle remote setup — most clinics are live within 48 hours.`,
+              text: `Yes! SmileCRM is available for dental clinics across India, including ${city.name}, ${city.state}. We handle remote setup.`,
             },
           },
           {

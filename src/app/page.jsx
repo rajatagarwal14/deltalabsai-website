@@ -77,18 +77,17 @@ function FAQ() {
   const [open, setOpen] = useState(null);
   const faqs = [
     { q: "How much does it cost?", a: "Our free diagnostic gives you immediate insights at no cost. Consulting engagements are customized to your business size and needs  - we'll discuss pricing on your discovery call after we understand your situation. Digital products start at $19." },
-    { q: "We're not very tech-savvy. Is this for us?", a: "Absolutely. Most of our clients aren't technical. We handle the complex stuff and give you simple, clear recommendations. If you can use email and a spreadsheet, you're good. Our AI tools are designed to be used by anyone on your team." },
-    { q: "How quickly will we see results?", a: "Most clients see measurable improvements within 6-12 weeks. Quick wins (like process bottleneck fixes) often show impact within days. Larger transformations typically take 2-3 months to fully implement." },
+    { q: "We're not very tech-savvy. Is this for us?", a: "Absolutely. It is built for people who are not technical. We handle the complex stuff and give you simple, clear recommendations. If you can use email and a spreadsheet, you're good. Our AI tools are designed to be used by anyone on your team." },
+    { q: "How quickly will we see results?", a: "It depends on the problem, so we do not promise a timeline for results. Before any work starts, we agree in writing what will be built and how long it should take." },
     { q: "Are we locked into a long-term contract?", a: "No. We don't do lock-in contracts. Engagements are project-based or month-to-month. You stay because you're getting results, not because of a contract." },
-    { q: "What if the discovery call isn't useful?", a: "If we can't identify at least one actionable quick win in your 30-minute call, we'll send you our DX Roadmap Template ($79 value) completely free. We've never had to do this." },
+    { q: "What if the discovery call isn't useful?", a: "If we can't identify at least one actionable quick win in your 30-minute call, we'll send you our DX Roadmap Template ($79 value) completely free." },
     { q: "What is SmileCRM?", a: "SmileCRM is our purpose-built CRM for independent dental clinics. It automates appointment reminders, patient recall, Google review requests, and WhatsApp follow-ups. Pricing starts at ₹2,999/month." },
     { q: "What is the AI BDR product?", a: "AI BDR is a fully automated business development system that researches leads, writes personalised outreach emails, follows up automatically, and hands you warm replies. It runs about 200 personalised sequences a month with a 48-hour setup, starting at ₹15,000/month." },
     { q: "Do you offer an AI voice receptionist?", a: "Yes — our AI Voice Receptionist answers your business phone 24/7, books appointments, handles common questions, and escalates to a human when needed. It's currently on waitlist, starting at ₹2,999/month." },
     { q: "What's the AI Business Ecosystem?", a: "It's our end-to-end automation package for any SMB: CRM setup, workflow automation with n8n/Make.com, custom AI agents, lead capture, and a monthly strategy review — all connected and running together. Pricing is custom based on scope." },
-    { q: "What industries do you work with?", a: "We work with healthcare and dental clinics, gyms and wellness studios, home services and trades (HVAC, plumbing, electrical), e-commerce and D2C brands, agencies and consultancies, and any growing service business that's outgrown its current systems." },
-    { q: "How does the free diagnostic work?", a: "It takes about 3 minutes, needs no credit card, and scores your business across 9 dimensions with instant results shown as a radar chart — so you can see exactly where you're leaking revenue before talking to us." },
+    { q: "What industries do you work with?", a: "We have two clients so far, both in India. We are glad to look at any small or growing service business that has outgrown its systems, for example clinics, gyms and wellness studios, home services and trades, e-commerce brands and agencies. Tell us the problem and we will say honestly whether we can help." },
+    { q: "How does the free diagnostic work?", a: "It takes about 3 minutes, needs no credit card, and scores your business across 5 dimensions with instant results shown as a radar chart — so you can see exactly where you're leaking revenue before talking to us." },
     { q: "What happens on the discovery call?", a: "It's a free 30-minute call (booked via our calendar) where we look at your specific processes and identify at least one actionable quick win. If we can't, you get our DX Roadmap Template free." },
-    { q: "Do you take on every client who applies?", a: "No — we deliberately cap it at a maximum of 5 new clients per month so every engagement gets real attention rather than being spread thin." },
     { q: "How do WhatsApp automations work?", a: "We're a registered WhatsApp Tech Provider, so reminders, recall messages, and follow-ups (for example through SmileCRM) are sent via official WhatsApp Business channels rather than unofficial workarounds." },
     { q: "Can you automate patient recall and no-show reduction for a dental clinic?", a: "Yes — this is exactly what SmileCRM and our dental automation service handle: automated appointment reminders, automated patient recall, and WhatsApp & SMS reminders to cut no-shows." },
     { q: "Do you help with online reviews?", a: "Yes — Google review automation is a core part of our dental and clinic offerings, prompting satisfied patients/customers to leave reviews after their visit." },
@@ -235,7 +234,7 @@ function Nav() {
   );
 }
 
-// Radar instrument \u2014 live 9-dimension diagnostic visual (ported from premium design)
+// Radar instrument \u2014 live 5-dimension diagnostic visual (ported from premium design)
 function Radar() {
   const ref = useRef(null);
   useEffect(() => {
@@ -246,9 +245,8 @@ function Radar() {
     const ACC = "#3B82F6", LEAK = "#F87171", RING = "rgba(255,255,255,0.10)", LBL = "rgba(255,255,255,0.45)";
     const cx = 200, cy = 200, R = 150, NS = "http://www.w3.org/2000/svg";
     const dims = [
-      { label: "Revenue", v: 0.58 }, { label: "Sales", v: 0.42 }, { label: "Ops", v: 0.71 },
-      { label: "Team", v: 0.66 }, { label: "Tech", v: 0.38 }, { label: "Data", v: 0.49 },
-      { label: "Finance", v: 0.62 }, { label: "Marketing", v: 0.45 }, { label: "Customer", v: 0.74 },
+      { label: "Revenue", v: 0.58 }, { label: "Ops", v: 0.71 }, { label: "Tech", v: 0.38 },
+      { label: "Team", v: 0.66 }, { label: "Data", v: 0.49 },
     ];
     const n = dims.length;
     const pt = (i, r) => { const a = (Math.PI * 2 * i) / n - Math.PI / 2; return [cx + Math.cos(a) * r, cy + Math.sin(a) * r]; };
@@ -287,13 +285,12 @@ function Radar() {
         @keyframes dlRadarSpin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
         @media(prefers-reduced-motion:reduce){.dl-radar-area,.dl-radar-sweep{animation:none}}
       `}</style>
-      <svg ref={ref} viewBox="0 0 400 400" style={{ width: "100%", height: "100%", overflow: "visible" }} aria-label="Live business diagnostic radar across 9 dimensions" />
-      <span style={{ position: "absolute", top: 0, left: 0, fontFamily: "monospace", fontSize: 10, letterSpacing: "0.1em", color: "rgba(255,255,255,0.4)" }}>DIAGNOSTIC · LIVE</span>
-      <span style={{ position: "absolute", top: 0, right: 0, fontFamily: "monospace", fontSize: 10, letterSpacing: "0.1em", color: "rgba(255,255,255,0.4)" }}>9 DIMENSIONS</span>
+      <svg ref={ref} viewBox="0 0 400 400" style={{ width: "100%", height: "100%", overflow: "visible" }} aria-label="Example radar chart of the 5-dimension diagnostic, with illustrative values" />
+      <span style={{ position: "absolute", top: 0, left: 0, fontFamily: "monospace", fontSize: 10, letterSpacing: "0.1em", color: "rgba(255,255,255,0.4)" }}>EXAMPLE · NOT REAL DATA</span>
+      <span style={{ position: "absolute", top: 0, right: 0, fontFamily: "monospace", fontSize: 10, letterSpacing: "0.1em", color: "rgba(255,255,255,0.4)" }}>5 DIMENSIONS</span>
       <div style={{ position: "absolute", bottom: -6, left: "50%", transform: "translateX(-50%)", display: "flex", gap: 18, fontFamily: "monospace", fontSize: 11, color: "rgba(255,255,255,0.55)", whiteSpace: "nowrap" }}>
-        <span>HEALTH&nbsp;<b style={{ color: "#3B82F6" }}>57</b></span>
-        <span>LEAKS&nbsp;<b style={{ color: "#F87171" }}>3</b></span>
-        <span>48 DATA PTS</span>
+        <span>HEALTH&nbsp;<b style={{ color: "#3B82F6" }}>56</b></span>
+        <span>LEAKS&nbsp;<b style={{ color: "#F87171" }}>2</b></span>
       </div>
     </div>
   );
@@ -309,7 +306,7 @@ function Hero() {
           <F eager>
             <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.12)", borderRadius: 100, padding: "6px 14px", fontSize: 13, color: "#cbd5e1", fontFamily: "'DM Sans',sans-serif", marginBottom: 28 }}>
               <span style={{ width: 7, height: 7, borderRadius: "50%", background: "#34D399", flexShrink: 0 }} />
-              Free · 3 minutes · Instant results across <b style={{ color: "#fff", margin: "0 4px" }}>9 business dimensions</b>
+              Free · 3 minutes · Instant results across <b style={{ color: "#fff", margin: "0 4px" }}>5 business dimensions</b>
             </div>
           </F>
           <F eager d={0.08}>
@@ -332,7 +329,7 @@ function Hero() {
           </F>
           <F eager d={0.35}>
             <div style={{ marginTop: 44, display: "flex", gap: "clamp(20px, 4vw, 44px)", flexWrap: "wrap" }}>
-              {[["3 min", "free diagnostic\nno card needed"], ["14", "industries\nserved globally"], ["6-12 wks", "to measurable\nresults"]].map(([n, l], i) => (
+              {[["3 min", "free diagnostic\nno card needed"], ["5", "business dimensions\nscored"], ["30 min", "free discovery\ncall"]].map(([n, l], i) => (
                 <div key={i}>
                   <div style={{ fontFamily: "monospace", fontSize: 26, fontWeight: 700, color: i === 0 ? "#60A5FA" : "#fff" }}>{n}</div>
                   <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, color: "#64748b", fontWeight: 500, marginTop: 4, whiteSpace: "pre-line", lineHeight: 1.4 }}>{l}</div>
@@ -355,7 +352,7 @@ function Proof() {
   return (
     <div style={{ background: "#0F172A", padding: "18px 24px" }}>
       <div style={{ maxWidth: 1000, margin: "0 auto", display: "flex", justifyContent: "center", alignItems: "center", gap: "clamp(16px, 4vw, 40px)", flexWrap: "wrap" }}>
-        {["Built on Fortune 500 consulting frameworks", "AI analysis across 48 data points", "9-dimension diagnostic - free audit"].map((t, i) => (
+        {["5-dimension diagnostic", "Free, about 3 minutes", "No credit card needed"].map((t, i) => (
           <div key={i} style={{ display: "flex", alignItems: "center", gap: 8 }}>
             <span style={{ color: "#34D399" }}><Ic.Chk /></span>
             <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, color: "#CBD5E1", fontWeight: 500 }}>{t}</span>
@@ -384,7 +381,7 @@ function HeroCTABand() {
             Ready for Your Free AI Diagnostic?
           </h2>
           <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: "clamp(14px, 1.8vw, 17px)", color: "#94A3B8", margin: "0 0 28px", lineHeight: 1.6 }}>
-            Our AI scans 9 dimensions of your business and pinpoints exactly where money is leaking — in minutes.
+            A short self-assessment across 5 dimensions of your business that points to where money may be leaking, in minutes.
           </p>
           <a href={FORM} onClick={trackClick} style={{
             display: "inline-flex", alignItems: "center", gap: 8, textDecoration: "none",
@@ -416,7 +413,7 @@ function DiagnosticCTA() {
           </div>
           <h2 style={{ fontFamily: "'DM Sans',sans-serif", fontSize: "clamp(26px, 4vw, 38px)", fontWeight: 800, color: "#0F172A", letterSpacing: "-0.02em", margin: "0 0 12px" }}>How much is your business leaking?</h2>
           <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 16, color: "#4B5563", lineHeight: 1.7, maxWidth: 480, margin: "0 auto 32px" }}>
-            Our free 9-dimension diagnostic scores your business across revenue, operations, team, technology, and data. You'll get a radar chart, your scores, and one specific recommendation you can implement today.
+            Our free 5-dimension diagnostic scores your business across revenue, operations, team, technology, and data. You'll get a radar chart, your scores, and one specific recommendation you can implement today.
           </p>
         </F>
         <F d={0.1}>
@@ -485,9 +482,9 @@ function WhoFor() {
 // How It Works
 function How() {
   const steps = [
-    { n: "01", title: "Diagnose", desc: "Take our free 9-dimension diagnostic. In 3 minutes, you'll see exactly where your business is strong and where it's leaking revenue  - with a visual radar chart and specific scores.", color: "#2563EB" },
+    { n: "01", title: "Diagnose", desc: "Take our free 5-dimension diagnostic. In 3 minutes, you'll see exactly where your business is strong and where it's leaking revenue  - with a visual radar chart and specific scores.", color: "#2563EB" },
     { n: "02", title: "Fix", desc: "On your discovery call, we'll walk through your results and give you a prioritized action plan. Quick wins first, strategic changes second. Clear timelines, realistic costs.", color: "#059669" },
-    { n: "03", title: "Grow", desc: "We implement the fixes  - process redesign, CRM setup, workflow automation, AI agents  - and optimize continuously. Most clients see measurable results within 6-12 weeks.", color: "#7C3AED" },
+    { n: "03", title: "Grow", desc: "We implement the fixes  - process redesign, CRM setup, workflow automation, AI agents  - and optimize continuously.", color: "#7C3AED" },
   ];
   return (
     <section id="how" style={{ padding: "88px 24px", background: "#F8FAFC" }}>
@@ -516,7 +513,7 @@ function How() {
 // Services
 function Services() {
   const svcs = [
-    { icon: Ic.Search, title: "Find out where you're losing money", desc: "Our diagnostic uncovers revenue leaks, operational bottlenecks, and hidden inefficiencies. You'll know exactly what's costing you  - backed by data, not guesswork.", features: ["9-dimension business health score", "Competitor & market intelligence", "Revenue leak identification", "Prioritized fix-it roadmap"], color: "#2563EB", bg: "#EFF6FF" },
+    { icon: Ic.Search, title: "Find out where you're losing money", desc: "Our self-assessment points to likely revenue leaks, operational bottlenecks and inefficiencies, based on your own answers.", features: ["5-dimension business health score", "Competitor & market intelligence", "Likely revenue-leak pointers", "Prioritized fix-it roadmap"], color: "#2563EB", bg: "#EFF6FF" },
     { icon: Ic.Wrench, title: "Fix what's broken  - fast", desc: "We redesign your processes, set up proper systems, and eliminate the chaos. SOPs, CRM, workflows  - everything your business needs to run without you micromanaging.", features: ["Process redesign & SOPs", "CRM setup and optimization", "Workflow automation", "Team structure & role clarity"], color: "#059669", bg: "#ECFDF5" },
     { icon: Ic.Bot, title: "Build AI that works while you sleep", desc: "Custom AI agents that handle the repetitive stuff  - answering calls, qualifying leads, checking compliance, generating reports. Your team focuses on what humans do best.", features: ["AI receptionist & lead qualifier", "Document review automation", "Compliance monitoring bots", "Custom industry-specific agents"], color: "#7C3AED", bg: "#F5F3FF" },
   ];
@@ -627,7 +624,7 @@ function Demos() {
           <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, fontWeight: 700, color: "#2563EB", textTransform: "uppercase", letterSpacing: "0.1em" }}>See It In Action</span>
           <h2 style={{ fontFamily: "'DM Sans',sans-serif", fontSize: "clamp(26px, 3.5vw, 36px)", fontWeight: 800, color: "#0F172A", letterSpacing: "-0.02em", margin: "8px 0 12px" }}>Watch it actually work</h2>
           <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 15, color: "#6B7280", maxWidth: 560, margin: "0 auto" }}>
-            A peek at two live WhatsApp flows we've built - the full walkthrough is one tap away.
+            A peek at two working WhatsApp demo flows we've built - the full walkthrough is one tap away.
           </p>
         </div></F>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(270px, 1fr))", gap: 20 }}>
@@ -690,7 +687,7 @@ function HeroProduct() {
               <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, fontWeight: 700, color: "#7C3AED", textTransform: "uppercase", letterSpacing: "0.08em" }}>Featured Product</span>
               <h3 style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 24, fontWeight: 800, color: "#0F172A", margin: "8px 0 10px", letterSpacing: "-0.01em" }}>Business Diagnostic Kit</h3>
               <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 14, color: "#6B7280", lineHeight: 1.7, margin: "0 0 16px" }}>
-                The same 9-dimension framework we use with clients - as a self-serve Notion template. Score your business, identify gaps, get a prioritized action list.
+                Our 5-dimension framework as a self-serve Notion template. Score your business, identify gaps, get a prioritized action list.
               </p>
               <div style={{ display: "flex", alignItems: "baseline", gap: 12, marginBottom: 16 }}>
                 <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 32, fontWeight: 800, color: "#0F172A" }}>$49</span>
@@ -740,7 +737,7 @@ function ClinicScoreBanner() {
                 Clinic Digital Score™
               </h3>
               <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 14, color: "#94a3b8", lineHeight: 1.7, margin: "0 0 20px" }}>
-                6 questions. 90 seconds. See how your clinic ranks worldwide — and get your top 3 actionable improvements instantly. Free, no login needed.
+                6 questions. 90 seconds. See how your clinic scores — and get your top 3 actionable improvements instantly. Free, no login needed.
               </p>
               <a href="/clinic-score" style={{
                 fontFamily: "'DM Sans',sans-serif",
@@ -858,9 +855,6 @@ function CTA() {
               <Ic.Mail /> Contact Us
             </Btn>
           </div>
-          <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, color: "#475569", marginTop: 16 }}>
-            We take on a maximum of 5 new clients per month. Limited slots available.
-          </p>
         </F>
       </div>
     </section>
@@ -928,6 +922,7 @@ function Footer() {
         <div style={{ display: "flex", gap: 8, alignItems: "center", flexWrap: "wrap" }}>
           <a href="/blog" style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, fontWeight: 500, color: "#94A3B8", textDecoration: "none", transition: "color 0.2s", padding: "12px 10px", display: "inline-flex", alignItems: "center" }} onMouseEnter={e => e.currentTarget.style.color = "#fff"} onMouseLeave={e => e.currentTarget.style.color = "#94A3B8"}>Blog</a>
           <a href="/about" style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, fontWeight: 500, color: "#94A3B8", textDecoration: "none", transition: "color 0.2s", padding: "12px 10px", display: "inline-flex", alignItems: "center" }} onMouseEnter={e => e.currentTarget.style.color = "#fff"} onMouseLeave={e => e.currentTarget.style.color = "#94A3B8"}>About</a>
+          <a href="/clients" style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, fontWeight: 500, color: "#94A3B8", textDecoration: "none", transition: "color 0.2s", padding: "12px 10px", display: "inline-flex", alignItems: "center" }} onMouseEnter={e => e.currentTarget.style.color = "#fff"} onMouseLeave={e => e.currentTarget.style.color = "#94A3B8"}>Clients</a>
           <a href="/diagnostic" style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, fontWeight: 500, color: "#94A3B8", textDecoration: "none", transition: "color 0.2s", padding: "12px 10px", display: "inline-flex", alignItems: "center" }} onMouseEnter={e => e.currentTarget.style.color = "#fff"} onMouseLeave={e => e.currentTarget.style.color = "#94A3B8"}>Diagnostic</a>
           <a href="/clinic-score" style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, fontWeight: 500, color: "#94A3B8", textDecoration: "none", transition: "color 0.2s", padding: "12px 10px", display: "inline-flex", alignItems: "center" }} onMouseEnter={e => e.currentTarget.style.color = "#fff"} onMouseLeave={e => e.currentTarget.style.color = "#94A3B8"}>Clinic Score</a>
           <a href="/blog/ai-automations-small-business" style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, fontWeight: 500, color: "#94A3B8", textDecoration: "none", transition: "color 0.2s", padding: "12px 10px", display: "inline-flex", alignItems: "center" }} onMouseEnter={e => e.currentTarget.style.color = "#fff"} onMouseLeave={e => e.currentTarget.style.color = "#94A3B8"}>AI Automation</a>
