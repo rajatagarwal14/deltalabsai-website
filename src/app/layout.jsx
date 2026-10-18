@@ -89,7 +89,6 @@ const jsonLd = {
     height: 400,
   },
   image: "https://deltalabsai.com/og-image.png",
-  priceRange: "$$",
   sameAs: [
     "https://www.linkedin.com/company/delta-labs-ai-consulting",
     "https://www.facebook.com/profile.php?id=61588293766138",
@@ -144,8 +143,6 @@ const jsonLd = {
           description:
             "Self-serve Notion template for comprehensive business assessment with scoring framework",
         },
-        price: "49",
-        priceCurrency: "USD",
       },
       {
         "@type": "Offer",

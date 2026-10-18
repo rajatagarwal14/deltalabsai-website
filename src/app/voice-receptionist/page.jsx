@@ -249,8 +249,8 @@ const FAQS = [
     a: "3–5 business days for waitlist pilots. We configure Practo access, run test calls with your team, and go live.",
   },
   {
-    q: "Is ₹2,999/mo the final price?",
-    a: "That's the waitlist pilot price — locked in for 12 months when you join now. Pricing increases after the pilot phase ends.",
+    q: "Is the waitlist price final?",
+    a: "Waitlist members get preferred pricing for 12 months. We share the details when you join.",
   },
 ];
 
@@ -269,7 +269,7 @@ export default function VoiceReceptionist() {
   );
   const waitlistCta = isIntl
     ? "Join the Waitlist — book a call"
-    : "Join the Waitlist — ₹2,999/mo";
+    : "Join the Waitlist";
 
   return (
     <main

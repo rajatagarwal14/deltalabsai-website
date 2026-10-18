@@ -24,7 +24,9 @@ export function useRegion() {
 // period(raw) → raw in India, "— book a call" abroad.
 export function useRegionPricing() {
   const region = useRegion();
-  const isIntl = region === "intl";
+  // Founder decision (18 Oct 2026): no Delta Labs price is shown anywhere on the site.
+  // Prices are quoted after a short call, so every visitor gets the "Custom" branch.
+  const isIntl = true;
   return {
     region,
     isIntl,

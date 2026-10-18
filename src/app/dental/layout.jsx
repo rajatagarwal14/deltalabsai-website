@@ -15,7 +15,7 @@ export const metadata = {
   openGraph: {
     title: "Patient Recall Software and Appointment Reminders for Dental Clinics | Delta Labs AI",
     description:
-      "Automate appointment reminders, patient recall, and review collection. Automated reminders built to cut no-shows. Starting at Rs 2,999/month.",
+      "Automate appointment reminders, patient recall, and review collection. Automated reminders built to cut no-shows.",
     url: "https://deltalabsai.com/dental",
     siteName: "Delta Labs AI",
     type: "website",

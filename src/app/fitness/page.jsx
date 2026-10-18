@@ -61,7 +61,7 @@ const faqs = [
   { q: "Does this work for yoga studios, gyms, and personal trainers?", a: "Yes. Our tools are designed for any independent fitness business, whether you run group classes, one-on-one training, or both." },
   { q: "How long does setup take?", a: "We handle the configuration and import your existing member data." },
   { q: "What if my members are not tech-savvy?", a: "The booking system works through a simple link. If someone can use WhatsApp, they can book a class. No app download required." },
-  { q: "How much does it cost?", a: "Plans start at Rs 2,999/month for small studios. Custom pricing available for larger facilities. Free trial available." },
+  { q: "How much does it cost?", a: "Pricing depends on studio size and setup, and is quoted after a short call. Free trial available." },
   { q: "Can I try it before committing?", a: "Absolutely. We offer a free trial. Ask us for the current terms. Try it before you pay anything." },
 ];
 

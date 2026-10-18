@@ -7,13 +7,13 @@ Delta Labs AI is a registered WhatsApp Business Tech Provider. Engagements are p
 ## Key pages
 
 - [Home](https://deltalabsai.com/): Overview of Delta Labs AI, free 5-dimension business diagnostic, and FAQ.
-- [Solutions](https://deltalabsai.com/solutions): Full product/pricing catalog — SmileCRM, AI BDR, AI Voice Receptionist, AI Business Ecosystem.
-- [SmileCRM](https://deltalabsai.com/smilecrm): Purpose-built CRM for independent dental clinics — appointment reminders, patient recall, review requests, WhatsApp follow-ups. Starts at ₹2,999/month in India; pricing for other markets is quoted separately.
+- [Solutions](https://deltalabsai.com/solutions): Full product catalog — SmileCRM, AI BDR, AI Voice Receptionist, AI Business Ecosystem.
+- [SmileCRM](https://deltalabsai.com/smilecrm): Purpose-built CRM for independent dental clinics — appointment reminders, patient recall, review requests, WhatsApp follow-ups. Pricing is quoted after a short call.
 - [Dental](https://deltalabsai.com/dental): Dental clinic automation — no-show reminders, recall, reviews.
 - [Fitness](https://deltalabsai.com/fitness): Member retention and scheduling automation for gyms and studios.
 - [Home Services](https://deltalabsai.com/home-services): Booking, dispatch, and follow-up automation for plumbers, electricians, and other trades.
-- [AI BDR](https://deltalabsai.com/ai-bdr): AI-powered lead qualification and outbound for growing sales teams. ₹15,000/month.
-- [Voice Receptionist](https://deltalabsai.com/voice-receptionist): AI voice agent that answers calls and books appointments 24/7. Pilot programme (beta), waitlist open; pilot price ₹2,999/month, locked for 12 months for members who join.
+- [AI BDR](https://deltalabsai.com/ai-bdr): AI-powered lead qualification and outbound for growing sales teams. Pricing is quoted after a short call.
+- [Voice Receptionist](https://deltalabsai.com/voice-receptionist): AI voice agent that answers calls and books appointments 24/7. Pilot programme (beta), waitlist open; pricing is shared when you join.
 - [Diagnostic](https://deltalabsai.com/diagnostic): Free 3-minute AI business diagnostic, scores across 5 dimensions.
 - [Blog](https://deltalabsai.com/blog): Articles on AI automation for small businesses.
 

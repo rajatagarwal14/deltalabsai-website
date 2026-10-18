@@ -3420,7 +3420,7 @@ This last point matters. A proactive internal feedback loop lets you fix problem
 - Patient history, treatment notes, and billing in one place
 - No-show predictor that flags high-risk appointments so your team can follow up manually
 
-**Pricing:** Rs 2,999–6,999 per month depending on clinic size. Setup takes under two weeks. No lock-in contracts — month-to-month.`,
+**Pricing:** quoted after a short call, based on clinic size. No lock-in contracts, month-to-month.`,
       },
       {
         heading: "Getting Started with Dental Clinic Automation No Code",
@@ -3517,7 +3517,7 @@ After each service interaction, the system sends a personalized follow-up via Wh
 
 Setup time: under 24 hours. Tools required: WhatsApp Business, Google Business Profile.
 
-These three modules together address the largest cost categories. The combined investment is typically ₹3,000–7,000 per month depending on business size.`,
+These three modules together address the largest cost categories. We quote the cost after a short call, based on business size.`,
       },
       {
         heading: "Getting Started in 48 Hours",
@@ -3735,7 +3735,7 @@ This runs over WhatsApp specifically because Indian patients respond to a saved 
       },
       {
         heading: "Getting Started",
-        body: `Delta Labs AI built [SmileCRM](/smilecrm) specifically for independent dental clinics in India: WhatsApp-based appointment reminders, patient recall, and review automation, priced from ₹2,999/month with no new hardware or systems to learn.
+        body: `Delta Labs AI built [SmileCRM](/smilecrm) specifically for independent dental clinics in India: WhatsApp-based appointment reminders, patient recall, and review automation, with no new hardware or systems to learn.
 
 If your recall list is growing faster than your front desk can call through it, this closes that specific gap.`,
       },
@@ -3910,7 +3910,7 @@ The problem many small dental clinics actually have is different: no-shows, pati
       },
       {
         heading: "How SmileCRM Approaches This Differently",
-        body: `Delta Labs AI built [SmileCRM](/smilecrm) specifically for independent dental clinics in India, focused on the recall and retention problem rather than patient acquisition. It automates appointment reminders, six-month recall, treatment-plan follow-up, and Google review requests over WhatsApp, starting from ₹2,999/month.
+        body: `Delta Labs AI built [SmileCRM](/smilecrm) specifically for independent dental clinics in India, focused on the recall and retention problem rather than patient acquisition. It automates appointment reminders, six-month recall, treatment-plan follow-up, and Google review requests over WhatsApp.
 
 It isn't a marketplace and doesn't try to bring you new patients through a directory listing. It's built around one specific job: making sure the patients you already have keep coming back on schedule, without your front desk having to manually track and call through a growing recall list.`,
       },
@@ -3930,7 +3930,7 @@ No. SmileCRM is built for any independent dental clinic in India that wants What
 
 **Q: How is pricing different from a marketplace platform?**
 
-SmileCRM is priced as a flat monthly subscription starting at ₹2,999/month for a single-location clinic, rather than a pay-per-lead or marketplace commission model.`,
+SmileCRM is priced as a flat monthly subscription for a single-location clinic, quoted after a short call, rather than a pay-per-lead or marketplace commission model.`,
       },
     ],
   },
@@ -3983,7 +3983,7 @@ The smart routing step matters as much as the volume. Sending every patient stra
         heading: "Why generic review software doesn't fit small Indian clinics",
         body: `Most review management tools on the market — Podium, ReviewInc, and similar platforms — are built for the US market, priced from roughly $99 to $400 a month, and assume SMS as the default channel. That model doesn't fit a solo or two-chair clinic in India or the UAE, where WhatsApp is the channel patients actually use and a $400/month tool costs more than the clinic's entire monthly marketing budget.
 
-SmileCRM builds review automation into the same WhatsApp-based platform the clinic is already using for appointment reminders and patient recall, at a flat ₹2,999 to ₹6,999/month depending on clinic size — not a separate $400/month add-on bolted onto practice management software designed for a different market.`,
+SmileCRM builds review automation into the same WhatsApp-based platform the clinic is already using for appointment reminders and patient recall, as a flat monthly subscription quoted by clinic size, not a separate add-on bolted onto practice management software designed for a different market.`,
       },
       {
         heading: "What review automation won't fix",

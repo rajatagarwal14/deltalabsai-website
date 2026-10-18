@@ -45,9 +45,9 @@ const features = [
 ];
 
 const plans = [
-  { name: "Starter", price: "2,999", period: "/month", features: ["Appointment reminders (SMS)", "Basic patient dashboard", "Up to 200 patients", "Email support"], cta: "Start Free Trial" },
-  { name: "Professional", price: "4,999", period: "/month", popular: true, features: ["Everything in Starter", "WhatsApp reminders + follow-ups", "Google review automation", "Patient recall system", "Up to 1,000 patients", "Priority support"], cta: "Start Free Trial" },
-  { name: "Premium", price: "6,999", period: "/month", features: ["Everything in Professional", "Multi-location support", "Unlimited patients", "Custom integrations", "Dedicated account manager", "Analytics dashboard"], cta: "Contact Us" },
+  { name: "Starter", price: "2,999", period: " quote after a short call", features: ["Appointment reminders (SMS)", "Basic patient dashboard", "Up to 200 patients", "Email support"], cta: "Start Free Trial" },
+  { name: "Professional", price: "4,999", period: " quote after a short call", popular: true, features: ["Everything in Starter", "WhatsApp reminders + follow-ups", "Google review automation", "Patient recall system", "Up to 1,000 patients", "Priority support"], cta: "Start Free Trial" },
+  { name: "Premium", price: "6,999", period: " quote after a short call", features: ["Everything in Professional", "Multi-location support", "Unlimited patients", "Custom integrations", "Dedicated account manager", "Analytics dashboard"], cta: "Contact Us" },
 ];
 
 const stats = [
@@ -170,7 +170,7 @@ export default function SmileCRMCityClient({ city }) {
                 {p.popular && <div style={{ position: "absolute", top: -12, left: "50%", transform: "translateX(-50%)", background: "#18181b", color: "#fff", fontSize: 12, fontWeight: 600, padding: "4px 14px", borderRadius: 20 }}>Most Popular</div>}
                 <h3 style={{ fontSize: 20, fontWeight: 700, marginBottom: 4 }}>{p.name}</h3>
                 <div style={{ marginBottom: 20 }}>
-                  <span style={{ fontSize: 36, fontWeight: 800 }}>Rs {p.price}</span>
+                  <span style={{ fontSize: 30, fontWeight: 800 }}>Custom</span>
                   <span style={{ color: "#71717a", fontSize: 14 }}>{p.period}</span>
                 </div>
                 <ul style={{ listStyle: "none", padding: 0, margin: "0 0 24px", flex: 1 }}>

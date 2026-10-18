@@ -63,7 +63,7 @@ const stats = [
 
 const faqs = [
   { q: "I am not tech-savvy. Can I still use this?", a: "Absolutely. We set everything up for you. If you can use WhatsApp, you can use our tools. No technical skills needed." },
-  { q: "How much does it cost?", a: "Plans start at Rs 2,999/month in India; international pricing is quoted separately. Free trial available." },
+  { q: "How much does it cost?", a: "Pricing depends on your business and setup, and is quoted after a short call. Free trial available." },
   { q: "Will my customers actually book online?", a: "Often, but it depends on your customers. Online booking is faster for them and easier for you, and we can look at your own enquiry data before recommending it." },
   { q: "How quickly can I get started?", a: "We handle the configuration, import your customer data, and train you on the dashboard." },
   { q: "Does this work for businesses outside India?", a: "Yes. We can work with home service businesses outside India, including the UAE, UK, USA, and Australia. Pricing adapts to your market." },

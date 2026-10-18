@@ -76,14 +76,14 @@ function Btn({ children, onClick, primary = true, href, calLink, style: sx = {} 
 function FAQ() {
   const [open, setOpen] = useState(null);
   const faqs = [
-    { q: "How much does it cost?", a: "Our free diagnostic gives you immediate insights at no cost. Consulting engagements are customized to your business size and needs  - we'll discuss pricing on your discovery call after we understand your situation. Digital products start at $19." },
+    { q: "How much does it cost?", a: "Our free diagnostic gives you immediate insights at no cost. Consulting engagements are customized to your business size and needs  - we'll discuss pricing on your discovery call after we understand your situation." },
     { q: "We're not very tech-savvy. Is this for us?", a: "Absolutely. It is built for people who are not technical. We handle the complex stuff and give you simple, clear recommendations. If you can use email and a spreadsheet, you're good. Our AI tools are designed to be used by anyone on your team." },
     { q: "How quickly will we see results?", a: "It depends on the problem, so we do not promise a timeline for results. Before any work starts, we agree in writing what will be built and how long it should take." },
     { q: "Are we locked into a long-term contract?", a: "No. We don't do lock-in contracts. Engagements are project-based or month-to-month. You stay because you're getting results, not because of a contract." },
-    { q: "What if the discovery call isn't useful?", a: "If we can't identify at least one actionable quick win in your 30-minute call, we'll send you our DX Roadmap Template ($79 value) completely free." },
-    { q: "What is SmileCRM?", a: "SmileCRM is our purpose-built CRM for independent dental clinics. It automates appointment reminders, patient recall, Google review requests, and WhatsApp follow-ups. Pricing starts at ₹2,999/month." },
-    { q: "What is the AI BDR product?", a: "AI BDR is a fully automated business development system that researches leads, writes personalised outreach emails, follows up automatically, and hands you warm replies. It runs about 200 personalised sequences a month with a 48-hour setup, starting at ₹15,000/month." },
-    { q: "Do you offer an AI voice receptionist?", a: "Yes — our AI Voice Receptionist answers your business phone 24/7, books appointments, handles common questions, and escalates to a human when needed. It's currently on waitlist, starting at ₹2,999/month." },
+    { q: "What if the discovery call isn't useful?", a: "If we can't identify at least one actionable quick win in your 30-minute call, we'll send you our DX Roadmap Template completely free." },
+    { q: "What is SmileCRM?", a: "SmileCRM is our purpose-built CRM for independent dental clinics. It automates appointment reminders, patient recall, Google review requests, and WhatsApp follow-ups. Pricing is quoted after a short call." },
+    { q: "What is the AI BDR product?", a: "AI BDR is a fully automated business development system that researches leads, writes personalised outreach emails, follows up automatically, and hands you warm replies. It runs about 200 personalised sequences a month with a 48-hour setup. Pricing is quoted after a short call." },
+    { q: "Do you offer an AI voice receptionist?", a: "Yes — our AI Voice Receptionist answers your business phone 24/7, books appointments, handles common questions, and escalates to a human when needed. It's currently on waitlist. Pricing is shared when you join." },
     { q: "What's the AI Business Ecosystem?", a: "It's our end-to-end automation package for any SMB: CRM setup, workflow automation with n8n/Make.com, custom AI agents, lead capture, and a monthly strategy review — all connected and running together. Pricing is custom based on scope." },
     { q: "What industries do you work with?", a: "We have two clients so far, both in India. We are glad to look at any small or growing service business that has outgrown its systems, for example clinics, gyms and wellness studios, home services and trades, e-commerce brands and agencies. Tell us the problem and we will say honestly whether we can help." },
     { q: "How does the free diagnostic work?", a: "It takes about 3 minutes, needs no credit card, and scores your business across 5 dimensions with instant results shown as a radar chart — so you can see exactly where you're leaking revenue before talking to us." },
@@ -690,11 +690,10 @@ function HeroProduct() {
                 Our 5-dimension framework as a self-serve Notion template. Score your business, identify gaps, get a prioritized action list.
               </p>
               <div style={{ display: "flex", alignItems: "baseline", gap: 12, marginBottom: 16 }}>
-                <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 32, fontWeight: 800, color: "#0F172A" }}>$49</span>
-                <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, color: "#6B7280" }}>one-time purchase</span>
+                <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 32, fontWeight: 800, color: "#0F172A" }}>Self-serve Notion template</span>
               </div>
               <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
-                <Btn href="https://adventureai4.gumroad.com/l/BusinessDiagnosticKit" style={{ fontSize: 14, padding: "12px 22px" }}>Get the Kit - $49 <Ic.Arr /></Btn>
+                <Btn href="https://adventureai4.gumroad.com/l/BusinessDiagnosticKit" style={{ fontSize: 14, padding: "12px 22px" }}>Get the Kit <Ic.Arr /></Btn>
                 <button data-cal-link="ag-ventures-qbqxax/30min" data-cal-namespace="30min" data-cal-config='{"layout":"month_view"}' type="button" style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, color: "#2563EB", fontWeight: 600, display: "flex", alignItems: "center", cursor: "pointer", textDecoration: "none", background: "none", border: "none", padding: 0 }}>or book a free consultation</button>
               </div>
             </div>
@@ -847,7 +846,7 @@ function CTA() {
             Book a free 30-minute discovery call. We'll show you at least one quick win you can implement this week.
           </p>
           <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 14, color: "#FCD34D", fontWeight: 600, margin: "0 0 32px" }}>
-            If we can't find a quick win in 30 minutes, you get our $79 DX Roadmap Template free.
+            If we can't find a quick win in 30 minutes, you get our DX Roadmap Template free.
           </p>
           <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
             <Btn calLink="ag-ventures-qbqxax/30min" style={{ background: "#fff", color: "#0F172A" }}>Book Your Free Call <Ic.Arr /></Btn>

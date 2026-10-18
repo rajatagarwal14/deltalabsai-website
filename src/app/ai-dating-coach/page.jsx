@@ -184,7 +184,7 @@ export default function AIDatingCoachPage() {
         <F>
           <h2 style={{ fontSize: 24, fontWeight: 700, marginBottom: 16 }}>Affordable by design</h2>
           <p style={{ fontSize: 16, color: "#52525b", lineHeight: 1.7, marginBottom: 32 }}>
-            AI coaching from <strong>₹1,500/month</strong> — less than one traditional therapy session. Optional human add-on available for deeper support.
+            AI coaching with an optional human add-on for deeper support. Ask us about pricing.
           </p>
           <div style={{ background: "#f4f4f5", borderRadius: 12, padding: "20px 24px", fontSize: 14, color: "#71717a" }}>
             Early access members will get launch pricing locked in. Join the waitlist to secure your spot.

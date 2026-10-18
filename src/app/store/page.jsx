@@ -299,7 +299,7 @@ export default function StorePage() {
       setRegion(tz === "Asia/Kolkata" || tz === "Asia/Calcutta" ? "in" : "intl");
     } catch { setRegion("in"); }
   }, []);
-  const isIntl = region === "intl";
+  const isIntl = true; // no prices shown anywhere on the site (founder decision, 18 Oct 2026)
   const px = (raw) => (isIntl ? "Custom" : raw);
   const pxPeriod = (raw) => (isIntl ? "— book a call" : raw);
 

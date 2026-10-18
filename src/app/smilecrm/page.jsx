@@ -4,7 +4,7 @@ import { cities } from "./cities";
 export const metadata = {
   title: "Dental Clinic Software and CRM for Indian Clinics | SmileCRM",
   description:
-    "Dental clinic management software for independent Indian clinics. SmileCRM automates appointment reminders, patient recall and Google review collection over WhatsApp. From Rs 2,999/month.",
+    "Dental clinic management software for independent Indian clinics. SmileCRM automates appointment reminders, patient recall and Google review collection over WhatsApp.",
   keywords: [
     "dental clinic software",
     "dental crm",
@@ -125,7 +125,7 @@ export default function SmileCRMPage() {
           }}
         >
           Appointment reminders, patient recall, and Google review automation
-          for independent dental clinics. Starting at Rs 2,999/month.
+          for independent dental clinics.
         </p>
         <div
           style={{

@@ -109,7 +109,7 @@ const stats = [
 
 const faqs = [
   { q: "Who is this service for?", a: "Any SMB or founder who needs a consistent pipeline of warm leads but doesn't have a sales team to do outreach. If you close deals well but hate prospecting — this is for you." },
-  { q: "How is this different from hiring a BDR?", a: "A human BDR costs a full salary plus benefits and can only send so many emails a day. Our AI sends 200 personalised sequences per month at ₹15,000 — and works 24/7 without sick days or ramp time." },
+  { q: "How is this different from hiring a BDR?", a: "A human BDR costs a full salary plus benefits and can only send so many emails a day. Our AI sends 200 personalised sequences per month and works 24/7 without sick days or ramp time." },
   { q: "What industries do you serve?", a: "AI BDR suits any business whose customers can be reached by email and that wants a steady flow of warm replies. Tell us who your customer is and we will say honestly whether outbound email is the right channel." },
   { q: "How quickly can you start?", a: "Typically within 48 hours of onboarding. We gather your ICP brief, set up your sending infrastructure, and launch the first batch." },
   { q: "What happens when someone replies?", a: "We flag the reply in your dashboard and send you an instant notification with full context — who they are, what they said, and suggested next steps. You take it from there." },

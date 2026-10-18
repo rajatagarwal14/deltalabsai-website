@@ -81,7 +81,7 @@ const plans = [
   {
     name: "Enterprise Support",
     price: "4,999",
-    period: "/month",
+    period: "quote after a short call",
     popular: true,
     features: [
       "Everything in Free, attribution removed",
@@ -177,7 +177,7 @@ export default function SkillsPage() {
                 {p.popular && <div style={{ position: "absolute", top: -12, left: "50%", transform: "translateX(-50%)", background: "#18181b", color: "#fff", fontSize: 12, fontWeight: 600, padding: "4px 14px", borderRadius: 20 }}>Enterprise Support</div>}
                 <h3 style={{ fontSize: 20, fontWeight: 700, marginBottom: 4 }}>{p.name}</h3>
                 <div style={{ marginBottom: 20 }}>
-                  <span style={{ fontSize: 36, fontWeight: 800 }}>{p.price === "0" ? "$0" : `Rs ${p.price}`}</span>
+                  <span style={{ fontSize: 36, fontWeight: 800 }}>{p.price === "0" ? "Free" : "Custom"}</span>
                   <span style={{ color: "#71717a", fontSize: 14 }}> {p.period}</span>
                 </div>
                 <ul style={{ listStyle: "none", padding: 0, margin: "0 0 24px", flex: 1 }}>
