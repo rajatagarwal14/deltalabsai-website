@@ -14,6 +14,14 @@ export const metadata = {
       "Delta Labs AI builds and operates WhatsApp booking and commerce for small businesses, including Dent-Ox | The Dental Studio in Pitampura, Delhi.",
     url: "https://deltalabsai.com/clients",
     type: "website",
+    images: [
+      {
+        url: "https://deltalabsai.com/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Delta Labs AI",
+      },
+    ],
   },
   robots: { index: true, follow: true },
 };
