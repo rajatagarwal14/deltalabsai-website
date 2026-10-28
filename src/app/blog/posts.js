@@ -255,7 +255,7 @@ No pitch, no commitment. Take the [free diagnostic](/diagnostic) and note "Abu D
   {
     slug: "ecommerce-revenue-leakage-fix",
     title: "Fix eCommerce Revenue Leakage – Small Biz Guide",
-    metaTitle: "Ecommerce Revenue Leakage: How to Fix It Fast",
+    metaTitle: "Ecommerce Revenue Leakage: The 3 Leaks That Cost You Most",
     subtitle: "Three automation fixes for the revenue D2C sellers lose to abandoned carts, slow support and order errors — no Shopify lock-in required",
     category: "E-commerce",
     date: "June 24, 2026",
@@ -270,7 +270,7 @@ No pitch, no commitment. Take the [free diagnostic](/diagnostic) and note "Abu D
       "small business ecommerce revenue",
       "ecommerce order errors automation"
     ],
-    description: "D2C sellers lose revenue to abandoned carts, unresolved tickets & order errors. Three automation fixes to recover it. Free diagnostic →",
+    description: "Abandoned carts, slow support replies and order errors are where online stores lose money quietly. The three fixes that close them, and how to tell which is costing you most.",
     sections: [
       {
         heading: null,
@@ -1618,7 +1618,7 @@ For the full process, including the field-mapping audit that prevents most failu
         heading: null,
         body: `A CRM migration moves customer, order and pricing records out of one system and into another without losing data, breaking relationships between records, or stopping the team from working while it happens.
 
-The source is usually one of three things: a spreadsheet, an older CRM, or several disconnected tools at once. The process below is the same in all three cases. What changes is how much cleaning the data needs before it moves.
+The source is usually one of three things: a spreadsheet, an older CRM, or several disconnected tools at once. The process below is the same in all three cases. What changes is how much cleaning the data needs before it moves. For the spreadsheet case, [what a spreadsheet-to-CRM migration costs](/blog/spreadsheet-to-crm-cost-breakdown) sets out the numbers.
 
 This guide covers the five phases, a pre-migration checklist, the failure modes that cause most data loss, and when hiring a migration service is worth it. For the software options, see the [comparison of CRM data migration tools](/blog/crm-data-migration-tools).`,
       },
@@ -1654,7 +1654,7 @@ The audit and mapping phases take longer than the transfer itself. Teams that sk
 If a step here has no owner, that is the step the migration will fail on.`,
       },
       {
-        heading: "What actually goes wrong",
+        heading: "What actually goes wrong in CRM migrations",
         body: `**Silent field drops.** A field exists in the source, has no mapping in the destination, and is simply not imported. No error is raised. This is the most common cause of data loss and the reason the audit count matters.
 
 **Broken relationships.** Records import fine individually but the links between them do not. Contacts arrive without their companies, deals without their contacts.
