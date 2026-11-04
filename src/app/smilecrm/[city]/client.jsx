@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 
-const CAL = "https://cal.com/ag-ventures-qbqxax/30min";
+const MAIL = "mailto:neil@mail.deltalabsai.com";
 const FORM = "/diagnostic";
 
 function useFade() {
@@ -36,37 +36,39 @@ function Btn({ children, href, v = "primary", style = {}, ...p }) {
 }
 
 const features = [
-  { title: "Automated Appointment Reminders", desc: "WhatsApp and SMS reminders sent 24 hours and 2 hours before every appointment. Built to cut no-shows." },
-  { title: "Patient Recall System", desc: "Automatically identify patients overdue for checkups and send personalized recall messages. Recover revenue lost to missed recalls." },
-  { title: "Google Review Automation", desc: "After every visit, patients automatically receive a review request — designed to grow your Google reviews." },
-  { title: "Simple Appointment Dashboard", desc: "See your entire schedule, patient history, and revenue at a glance. No complex training required." },
-  { title: "WhatsApp Follow-ups", desc: "Post-treatment care instructions, feedback requests, and appointment confirmations sent automatically via WhatsApp." },
-  { title: "Patient Records at Your Fingertips", desc: "Quick access to patient history, treatment plans, and notes. Everything in one place, accessible from any device." },
+  { title: "Booking on WhatsApp", desc: "A patient messages your clinic. The assistant offers open times from each doctor's working hours, skips leave and booked slots, and books the visit." },
+  { title: "Tap-to-reply buttons", desc: "Patients tap instead of typing." },
+  { title: "Reminders before each visit", desc: "Sent on WhatsApp." },
+  { title: "English, Hindi and Hinglish", desc: "The assistant replies in the language your patients use." },
+  { title: "Consent handled properly", desc: "Your clinic only messages patients who wrote to you or agreed at the desk, and anyone who replies STOP is not messaged again." },
+  { title: "No fees in patient chats", desc: "The assistant never quotes a price. If a patient asks, it says the doctor will advise after the check-up and shares your clinic's contact details." },
+  { title: "Patient records", desc: "Registration form, medical history, dated consent, and uploads of X-rays and reports, including large panoramic images." },
+  { title: "Doctor calendar", desc: "Working hours and leave for each doctor. Doctors get an email invite for each visit and can accept or decline. A declined visit moves to a free doctor without bothering the patient." },
+  { title: "Billing at the desk", desc: "Bill a visit, take an advance or a part payment, record how it was paid, and send the patient a receipt with the balance on WhatsApp." },
+  { title: "Feedback after a visit", desc: "Patients are asked how their visit went." },
+  { title: "Where patients came from", desc: "Tagged WhatsApp links and a QR code for Google Maps, Instagram, Facebook, ads, your website and print, so Analytics shows which source brought each new patient." },
+  { title: "A dashboard", desc: "Appointments, the day's queue, patients, reports and analytics." },
 ];
 
-const plans = [
-  { name: "Starter", price: "Custom", period: " quote after a short call", features: ["Appointment reminders (SMS)", "Basic patient dashboard", "Up to 200 patients", "Email support"], cta: "Start Free Trial" },
-  { name: "Professional", price: "Custom", period: " quote after a short call", popular: true, features: ["Everything in Starter", "WhatsApp reminders + follow-ups", "Google review automation", "Patient recall system", "Up to 1,000 patients", "Priority support"], cta: "Start Free Trial" },
-  { name: "Premium", price: "Custom", period: " quote after a short call", features: ["Everything in Professional", "Multi-location support", "Unlimited patients", "Custom integrations", "Dedicated account manager", "Analytics dashboard"], cta: "Contact Us" },
-];
-
-const stats = [
-  { num: "24/7", label: "Automated reminders" },
-  { num: "Auto", label: "Google review requests" },
-  { num: "Auto", label: "Patient recall" },
-  { num: "Auto", label: "Admin work off your plate" },
+const notIncluded = [
+  "No text messages. Messages go on WhatsApp.",
+  "No automatic campaigns to bring back lapsed patients, and no promotional broadcasts to your patients.",
+  "No integration with Practo or other clinic software.",
+  "No Google Calendar sync. Doctors get email calendar invites instead.",
+  "No import of your existing patient list as standard.",
+  "No multi-location dashboard, custom integrations or dedicated account manager.",
+  "No phone calls by the assistant. It works in WhatsApp chat only.",
+  "Anything custom is quoted separately, in writing, before any work starts.",
 ];
 
 export default function SmileCRMCityClient({ city }) {
   const [openFaq, setOpenFaq] = useState(null);
 
   const faqs = [
-    { q: `Is SmileCRM available for dental clinics in ${city.name}?`, a: `Yes! SmileCRM is available for dental clinics across India, including ${city.name}, ${city.state}. We handle remote setup and onboarding.` },
-    { q: "Is SmileCRM difficult to set up?", a: "Not at all. We handle the entire setup for you. No technical skills required." },
-    { q: "Will my staff need training?", a: "SmileCRM is designed to be intuitive. We provide a 30-minute walkthrough." },
-    { q: "What if I already use another software?", a: "SmileCRM integrates with most existing systems. We can import your patient data and run alongside your current tools." },
-    { q: "Is there a free trial?", a: "Yes, we offer a free trial. Ask us for the current terms. Try it before you commit." },
-    { q: "Can I use SmileCRM for multiple locations?", a: `Yes, the Premium plan supports multiple locations under one dashboard — ideal if you have more than one clinic in ${city.name} or across ${city.state}.` },
+    { q: `Can a dental clinic in ${city.name} use SmileCRM?`, a: `Yes. Setup is done remotely, with written step by step instructions, so it works for clinics in ${city.name}, ${city.state}.` },
+    { q: "Will patients see prices on WhatsApp?", a: "No. The assistant never quotes a fee. A receipt you send after a visit shows what was paid and what is left, because that is a bill, not a chat." },
+    { q: "Does it work with Practo?", a: "No. SmileCRM does not connect to Practo or other clinic software." },
+    { q: "How is the price set?", a: "By written quote, after you tell us about your clinic. You agree it before anything starts." },
   ];
 
   return (
@@ -80,7 +82,7 @@ export default function SmileCRMCityClient({ city }) {
           <div style={{ display: "flex", gap: 16, alignItems: "center" }}>
             <a href="/blog" style={{ fontSize: 14, color: "#52525b", textDecoration: "none" }}>Blog</a>
             <a href="/diagnostic" style={{ fontSize: 14, color: "#52525b", textDecoration: "none" }}>Diagnostic</a>
-            <Btn href="#cal-book" v="primary" style={{ padding: "9px 20px", fontSize: 13 }}>Book a Call</Btn>
+            <Btn href={MAIL} v="primary" style={{ padding: "9px 20px", fontSize: 13 }}>Write to us</Btn>
           </div>
         </div>
       </nav>
@@ -106,25 +108,13 @@ export default function SmileCRMCityClient({ city }) {
             SmileCRM for Dental Clinics<br />in {city.name}
           </h1>
           <p style={{ fontSize: 18, color: "#52525b", maxWidth: 620, margin: "0 auto 32px", lineHeight: 1.65 }}>
-            Automate appointment reminders, patient recall, and Google review collection for your {city.name} dental clinic. Simple setup. Affordable pricing.
+            Patients book on WhatsApp, get reminded before their visit, and your front desk stops chasing confirmations. Built and run by Delta Labs AI for independent clinics in {city.name}.
           </p>
           <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
-            <Btn href="#cal-book">Book a Free Demo <Ic.Arr /></Btn>
+            <Btn href={MAIL}>Send a short written enquiry <Ic.Arr /></Btn>
             <Btn href={FORM} v="secondary">Take Free Diagnostic</Btn>
           </div>
         </F>
-      </section>
-
-      {/* Stats */}
-      <section style={{ background: "#fafafa", padding: "48px 24px" }}>
-        <div style={{ maxWidth: 900, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: 32, textAlign: "center" }}>
-          {stats.map((s, i) => (
-            <F key={i} d={i * 0.1}>
-              <div style={{ fontSize: 36, fontWeight: 800, letterSpacing: -1 }}>{s.num}</div>
-              <div style={{ fontSize: 14, color: "#71717a", marginTop: 4 }}>{s.label}</div>
-            </F>
-          ))}
-        </div>
       </section>
 
       {/* Problem */}
@@ -134,7 +124,7 @@ export default function SmileCRMCityClient({ city }) {
             The problem every independent clinic in {city.name} faces
           </h2>
           <p style={{ fontSize: 16, color: "#52525b", lineHeight: 1.7 }}>
-            You built your practice in {city.name} on trust and quality care. But behind the scenes, missed appointments drain your revenue, patients overdue for checkups never come back, and your Google reviews do not reflect the exceptional work you do every day.
+            You built your practice in {city.name} on trust and quality care. But behind the scenes, missed appointments drain your revenue and your front desk spends its day chasing confirmations.
           </p>
           <p style={{ fontSize: 16, color: "#52525b", lineHeight: 1.7, marginTop: 16 }}>
             Large dental chains have entire teams handling patient communication, follow-ups, and marketing. As an independent clinic in {city.name}, you do not need a team. You need the right system. That is exactly what SmileCRM was built for.
@@ -145,7 +135,8 @@ export default function SmileCRMCityClient({ city }) {
       {/* Features */}
       <section style={{ background: "#fafafa", padding: "72px 24px" }}>
         <div style={{ maxWidth: 1000, margin: "0 auto" }}>
-          <F><h2 style={{ fontSize: 28, fontWeight: 700, marginBottom: 40, textAlign: "center" }}>Everything your {city.name} clinic needs. Nothing it does not.</h2></F>
+          <F><h2 style={{ fontSize: 28, fontWeight: 700, marginBottom: 40, textAlign: "center" }}>What it does today</h2></F>
+          <F d={0.05}><p style={{ textAlign: "center", color: "#71717a", marginTop: -28, marginBottom: 40, fontSize: 15 }}>If something is not on this list, it is not part of SmileCRM.</p></F>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 24 }}>
             {features.map((f, i) => (
               <F key={i} d={i * 0.08}>
@@ -161,30 +152,19 @@ export default function SmileCRMCityClient({ city }) {
 
       {/* Pricing */}
       <section style={{ maxWidth: 1000, margin: "0 auto", padding: "72px 24px" }}>
-        <F><h2 style={{ fontSize: 28, fontWeight: 700, marginBottom: 8, textAlign: "center" }}>Simple, transparent pricing for {city.name} clinics</h2></F>
-        <F d={0.1}><p style={{ textAlign: "center", color: "#71717a", marginBottom: 40, fontSize: 15 }}>Free trial available. Ask us for the current terms.</p></F>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 24 }}>
-          {plans.map((p, i) => (
-            <F key={i} d={i * 0.1}>
-              <div style={{ borderRadius: 14, padding: 32, border: p.popular ? "2px solid #18181b" : "1px solid #e4e4e7", position: "relative", height: "100%", display: "flex", flexDirection: "column" }}>
-                {p.popular && <div style={{ position: "absolute", top: -12, left: "50%", transform: "translateX(-50%)", background: "#18181b", color: "#fff", fontSize: 12, fontWeight: 600, padding: "4px 14px", borderRadius: 20 }}>Most Popular</div>}
-                <h3 style={{ fontSize: 20, fontWeight: 700, marginBottom: 4 }}>{p.name}</h3>
-                <div style={{ marginBottom: 20 }}>
-                  <span style={{ fontSize: 30, fontWeight: 800 }}>Custom</span>
-                  <span style={{ color: "#71717a", fontSize: 14 }}>{p.period}</span>
-                </div>
-                <ul style={{ listStyle: "none", padding: 0, margin: "0 0 24px", flex: 1 }}>
-                  {p.features.map((f, j) => (
-                    <li key={j} style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 14, color: "#52525b", marginBottom: 10 }}>
-                      <Ic.Chk /> {f}
-                    </li>
-                  ))}
-                </ul>
-                <Btn href="#cal-book" v={p.popular ? "primary" : "secondary"} style={{ justifyContent: "center", width: "100%" }}>{p.cta}</Btn>
-              </div>
-            </F>
-          ))}
-        </div>
+        <F><h2 style={{ fontSize: 28, fontWeight: 700, marginBottom: 8, textAlign: "center" }}>Pricing for {city.name} clinics</h2></F>
+        <F d={0.1}><p style={{ textAlign: "center", color: "#52525b", maxWidth: 620, margin: "0 auto 24px", fontSize: 15, lineHeight: 1.7 }}>Pricing is by quote. Send us a short written enquiry about your clinic and we reply in writing with what is included and the price. Nothing starts until you have agreed the quote.</p></F>
+        <F d={0.15}><div style={{ textAlign: "center", marginBottom: 48 }}><Btn href={MAIL}>Send a short written enquiry <Ic.Arr /></Btn></div></F>
+        <F d={0.2}>
+          <div style={{ maxWidth: 700, margin: "0 auto", borderRadius: 14, padding: 32, border: "1px solid #e4e4e7" }}>
+            <h3 style={{ fontSize: 20, fontWeight: 700, marginBottom: 16 }}>What is not included</h3>
+            <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+              {notIncluded.map((f, j) => (
+                <li key={j} style={{ fontSize: 14, color: "#52525b", marginBottom: 10, lineHeight: 1.6 }}>{f}</li>
+              ))}
+            </ul>
+          </div>
+        </F>
       </section>
 
       {/* FAQ */}
@@ -212,10 +192,10 @@ export default function SmileCRMCityClient({ city }) {
             Ready to transform your {city.name} clinic?
           </h2>
           <p style={{ fontSize: 16, color: "#52525b", marginBottom: 32, lineHeight: 1.6 }}>
-            Built for independent dental clinics across {city.state} and India that want to recover revenue, reduce no-shows, and grow their online reputation.
+            Built for independent dental clinics in {city.state} that want fewer missed visits and a front desk that is not chasing confirmations.
           </p>
           <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
-            <Btn href="#cal-book">Book a Free Demo <Ic.Arr /></Btn>
+            <Btn href={MAIL}>Send a short written enquiry <Ic.Arr /></Btn>
             <Btn href={FORM} v="secondary">Take Free Diagnostic</Btn>
           </div>
         </F>
@@ -224,7 +204,7 @@ export default function SmileCRMCityClient({ city }) {
       {/* Footer */}
       <footer style={{ borderTop: "1px solid #f4f4f5", padding: "32px 24px", textAlign: "center" }}>
         <p style={{ fontSize: 13, color: "#a1a1aa" }}>
-          <a href="/dental" style={{ color: "#a1a1aa", textDecoration: "none" }}>SmileCRM</a> by Delta Labs AI. Built for dental clinics in {city.name}, {city.state} and across India.
+          <a href="/dental" style={{ color: "#a1a1aa", textDecoration: "none" }}>SmileCRM</a> by Delta Labs AI. Built for dental clinics in {city.name}, {city.state}. Delta Labs AI is operated by A.G. Ventures, India.
         </p>
         <p style={{ fontSize: 12, color: "#a1a1aa", marginTop: 4 }}>neil@mail.deltalabsai.com</p>
       </footer>

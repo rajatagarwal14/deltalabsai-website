@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 
-const CAL = "https://cal.com/ag-ventures-qbqxax/30min";
+const MAIL = "mailto:neil@mail.deltalabsai.com";
 const CAPTURE_API = "https://delta-labs-ecosystem.vercel.app/api/leads/capture";
 const BASE_URL = "https://deltalabsai.com/whatsapp-audit";
 
@@ -346,11 +346,11 @@ export default function WhatsappAudit() {
                 </button>
               </form>
               <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginTop: 10 }}>
-                <button style={{ ...S.btn, ...S.btnSecondary, width: "auto", padding: "10px 20px", fontSize: 13 }} onClick={() => window.open(CAL, "_blank")}>
-                  Or book a 30-min demo directly
+                <button style={{ ...S.btn, ...S.btnSecondary, width: "auto", padding: "10px 20px", fontSize: 13 }} onClick={() => window.location.href = MAIL}>
+                  Or send us a short written enquiry
                 </button>
-                <a href={`https://wa.me/917011402167?text=${encodeURIComponent(`Hi Delta Labs AI — my clinic scored grade ${grade.g} on your WhatsApp Patient Recovery Audit. I want to know more.`)}`} target="_blank" rel="noopener" style={{ ...S.btn, width: "auto", padding: "10px 20px", fontSize: 13, background: "#25D366", color: "#fff", textDecoration: "none" }}>
-                  💬 Chat on WhatsApp
+                <a href={MAIL} target="_blank" rel="noopener" style={{ ...S.btn, width: "auto", padding: "10px 20px", fontSize: 13, background: "#25D366", color: "#fff", textDecoration: "none" }}>
+                  ✉️ Email us
                 </a>
               </div>
             </div>
@@ -361,16 +361,16 @@ export default function WhatsappAudit() {
           <F d={0}>
             <div style={{ ...S.card, textAlign: "center", padding: "48px 32px" }}>
               <div style={{ fontSize: 48, marginBottom: 16 }}>🎉</div>
-              <h2 style={{ fontSize: 24, fontWeight: 800, margin: "0 0 12px" }}>We'll be in touch within 24 hours!</h2>
+              <h2 style={{ fontSize: 24, fontWeight: 800, margin: "0 0 12px" }}>We'll be in touch soon!</h2>
               <p style={{ fontSize: 15, color: "#94a3b8", marginBottom: 28 }}>
-                Your personalised WhatsApp recovery plan is being prepared. Meanwhile, book a 30-minute demo to see the system live.
+                Your personalised WhatsApp recovery plan is being prepared. Meanwhile, you can write to us with any questions.
               </p>
               <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
-                <a href={`https://wa.me/917011402167?text=${encodeURIComponent("Hi Delta Labs AI — I just got my WhatsApp recovery plan and want to talk.")}`} target="_blank" rel="noopener" style={{ ...S.btn, width: "auto", background: "#25D366", color: "#fff", textDecoration: "none" }}>
-                  💬 Talk to us on WhatsApp
+                <a href={MAIL} target="_blank" rel="noopener" style={{ ...S.btn, width: "auto", background: "#25D366", color: "#fff", textDecoration: "none" }}>
+                  ✉️ Email us
                 </a>
-                <a href={CAL} target="_blank" rel="noopener" style={{ ...S.btn, ...S.btnPrimary, width: "auto", textDecoration: "none" }}>
-                  Book your free demo →
+                <a href={MAIL} target="_blank" rel="noopener" style={{ ...S.btn, ...S.btnPrimary, width: "auto", textDecoration: "none" }}>
+                  Send a short written enquiry →
                 </a>
                 <button style={{ ...S.shareBtn, background: "rgba(37,211,102,0.12)", border: "1px solid rgba(37,211,102,0.35)", color: "#25D366" }} onClick={handleShare}>
                   💬 Share my report card

@@ -2,10 +2,13 @@ import Link from "next/link";
 import { cities } from "./cities";
 
 export const metadata = {
-  title: "Dental Clinic Software and CRM for Indian Clinics | SmileCRM",
+  title: "SmileCRM: Clinic CRM with WhatsApp Booking | Delta Labs AI",
   description:
-    "Dental clinic management software for independent Indian clinics. SmileCRM automates appointment reminders, patient recall and Google review collection over WhatsApp.",
+    "SmileCRM for independent clinics and doctors, dental and other specialities: patients book on WhatsApp, get a reminder before each visit, and are asked for feedback afterwards. Pricing by quote.",
   keywords: [
+    "clinic crm",
+    "clinic software",
+    "clinic whatsapp booking",
     "dental clinic software",
     "dental crm",
     "dental clinic management software",
@@ -74,7 +77,7 @@ export default function SmileCRMPage() {
               textDecoration: "none",
             }}
           >
-            See All Features
+            Dental clinics
           </a>
         </div>
       </nav>
@@ -100,7 +103,7 @@ export default function SmileCRMPage() {
             marginBottom: 24,
           }}
         >
-          Built for Independent Dental Clinics
+          Built for Independent Clinics
         </div>
         <h1
           style={{
@@ -111,9 +114,9 @@ export default function SmileCRMPage() {
             margin: "0 0 20px",
           }}
         >
-          SmileCRM: Dental Clinic Automation
+          SmileCRM: WhatsApp Booking
           <br />
-          Across India
+          for Independent Clinics
         </h1>
         <p
           style={{
@@ -124,8 +127,9 @@ export default function SmileCRMPage() {
             lineHeight: 1.6,
           }}
         >
-          Appointment reminders, patient recall, and Google review automation
-          for independent dental clinics.
+          Patients book on WhatsApp, get reminded before their visit, and your
+          front desk stops chasing confirmations. For independent clinics and
+          doctors, dental and other specialities. Built and run by Delta Labs AI.
         </p>
         <div
           style={{
@@ -136,7 +140,7 @@ export default function SmileCRMPage() {
           }}
         >
           <a
-            href="/dental"
+            href="mailto:neil@mail.deltalabsai.com"
             style={{
               display: "inline-flex",
               alignItems: "center",
@@ -149,7 +153,7 @@ export default function SmileCRMPage() {
               textDecoration: "none",
             }}
           >
-            View Features &amp; Pricing
+            Send a short written enquiry
           </a>
           <a
             href="/diagnostic"
@@ -171,6 +175,37 @@ export default function SmileCRMPage() {
         </div>
       </section>
 
+      {/* What it does today */}
+      <section style={{ maxWidth: 800, margin: "0 auto", padding: "0 24px 64px" }}>
+        <h2 style={{ fontSize: 28, fontWeight: 700, marginBottom: 8, textAlign: "center" }}>
+          What it does today
+        </h2>
+        <p style={{ textAlign: "center", color: "#71717a", fontSize: 15, marginBottom: 32 }}>
+          If something is not on this list, it is not part of SmileCRM. Dental
+          is where it is most complete today; see the{" "}
+          <a href="/dental" style={{ color: "#18181b" }}>dental clinic page</a>.
+        </p>
+        <ul style={{ margin: 0, paddingLeft: 20, color: "#52525b", fontSize: 15, lineHeight: 1.7 }}>
+          {[
+            "Booking on WhatsApp, with open times taken from each doctor's working hours, leave and booked slots.",
+            "Reminders on WhatsApp before each visit.",
+            "Patient records: registration form, medical history, dated consent and uploaded reports.",
+            "A doctor calendar with working hours, leave and an email invite for each visit.",
+            "Billing at the desk, with a receipt and the balance sent to the patient on WhatsApp.",
+            "Feedback after a visit.",
+            "Tagged WhatsApp links and a QR code, so you can see which source brought each new patient.",
+            "A dashboard for appointments, the day's queue, patients, reports and analytics.",
+          ].map((t) => (
+            <li key={t} style={{ marginBottom: 8 }}>{t}</li>
+          ))}
+        </ul>
+        <p style={{ color: "#52525b", fontSize: 15, lineHeight: 1.7, marginTop: 24 }}>
+          Pricing is by quote. Send us a short written enquiry about your clinic
+          and we reply in writing with what is included and the price. Nothing
+          starts until you have agreed the quote.
+        </p>
+      </section>
+
       {/* Cities We Serve */}
       <section style={{ background: "#fafafa", padding: "72px 24px" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
@@ -182,7 +217,7 @@ export default function SmileCRMPage() {
               textAlign: "center",
             }}
           >
-            SmileCRM for Dental Clinics Across India
+            SmileCRM for dental clinics, by city
           </h2>
           <p
             style={{
@@ -192,8 +227,7 @@ export default function SmileCRMPage() {
               marginBottom: 48,
             }}
           >
-            Available in {cities.length} cities. Find your city below for
-            local pricing and setup details.
+            Find your city below for setup details.
           </p>
           <ul
             style={{
@@ -240,7 +274,7 @@ export default function SmileCRMPage() {
         }}
       >
         <p style={{ fontSize: 13, color: "#a1a1aa" }}>
-          Delta Labs AI. All rights reserved.
+          Delta Labs AI is operated by A.G. Ventures, India. All rights reserved.
         </p>
         <p style={{ fontSize: 12, color: "#a1a1aa", marginTop: 4 }}>
           neil@mail.deltalabsai.com

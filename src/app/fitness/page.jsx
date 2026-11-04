@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 
-const CAL = "https://cal.com/ag-ventures-qbqxax/30min";
+const MAIL = "mailto:neil@mail.deltalabsai.com";
 const FORM = "/diagnostic";
 
 function useFade() {
@@ -80,7 +80,7 @@ export default function FitnessPage() {
           <div style={{ display: "flex", gap: 16, alignItems: "center" }}>
             <a href="/blog" style={{ fontSize: 14, color: "#52525b", textDecoration: "none" }}>Blog</a>
             <a href="/diagnostic" style={{ fontSize: 14, color: "#52525b", textDecoration: "none" }}>Diagnostic</a>
-            <Btn href="#cal-book" v="primary" style={{ padding: "9px 20px", fontSize: 13 }}>Book a Call</Btn>
+            <Btn href="mailto:neil@mail.deltalabsai.com" v="primary" style={{ padding: "9px 20px", fontSize: 13 }}>Write to us</Btn>
           </div>
         </div>
       </nav>
@@ -96,7 +96,7 @@ export default function FitnessPage() {
             Class scheduling, member retention, and review collection on autopilot. Built for independent fitness businesses that want to grow without burning out.
           </p>
           <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
-            <Btn href="#cal-book">Book a Free Demo <Ic.Arr /></Btn>
+            <Btn href="mailto:neil@mail.deltalabsai.com">Send a short written enquiry <Ic.Arr /></Btn>
             <Btn href={FORM} v="secondary">Take Free Diagnostic</Btn>
           </div>
         </F>
@@ -182,7 +182,7 @@ export default function FitnessPage() {
             Built for independent fitness businesses in India and worldwide. Start a free trial today.
           </p>
           <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
-            <Btn href="#cal-book">Book a Free Demo <Ic.Arr /></Btn>
+            <Btn href="mailto:neil@mail.deltalabsai.com">Send a short written enquiry <Ic.Arr /></Btn>
             <Btn href={FORM} v="secondary">Take Free Diagnostic</Btn>
           </div>
         </F>

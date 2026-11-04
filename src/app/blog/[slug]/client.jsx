@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 
-const CAL = "https://cal.com/ag-ventures-qbqxax/30min";
+const MAIL = "mailto:neil@mail.deltalabsai.com";
 
 // Icons
 const Ic = {
@@ -391,7 +391,7 @@ export default function BlogPostClient({ post, relatedPosts = [] }) {
           }}
             onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-1px)"; e.currentTarget.style.boxShadow = "0 8px 22px rgba(15,23,42,0.22)"; }}
             onMouseLeave={e => { e.currentTarget.style.transform = ""; e.currentTarget.style.boxShadow = ""; }}
-          >Get Your Free 3-Minute Business Diagnostic <Ic.Arr /></a>
+          >Get Your Free Business Diagnostic <Ic.Arr /></a>
         </div>
       </header>
 
@@ -426,7 +426,7 @@ export default function BlogPostClient({ post, relatedPosts = [] }) {
               Find out where your business is leaking money
             </h3>
             <p style={{ fontSize: 16, color: "#94A3B8", lineHeight: 1.7, maxWidth: 480, margin: "0 auto 28px" }}>
-              Take our free 3-minute diagnostic. Get your 5-dimension score, a radar chart, and one specific quick win you can implement this week.
+              Take our free diagnostic. Get your business score, a radar chart, and a specific quick win you can act on.
             </p>
             <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
               <a href="/diagnostic" style={{
@@ -436,10 +436,10 @@ export default function BlogPostClient({ post, relatedPosts = [] }) {
                 onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.boxShadow = "0 8px 24px rgba(255,255,255,0.15)"; }}
                 onMouseLeave={e => { e.currentTarget.style.transform = ""; e.currentTarget.style.boxShadow = ""; }}
               >Start Free Diagnostic <Ic.Arr /></a>
-              <a href="#cal-book" style={{
+              <a href="mailto:neil@mail.deltalabsai.com" style={{
                 display: "inline-flex", alignItems: "center", gap: 8, padding: "14px 28px", borderRadius: 10,
                 background: "transparent", color: "#94A3B8", border: "1.5px solid #334155", fontWeight: 600, fontSize: 15, textDecoration: "none", transition: "all 0.2s",
-              }}>Book a Free Call</a>
+              }}>Send a short written enquiry</a>
             </div>
           </div>
         </div>
@@ -534,7 +534,7 @@ export default function BlogPostClient({ post, relatedPosts = [] }) {
           <div style={{ display: "flex", gap: 14, alignItems: "center" }}>
             <a href="/blog" style={{ fontSize: 13, fontWeight: 500, color: "#94A3B8", textDecoration: "none", transition: "color 0.2s", padding: "12px 10px" }} onMouseEnter={e => e.currentTarget.style.color = "#fff"} onMouseLeave={e => e.currentTarget.style.color = "#94A3B8"}>Blog</a>
             <a href="/diagnostic" style={{ fontSize: 13, fontWeight: 500, color: "#94A3B8", textDecoration: "none", transition: "color 0.2s", padding: "12px 10px" }} onMouseEnter={e => e.currentTarget.style.color = "#fff"} onMouseLeave={e => e.currentTarget.style.color = "#94A3B8"}>Diagnostic</a>
-            <a href="#cal-book" aria-label="Book a call" style={{ color: "#94A3B8", transition: "color 0.2s", padding: "12px", display: "inline-flex", minWidth: 48, minHeight: 48, alignItems: "center", justifyContent: "center" }} onMouseEnter={e => e.currentTarget.style.color = "#fff"} onMouseLeave={e => e.currentTarget.style.color = "#94A3B8"}><Ic.Mail /></a>
+            <a href="mailto:neil@mail.deltalabsai.com" aria-label="Email us" style={{ color: "#94A3B8", transition: "color 0.2s", padding: "12px", display: "inline-flex", minWidth: 48, minHeight: 48, alignItems: "center", justifyContent: "center" }} onMouseEnter={e => e.currentTarget.style.color = "#fff"} onMouseLeave={e => e.currentTarget.style.color = "#94A3B8"}><Ic.Mail /></a>
             <a href="/linkedin" aria-label="LinkedIn" style={{ color: "#94A3B8", transition: "color 0.2s", padding: "12px", display: "inline-flex", minWidth: 48, minHeight: 48, alignItems: "center", justifyContent: "center" }} onMouseEnter={e => e.currentTarget.style.color = "#fff"} onMouseLeave={e => e.currentTarget.style.color = "#94A3B8"}><Ic.LI /></a>
             <a href="/facebook" aria-label="Facebook" style={{ color: "#94A3B8", transition: "color 0.2s", padding: "12px", display: "inline-flex", minWidth: 48, minHeight: 48, alignItems: "center", justifyContent: "center" }} onMouseEnter={e => e.currentTarget.style.color = "#fff"} onMouseLeave={e => e.currentTarget.style.color = "#94A3B8"}><Ic.FB /></a>
           </div>

@@ -2107,7 +2107,7 @@ Delta Labs AI's [free 5-Dimension Business Diagnostic](https://deltalabsai.com/d
 - A specific quick-win recommendation you can act on immediately
 - A clear picture of where consulting would deliver the highest ROI
 
-If you then want to discuss your results with an expert, book a [free 30-minute discovery call](https://cal.com/ag-ventures-qbqxax/30min). No pitch, no pressure — just a specific assessment of your situation and what would move the needle most.
+If you then want to discuss your results, [send us a short written enquiry](mailto:neil@mail.deltalabsai.com). No pitch, no pressure, just a specific written assessment of your situation and what would move the needle most.
 
 The businesses that get the best results from AI consulting are the ones that walk in knowing their problem. The diagnostic gets you there in 6 minutes.`,
       },

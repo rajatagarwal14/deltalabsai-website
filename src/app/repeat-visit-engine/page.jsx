@@ -2,8 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 
-const CAL = "https://cal.com/ag-ventures-qbqxax/30min";
-const WA = "https://wa.me/917011402167?text=Hi%2C%20I%27d%20like%20to%20know%20more%20about%20the%20Repeat-Visit%20Engine";
+const MAIL = "mailto:neil@mail.deltalabsai.com";
 
 function useFade() {
   const r = useRef(null);
@@ -71,7 +70,7 @@ export default function RepeatVisitEnginePage() {
           </a>
           <div style={{ display: "flex", gap: 16, alignItems: "center" }}>
             <a href="/blog" style={{ fontSize: 14, color: "#52525b", textDecoration: "none" }}>Blog</a>
-            <Btn href={WA} v="primary" style={{ padding: "9px 20px", fontSize: 13 }}>WhatsApp Us</Btn>
+            <Btn href={MAIL} v="primary" style={{ padding: "9px 20px", fontSize: 13 }}>Write to us</Btn>
           </div>
         </div>
       </nav>
@@ -87,8 +86,7 @@ export default function RepeatVisitEnginePage() {
             Three automated WhatsApp sequences that bring patients back on schedule, recover no-shows, and collect reviews. Live in 7 days or you pay nothing.
           </p>
           <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
-            <Btn href={WA}>Message Us on WhatsApp <Ic.Arr /></Btn>
-            <Btn href={CAL} v="secondary">Book a Demo</Btn>
+            <Btn href={MAIL}>Send a short written enquiry <Ic.Arr /></Btn>
           </div>
         </F>
       </section>
@@ -181,8 +179,7 @@ export default function RepeatVisitEnginePage() {
             Send us your patient list and we go live within 7 days. If it doesn't lift your repeat bookings in 30 days, you get every dirham back.
           </p>
           <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
-            <Btn href={WA}>Message Us on WhatsApp <Ic.Arr /></Btn>
-            <Btn href={CAL} v="secondary">Book a Demo</Btn>
+            <Btn href={MAIL}>Send a short written enquiry <Ic.Arr /></Btn>
           </div>
         </F>
       </section>

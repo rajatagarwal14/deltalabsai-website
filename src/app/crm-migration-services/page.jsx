@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-const CAL = "https://cal.com/ag-ventures-qbqxax/30min";
+const MAIL = "mailto:neil@mail.deltalabsai.com";
 
 const PHASES = [
   { n: "1", h: "Audit", b: "Record counts per object, custom fields in genuine use, attachments, and the duplicates already in the source. Written down, because these are the numbers we verify against later." },
@@ -89,7 +89,7 @@ export default function CrmMigrationServicesPage() {
         <p style={{ ...p, fontSize: 19, maxWidth: 620, margin: "0 auto 30px" }}>
           Audit, field mapping, staged load, and verification against source counts before cutover. Fixed scope, about three weeks, and the old system stays intact until you say otherwise.
         </p>
-        <a href={CAL} style={btn}>Book a migration scoping call</a>
+        <a href={MAIL} style={btn}>Send a short written enquiry</a>
       </section>
 
       <section style={{ ...section, padding: "44px 24px" }}>
@@ -172,7 +172,7 @@ export default function CrmMigrationServicesPage() {
           <Link href="/blog/crm-service-businesses" style={{ color: "#6366f1" }}>step by step CRM data migration guide</Link>{" "}
           covers the same five phases, the pre-migration checklist, and the failure modes to watch for.
         </p>
-        <a href={CAL} style={btn}>Book a migration scoping call</a>
+        <a href={MAIL} style={btn}>Send a short written enquiry</a>
       </section>
       {/* Footer */}
       <footer style={{ borderTop: "1px solid #f4f4f5", padding: "32px 24px", textAlign: "center", marginTop: 64 }}>

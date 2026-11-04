@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import { useRegionPricing } from "../lib/useRegion";
 
 const DIAG = "/diagnostic";
-const BOOK = "https://cal.com/ag-ventures-qbqxax/30min";
+const MAIL = "mailto:neil@mail.deltalabsai.com";
 
 function useFade() {
   const r = useRef(null);
@@ -66,10 +66,10 @@ function StickyBar() {
 
 const solutions = [
   {
-    tag: "Dental Clinics",
+    tag: "Clinics",
     name: "SmileCRM",
-    desc: "Purpose-built CRM for independent dental clinics. Automates appointment reminders, patient recall, review requests, and WhatsApp follow-ups.",
-    features: ["Automated no-show reminders", "Automated patient recall", "WhatsApp & SMS reminders", "Google review automation"],
+    desc: "CRM for independent clinics and doctors. Patients book on WhatsApp, get a reminder before each visit, and are asked for feedback afterwards.",
+    features: ["WhatsApp booking", "Reminders before each visit", "Patient records and desk billing", "Feedback after a visit"],
     price: "Custom",
     href: "/dental",
     cta: "See SmileCRM",
@@ -79,7 +79,7 @@ const solutions = [
     tag: "Sales & Outreach",
     name: "AI BDR",
     desc: "A fully automated business development system that researches leads, writes personalised emails, follows up, and hands warm replies to you.",
-    features: ["200 personalised sequences/mo", "Replies flagged in your dashboard", "AI-written, not templates"],
+    features: ["Replies flagged in your dashboard", "AI-written, not templates"],
     price: "Custom",
     href: "/ai-bdr",
     cta: "See AI BDR",
@@ -88,8 +88,8 @@ const solutions = [
   {
     tag: "Clinics & SMBs",
     name: "AI Voice Receptionist",
-    desc: "An AI that answers your business phone 24/7, books appointments, and handles FAQs — including after hours.",
-    features: ["24/7 call answering", "Appointment booking", "WhatsApp handoff", "Human escalation"],
+    desc: "A voice receptionist we are still testing. It is not offered to clients yet.",
+    features: ["In testing", "Join the waitlist to hear when that changes"],
     price: "Custom",
     href: "/voice-receptionist",
     cta: "Join Waitlist",
@@ -135,7 +135,7 @@ export default function SolutionsPage() {
           </p>
           <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
             <a href={DIAG} style={{ background: "#18181b", color: "#fff", padding: "13px 28px", borderRadius: 10, fontWeight: 600, fontSize: 15, textDecoration: "none" }}>Take Free Diagnostic</a>
-            <a href={BOOK} style={{ background: "transparent", color: "#18181b", border: "1.5px solid #e4e4e7", padding: "13px 28px", borderRadius: 10, fontWeight: 600, fontSize: 15, textDecoration: "none" }}>Book a Call</a>
+            <a href={MAIL} style={{ background: "transparent", color: "#18181b", border: "1.5px solid #e4e4e7", padding: "13px 28px", borderRadius: 10, fontWeight: 600, fontSize: 15, textDecoration: "none" }}>Book a Call</a>
           </div>
         </F>
       </section>

@@ -59,7 +59,7 @@ export default function AnswerLayout({ eyebrow, title, intro, sections, faqs, js
 
       <div style={styles.ctaBox}>
         <div style={styles.ctaHeading}>Not sure where to start?</div>
-        <div style={styles.ctaSub}>Take the free 3-minute diagnostic — it flags the automations that will save your business the most time, based on your actual setup.</div>
+        <div style={styles.ctaSub}>Take the free diagnostic. It flags the automations most likely to save your business time, based on your actual setup.</div>
         <a href="/diagnostic" style={styles.ctaBtn}>Get your free diagnostic →</a>
       </div>
     </main>

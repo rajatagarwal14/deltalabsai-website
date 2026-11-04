@@ -2,107 +2,9 @@
 
 import { useState, useEffect, useRef } from "react";
 
-const CAL = "https://cal.com/ag-ventures-qbqxax/30min";
+const MAIL = "mailto:neil@mail.deltalabsai.com";
 const ECOSYSTEM_API = "https://delta-labs-ecosystem.vercel.app";
 
-// 200-row synthetic benchmark dataset (city, score) — used for percentile until
-// the clinic_score_submissions table is created via database/clinic_score_setup.sql
-const BENCHMARK = [
-  // Mumbai (40)
-  {c:"Mumbai",s:18},{c:"Mumbai",s:72},{c:"Mumbai",s:45},{c:"Mumbai",s:85},{c:"Mumbai",s:30},
-  {c:"Mumbai",s:62},{c:"Mumbai",s:55},{c:"Mumbai",s:78},{c:"Mumbai",s:25},{c:"Mumbai",s:48},
-  {c:"Mumbai",s:67},{c:"Mumbai",s:10},{c:"Mumbai",s:38},{c:"Mumbai",s:90},{c:"Mumbai",s:42},
-  {c:"Mumbai",s:58},{c:"Mumbai",s:35},{c:"Mumbai",s:74},{c:"Mumbai",s:20},{c:"Mumbai",s:50},
-  {c:"Mumbai",s:82},{c:"Mumbai",s:15},{c:"Mumbai",s:44},{c:"Mumbai",s:69},{c:"Mumbai",s:5},
-  {c:"Mumbai",s:32},{c:"Mumbai",s:76},{c:"Mumbai",s:53},{c:"Mumbai",s:40},{c:"Mumbai",s:63},
-  {c:"Mumbai",s:28},{c:"Mumbai",s:87},{c:"Mumbai",s:47},{c:"Mumbai",s:60},{c:"Mumbai",s:22},
-  {c:"Mumbai",s:56},{c:"Mumbai",s:80},{c:"Mumbai",s:12},{c:"Mumbai",s:37},{c:"Mumbai",s:65},
-  // Delhi (30)
-  {c:"Delhi",s:35},{c:"Delhi",s:70},{c:"Delhi",s:20},{c:"Delhi",s:85},{c:"Delhi",s:48},
-  {c:"Delhi",s:62},{c:"Delhi",s:15},{c:"Delhi",s:55},{c:"Delhi",s:78},{c:"Delhi",s:30},
-  {c:"Delhi",s:42},{c:"Delhi",s:67},{c:"Delhi",s:8},{c:"Delhi",s:52},{c:"Delhi",s:90},
-  {c:"Delhi",s:25},{c:"Delhi",s:45},{c:"Delhi",s:73},{c:"Delhi",s:18},{c:"Delhi",s:58},
-  {c:"Delhi",s:80},{c:"Delhi",s:38},{c:"Delhi",s:65},{c:"Delhi",s:12},{c:"Delhi",s:50},
-  {c:"Delhi",s:75},{c:"Delhi",s:32},{c:"Delhi",s:60},{c:"Delhi",s:22},{c:"Delhi",s:88},
-  // Bengaluru (25)
-  {c:"Bengaluru",s:40},{c:"Bengaluru",s:76},{c:"Bengaluru",s:22},{c:"Bengaluru",s:58},{c:"Bengaluru",s:82},
-  {c:"Bengaluru",s:35},{c:"Bengaluru",s:65},{c:"Bengaluru",s:15},{c:"Bengaluru",s:48},{c:"Bengaluru",s:72},
-  {c:"Bengaluru",s:28},{c:"Bengaluru",s:55},{c:"Bengaluru",s:90},{c:"Bengaluru",s:42},{c:"Bengaluru",s:68},
-  {c:"Bengaluru",s:10},{c:"Bengaluru",s:50},{c:"Bengaluru",s:79},{c:"Bengaluru",s:32},{c:"Bengaluru",s:62},
-  {c:"Bengaluru",s:18},{c:"Bengaluru",s:45},{c:"Bengaluru",s:73},{c:"Bengaluru",s:25},{c:"Bengaluru",s:85},
-  // Pune (20)
-  {c:"Pune",s:38},{c:"Pune",s:68},{c:"Pune",s:20},{c:"Pune",s:82},{c:"Pune",s:45},
-  {c:"Pune",s:60},{c:"Pune",s:15},{c:"Pune",s:52},{c:"Pune",s:77},{c:"Pune",s:28},
-  {c:"Pune",s:42},{c:"Pune",s:70},{c:"Pune",s:10},{c:"Pune",s:55},{c:"Pune",s:88},
-  {c:"Pune",s:33},{c:"Pune",s:65},{c:"Pune",s:22},{c:"Pune",s:48},{c:"Pune",s:75},
-  // Chennai (10)
-  {c:"Chennai",s:45},{c:"Chennai",s:72},{c:"Chennai",s:18},{c:"Chennai",s:85},{c:"Chennai",s:38},
-  {c:"Chennai",s:60},{c:"Chennai",s:25},{c:"Chennai",s:52},{c:"Chennai",s:78},{c:"Chennai",s:32},
-  // Hyderabad (10)
-  {c:"Hyderabad",s:42},{c:"Hyderabad",s:68},{c:"Hyderabad",s:12},{c:"Hyderabad",s:80},{c:"Hyderabad",s:48},
-  {c:"Hyderabad",s:63},{c:"Hyderabad",s:22},{c:"Hyderabad",s:55},{c:"Hyderabad",s:87},{c:"Hyderabad",s:35},
-  // Jaipur (7)
-  {c:"Jaipur",s:30},{c:"Jaipur",s:62},{c:"Jaipur",s:18},{c:"Jaipur",s:75},{c:"Jaipur",s:45},{c:"Jaipur",s:82},{c:"Jaipur",s:38},
-  // Ahmedabad (7)
-  {c:"Ahmedabad",s:52},{c:"Ahmedabad",s:70},{c:"Ahmedabad",s:28},{c:"Ahmedabad",s:85},{c:"Ahmedabad",s:42},{c:"Ahmedabad",s:65},{c:"Ahmedabad",s:15},
-  // Kolkata (5)
-  {c:"Kolkata",s:35},{c:"Kolkata",s:68},{c:"Kolkata",s:22},{c:"Kolkata",s:78},{c:"Kolkata",s:48},
-  // Noida (5)
-  {c:"Noida",s:55},{c:"Noida",s:72},{c:"Noida",s:18},{c:"Noida",s:85},{c:"Noida",s:40},
-  // Other Indian cities (21)
-  {c:"Lucknow",s:30},{c:"Lucknow",s:58},{c:"Lucknow",s:42},{c:"Lucknow",s:75},
-  {c:"Surat",s:25},{c:"Surat",s:62},{c:"Surat",s:45},{c:"Surat",s:80},
-  {c:"Chandigarh",s:52},{c:"Chandigarh",s:70},{c:"Chandigarh",s:15},{c:"Chandigarh",s:85},
-  {c:"Kochi",s:38},{c:"Kochi",s:65},{c:"Kochi",s:22},{c:"Kochi",s:78},
-  {c:"Indore",s:42},{c:"Indore",s:68},{c:"Indore",s:20},
-  {c:"Nagpur",s:48},{c:"Nagpur",s:75},
-  // Sydney (12)
-  {c:"Sydney",s:55},{c:"Sydney",s:78},{c:"Sydney",s:32},{c:"Sydney",s:88},{c:"Sydney",s:45},
-  {c:"Sydney",s:67},{c:"Sydney",s:20},{c:"Sydney",s:74},{c:"Sydney",s:58},{c:"Sydney",s:82},
-  {c:"Sydney",s:40},{c:"Sydney",s:92},
-  // Melbourne (10)
-  {c:"Melbourne",s:48},{c:"Melbourne",s:72},{c:"Melbourne",s:25},{c:"Melbourne",s:85},{c:"Melbourne",s:38},
-  {c:"Melbourne",s:63},{c:"Melbourne",s:15},{c:"Melbourne",s:80},{c:"Melbourne",s:52},{c:"Melbourne",s:90},
-  // Singapore (10)
-  {c:"Singapore",s:60},{c:"Singapore",s:82},{c:"Singapore",s:35},{c:"Singapore",s:92},{c:"Singapore",s:50},
-  {c:"Singapore",s:70},{c:"Singapore",s:28},{c:"Singapore",s:78},{c:"Singapore",s:45},{c:"Singapore",s:88},
-  // Dubai (15)
-  {c:"Dubai",s:52},{c:"Dubai",s:80},{c:"Dubai",s:30},{c:"Dubai",s:90},{c:"Dubai",s:48},
-  {c:"Dubai",s:68},{c:"Dubai",s:18},{c:"Dubai",s:75},{c:"Dubai",s:42},{c:"Dubai",s:85},
-  {c:"Dubai",s:35},{c:"Dubai",s:62},{c:"Dubai",s:22},{c:"Dubai",s:78},{c:"Dubai",s:55},
-  // Abu Dhabi (8)
-  {c:"Abu Dhabi",s:58},{c:"Abu Dhabi",s:76},{c:"Abu Dhabi",s:38},{c:"Abu Dhabi",s:88},
-  {c:"Abu Dhabi",s:45},{c:"Abu Dhabi",s:70},{c:"Abu Dhabi",s:25},{c:"Abu Dhabi",s:82},
-  // Kuala Lumpur (8)
-  {c:"Kuala Lumpur",s:42},{c:"Kuala Lumpur",s:68},{c:"Kuala Lumpur",s:22},{c:"Kuala Lumpur",s:80},
-  {c:"Kuala Lumpur",s:55},{c:"Kuala Lumpur",s:72},{c:"Kuala Lumpur",s:35},{c:"Kuala Lumpur",s:85},
-  // London (15)
-  {c:"London",s:62},{c:"London",s:85},{c:"London",s:40},{c:"London",s:95},{c:"London",s:55},
-  {c:"London",s:72},{c:"London",s:28},{c:"London",s:80},{c:"London",s:48},{c:"London",s:90},
-  {c:"London",s:35},{c:"London",s:68},{c:"London",s:20},{c:"London",s:78},{c:"London",s:58},
-  // Manchester (8)
-  {c:"Manchester",s:50},{c:"Manchester",s:74},{c:"Manchester",s:32},{c:"Manchester",s:86},
-  {c:"Manchester",s:42},{c:"Manchester",s:65},{c:"Manchester",s:18},{c:"Manchester",s:80},
-  // Dublin (6)
-  {c:"Dublin",s:55},{c:"Dublin",s:78},{c:"Dublin",s:38},{c:"Dublin",s:88},
-  {c:"Dublin",s:45},{c:"Dublin",s:70},
-  // Toronto (10)
-  {c:"Toronto",s:58},{c:"Toronto",s:82},{c:"Toronto",s:35},{c:"Toronto",s:90},{c:"Toronto",s:50},
-  {c:"Toronto",s:72},{c:"Toronto",s:25},{c:"Toronto",s:78},{c:"Toronto",s:45},{c:"Toronto",s:88},
-  // Vancouver (8)
-  {c:"Vancouver",s:62},{c:"Vancouver",s:80},{c:"Vancouver",s:40},{c:"Vancouver",s:92},
-  {c:"Vancouver",s:52},{c:"Vancouver",s:75},{c:"Vancouver",s:30},{c:"Vancouver",s:85},
-  // New York (12)
-  {c:"New York",s:65},{c:"New York",s:88},{c:"New York",s:42},{c:"New York",s:95},{c:"New York",s:55},
-  {c:"New York",s:78},{c:"New York",s:30},{c:"New York",s:82},{c:"New York",s:48},{c:"New York",s:92},
-  {c:"New York",s:38},{c:"New York",s:72},
-  // Los Angeles (10)
-  {c:"Los Angeles",s:60},{c:"Los Angeles",s:85},{c:"Los Angeles",s:38},{c:"Los Angeles",s:90},{c:"Los Angeles",s:52},
-  {c:"Los Angeles",s:75},{c:"Los Angeles",s:25},{c:"Los Angeles",s:80},{c:"Los Angeles",s:45},{c:"Los Angeles",s:88},
-  // Other (10)
-  {c:"Other",s:45},{c:"Other",s:68},{c:"Other",s:20},{c:"Other",s:80},{c:"Other",s:35},
-  {c:"Other",s:58},{c:"Other",s:15},{c:"Other",s:72},{c:"Other",s:42},{c:"Other",s:88},
-];
 
 const QUESTIONS = [
   {
@@ -114,30 +16,30 @@ const QUESTIONS = [
       { label: "No", points: 0 },
     ],
     improvementLabel: "Google Business Profile",
-    improvementTip: "A verified Google Business Profile makes your clinic visible in local search and maps — it's one of the main sources of new patients.",
+    improvementTip: "A verified Google Business Profile makes your clinic visible in local search and maps, where many patients look for a clinic.",
   },
   {
     id: "reviews",
     text: "How many Google reviews does your clinic have?",
     options: [
-      { label: "50 or more", points: 20 },
-      { label: "11–49 reviews", points: 12 },
-      { label: "1–10 reviews", points: 5 },
+      { label: "Lots of reviews", points: 20 },
+      { label: "Some reviews", points: 12 },
+      { label: "Only a handful", points: 5 },
       { label: "None", points: 0 },
     ],
     improvementLabel: "Google reviews",
-    improvementTip: "Automated review requests after each visit help close this gap.",
+    improvementTip: "Asking patients for feedback after each visit is a simple place to start.",
   },
   {
     id: "review_response",
     text: "Do you respond to patient reviews?",
     options: [
-      { label: "Yes, within 24 hours", points: 15 },
+      { label: "Yes, usually the same day", points: 15 },
       { label: "Sometimes", points: 7 },
       { label: "Rarely or never", points: 0 },
     ],
     improvementLabel: "Review responses",
-    improvementTip: "Responding to reviews (especially negative ones) is built to lift conversion. Most clinics skip this — it's a quick win.",
+    improvementTip: "Replying to reviews, especially negative ones, shows patients that you listen. It's a quick win.",
   },
   {
     id: "booking",
@@ -154,31 +56,31 @@ const QUESTIONS = [
     id: "reminders",
     text: "Do you send automated appointment reminders?",
     options: [
-      { label: "Yes — WhatsApp or SMS auto-reminders", points: 15 },
+      { label: "Yes, automatic reminders on WhatsApp or by text", points: 15 },
       { label: "Manual reminder calls", points: 5 },
       { label: "No reminders sent", points: 0 },
     ],
     improvementLabel: "Appointment reminders",
-    improvementTip: "Automated WhatsApp and SMS reminders are built to cut no-shows. Manual calls cost front-desk time and still miss patients.",
+    improvementTip: "Automatic reminders before each visit save front-desk time. Manual calls cost time and still miss patients.",
   },
   {
     id: "followup",
     text: "Do you follow up with patients after treatment?",
     options: [
-      { label: "Yes — automated follow-up messages", points: 10 },
+      { label: "Yes, automatic follow-up messages", points: 10 },
       { label: "Sometimes, manually", points: 4 },
       { label: "Never", points: 0 },
     ],
     improvementLabel: "Post-treatment follow-up",
-    improvementTip: "Post-treatment follow-ups drive recall visits and online reviews. Automated messages run 24/7 without front-desk time.",
+    improvementTip: "A follow-up after treatment keeps patients in touch with your clinic and invites their feedback.",
   },
 ];
 
 const TIERS = [
-  { min: 0,  max: 30,  name: "Digital Newcomer",  emoji: "🌱", stars: 1, color: "#ef4444", message: "Competitors are pulling ahead. Here's where to start." },
-  { min: 31, max: 55,  name: "Getting Started",   emoji: "📈", stars: 2, color: "#f97316", message: "You're doing the basics. These gaps are costing you patients." },
-  { min: 56, max: 75,  name: "Digital-Forward",   emoji: "⭐", stars: 3, color: "#eab308", message: "Ahead of our illustrative benchmark. One more step to the top tier." },
-  { min: 76, max: 100, name: "AI-Ready Clinic",   emoji: "🏆", stars: 4, color: "#22c55e", message: "Your clinic is in the top tier of our scoring for digital readiness." },
+  { min: 0,  max: 30,  name: "Digital Newcomer",  emoji: "🌱", stars: 1, color: "#ef4444", message: "Here's where to start." },
+  { min: 31, max: 55,  name: "Getting Started",   emoji: "📈", stars: 2, color: "#f97316", message: "You're doing the basics. Here is what to work on next." },
+  { min: 56, max: 75,  name: "Digital-Forward",   emoji: "⭐", stars: 3, color: "#eab308", message: "You're doing well. A few gaps are left." },
+  { min: 76, max: 100, name: "AI-Ready Clinic",   emoji: "🏆", stars: 4, color: "#22c55e", message: "Your clinic scored in the top tier of this self-check." },
 ];
 
 const CITIES = [
@@ -233,22 +135,6 @@ function getWeakAreas(answers) {
     .slice(0, 3);
 }
 
-// Percentile from embedded benchmark — no DB needed until clinic_score_submissions table is live
-// Returns {pct, isGlobal} — isGlobal=true when benchmarked against full dataset (city blank or not in dataset)
-function getPercentileLocal(city, score) {
-  if (!city) {
-    const below = BENCHMARK.filter(r => r.s < score).length;
-    return { pct: Math.round((below / BENCHMARK.length) * 100), isGlobal: true };
-  }
-  const cityRows = BENCHMARK.filter(r => r.c === city);
-  if (cityRows.length > 5) {
-    const below = cityRows.filter(r => r.s < score).length;
-    return { pct: Math.round((below / cityRows.length) * 100), isGlobal: false };
-  }
-  const below = BENCHMARK.filter(r => r.s < score).length;
-  return { pct: Math.round((below / BENCHMARK.length) * 100), isGlobal: true };
-}
-
 // Email capture via ecosystem leads API (requires email, no new table needed)
 async function saveLead({ name, email, city, score, tier }) {
   if (!email) return;
@@ -273,10 +159,6 @@ function ProgressBar({ current, total }) {
   const pct = Math.round(((current) / total) * 100);
   return (
     <div style={{ marginBottom: 8 }}>
-      <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 6 }}>
-        <span style={{ fontSize: 13, color: "#94a3b8", fontWeight: 500 }}>Question {current} of {total}</span>
-        <span style={{ fontSize: 13, color: "#94a3b8" }}>{pct}%</span>
-      </div>
       <div style={{ height: 6, background: "#1e293b", borderRadius: 99 }}>
         <div style={{
           height: "100%",
@@ -314,8 +196,7 @@ function ScoreRing({ score, tier }) {
         position: "absolute", inset: 0, display: "flex", flexDirection: "column",
         alignItems: "center", justifyContent: "center",
       }}>
-        <span style={{ fontSize: 36, fontWeight: 800, color: tier.color, lineHeight: 1 }}>{score}</span>
-        <span style={{ fontSize: 13, color: "#64748b" }}>/ 100</span>
+        <span style={{ fontSize: 40, lineHeight: 1 }} aria-label={tier.name}>{tier.emoji}</span>
       </div>
     </div>
   );
@@ -330,13 +211,11 @@ export default function ClinicScorePage() {
   const [currentQ, setCurrentQ] = useState(0);
   const [score, setScore] = useState(0);
   const [tier, setTier] = useState(null);
-  const [percentile, setPercentile] = useState(null);
   const [weakAreas, setWeakAreas] = useState([]);
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [emailSent, setEmailSent] = useState(false);
   const [emailSending, setEmailSending] = useState(false);
-  const [isGlobalPercentile, setIsGlobalPercentile] = useState(false);
   const [citySearch, setCitySearch] = useState("");
   const [showCityDropdown, setShowCityDropdown] = useState(false);
   const topRef = useRef(null);
@@ -367,12 +246,8 @@ export default function ClinicScorePage() {
       answersJson[q.id] = finalAnswers[i] != null ? q.options[finalAnswers[i]]?.label : null;
     });
 
-    const { pct, isGlobal } = getPercentileLocal(city, finalScore);
-
     setScore(finalScore);
     setTier(finalTier);
-    setPercentile(pct);
-    setIsGlobalPercentile(isGlobal);
     setWeakAreas(getWeakAreas(finalAnswers));
     setStep("result");
   }
@@ -389,7 +264,7 @@ export default function ClinicScorePage() {
   }
 
   function buildShareText() {
-    return `Just checked my clinic's digital readiness score and got ${score}/100. Get yours free: deltalabsai.com/clinic-score`;
+    return `Just checked my clinic's digital readiness with the free Clinic Digital Score and came out as "${tier?.name}". Try it: deltalabsai.com/clinic-score`;
   }
 
   function buildWhatsAppLink() {
@@ -417,15 +292,14 @@ export default function ClinicScorePage() {
       <div ref={topRef} style={pageWrap}>
         <div style={card}>
           <div style={{ textAlign: "center", marginBottom: 32 }}>
-            <div style={badge}>🏥 Free Benchmark Tool</div>
-            <h1 style={h1}>How does your dental clinic rank globally?</h1>
-            <p style={sub}>Free 90-second benchmark against an illustrative dataset (not real clinic data). No email required to see your score.</p>
+            <div style={badge}>🏥 Free Self-Check</div>
+            <h1 style={h1}>How digitally ready is your clinic?</h1>
+            <p style={sub}>A short, free self-check of how patients find, book and hear from your clinic. No email required to see your result.</p>
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: 16, marginBottom: 32 }}>
             {[
-              { icon: "⚡", t: "6 quick questions", d: "Takes under 90 seconds" },
-              { icon: "📊", t: "Percentile rank", d: "Against an illustrative benchmark dataset" },
-              { icon: "🎯", t: "Top 3 improvement areas", d: "Specific, actionable gaps" },
+              { icon: "⚡", t: "A few quick questions", d: "Multiple choice, no typing" },
+              { icon: "🎯", t: "Your main improvement areas", d: "Specific, actionable gaps" },
             ].map(f => (
               <div key={f.t} style={featureRow}>
                 <span style={{ fontSize: 24 }}>{f.icon}</span>
@@ -453,7 +327,7 @@ export default function ClinicScorePage() {
         <div style={card}>
           <ProgressBar current={0} total={QUESTIONS.length} />
           <h2 style={{ ...h2, marginTop: 24 }}>Which city is your clinic in? <span style={{ color: "#475569", fontWeight: 400, fontSize: 16 }}>(optional)</span></h2>
-          <p style={sub}>Enter your city for a local percentile, or skip to benchmark against dental clinics globally.</p>
+          <p style={sub}>These details are optional and only shape your result screen.</p>
 
           <div style={{ position: "relative", marginBottom: 16 }}>
             <input
@@ -499,7 +373,7 @@ export default function ClinicScorePage() {
             style={primaryBtn}
             onClick={() => { setStep("q"); setCurrentQ(0); }}
           >
-            {city ? "Continue →" : "Skip & benchmark globally →"}
+            {city ? "Continue →" : "Skip →"}
           </button>
         </div>
       </div>
@@ -545,8 +419,8 @@ export default function ClinicScorePage() {
       <div ref={topRef} style={pageWrap}>
         <div style={{ ...card, textAlign: "center" }}>
           <div style={{ fontSize: 48, marginBottom: 16 }}>⚡</div>
-          <h2 style={h2}>Calculating your score...</h2>
-          <p style={{ color: "#64748b" }}>{city ? `Comparing against clinics in ${city} and worldwide` : "Comparing against dental clinics worldwide"}</p>
+          <h2 style={h2}>Working out your result...</h2>
+          <p style={{ color: "#64748b" }}>Checking your answers</p>
           <div style={spinner} />
         </div>
       </div>
@@ -554,10 +428,6 @@ export default function ClinicScorePage() {
   }
 
   if (step === "result" && tier) {
-    const pctText = percentile != null
-      ? (isGlobalPercentile ? `Top ${percentile}% globally` : `Top ${percentile}% in ${city}`)
-      : "Your score";
-
     return (
       <div ref={topRef} style={pageWrap}>
         <div style={card}>
@@ -581,25 +451,16 @@ export default function ClinicScorePage() {
             <p style={{ color: "#94a3b8", fontSize: 15, margin: 0 }}>{tier.message}</p>
           </div>
 
-          {/* Percentile */}
-          {percentile != null && (
-            <div style={percentileBox}>
-              <div style={{ fontSize: 28, fontWeight: 800, color: "#818cf8" }}>Top {percentile}%</div>
-              <div style={{ color: "#94a3b8", fontSize: 14 }}>{isGlobalPercentile ? "of our illustrative global benchmark" : "of our illustrative " + city + " benchmark"}</div>
-            </div>
-          )}
-
           {/* Weak areas */}
           {weakAreas.length > 0 && (
             <div style={{ marginBottom: 28 }}>
               <h3 style={{ color: "#f1f5f9", fontSize: 16, fontWeight: 700, marginBottom: 14 }}>
-                📍 Your top improvement areas
+                📍 Your main improvement areas
               </h3>
               {weakAreas.map(({ q, gap, earned, maxPoints }) => (
                 <div key={q.id} style={improvementCard}>
                   <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 6 }}>
                     <span style={{ fontWeight: 600, color: "#f1f5f9", fontSize: 14 }}>{q.improvementLabel}</span>
-                    <span style={{ fontSize: 12, color: "#f97316", fontWeight: 600 }}>+{gap} pts possible</span>
                   </div>
                   <p style={{ fontSize: 13, color: "#94a3b8", margin: 0, lineHeight: 1.5 }}>{q.improvementTip}</p>
                   <div style={{ marginTop: 8, height: 4, background: "#1e293b", borderRadius: 99 }}>
@@ -622,17 +483,17 @@ export default function ClinicScorePage() {
               Want to close these gaps?
             </p>
             <p style={{ color: "#94a3b8", fontSize: 13, marginBottom: 16 }}>
-              SmileCRM automates reminders, reviews, and follow-ups in one setup.
+              SmileCRM books visits on WhatsApp, sends a reminder before each visit and asks patients for feedback afterwards.
             </p>
-            <a href={CAL} target="_blank" rel="noopener noreferrer" style={primaryBtn}>
-              Book a free 15-minute demo →
+            <a href={MAIL} style={primaryBtn}>
+              Send a short written enquiry →
             </a>
           </div>
 
           {/* Share section */}
           <div style={{ marginTop: 28, paddingTop: 24, borderTop: "1px solid #1e293b" }}>
             <p style={{ color: "#64748b", fontSize: 13, textAlign: "center", marginBottom: 14 }}>
-              Share your score with other dental clinic owners
+              Share this self-check with other clinic owners
             </p>
             <a
               href={buildWhatsAppLink()}
@@ -688,11 +549,9 @@ export default function ClinicScorePage() {
               setCurrentQ(0);
               setScore(0);
               setTier(null);
-              setPercentile(null);
               setWeakAreas([]);
               setEmail("");
               setEmailSent(false);
-              setIsGlobalPercentile(false);
               setDoctorName("");
               setClinicName("");
               setCity("");
@@ -862,15 +721,6 @@ const dropdownItem = {
   fontSize: 14,
   cursor: "pointer",
   borderBottom: "1px solid #0f172a",
-};
-
-const percentileBox = {
-  textAlign: "center",
-  background: "#1e1b4b",
-  border: "1px solid #312e81",
-  borderRadius: 14,
-  padding: "20px",
-  marginBottom: 24,
 };
 
 const improvementCard = {

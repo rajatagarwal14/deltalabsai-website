@@ -1,11 +1,10 @@
 export const metadata = {
-  title: "Patient Recall Software and Appointment Reminders for Dental Clinics | Delta Labs AI",
+  title: "WhatsApp Booking and Appointment Reminders for Dental Clinics | Delta Labs AI",
   description:
-    "Patient recall software and automated appointment reminders for dental clinics. Bring lapsed patients back, cut no-shows with WhatsApp and SMS reminders, and collect reviews without front-desk effort.",
+    "SmileCRM for independent dental clinics: patients book on WhatsApp, get a reminder before each visit, and your front desk stops chasing confirmations. Pricing by quote.",
   keywords: [
-    "patient recall software",
     "dental appointment reminder software",
-    "dental patient recall system",
+    "dental WhatsApp booking",
     "dental clinic automation",
     "appointment reminder software dental",
   ],
@@ -13,9 +12,9 @@ export const metadata = {
     canonical: "https://deltalabsai.com/dental",
   },
   openGraph: {
-    title: "Patient Recall Software and Appointment Reminders for Dental Clinics | Delta Labs AI",
+    title: "WhatsApp Booking and Appointment Reminders for Dental Clinics | Delta Labs AI",
     description:
-      "Automate appointment reminders, patient recall, and review collection. Automated reminders built to cut no-shows.",
+      "Patients book on WhatsApp and get a reminder before each visit. Built and run by Delta Labs AI for independent clinics.",
     url: "https://deltalabsai.com/dental",
     siteName: "Delta Labs AI",
     type: "website",

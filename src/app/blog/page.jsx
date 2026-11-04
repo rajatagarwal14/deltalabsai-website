@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { posts } from "./posts";
 
-const CAL = "https://cal.com/ag-ventures-qbqxax/30min";
+const MAIL = "mailto:neil@mail.deltalabsai.com";
 
 // BreadcrumbList for the blog index only. Post pages emit their own full trail
 // in blog/[slug]/page.jsx; emitting this from the layout too made them conflict.
@@ -196,7 +196,7 @@ export default function BlogIndexPage() {
             Ready to transform your business?
           </h2>
           <p style={{ fontSize: 16, color: "#94A3B8", lineHeight: 1.7, margin: "0 0 28px" }}>
-            Start with our free 3-minute diagnostic. Get your 5-dimension score and a specific quick win you can implement this week.
+            Start with our free diagnostic. Get your business score and a specific quick win you can act on.
           </p>
           <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
             <a href="/diagnostic" style={{
@@ -206,10 +206,10 @@ export default function BlogIndexPage() {
               onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.boxShadow = "0 8px 24px rgba(255,255,255,0.15)"; }}
               onMouseLeave={e => { e.currentTarget.style.transform = ""; e.currentTarget.style.boxShadow = ""; }}
             >Start Free Diagnostic <Ic.Arr /></a>
-            <a href="#cal-book" style={{
+            <a href="mailto:neil@mail.deltalabsai.com" style={{
               display: "inline-flex", alignItems: "center", gap: 8, padding: "14px 28px", borderRadius: 10,
               background: "transparent", color: "#94A3B8", border: "1.5px solid #334155", fontWeight: 600, fontSize: 15, textDecoration: "none", transition: "all 0.2s",
-            }}>Book a Free Call</a>
+            }}>Send a short written enquiry</a>
           </div>
         </div>
       </section>
@@ -222,7 +222,7 @@ export default function BlogIndexPage() {
             <p style={{ fontSize: 12, color: "#64748B", margin: 0 }}>AI-powered business consulting for growing companies.</p>
           </div>
           <div style={{ display: "flex", gap: 14, alignItems: "center" }}>
-            <a href="#cal-book" style={{ color: "#64748B", transition: "color 0.2s" }} onMouseEnter={e => e.currentTarget.style.color = "#fff"} onMouseLeave={e => e.currentTarget.style.color = "#64748B"}><Ic.Mail /></a>
+            <a href="mailto:neil@mail.deltalabsai.com" style={{ color: "#64748B", transition: "color 0.2s" }} onMouseEnter={e => e.currentTarget.style.color = "#fff"} onMouseLeave={e => e.currentTarget.style.color = "#64748B"}><Ic.Mail /></a>
             <a href="/linkedin" aria-label="LinkedIn" style={{ color: "#64748B", transition: "color 0.2s" }} onMouseEnter={e => e.currentTarget.style.color = "#fff"} onMouseLeave={e => e.currentTarget.style.color = "#64748B"}><Ic.LI /></a>
             <a href="/facebook" aria-label="Facebook" style={{ color: "#64748B", transition: "color 0.2s" }} onMouseEnter={e => e.currentTarget.style.color = "#fff"} onMouseLeave={e => e.currentTarget.style.color = "#64748B"}><Ic.FB /></a>
           </div>
