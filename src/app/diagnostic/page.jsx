@@ -491,7 +491,7 @@ export default function IntakeForm() {
           <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, fontWeight: 600, color: "#2563EB", textTransform: "uppercase", letterSpacing: "0.08em" }}>Step 1 of {totalSteps}</span>
         </div>
         <h2 style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 26, fontWeight: 800, color: "#0F172A", margin: "0 0 6px", letterSpacing: "-0.02em" }}>Let&apos;s get to know your business</h2>
-        <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 14.5, color: "#6B7280", margin: "0 0 28px", lineHeight: 1.6 }}>This helps us prepare a tailored analysis before your discovery call.</p>
+        <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 14.5, color: "#6B7280", margin: "0 0 28px", lineHeight: 1.6 }}>This helps us tailor your results.</p>
 
         <div style={{ display: "grid", gap: 18 }}>
           {[
@@ -769,11 +769,13 @@ export default function IntakeForm() {
                 if (!crmOk) {
                   setCrmFailed(true);
                   trackGa4Event("diagnostic_crm_failed", { industry: info.industry });
+                  setSubmitError("We could not send your details. Please try again, or email neil@mail.deltalabsai.com.");
+                } else {
+                  setSubmitted(true);
                 }
-                setSubmitted(true);
               } catch (err) {
-                // Even with no-cors, data is sent. Mark as submitted.
-                setSubmitted(true);
+                setCrmFailed(true);
+                setSubmitError("We could not send your details. Please try again, or email neil@mail.deltalabsai.com.");
               } finally {
                 // Fires on both paths. It used to sit at the end of the try, so any throw
                 // from the FORM_ENDPOINT fetch skipped it while the user still saw a
@@ -802,7 +804,7 @@ export default function IntakeForm() {
               <div style={{ fontSize: 36, marginBottom: 8 }}>{"\u2713"}</div>
               <h3 style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 20, fontWeight: 700, color: "#065F46", margin: "0 0 6px" }}>You&apos;re all set, {info.name}!</h3>
               <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 14, color: "#047857", lineHeight: 1.6, margin: 0 }}>
-                Your diagnostic has been received. If you would like us to look at it with you, send a short written enquiry and we reply in writing.{crmFailed ? " We could not save your details automatically, so please email neil@mail.deltalabsai.com and we will pick this up." : ""}
+                Your diagnostic has been received. If you would like us to look at it with you, send a short written enquiry and we reply in writing.
               </p>
             </div>
             <div style={{ textAlign: "center", padding: "20px 28px 24px", background: "#fff", borderRadius: "0 0 14px 14px", border: "1px solid #A7F3D0" }}>
@@ -933,8 +935,8 @@ export default function IntakeForm() {
               {[
                 "Identify your top AI opportunities in minutes",
                 "Receive a custom roadmap built for your industry",
-                "Free — no commitment, no sales call",
-                "Results delivered to your inbox instantly",
+                "Free, no commitment, no sales call",
+                "Results shown on screen",
               ].map((benefit) => (
                 <li key={benefit} style={{ display: "flex", alignItems: "center", gap: 10, fontFamily: "'DM Sans',sans-serif", fontSize: 14, fontWeight: 500, color: "#374151", lineHeight: 1.4 }}>
                   <span style={{ flexShrink: 0, width: 20, height: 20, background: "#EFF6FF", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 11, color: "#2563EB" }}>✓</span>

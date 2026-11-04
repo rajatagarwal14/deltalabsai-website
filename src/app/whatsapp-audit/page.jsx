@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 
 const MAIL = "mailto:neil@mail.deltalabsai.com";
-const CAPTURE_API = "https://delta-labs-ecosystem.vercel.app/api/leads/capture";
+const CAPTURE_API = "/api/leads/capture"; // same-origin route (the ecosystem URL has no CORS headers, so the browser blocked it)
 const BASE_URL = "https://deltalabsai.com/whatsapp-audit";
 
 function useFade() {
@@ -81,7 +81,7 @@ function ResultCard({ label, value, highlight = false, sub = "" }) {
 // Lead capture via the ecosystem's public capture API (validates, resolves org, Telegrams the CEO).
 async function saveLead(data) {
   try {
-    await fetch(CAPTURE_API, {
+    const res = await fetch(CAPTURE_API, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -102,8 +102,11 @@ async function saveLead(data) {
         tags: ["whatsapp_patient_recovery_audit", ...(data.partner ? ["partner_cobrand"] : [])],
       }),
     });
+    if (!res.ok) return false;
+    const body = await res.json().catch(() => null);
+    return !!(body && body.lead);
   } catch (_) {
-    // silent — never block the UX
+    return false;
   }
 }
 
@@ -141,6 +144,7 @@ export default function WhatsappAudit() {
   const [step, setStep] = useState("calc"); // "calc" | "capture" | "done"
   const [form, setForm] = useState({ name: "", email: "", clinic: "" });
   const [submitting, setSubmitting] = useState(false);
+  const [captureError, setCaptureError] = useState("");
   const [copied, setCopied] = useState(false);
   const [linkCopied, setLinkCopied] = useState(false);
 
@@ -164,8 +168,10 @@ export default function WhatsappAudit() {
     e.preventDefault();
     if (!form.email) return;
     setSubmitting(true);
-    await saveLead({ ...form, clinic: form.clinic || clinicName, partner, cur, grade: grade.g, monthlyLoss, annualLoss, recovery, inquiriesPerWeek, slowReplyRate, lossConversion, avgPatientValue });
+    setCaptureError("");
+    const ok = await saveLead({ ...form, clinic: form.clinic || clinicName, partner, cur, grade: grade.g, monthlyLoss, annualLoss, recovery, inquiriesPerWeek, slowReplyRate, lossConversion, avgPatientValue });
     setSubmitting(false);
+    if (!ok) { setCaptureError("We could not send your details. Please try again, or email neil@mail.deltalabsai.com."); return; }
     setStep("done");
   }
 
@@ -318,7 +324,7 @@ export default function WhatsappAudit() {
                 style={{ ...S.btn, ...S.btnPrimary, flex: 2, minWidth: 220 }}
                 onClick={() => setStep("capture")}
               >
-                Get my free recovery plan →
+                Tell us about your clinic →
               </button>
               <button style={{ ...S.shareBtn, background: "rgba(37,211,102,0.12)", border: "1px solid rgba(37,211,102,0.35)", color: "#25D366" }} onClick={handleShare}>
                 💬 Share on WhatsApp
@@ -333,7 +339,7 @@ export default function WhatsappAudit() {
         {step === "capture" && (
           <F d={0}>
             <div style={S.card}>
-              <div style={S.sectionLabel}>Get your personalised recovery plan</div>
+              <div style={S.sectionLabel}>Tell us about your clinic</div>
               <p style={{ fontSize: 14, color: "#94a3b8", marginBottom: 20 }}>
                 We'll send a custom plan showing how SmileCRM's WhatsApp module could help recover an estimated <strong style={{ color: "#86efac" }}>{f(recovery)}/month</strong> for your clinic, based on the assumptions above.
               </p>
@@ -342,8 +348,9 @@ export default function WhatsappAudit() {
                 <input style={S.input} placeholder="Clinic name" value={form.clinic || clinicName} onChange={e => setForm(f => ({ ...f, clinic: e.target.value }))} />
                 <input style={S.input} type="email" placeholder="Email address *" value={form.email} onChange={e => setForm(f => ({ ...f, email: e.target.value }))} required />
                 <button type="submit" style={{ ...S.btn, ...S.btnPrimary }} disabled={submitting}>
-                  {submitting ? "Sending..." : "Send me my recovery plan →"}
+                  {submitting ? "Sending..." : "Send my details →"}
                 </button>
+                {captureError && <p role="alert" style={{ fontSize: 13, color: "#f87171", marginTop: 10 }}>{captureError}</p>}
               </form>
               <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginTop: 10 }}>
                 <button style={{ ...S.btn, ...S.btnSecondary, width: "auto", padding: "10px 20px", fontSize: 13 }} onClick={() => window.location.href = MAIL}>

@@ -3,7 +3,6 @@
 import { useState, useEffect, useRef } from "react";
 
 const MAIL = "mailto:neil@mail.deltalabsai.com";
-const ECOSYSTEM_API = "https://delta-labs-ecosystem.vercel.app";
 
 
 const QUESTIONS = [
@@ -137,9 +136,9 @@ function getWeakAreas(answers) {
 
 // Email capture via ecosystem leads API (requires email, no new table needed)
 async function saveLead({ name, email, city, score, tier }) {
-  if (!email) return;
+  if (!email) return false;
   try {
-    await fetch(`${ECOSYSTEM_API}/api/leads/capture`, {
+    const res = await fetch("/api/leads/capture", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -151,7 +150,12 @@ async function saveLead({ name, email, city, score, tier }) {
         tags: ["clinic_score"],
       }),
     });
-  } catch {}
+    if (!res.ok) return false;
+    const body = await res.json().catch(() => null);
+    return !!(body && body.lead);
+  } catch {
+    return false;
+  }
 }
 
 // ProgressBar
@@ -160,7 +164,7 @@ function ProgressBar({ current, total }) {
   return (
     <div style={{ marginBottom: 8 }}>
       <div style={{ fontSize: 13, color: "#94a3b8", fontWeight: 500, marginBottom: 6 }}>{current === 0 ? "Getting started" : current >= total ? "Last question" : "In progress"}</div>
-      <div role="progressbar" aria-label="Progress" aria-valuetext={current === 0 ? "Getting started" : current >= total ? "Last question" : "In progress"} style={{ height: 6, background: "#1e293b", borderRadius: 99 }}>
+      <div role="progressbar" aria-label="Progress" aria-valuemin={0} aria-valuemax={total} aria-valuenow={current} aria-valuetext={current === 0 ? "Getting started" : current >= total ? "Last question" : "In progress"} style={{ height: 6, background: "#1e293b", borderRadius: 99 }}>
         <div style={{
           height: "100%",
           width: `${pct}%`,
@@ -217,6 +221,7 @@ export default function ClinicScorePage() {
   const [phone, setPhone] = useState("");
   const [emailSent, setEmailSent] = useState(false);
   const [emailSending, setEmailSending] = useState(false);
+  const [emailError, setEmailError] = useState("");
   const [citySearch, setCitySearch] = useState("");
   const [showCityDropdown, setShowCityDropdown] = useState(false);
   const topRef = useRef(null);
@@ -257,10 +262,10 @@ export default function ClinicScorePage() {
     e.preventDefault();
     if (!email) return;
     setEmailSending(true);
-    try {
-      await saveLead({ name: doctorName || clinicName, email, city, score, tier: tier?.name });
-      setEmailSent(true);
-    } catch {}
+    setEmailError("");
+    const ok = await saveLead({ name: doctorName || clinicName, email, city, score, tier: tier?.name });
+    if (ok) setEmailSent(true);
+    else setEmailError("We could not send your details. Please try again, or email neil@mail.deltalabsai.com.");
     setEmailSending(false);
   }
 
@@ -532,6 +537,7 @@ export default function ClinicScorePage() {
                 <button type="submit" style={{ ...primaryBtn, background: "#1e293b", border: "1px solid #334155" }} disabled={emailSending}>
                   {emailSending ? "Sending..." : "Send my email"}
                 </button>
+                {emailError && <p role="alert" style={{ fontSize: 13, color: "#f87171", margin: 0 }}>{emailError}</p>}
               </form>
             </div>
           ) : (
