@@ -189,11 +189,11 @@ export default function SmileCRMPage() {
           {[
             "Booking on WhatsApp, with open times taken from each doctor's working hours, leave and booked slots.",
             "Reminders on WhatsApp before each visit.",
-            "Patient records: registration form, medical history, dated consent and uploaded reports.",
-            "A doctor calendar with working hours, leave and an email invite for each visit.",
-            "Billing at the desk, with a receipt and the balance sent to the patient on WhatsApp.",
+            "Patient records: registration form, medical history, dated WhatsApp consent and uploaded reports.",
+            "A doctor calendar with working hours, leave and an email calendar invite for each visit.",
+            "Billing at the desk, with a receipt on WhatsApp for patients who have agreed to WhatsApp messages.",
             "Feedback after a visit.",
-            "Tagged WhatsApp links and a QR code, so you can see which source brought each new patient.",
+            "Tagged WhatsApp links and a QR code, with chats started and new patients counted by source.",
             "A dashboard for appointments, the day's queue, patients, reports and analytics.",
           ].map((t) => (
             <li key={t} style={{ marginBottom: 8 }}>{t}</li>

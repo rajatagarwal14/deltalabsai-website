@@ -159,7 +159,8 @@ function ProgressBar({ current, total }) {
   const pct = Math.round(((current) / total) * 100);
   return (
     <div style={{ marginBottom: 8 }}>
-      <div style={{ height: 6, background: "#1e293b", borderRadius: 99 }}>
+      <div style={{ fontSize: 13, color: "#94a3b8", fontWeight: 500, marginBottom: 6 }}>{current === 0 ? "Getting started" : current >= total ? "Last question" : "In progress"}</div>
+      <div role="progressbar" aria-label="Progress" aria-valuetext={current === 0 ? "Getting started" : current >= total ? "Last question" : "In progress"} style={{ height: 6, background: "#1e293b", borderRadius: 99 }}>
         <div style={{
           height: "100%",
           width: `${pct}%`,
@@ -314,7 +315,7 @@ export default function ClinicScorePage() {
             Start My Clinic Score →
           </button>
           <p style={{ textAlign: "center", fontSize: 12, color: "#475569", marginTop: 12 }}>
-            No account needed · Results instant
+            No account needed · Results on screen
           </p>
         </div>
       </div>
@@ -517,7 +518,7 @@ export default function ClinicScorePage() {
           {!emailSent ? (
             <div style={{ marginTop: 28, paddingTop: 24, borderTop: "1px solid #1e293b" }}>
               <p style={{ color: "#94a3b8", fontSize: 14, marginBottom: 14 }}>
-                📧 Want your full improvement plan by email?
+                📧 Want us to look at your result? Leave your email and we will reply if we can help.
               </p>
               <form onSubmit={handleEmailCapture} style={{ display: "flex", flexDirection: "column", gap: 10 }}>
                 <input
@@ -529,14 +530,14 @@ export default function ClinicScorePage() {
                   style={inputStyle}
                 />
                 <button type="submit" style={{ ...primaryBtn, background: "#1e293b", border: "1px solid #334155" }} disabled={emailSending}>
-                  {emailSending ? "Sending..." : "Email me my improvement plan"}
+                  {emailSending ? "Sending..." : "Send my email"}
                 </button>
               </form>
             </div>
           ) : (
             <div style={{ marginTop: 24, padding: 16, background: "#052e16", borderRadius: 12, textAlign: "center" }}>
-              <div style={{ color: "#4ade80", fontWeight: 600 }}>✓ Plan sent to {email}</div>
-              <div style={{ color: "#64748b", fontSize: 13 }}>Check your inbox</div>
+              <div style={{ color: "#4ade80", fontWeight: 600 }}>✓ Thanks, we have {email}</div>
+              <div style={{ color: "#64748b", fontSize: 13 }}>We will reply by email if we can help.</div>
             </div>
           )}
 

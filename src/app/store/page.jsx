@@ -256,7 +256,7 @@ function ConsultCard({ emoji, name, desc, price, highlight = false, delay = 0 })
           onMouseEnter={e => { if (!highlight) { e.currentTarget.style.background = "#0F172A"; e.currentTarget.style.color = "#fff"; e.currentTarget.style.borderColor = "#0F172A"; } }}
           onMouseLeave={e => { if (!highlight) { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = "#0F172A"; e.currentTarget.style.borderColor = "#D1D5DB"; } }}
         >
-          Book a Call <Ic.Arr />
+          Send a short written enquiry <Ic.Arr />
         </a>
       </div>
     </F>

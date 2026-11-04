@@ -36,17 +36,17 @@ function Btn({ children, href, v = "primary", style = {}, ...p }) {
 }
 
 const features = [
-  { title: "Booking on WhatsApp", desc: "A patient messages your clinic. The assistant offers open times from each doctor's working hours, skips leave and booked slots, and books the visit." },
+  { title: "Booking on WhatsApp", desc: "A patient messages your clinic. The assistant offers open times from each doctor's working hours, skips leave, breaks and booked slots, and books the visit." },
   { title: "Tap-to-reply buttons", desc: "Patients tap instead of typing." },
   { title: "Reminders before each visit", desc: "Sent on WhatsApp." },
   { title: "English, Hindi and Hinglish", desc: "The assistant replies in the language your patients use." },
-  { title: "Consent handled properly", desc: "Your clinic only messages patients who wrote to you or agreed at the desk, and anyone who replies STOP is not messaged again." },
-  { title: "No fees in patient chats", desc: "The assistant never quotes a price. If a patient asks, it says the doctor will advise after the check-up and shares your clinic's contact details." },
-  { title: "Patient records", desc: "Registration form, medical history, dated consent, and uploads of X-rays and reports, including large panoramic images." },
-  { title: "Doctor calendar", desc: "Working hours and leave for each doctor. Doctors get an email invite for each visit and can accept or decline. A declined visit moves to a free doctor without bothering the patient." },
-  { title: "Billing at the desk", desc: "Bill a visit, take an advance or a part payment, record how it was paid, and send the patient a receipt with the balance on WhatsApp." },
+  { title: "WhatsApp consent checks", desc: "Messages your clinic starts, such as reminders and receipts, go only to patients who have messaged your clinic or ticked the WhatsApp box at the desk. A patient who asks to stop is not sent them again unless they write START." },
+  { title: "No treatment fees in chat", desc: "The assistant does not quote treatment fees. If a patient asks about cost, it says the doctor will advise after a check-up." },
+  { title: "Patient records", desc: "Registration form, medical history, dated WhatsApp consent, and uploads of X-rays and reports." },
+  { title: "Doctor calendar", desc: "Working hours and leave for each doctor. Doctors get an email calendar invite for each visit and can accept or decline. If a doctor declines, SmileCRM looks for another doctor who is free, and flags the visit for the desk if there is none." },
+  { title: "Billing at the desk", desc: "Bill a visit, record each payment and how it was made, and keep a running balance or advance. A receipt can be sent on WhatsApp to patients who have agreed to WhatsApp messages." },
   { title: "Feedback after a visit", desc: "Patients are asked how their visit went." },
-  { title: "Where patients came from", desc: "Tagged WhatsApp links and a QR code for Google Maps, Instagram, Facebook, ads, your website and print, so Analytics shows which source brought each new patient." },
+  { title: "Where patients came from", desc: "Tagged WhatsApp links and a QR code for Google Maps, Instagram, Facebook, ads, your website and print. The dashboard counts chats started and new patients registered from each source." },
   { title: "A dashboard", desc: "Appointments, the day's queue, patients, reports and analytics." },
 ];
 
@@ -66,7 +66,8 @@ export default function SmileCRMCityClient({ city }) {
 
   const faqs = [
     { q: `Can a dental clinic in ${city.name} use SmileCRM?`, a: `Yes. Setup is done remotely, with written step by step instructions, so it works for clinics in ${city.name}, ${city.state}.` },
-    { q: "Will patients see prices on WhatsApp?", a: "No. The assistant never quotes a fee. A receipt you send after a visit shows what was paid and what is left, because that is a bill, not a chat." },
+    { q: "Does the assistant quote treatment fees to patients?", a: "No. If a patient asks about cost, the assistant says the doctor will advise after a check-up." },
+    { q: "Can patients get a receipt?", a: "Yes. After a visit, the desk can send a receipt on WhatsApp for what was billed and paid, to patients who have agreed to WhatsApp messages." },
     { q: "Does it work with Practo?", a: "No. SmileCRM does not connect to Practo or other clinic software." },
     { q: "How is the price set?", a: "By written quote, after you tell us about your clinic. You agree it before anything starts." },
   ];

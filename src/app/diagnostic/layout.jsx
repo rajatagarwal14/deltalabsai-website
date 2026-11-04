@@ -69,7 +69,7 @@ const diagnosticFaqJsonLd = {
       "name": "How long does the diagnostic take?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "It is a short self-assessment. You answer a series of questions about your business operations and receive instant results with a visual scorecard.",
+        "text": "It is a short self-assessment. You answer a series of questions about your business operations and see your results as a visual scorecard.",
       },
     },
     {
@@ -77,7 +77,7 @@ const diagnosticFaqJsonLd = {
       "name": "Is the business diagnostic really free?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes, the business diagnostic is completely free with no credit card required. You get instant results including a radar chart, scores, and a personalized quick-win recommendation.",
+        "text": "Yes, the business diagnostic is completely free with no credit card required. You get results including a radar chart, scores, and a personalized quick-win recommendation.",
       },
     },
     {

@@ -35,7 +35,7 @@ function Btn({ children, href, v = "primary", ...p }) {
 
 const proofPoints = [
   "Free diagnostic",
-  "Instant results",
+  "Results on screen",
   "No credit card needed",
 ];
 
@@ -65,7 +65,7 @@ export default function AboutPage() {
           <div style={{ display: "flex", gap: 16, alignItems: "center" }}>
             <a href="/blog" style={{ fontSize: 14, color: "#52525b", textDecoration: "none" }}>Blog</a>
             <a href="/diagnostic" style={{ fontSize: 14, color: "#52525b", textDecoration: "none" }}>Diagnostic</a>
-            <Btn href={FORM} v="primary" style={{ padding: "9px 20px", fontSize: 13 }}>Book a Call</Btn>
+            <Btn href={FORM} v="primary" style={{ padding: "9px 20px", fontSize: 13 }}>Free Diagnostic</Btn>
           </div>
         </div>
       </nav>
@@ -164,7 +164,7 @@ export default function AboutPage() {
         <F>
           <h2 style={{ fontSize: 28, fontWeight: 700, marginBottom: 16 }}>Ready to find out where you're leaking revenue?</h2>
           <p style={{ fontSize: 16, color: "#52525b", marginBottom: 32, lineHeight: 1.6 }}>
-            Take our free diagnostic or book a call — no pitch, no commitment.
+            Take our free diagnostic or send us a short written enquiry. No pitch, no commitment.
           </p>
           <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
             <Btn href={FORM}>Get Your Free Diagnostic <Ic.Arr /></Btn>

@@ -222,7 +222,7 @@ export default function BlogIndexPage() {
             <p style={{ fontSize: 12, color: "#64748B", margin: 0 }}>AI-powered business consulting for growing companies.</p>
           </div>
           <div style={{ display: "flex", gap: 14, alignItems: "center" }}>
-            <a href="mailto:neil@mail.deltalabsai.com" style={{ color: "#64748B", transition: "color 0.2s" }} onMouseEnter={e => e.currentTarget.style.color = "#fff"} onMouseLeave={e => e.currentTarget.style.color = "#64748B"}><Ic.Mail /></a>
+            <a href="mailto:neil@mail.deltalabsai.com" aria-label="Email us" style={{ color: "#64748B", transition: "color 0.2s" }} onMouseEnter={e => e.currentTarget.style.color = "#fff"} onMouseLeave={e => e.currentTarget.style.color = "#64748B"}><Ic.Mail /></a>
             <a href="/linkedin" aria-label="LinkedIn" style={{ color: "#64748B", transition: "color 0.2s" }} onMouseEnter={e => e.currentTarget.style.color = "#fff"} onMouseLeave={e => e.currentTarget.style.color = "#64748B"}><Ic.LI /></a>
             <a href="/facebook" aria-label="Facebook" style={{ color: "#64748B", transition: "color 0.2s" }} onMouseEnter={e => e.currentTarget.style.color = "#fff"} onMouseLeave={e => e.currentTarget.style.color = "#64748B"}><Ic.FB /></a>
           </div>

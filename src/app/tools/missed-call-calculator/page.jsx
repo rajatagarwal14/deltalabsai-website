@@ -366,7 +366,7 @@ export default function MissedCallCalculator() {
               <div style={{ fontSize: 28 }}>💡</div>
               <div>
                 <div style={{ fontSize: 15, fontWeight: 700, color: "#e2e8f0", marginBottom: 6 }}>
-                  A missed-call text-back can help close this gap without hiring anyone
+                  Following up on missed calls can help close this gap without hiring anyone
                 </div>
                 <div style={{ fontSize: 13, color: "#94a3b8", lineHeight: 1.6 }}>
                   When a call rings out, an automatic text goes to the caller within seconds — before they've called your competitor. It won't recover every missed call, but it gives you a second chance at the ones that would otherwise be gone for good.
@@ -397,7 +397,7 @@ export default function MissedCallCalculator() {
             <div style={S.card}>
               <div style={S.sectionLabel}>Get your missed-call recovery plan</div>
               <p style={{ fontSize: 14, color: "#94a3b8", marginBottom: 20 }}>
-                We'll show you exactly how a missed-call text-back would work for your {BT.label.toLowerCase()} business.
+                Tell us about your {BT.label.toLowerCase()} business and we will reply by email if we can help.
               </p>
               <form onSubmit={handleCapture}>
                 <input style={S.input} placeholder="Your name" value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))} required />
@@ -423,9 +423,9 @@ export default function MissedCallCalculator() {
           <F d={0}>
             <div style={{ ...S.card, textAlign: "center", padding: "48px 32px" }}>
               <div style={{ fontSize: 48, marginBottom: 16 }}>🎉</div>
-              <h2 style={{ fontSize: 24, fontWeight: 800, margin: "0 0 12px" }}>We'll be in touch soon!</h2>
+              <h2 style={{ fontSize: 24, fontWeight: 800, margin: "0 0 12px" }}>Thanks, we have your details.</h2>
               <p style={{ fontSize: 15, color: "#94a3b8", marginBottom: 28 }}>
-                Your missed-call recovery plan is being prepared. Meanwhile, you can write to us with any questions.
+                We read every enquiry and will reply by email if we can help. You can also write to us with any questions.
               </p>
               <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
                 <a href={MAIL} target="_blank" rel="noopener" style={{ ...S.btn, width: "auto", background: "#25D366", color: "#fff", textDecoration: "none" }}>

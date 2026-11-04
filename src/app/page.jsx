@@ -75,12 +75,11 @@ function FAQ() {
     { q: "Are we locked into a long-term contract?", a: "No. We don't do lock-in contracts. Engagements are project-based or month-to-month. You stay because you're getting results, not because of a contract." },
     { q: "What is SmileCRM?", a: "SmileCRM is our CRM for independent clinics and doctors, dental and other specialities. Patients book on WhatsApp, get a reminder before their visit, and are asked for feedback afterwards. Pricing is by quote, after a short written enquiry." },
     { q: "What is the AI BDR product?", a: "AI BDR is a fully automated business development system that researches leads, writes personalised outreach emails, follows up automatically, and hands you warm replies. Pricing is by quote, after a short written enquiry." },
-    { q: "Do you offer an AI voice receptionist?", a: "Not yet. A voice receptionist is still being tested and is not offered to clients today. If you are interested, write to us and we will tell you when that changes." },
     { q: "What's the AI Business Ecosystem?", a: "It's our end-to-end automation package for any SMB: CRM setup, workflow automation with n8n/Make.com, custom AI agents and lead capture, all connected and running together. Pricing is by quote, based on scope." },
     { q: "What industries do you work with?", a: "We are glad to look at any small or growing service business that has outgrown its systems, for example clinics, gyms and wellness studios, home services and trades, e-commerce brands and agencies. Tell us the problem and we will say honestly whether we can help." },
-    { q: "How does the free diagnostic work?", a: "It is a short self-assessment. It needs no credit card and scores your business on revenue, operations, team, technology and data, with instant results shown as a radar chart, so you can see where you may be leaking revenue before talking to us." },
+    { q: "How does the free diagnostic work?", a: "It is a short self-assessment. It needs no credit card and scores your business on revenue, operations, team, technology and data, with results shown as a radar chart, so you can see where you may be leaking revenue before talking to us." },
     { q: "What happens after I write to you?", a: "We read what you send and reply in writing: whether we can help, what we would fix and in what order, and a quote. Nothing starts until you agree it." },
-    { q: "How do WhatsApp automations work?", a: "Reminders and follow-ups (for example through SmileCRM) are sent through WhatsApp's official Business Platform, not unofficial workarounds." },
+    { q: "How do WhatsApp automations work?", a: "Reminders and follow-ups (for example through SmileCRM) go to patients on WhatsApp, and only to patients who have messaged the clinic or agreed at the desk." },
     { q: "Can you help a clinic with no-shows?", a: "SmileCRM books visits on WhatsApp and sends each patient a reminder on WhatsApp before the visit. It does not send text messages and does not run automatic campaigns to bring back lapsed patients." },
     { q: "Do you help with online reviews?", a: "SmileCRM asks patients for feedback after a visit. We do not run review campaigns for you." },
     { q: "What if I run a gym or fitness studio, not a clinic?", a: "Tell us what is not working, for example bookings, renewals or follow-ups, and we will say honestly whether we can help." },
@@ -293,7 +292,7 @@ function Hero() {
           <F eager>
             <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.12)", borderRadius: 100, padding: "6px 14px", fontSize: 13, color: "#cbd5e1", fontFamily: "'DM Sans',sans-serif", marginBottom: 28 }}>
               <span style={{ width: 7, height: 7, borderRadius: "50%", background: "#34D399", flexShrink: 0 }} />
-              Free · No card needed · <b style={{ color: "#fff", margin: "0 4px" }}>Instant results</b>
+              Free · <b style={{ color: "#fff", margin: "0 4px" }}>No card needed</b>
             </div>
           </F>
           <F eager d={0.08}>
@@ -329,7 +328,7 @@ function Proof() {
   return (
     <div style={{ background: "#0F172A", padding: "18px 24px" }}>
       <div style={{ maxWidth: 1000, margin: "0 auto", display: "flex", justifyContent: "center", alignItems: "center", gap: "clamp(16px, 4vw, 40px)", flexWrap: "wrap" }}>
-        {["Free diagnostic", "Instant results", "No credit card needed"].map((t, i) => (
+        {["Free diagnostic", "Results on screen", "No credit card needed"].map((t, i) => (
           <div key={i} style={{ display: "flex", alignItems: "center", gap: 8 }}>
             <span style={{ color: "#34D399" }}><Ic.Chk /></span>
             <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, color: "#CBD5E1", fontWeight: 500 }}>{t}</span>
@@ -352,7 +351,7 @@ function HeroCTABand() {
       <div style={{ maxWidth: 700, margin: "0 auto" }}>
         <F>
           <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: "clamp(13px, 1.5vw, 15px)", color: "#34D399", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", margin: "0 0 12px" }}>
-            Free · Instant Results
+            Free · No Card Needed
           </p>
           <h2 style={{ fontFamily: "'DM Sans',sans-serif", fontSize: "clamp(22px, 3.5vw, 34px)", fontWeight: 800, color: "#fff", letterSpacing: "-0.02em", margin: "0 0 8px", lineHeight: 1.2 }}>
             Ready for Your Free AI Diagnostic?
@@ -411,7 +410,7 @@ function DiagnosticCTA() {
             </div>
           )}
           <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, color: "#9CA3AF", marginTop: 12 }}>
-            No credit card. Instant results with radar chart.
+            No credit card. Results shown as a radar chart.
           </p>
         </F>
       </div>
@@ -635,13 +634,6 @@ function Demos() {
               </div>
             </F>
           ))}
-          <F d={2 * 0.08}>
-            <div style={{ borderRadius: 16, border: "1px dashed #D1D5DB", padding: 20, background: "#F8FAFC", height: "100%", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", gap: 8 }}>
-              <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, fontWeight: 700, color: "#4B5563", background: "#EEF0F3", padding: "3px 9px", borderRadius: 20, textTransform: "uppercase", letterSpacing: "0.04em" }}>Coming soon</span>
-              <h3 style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 16, fontWeight: 700, color: "#374151", margin: "6px 0 4px" }}>Voice negotiation, hands-free</h3>
-              <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, color: "#6B7280", lineHeight: 1.6, margin: 0, maxWidth: 220 }}>The same wholesale negotiation, spoken instead of typed.</p>
-            </div>
-          </F>
         </div>
         <F d={0.3}>
           <p style={{ textAlign: "center", fontFamily: "'DM Sans',sans-serif", fontSize: 12, color: "#6B7280", marginTop: 28 }}>
@@ -707,13 +699,13 @@ function ClinicScoreBanner() {
             <div style={{ flex: "1 1 280px", minWidth: 240, position: "relative", zIndex: 1 }}>
               <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 10 }}>
                 <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, fontWeight: 700, color: "#818cf8", textTransform: "uppercase", letterSpacing: "0.08em" }}>New · Free Tool</span>
-                <span style={{ background: "#22c55e22", color: "#22c55e", fontFamily: "'DM Sans',sans-serif", fontSize: 10, fontWeight: 700, padding: "2px 8px", borderRadius: 20, border: "1px solid #22c55e44" }}>FOR DENTAL CLINICS</span>
+                <span style={{ background: "#22c55e22", color: "#22c55e", fontFamily: "'DM Sans',sans-serif", fontSize: 10, fontWeight: 700, padding: "2px 8px", borderRadius: 20, border: "1px solid #22c55e44" }}>FOR CLINICS</span>
               </div>
               <h3 style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 22, fontWeight: 800, color: "#f1f5f9", margin: "0 0 10px", letterSpacing: "-0.01em", lineHeight: 1.25 }}>
                 Clinic Digital Score
               </h3>
               <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 14, color: "#94a3b8", lineHeight: 1.7, margin: "0 0 20px" }}>
-                A few quick questions about your clinic. See how your clinic scores and get practical improvements straight away. Free, no login needed.
+                A few quick questions about your clinic. See how your clinic scores and get practical improvements. Free, no login needed.
               </p>
               <a href="/clinic-score" style={{
                 fontFamily: "'DM Sans',sans-serif",
@@ -841,7 +833,6 @@ function Industries() {
     { href: "/ai-bdr", title: "AI BDR", desc: "AI-powered lead qualification and outbound for growing sales teams" },
     { href: "/smilecrm", title: "SmileCRM", desc: "CRM for independent clinics: WhatsApp booking, reminders, patient records" },
     { href: "/solutions", title: "All Solutions", desc: "The full Delta Labs AI automation and consulting suite" },
-    { href: "/voice-receptionist", title: "Voice Receptionist", desc: "A voice agent we are still testing. Not yet offered to clients" },
   ];
   return (
     <section style={{ padding: "80px 24px", background: "#fafafa" }}>

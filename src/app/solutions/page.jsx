@@ -71,7 +71,7 @@ const solutions = [
     desc: "CRM for independent clinics and doctors. Patients book on WhatsApp, get a reminder before each visit, and are asked for feedback afterwards.",
     features: ["WhatsApp booking", "Reminders before each visit", "Patient records and desk billing", "Feedback after a visit"],
     price: "Custom",
-    href: "/dental",
+    href: "/smilecrm",
     cta: "See SmileCRM",
     accent: "#4f46e5",
   },
@@ -88,8 +88,8 @@ const solutions = [
   {
     tag: "Clinics & SMBs",
     name: "AI Voice Receptionist",
-    desc: "A voice receptionist we are still testing. It is not offered to clients yet.",
-    features: ["In testing", "Join the waitlist to hear when that changes"],
+    desc: "Join the waitlist to hear more about the AI voice receptionist.",
+    features: [],
     price: "Custom",
     href: "/voice-receptionist",
     cta: "Join Waitlist",
@@ -135,7 +135,7 @@ export default function SolutionsPage() {
           </p>
           <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
             <a href={DIAG} style={{ background: "#18181b", color: "#fff", padding: "13px 28px", borderRadius: 10, fontWeight: 600, fontSize: 15, textDecoration: "none" }}>Take Free Diagnostic</a>
-            <a href={MAIL} style={{ background: "transparent", color: "#18181b", border: "1.5px solid #e4e4e7", padding: "13px 28px", borderRadius: 10, fontWeight: 600, fontSize: 15, textDecoration: "none" }}>Book a Call</a>
+            <a href={MAIL} style={{ background: "transparent", color: "#18181b", border: "1.5px solid #e4e4e7", padding: "13px 28px", borderRadius: 10, fontWeight: 600, fontSize: 15, textDecoration: "none" }}>Send a short written enquiry</a>
           </div>
         </F>
       </section>
@@ -172,7 +172,7 @@ export default function SolutionsPage() {
         <F>
           <div style={{ maxWidth: 520, margin: "0 auto" }}>
             <p style={{ fontSize: 18, color: "#374151", marginBottom: 28, lineHeight: 1.65 }}>
-              Not sure which solution fits your business? Take the free 5-minute AI diagnostic and find out.
+              Not sure which solution fits your business? Take the free AI diagnostic and find out.
             </p>
             <a href={DIAG} style={{ background: "#18181b", color: "#fff", padding: "14px 32px", borderRadius: 10, fontWeight: 700, fontSize: 15, textDecoration: "none" }}>Start Free Diagnostic →</a>
             <p style={{ fontSize: 13, color: "#a1a1aa", marginTop: 20 }}>

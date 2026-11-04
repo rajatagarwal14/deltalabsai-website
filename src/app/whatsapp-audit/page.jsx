@@ -361,9 +361,9 @@ export default function WhatsappAudit() {
           <F d={0}>
             <div style={{ ...S.card, textAlign: "center", padding: "48px 32px" }}>
               <div style={{ fontSize: 48, marginBottom: 16 }}>🎉</div>
-              <h2 style={{ fontSize: 24, fontWeight: 800, margin: "0 0 12px" }}>We'll be in touch soon!</h2>
+              <h2 style={{ fontSize: 24, fontWeight: 800, margin: "0 0 12px" }}>Thanks, we have your details.</h2>
               <p style={{ fontSize: 15, color: "#94a3b8", marginBottom: 28 }}>
-                Your personalised WhatsApp recovery plan is being prepared. Meanwhile, you can write to us with any questions.
+                We read every enquiry and will reply by email if we can help. You can also write to us with any questions.
               </p>
               <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
                 <a href={MAIL} target="_blank" rel="noopener" style={{ ...S.btn, width: "auto", background: "#25D366", color: "#fff", textDecoration: "none" }}>
