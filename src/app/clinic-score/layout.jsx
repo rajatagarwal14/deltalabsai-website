@@ -1,43 +1,33 @@
 export const metadata = {
-  title: "Clinic Digital Score — How does your clinic rank? | Delta Labs AI",
+  title: "Clinic Digital Score: how digitally ready is your clinic? | Delta Labs AI",
   description:
-    "Free 90-second benchmark: see how your dental clinic ranks in your city. Get your Clinic Digital Score instantly.",
+    "A free self-check for independent clinics: see how patients find, book and hear from your clinic, and get practical improvements.",
   keywords: [
     "clinic digital score",
-    "dental clinic benchmark",
-    "dental clinic ranking",
+    "clinic digital readiness",
     "SmileCRM",
     "dental digital readiness",
-    "dental clinic AI score",
-    "Google reviews dental",
-    "online booking dental clinic",
+    "Google reviews for clinics",
+    "online booking for clinics",
   ],
   metadataBase: new URL("https://deltalabsai.com"),
   alternates: {
     canonical: "https://deltalabsai.com/clinic-score",
   },
   openGraph: {
-    title: "How does your clinic rank? Get your Clinic Digital Score",
+    title: "How digitally ready is your clinic? Get your Clinic Digital Score",
     description:
-      "Free 90-second benchmark tool. See how your dental clinic compares in your city.",
+      "A free self-check for independent clinics, with practical improvements.",
     url: "https://deltalabsai.com/clinic-score",
     siteName: "Delta Labs AI",
     type: "website",
     locale: "en_IN",
     images: [
       {
-        url: "https://deltalabsai.com/api/og/clinic-score?score=68&tier=Digital-Forward&name=Your+Clinic&city=Your+City",
-        width: 1080,
-        height: 1080,
-        alt: "Clinic Digital Score",
-    images: [
-      {
         url: "https://deltalabsai.com/og-image.png",
         width: 1200,
         height: 630,
         alt: "Delta Labs AI",
-      },
-    ],
       },
     ],
   },

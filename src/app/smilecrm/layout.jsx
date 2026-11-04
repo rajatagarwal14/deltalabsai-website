@@ -1,6 +1,6 @@
 export const metadata = {
-  title: "Dental Clinic Software and CRM for Indian Clinics | SmileCRM",
-  description: "Dental clinic management software for independent Indian clinics. SmileCRM automates appointment reminders, patient recall and Google review collection over WhatsApp.",
+  title: "SmileCRM: Clinic CRM with WhatsApp Booking | Delta Labs AI",
+  description: "SmileCRM for independent clinics and doctors, dental and other specialities: patients book on WhatsApp, get a reminder before each visit, and are asked for feedback afterwards. Pricing by quote.",
   alternates: {
     canonical: "https://deltalabsai.com/smilecrm",
   },

@@ -34,19 +34,19 @@ function Btn({ children, href, v = "primary", ...p }) {
 }
 
 const proofPoints = [
-  "5-dimension diagnostic",
-  "Free, about 3 minutes",
+  "Free diagnostic",
+  "Results on screen",
   "No credit card needed",
 ];
 
 const services = [
   { title: "Find out where you're losing money", desc: "Our diagnostic uncovers revenue leaks, operational bottlenecks, and hidden inefficiencies — backed by data, not guesswork." },
   { title: "Fix what's broken, fast", desc: "We redesign your processes, set up proper systems, and eliminate the chaos. SOPs, CRM, workflows — everything your business needs to run without you micromanaging." },
-  { title: "Build AI that works while you sleep", desc: "Custom AI agents that handle the repetitive stuff — answering calls, qualifying leads, checking compliance, generating reports — so your team focuses on what humans do best." },
+  { title: "Automate the repetitive work", desc: "Custom AI agents and automations for the repetitive stuff, built around how your business already works, so your team focuses on what humans do best." },
 ];
 
 const industries = [
-  { name: "Dental", href: "/dental", desc: "Appointment reminders, patient recall, and review automation for independent clinics — powered by SmileCRM." },
+  { name: "Dental", href: "/dental", desc: "WhatsApp booking and visit reminders for independent dental clinics, with SmileCRM." },
   { name: "Fitness & Wellness", href: "/fitness", desc: "Class booking, retention, and review automation for gyms and yoga studios." },
   { name: "E-commerce", href: "/solutions", desc: "Cart recovery, support triage, and order automation for D2C sellers." },
   { name: "Home Services", href: "/home-services", desc: "Booking, dispatch, and follow-up automation for plumbers, electricians, and more." },
@@ -65,7 +65,7 @@ export default function AboutPage() {
           <div style={{ display: "flex", gap: 16, alignItems: "center" }}>
             <a href="/blog" style={{ fontSize: 14, color: "#52525b", textDecoration: "none" }}>Blog</a>
             <a href="/diagnostic" style={{ fontSize: 14, color: "#52525b", textDecoration: "none" }}>Diagnostic</a>
-            <Btn href={FORM} v="primary" style={{ padding: "9px 20px", fontSize: 13 }}>Book a Call</Btn>
+            <Btn href={FORM} v="primary" style={{ padding: "9px 20px", fontSize: 13 }}>Free Diagnostic</Btn>
           </div>
         </div>
       </nav>
@@ -164,7 +164,7 @@ export default function AboutPage() {
         <F>
           <h2 style={{ fontSize: 28, fontWeight: 700, marginBottom: 16 }}>Ready to find out where you're leaking revenue?</h2>
           <p style={{ fontSize: 16, color: "#52525b", marginBottom: 32, lineHeight: 1.6 }}>
-            Take our free diagnostic or book a call — no pitch, no commitment.
+            Take our free diagnostic or send us a short written enquiry. No pitch, no commitment.
           </p>
           <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
             <Btn href={FORM}>Get Your Free Diagnostic <Ic.Arr /></Btn>

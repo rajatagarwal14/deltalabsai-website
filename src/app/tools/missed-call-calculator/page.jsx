@@ -2,8 +2,8 @@
 
 import { useState, useRef, useEffect } from "react";
 
-const CAL = "https://cal.com/ag-ventures-qbqxax/30min";
-const CAPTURE_API = "https://delta-labs-ecosystem.vercel.app/api/leads/capture";
+const MAIL = "mailto:neil@mail.deltalabsai.com";
+const CAPTURE_API = "/api/leads/capture"; // same-origin route (the ecosystem URL has no CORS headers, so the browser blocked it)
 const BASE_URL = "https://deltalabsai.com/tools/missed-call-calculator";
 
 function useFade() {
@@ -121,7 +121,7 @@ function track(eventName, params = {}) {
 // Same capture endpoint + payload shape as /dental/no-show-calculator's saveLead.
 async function saveLead(data) {
   try {
-    await fetch(CAPTURE_API, {
+    const res = await fetch(CAPTURE_API, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -141,8 +141,11 @@ async function saveLead(data) {
         tags: ["missed_call_calculator", `vertical_${data.businessType}`],
       }),
     });
+    if (!res.ok) return false;
+    const body = await res.json().catch(() => null);
+    return !!(body && body.lead);
   } catch (_) {
-    // silent — never block the UX
+    return false;
   }
 }
 
@@ -200,6 +203,7 @@ export default function MissedCallCalculator() {
   const [step, setStep] = useState("calc"); // "calc" | "capture" | "done"
   const [form, setForm] = useState({ name: "", email: "", business: "" });
   const [submitting, setSubmitting] = useState(false);
+  const [captureError, setCaptureError] = useState("");
   const [copied, setCopied] = useState(false);
   const [linkCopied, setLinkCopied] = useState(false);
 
@@ -229,12 +233,14 @@ export default function MissedCallCalculator() {
     e.preventDefault();
     if (!form.email) return;
     setSubmitting(true);
-    await saveLead({
+    setCaptureError("");
+    const ok = await saveLead({
       ...form, business: form.business || businessName, businessType, businessTypeLabel: BT.label,
       cur, missedCallsPerDay, closeRate, avgDealValue, workingDays, monthlyLoss, annualLoss,
     });
-    track("missed_call_calc_lead_captured", { business_type: businessType, market: cur });
     setSubmitting(false);
+    if (!ok) { setCaptureError("We could not send your details. Please try again, or email neil@mail.deltalabsai.com."); return; }
+    track("missed_call_calc_lead_captured", { business_type: businessType, market: cur });
     setStep("done");
   }
 
@@ -356,7 +362,7 @@ export default function MissedCallCalculator() {
           <div style={S.resultsRow}>
             <ResultCard label="Missed calls / month" value={Math.round(missedCallsPerDay * (workingDays / 12))} sub={`${missedCallsPerDay} per day`} />
             <ResultCard label="Monthly loss" value={f(monthlyLoss)} sub="Revenue that never got a chance to convert" />
-            <ResultCard label="Annual loss" value={f(annualLoss)} highlight sub="Every year, until calls get answered or texted back" />
+            <ResultCard label="Annual loss" value={f(annualLoss)} highlight sub="Every year, until calls get answered" />
           </div>
         </F>
 
@@ -365,11 +371,8 @@ export default function MissedCallCalculator() {
             <div style={{ display: "flex", alignItems: "flex-start", gap: 16 }}>
               <div style={{ fontSize: 28 }}>💡</div>
               <div>
-                <div style={{ fontSize: 15, fontWeight: 700, color: "#e2e8f0", marginBottom: 6 }}>
-                  A missed-call text-back can help close this gap without hiring anyone
-                </div>
                 <div style={{ fontSize: 13, color: "#94a3b8", lineHeight: 1.6 }}>
-                  When a call rings out, an automatic text goes to the caller within seconds — before they've called your competitor. It won't recover every missed call, but it gives you a second chance at the ones that would otherwise be gone for good.
+                  Tell us about your business and we will reply by email if we can help.
                 </div>
               </div>
             </div>
@@ -380,7 +383,7 @@ export default function MissedCallCalculator() {
           <F d={0.35}>
             <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
               <button style={{ ...S.btn, ...S.btnPrimary, flex: 2, minWidth: 220 }} onClick={goToCapture}>
-                See how to close this gap →
+                Tell us about your business →
               </button>
               <button style={{ ...S.shareBtn, background: "rgba(37,211,102,0.12)", border: "1px solid rgba(37,211,102,0.35)", color: "#25D366" }} onClick={handleShare}>
                 💬 Share on WhatsApp
@@ -395,24 +398,24 @@ export default function MissedCallCalculator() {
         {step === "capture" && (
           <F d={0}>
             <div style={S.card}>
-              <div style={S.sectionLabel}>Get your missed-call recovery plan</div>
               <p style={{ fontSize: 14, color: "#94a3b8", marginBottom: 20 }}>
-                We'll show you exactly how a missed-call text-back would work for your {BT.label.toLowerCase()} business — plus a free 30-minute consultation.
+                Tell us about your {BT.label.toLowerCase()} business and we will reply by email if we can help.
               </p>
               <form onSubmit={handleCapture}>
                 <input style={S.input} placeholder="Your name" value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))} required />
                 <input style={S.input} placeholder="Business name" value={form.business || businessName} onChange={e => setForm(f => ({ ...f, business: e.target.value }))} />
                 <input style={S.input} type="email" placeholder="Email address *" value={form.email} onChange={e => setForm(f => ({ ...f, email: e.target.value }))} required />
                 <button type="submit" style={{ ...S.btn, ...S.btnPrimary }} disabled={submitting}>
-                  {submitting ? "Sending..." : "Send me my recovery plan →"}
+                  {submitting ? "Sending..." : "Send my details →"}
                 </button>
+                {captureError && <p role="alert" style={{ fontSize: 13, color: "#f87171", marginTop: 10 }}>{captureError}</p>}
               </form>
               <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginTop: 10 }}>
-                <button style={{ ...S.btn, ...S.btnSecondary, width: "auto", padding: "10px 20px", fontSize: 13 }} onClick={() => window.open(CAL, "_blank")}>
-                  Or book a 30-min demo directly
+                <button style={{ ...S.btn, ...S.btnSecondary, width: "auto", padding: "10px 20px", fontSize: 13 }} onClick={() => window.location.href = MAIL}>
+                  Or send us a short written enquiry
                 </button>
-                <a href={`https://wa.me/917011402167?text=${encodeURIComponent(`Hi Delta Labs AI — I just used the missed-call cost calculator for my ${BT.label.toLowerCase()} business. I want to know more.`)}`} target="_blank" rel="noopener" style={{ ...S.btn, width: "auto", padding: "10px 20px", fontSize: 13, background: "#25D366", color: "#fff", textDecoration: "none" }}>
-                  💬 Chat on WhatsApp
+                <a href={MAIL} target="_blank" rel="noopener" style={{ ...S.btn, width: "auto", padding: "10px 20px", fontSize: 13, background: "#25D366", color: "#fff", textDecoration: "none" }}>
+                  ✉️ Email us
                 </a>
               </div>
             </div>
@@ -423,16 +426,16 @@ export default function MissedCallCalculator() {
           <F d={0}>
             <div style={{ ...S.card, textAlign: "center", padding: "48px 32px" }}>
               <div style={{ fontSize: 48, marginBottom: 16 }}>🎉</div>
-              <h2 style={{ fontSize: 24, fontWeight: 800, margin: "0 0 12px" }}>We'll be in touch within 24 hours!</h2>
+              <h2 style={{ fontSize: 24, fontWeight: 800, margin: "0 0 12px" }}>Thanks, we have your details.</h2>
               <p style={{ fontSize: 15, color: "#94a3b8", marginBottom: 28 }}>
-                Your missed-call recovery plan is being prepared. Meanwhile, book a 30-minute demo to see the system live.
+                We read every enquiry and will reply by email if we can help. You can also write to us with any questions.
               </p>
               <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
-                <a href={`https://wa.me/917011402167?text=${encodeURIComponent("Hi Delta Labs AI — I just got my missed-call recovery plan and want to talk.")}`} target="_blank" rel="noopener" style={{ ...S.btn, width: "auto", background: "#25D366", color: "#fff", textDecoration: "none" }}>
-                  💬 Talk to us on WhatsApp
+                <a href={MAIL} target="_blank" rel="noopener" style={{ ...S.btn, width: "auto", background: "#25D366", color: "#fff", textDecoration: "none" }}>
+                  ✉️ Email us
                 </a>
-                <a href={CAL} target="_blank" rel="noopener" style={{ ...S.btn, ...S.btnPrimary, width: "auto", textDecoration: "none" }}>
-                  Book your free demo →
+                <a href={MAIL} target="_blank" rel="noopener" style={{ ...S.btn, ...S.btnPrimary, width: "auto", textDecoration: "none" }}>
+                  Send a short written enquiry →
                 </a>
                 <button style={{ ...S.shareBtn, background: "rgba(37,211,102,0.12)", border: "1px solid rgba(37,211,102,0.35)", color: "#25D366" }} onClick={handleShare}>
                   💬 Share this result

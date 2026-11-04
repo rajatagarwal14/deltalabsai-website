@@ -209,7 +209,7 @@ function ProductCard({ name, emoji, desc, price, pricePeriod = "/mo", badge, bad
             🚀 {cta}
           </button>
         ) : (
-          <a href={ctaHref || "#cal-book"} style={{
+          <a href={ctaHref || "mailto:neil@mail.deltalabsai.com"} style={{
             display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
             padding: "12px 20px", borderRadius: 11, textDecoration: "none",
             background: "#F8FAFC", color: "#0F172A", border: "1.5px solid #E5E7EB",
@@ -245,7 +245,7 @@ function ConsultCard({ emoji, name, desc, price, highlight = false, delay = 0 })
         <div style={{ marginBottom: 16 }}>
           <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 20, fontWeight: 800, color: highlight ? "#10B981" : "#0F172A" }}>{price}</span>
         </div>
-        <a href="#cal-book" style={{
+        <a href="mailto:neil@mail.deltalabsai.com" style={{
           display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
           padding: "12px 16px", borderRadius: 10, textDecoration: "none",
           background: highlight ? "#059669" : "transparent",
@@ -256,7 +256,7 @@ function ConsultCard({ emoji, name, desc, price, highlight = false, delay = 0 })
           onMouseEnter={e => { if (!highlight) { e.currentTarget.style.background = "#0F172A"; e.currentTarget.style.color = "#fff"; e.currentTarget.style.borderColor = "#0F172A"; } }}
           onMouseLeave={e => { if (!highlight) { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = "#0F172A"; e.currentTarget.style.borderColor = "#D1D5DB"; } }}
         >
-          Book a Call <Ic.Arr />
+          Send a short written enquiry <Ic.Arr />
         </a>
       </div>
     </F>
@@ -497,8 +497,8 @@ export default function StorePage() {
               <button onClick={() => openTrial("general", "AI Business Suite", "other")} style={{ background: "#fff", color: "#059669", border: "none", padding: "15px 32px", borderRadius: 12, fontSize: 16, fontWeight: 800, cursor: "pointer", display: "flex", alignItems: "center", gap: 8 }}>
                 🚀 Start Free Trial
               </button>
-              <a href="#cal-book" style={{ background: "rgba(255,255,255,0.15)", color: "#fff", border: "1.5px solid rgba(255,255,255,0.3)", padding: "15px 28px", borderRadius: 12, fontSize: 15, fontWeight: 600, textDecoration: "none", display: "flex", alignItems: "center", gap: 8 }}>
-                Book a Call <Ic.Arr />
+              <a href="mailto:neil@mail.deltalabsai.com" style={{ background: "rgba(255,255,255,0.15)", color: "#fff", border: "1.5px solid rgba(255,255,255,0.3)", padding: "15px 28px", borderRadius: 12, fontSize: 15, fontWeight: 600, textDecoration: "none", display: "flex", alignItems: "center", gap: 8 }}>
+                Write to us <Ic.Arr />
               </a>
             </div>
           </F>

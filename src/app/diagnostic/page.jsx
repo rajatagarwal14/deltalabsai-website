@@ -64,7 +64,7 @@ function trackAbEvent(variant, event, extra = {}) {
 }
 
 // Brand
-const BRAND = { name: "Delta Labs AI", cal: "https://cal.com/ag-ventures-qbqxax/30min" };
+const BRAND = { name: "Delta Labs AI" };
 
 // GA4 event helper
 function trackGa4Event(name, params = {}) {
@@ -172,32 +172,6 @@ function DiagnosticVideo() {
         </div>
       </div>
     </div>
-  );
-}
-
-// Cal.com inline embed — renders the booking calendar directly on the page
-function CalInlineEmbed() {
-  const divRef = useRef(null);
-  useEffect(() => {
-    const tryInit = () => {
-      if (typeof window !== "undefined" && window.Cal && window.Cal.ns && window.Cal.ns["30min"]) {
-        window.Cal.ns["30min"]("inline", {
-          elementOrSelector: divRef.current,
-          calLink: "ag-ventures-qbqxax/30min",
-          layout: "month_view",
-        });
-      } else {
-        // Cal.com script not ready yet — retry in 300ms
-        setTimeout(tryInit, 300);
-      }
-    };
-    tryInit();
-  }, []);
-  return (
-    <div ref={divRef} style={{
-      width: "100%", minHeight: 600, borderRadius: "0 0 14px 14px",
-      border: "1px solid #A7F3D0", overflow: "hidden", background: "#fff",
-    }} />
   );
 }
 
@@ -517,7 +491,7 @@ export default function IntakeForm() {
           <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, fontWeight: 600, color: "#2563EB", textTransform: "uppercase", letterSpacing: "0.08em" }}>Step 1 of {totalSteps}</span>
         </div>
         <h2 style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 26, fontWeight: 800, color: "#0F172A", margin: "0 0 6px", letterSpacing: "-0.02em" }}>Let&apos;s get to know your business</h2>
-        <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 14.5, color: "#6B7280", margin: "0 0 28px", lineHeight: 1.6 }}>This helps us prepare a tailored analysis before your discovery call.</p>
+        <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 14.5, color: "#6B7280", margin: "0 0 28px", lineHeight: 1.6 }}>This helps us tailor your results.</p>
 
         <div style={{ display: "grid", gap: 18 }}>
           {[
@@ -725,11 +699,11 @@ export default function IntakeForm() {
             </span>
           </div>
           <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13.5, color: "#78350F", lineHeight: 1.7, margin: "0 0 12px" }}>
-            {(() => { const l = getLowestDimension(scores); return l ? l.rec.tip : "Book a call and we'll identify your #1 quick win together."; })()}
+            {(() => { const l = getLowestDimension(scores); return l ? l.rec.tip : "Write to us and we'll identify your biggest quick win together."; })()}
           </p>
           <div style={{ display: "inline-flex", alignItems: "center", gap: 6, background: "#FDE68A", padding: "6px 14px", borderRadius: 8 }}>
             <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, fontWeight: 700, color: "#92400E" }}>
-              {"\u2192"} {(() => { const l = getLowestDimension(scores); return l ? l.rec.action : "Book your free discovery call"; })()}
+              {"\u2192"} {(() => { const l = getLowestDimension(scores); return l ? l.rec.action : "Send a short written enquiry"; })()}
             </span>
           </div>
         </div>
@@ -740,7 +714,7 @@ export default function IntakeForm() {
             <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 14, fontWeight: 700, color: "#1E40AF" }}>What happens next</span>
           </div>
           <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13.5, color: "#374151", lineHeight: 1.7, margin: 0 }}>
-            Our team will review your diagnostic results before your call. We&apos;ll come prepared with specific recommendations for <strong>{info.company}</strong> based on your scores. You&apos;ll receive a detailed breakdown of quick wins, strategic priorities, and estimated ROI -all in your 30-minute discovery call.
+            If you want help acting on these results for <strong>{info.company}</strong>, send us a short written enquiry and we reply in writing with what we would fix first and a quote.
           </p>
         </div>
 
@@ -795,11 +769,13 @@ export default function IntakeForm() {
                 if (!crmOk) {
                   setCrmFailed(true);
                   trackGa4Event("diagnostic_crm_failed", { industry: info.industry });
+                  setSubmitError("We could not send your details. Please try again, or email neil@mail.deltalabsai.com.");
+                } else {
+                  setSubmitted(true);
                 }
-                setSubmitted(true);
               } catch (err) {
-                // Even with no-cors, data is sent. Mark as submitted.
-                setSubmitted(true);
+                setCrmFailed(true);
+                setSubmitError("We could not send your details. Please try again, or email neil@mail.deltalabsai.com.");
               } finally {
                 // Fires on both paths. It used to sit at the end of the try, so any throw
                 // from the FORM_ENDPOINT fetch skipped it while the user still saw a
@@ -828,11 +804,13 @@ export default function IntakeForm() {
               <div style={{ fontSize: 36, marginBottom: 8 }}>{"\u2713"}</div>
               <h3 style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 20, fontWeight: 700, color: "#065F46", margin: "0 0 6px" }}>You&apos;re all set, {info.name}!</h3>
               <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 14, color: "#047857", lineHeight: 1.6, margin: 0 }}>
-                Your diagnostic has been received. Book your free 30-min discovery call below, no redirect needed.{crmFailed ? " We could not save your details automatically, so please email neil@mail.deltalabsai.com and we will pick this up." : ""}
+                Your diagnostic has been received. If you would like us to look at it with you, send a short written enquiry and we reply in writing.
               </p>
             </div>
-            {/* Inline Cal.com embed */}
-            <CalInlineEmbed />
+            <div style={{ textAlign: "center", padding: "20px 28px 24px", background: "#fff", borderRadius: "0 0 14px 14px", border: "1px solid #A7F3D0" }}>
+              <a href="mailto:neil@mail.deltalabsai.com" style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "14px 28px", borderRadius: 10, background: "#059669", color: "#fff", fontFamily: "'DM Sans',sans-serif", fontWeight: 600, fontSize: 15, textDecoration: "none" }}>Send a short written enquiry</a>
+              <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, color: "#6B7280", margin: "10px 0 0" }}>neil@mail.deltalabsai.com</p>
+            </div>
           </div>
         )}
       </div>
@@ -847,7 +825,6 @@ export default function IntakeForm() {
           <Ic.Delta /><span style={{ fontFamily: "'DM Sans',sans-serif", fontWeight: 700, fontSize: 17 }}>Delta Labs AI</span>
         </a>
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-          <span style={{ display: "flex", alignItems: "center", gap: 5, color: "#6B7280" }}><Ic.Clock /><span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, fontWeight: 500 }}>Takes 3 minutes</span></span>
           <span style={{ display: "flex", alignItems: "center", gap: 5, color: "#6B7280" }}><Ic.Lock /><span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, fontWeight: 500 }}>Private & secure</span></span>
           <span style={{ display: "flex", alignItems: "center", gap: 5, color: "#059669" }}><Ic.Sparkle /><span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, fontWeight: 600 }}>Get your free AI diagnostic</span></span>
         </div>
@@ -958,8 +935,8 @@ export default function IntakeForm() {
               {[
                 "Identify your top AI opportunities in minutes",
                 "Receive a custom roadmap built for your industry",
-                "Free — no commitment, no sales call",
-                "Results delivered to your inbox instantly",
+                "Free, no commitment, no sales call",
+                "Results shown on screen",
               ].map((benefit) => (
                 <li key={benefit} style={{ display: "flex", alignItems: "center", gap: 10, fontFamily: "'DM Sans',sans-serif", fontSize: 14, fontWeight: 500, color: "#374151", lineHeight: 1.4 }}>
                   <span style={{ flexShrink: 0, width: 20, height: 20, background: "#EFF6FF", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 11, color: "#2563EB" }}>✓</span>

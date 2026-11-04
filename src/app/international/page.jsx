@@ -13,7 +13,6 @@ import { Source_Serif_4, Inter } from "next/font/google";
 const serif = Source_Serif_4({ subsets: ["latin"], weight: ["400", "600"], display: "swap", variable: "--intl-serif" });
 const sans = Inter({ subsets: ["latin"], display: "swap", variable: "--intl-sans" });
 
-const CAL = "https://cal.com/ag-ventures-qbqxax/30min";
 const EMAIL = "neil@mail.deltalabsai.com";
 
 const Icon = ({ children }) => (
@@ -23,24 +22,24 @@ const Icon = ({ children }) => (
 );
 
 const EXAMPLES = [
-  { t: "Typed twice", d: "The same details go into your CRM and then again into a proposal, an invoice or a booking tool.", i: <><rect x="9" y="9" width="11" height="11" rx="2" /><path d="M5 15V6a2 2 0 0 1 2-2h9" /></> },
+  { t: "Typed again", d: "The same details go into your CRM and then again into a proposal, an invoice or a booking tool.", i: <><rect x="9" y="9" width="11" height="11" rx="2" /><path d="M5 15V6a2 2 0 0 1 2-2h9" /></> },
   { t: "Chasing documents", d: "Client documents are chased by email, and a spreadsheet tracks who has sent what.", i: <><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" /><path d="M14 3v5h5" /><path d="M9 14l2 2 4-4" /></> },
-  { t: "A report built by hand", d: "Someone assembles it every morning from two or three systems.", i: <><path d="M4 20V10" /><path d="M10 20V4" /><path d="M16 20v-7" /><path d="M2 20h20" /></> },
+  { t: "A report built by hand", d: "Someone assembles it every morning from several systems.", i: <><path d="M4 20V10" /><path d="M10 20V4" /><path d="M16 20v-7" /><path d="M2 20h20" /></> },
   { t: "Enquiries that wait", d: "They arrive by phone or email and wait for someone to put them in the right place.", i: <><path d="M22 12h-6l-2 3h-4l-2-3H2" /><path d="M5.5 5.1 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.5-6.9A2 2 0 0 0 16.7 4H7.3a2 2 0 0 0-1.8 1.1z" /></> },
-  { t: "A tracker in one file", d: "A deadline tracker lives in one person's Excel file.", i: <><rect x="3" y="4" width="18" height="17" rx="2" /><path d="M3 9h18" /><path d="M8 2v4" /><path d="M16 2v4" /><path d="M8 14h3" /></> },
+  { t: "A tracker nobody else can see", d: "A deadline tracker lives in an Excel file that only its owner keeps up to date.", i: <><rect x="3" y="4" width="18" height="17" rx="2" /><path d="M3 9h18" /><path d="M8 2v4" /><path d="M16 2v4" /><path d="M8 14h3" /></> },
 ];
 
 const STEPS = [
-  { h: "A call", b: "Thirty minutes. You describe the task and show us where it happens. We tell you what we see and whether it looks like a two-week job. The outline confirms it." },
-  { h: "A one-page outline", b: "What we will build, what done looks like, the price and the payment terms. Nothing starts until you have agreed it in writing." },
+  { h: "A written enquiry", b: "You describe the task by email, with screenshots of where it happens if that helps. We reply in writing with what we see and whether it looks like a small, well defined job. The outline confirms it." },
+  { h: "A short written outline", b: "What we will build, what done looks like, the price and the payment terms. Nothing starts until you have agreed it in writing." },
   { h: "The build", b: "We build it inside the tools you already use. You keep access to everything." },
   { h: "A hand-over document", b: "A short written guide to how it works and what to do if something stops." },
-  { h: "A training call", b: "One session with the people who will use it." },
+  { h: "Training", b: "We show the people who will use it how it works." },
 ];
 
 const NEED = [
   "Access to the tools involved, which you can withdraw at any time.",
-  "One person who can answer questions during the two weeks.",
+  "Someone who can answer questions while the work is under way.",
   "A decision on the outline before the work starts.",
 ];
 
@@ -53,9 +52,9 @@ const NOT_DO = [
 
 const FAQ = [
   { q: "Do you need WhatsApp or another messaging app?", a: "No. This service does not depend on any messaging app. We work in the tools you already use, such as spreadsheets, your CRM, your accounting or booking software, and email." },
-  { q: "What if the task is bigger than two weeks?", a: "We say so on the call or in the outline, and we do not start. We would rather agree a smaller first piece with you than promise something we cannot finish." },
+  { q: "What if the task is bigger than a small job?", a: "We say so in our reply or in the outline, and we do not start. We would rather agree a smaller piece to start with than promise something we cannot finish." },
   { q: "How is the price set?", a: "It is written in the outline, before any work starts, together with the payment terms. You agree it before we begin." },
-  { q: "Can you work with the tools we already use?", a: "Tell us which ones. We will say honestly, on the call, whether we can work with them. If we cannot, we will say so and not start." },
+  { q: "Can you work with the tools we already use?", a: "Tell us which ones. We will say honestly, in writing, whether we can work with them. If we cannot, we will say so and not start." },
   { q: "Where are you based, and who is behind this?", a: "We are a small studio in India. Delta Labs AI is run by A.G. Ventures, India." },
 ];
 
@@ -111,11 +110,10 @@ const CSS = `
 .intl .kind .ic{width:44px;height:44px;border-radius:10px;background:var(--soft);border:1px solid var(--line);display:inline-flex;align-items:center;justify-content:center;color:var(--accent)}
 .intl .kind h3{margin-bottom:4px}
 .intl .kind p{margin:0;font-size:16px;color:var(--ink2)}
-.intl ol.steps{list-style:none;margin:28px 0 0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:24px;counter-reset:s}
-.intl ol.steps li{position:relative;padding-top:18px;border-top:2px solid var(--ink)}
-.intl ol.steps li:before{counter-increment:s;content:counter(s);display:block;font-family:var(--intl-serif),Georgia,serif;font-size:1.6rem;font-weight:600;color:var(--ink);margin-bottom:6px}
-.intl ol.steps h3{margin-bottom:6px}
-.intl ol.steps p{font-size:15.5px;margin:0}
+.intl ul.steps{list-style:none;margin:28px 0 0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:24px}
+.intl ul.steps li{position:relative;padding-top:18px;border-top:2px solid var(--ink)}
+.intl ul.steps h3{margin-bottom:6px}
+.intl ul.steps p{font-size:15.5px;margin:0}
 .intl .two{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:40px}
 .intl ul.ticks{list-style:none;margin:0;padding:0;display:grid;gap:12px}
 .intl ul.ticks li{display:grid;grid-template-columns:22px 1fr;gap:12px;align-items:start}
@@ -143,9 +141,8 @@ const CSS = `
 @media (max-width:980px){
   .intl .hero{padding:48px 0 40px}
   .intl .hero-grid{grid-template-columns:1fr;gap:36px}
-  .intl ol.steps{grid-template-columns:1fr;gap:22px}
-  .intl ol.steps li{display:grid;grid-template-columns:36px 1fr;column-gap:12px;padding-top:16px}
-  .intl ol.steps li:before{margin:0;grid-row:1 / span 2}
+  .intl ul.steps{grid-template-columns:1fr;gap:22px}
+  .intl ul.steps li{padding-top:16px}
 }
 @media (max-width:640px){
   .intl .chips{flex-direction:column;align-items:flex-start;gap:6px}
@@ -194,17 +191,16 @@ export default function InternationalPage() {
           <div className="wrap hero-grid">
             <div>
               <p className="eyebrow fade">A small studio in India</p>
-              <h1 className="fade d1">We fix one manual task at a time.</h1>
+              <h1 className="fade d1">We fix the manual work your team keeps repeating.</h1>
               <p className="lede fade d2">
-                Pick one repeated task that costs your team time. If it fits a two-week scope, we fix it for a fixed price, inside the tools you already use. Then you decide whether you want us to do anything else.
+                Pick a repeated task that costs your team time. If it is a small, well defined job, we fix it for a fixed price, inside the tools you already use. Then you decide whether you want us to do anything else.
               </p>
               <div className="cta fade d3">
-                <a className="btn btn-primary" href={CAL} target="_blank" rel="noopener noreferrer">Book a 30-minute call</a>
-                <a className="btn btn-ghost" href={`mailto:${EMAIL}`}>Write to us</a>
+                <a className="btn btn-primary" href={`mailto:${EMAIL}`}>Send a short written enquiry</a>
               </div>
             </div>
 
-            <figure className="flowcard fade d3" style={{ margin: 0 }} aria-label="Drawing of one common task before and after the fix">
+            <figure className="flowcard fade d3" style={{ margin: 0 }} aria-label="Drawing of a common task before and after the fix">
               <div className="flowrow">
                 <span className="flowtag tag-before">Before</span>
                 <div className="chips">
@@ -223,7 +219,7 @@ export default function InternationalPage() {
                   <span className="fan"><span className="chip">Proposal</span><span className="chip">Invoice</span></span>
                 </div>
               </div>
-              <figcaption className="flowcap">One common task, drawn simply. An illustration, not a client result.</figcaption>
+              <figcaption className="flowcap">A common task, drawn simply. An illustration, not a client result.</figcaption>
             </figure>
           </div>
         </section>
@@ -242,21 +238,21 @@ export default function InternationalPage() {
                 </div>
               ))}
             </div>
-            <p style={{ marginTop: 28, color: "var(--muted)" }}>These are examples, not promises about your business. We check on the call whether your task is a two-week job.</p>
+            <p style={{ marginTop: 28, color: "var(--muted)" }}>These are examples, not promises about your business. Before anything starts, we check in writing whether your task is a small, well defined job.</p>
           </div>
         </section>
 
         <section className="block" aria-labelledby="how-h">
           <div className="wrap">
             <h2 id="how-h">How it works</h2>
-            <ol className="steps">
+            <ul className="steps">
               {STEPS.map((s) => (
                 <li key={s.h}>
                   <h3>{s.h}</h3>
                   <p>{s.b}</p>
                 </li>
               ))}
-            </ol>
+            </ul>
           </div>
         </section>
 
@@ -292,7 +288,7 @@ export default function InternationalPage() {
             <h2 id="today-h">Where we are today</h2>
             <div className="today">
               <p>
-                We have two clients so far, both in India. We are new to the UK, Ireland and the UAE and have no case studies there yet. That is why we start small: you judge one piece of work before you decide anything bigger, and nothing is built before you have agreed the outline and the price in writing.
+                We are new to the UK, Ireland and the UAE and have no case studies there yet. That is why we start small: you judge a small piece of work before you decide anything bigger, and nothing is built before you have agreed the outline and the price in writing.
               </p>
             </div>
           </div>
@@ -318,9 +314,9 @@ export default function InternationalPage() {
         <section className="endcta" aria-labelledby="end-h">
           <div className="wrap">
             <h2 id="end-h">Tell us the task</h2>
-            <p>Describe it in a few lines, or book a call and show us.</p>
+            <p>Describe it in a few lines and we reply in writing.</p>
             <div className="cta">
-              <a className="btn btn-primary" href={CAL} target="_blank" rel="noopener noreferrer">Book a 30-minute call</a>
+              <a className="btn btn-primary" href={`mailto:${EMAIL}`}>Send a short written enquiry</a>
               <a className="btn btn-ghost" href={`mailto:${EMAIL}`}>{EMAIL}</a>
             </div>
           </div>

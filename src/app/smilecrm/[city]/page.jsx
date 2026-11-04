@@ -14,14 +14,13 @@ export async function generateMetadata({ params }) {
 
   return {
     title: `SmileCRM for Dental Clinics in ${city.name} | Delta Labs AI`,
-    description: `Automate appointment reminders, patient recall & Google reviews for dental clinics in ${city.name}, ${city.state}. SmileCRM by Delta Labs AI.`,
+    description: `WhatsApp booking and visit reminders for dental clinics in ${city.name}, ${city.state}. SmileCRM by Delta Labs AI. Pricing by quote.`,
     keywords: [
       `SmileCRM ${city.name}`,
       `dental clinic CRM ${city.name}`,
       `dental appointment software ${city.name}`,
       `dental practice management ${city.name}`,
       `reduce no-shows dental ${city.name}`,
-      `patient recall system ${city.name}`,
       `dental clinic automation ${city.state}`,
       "SmileCRM India",
       "dental clinic software India",
@@ -31,7 +30,7 @@ export async function generateMetadata({ params }) {
     },
     openGraph: {
       title: `SmileCRM for Dental Clinics in ${city.name}`,
-      description: `Automated WhatsApp reminders built to cut no-shows, automate patient recall, and grow Google reviews for your ${city.name} dental clinic.`,
+      description: `Patients book on WhatsApp and get a reminder before each visit. SmileCRM for your ${city.name} dental clinic.`,
       url,
       siteName: "Delta Labs AI",
       type: "website",
@@ -63,7 +62,7 @@ export default function SmileCRMCityPage({ params }) {
         name: "SmileCRM",
         applicationCategory: "BusinessApplication",
         operatingSystem: "Web",
-        description: `SmileCRM automates appointment reminders, patient recall, and review collection for dental clinics in ${city.name}, ${city.state}.`,
+        description: `SmileCRM gives dental clinics in ${city.name}, ${city.state} WhatsApp booking, reminders before each visit, patient records and desk billing.`,
         provider: {
           "@type": "Organization",
           name: "Delta Labs AI",
@@ -83,18 +82,18 @@ export default function SmileCRMCityPage({ params }) {
         mainEntity: [
           {
             "@type": "Question",
-            name: `Is SmileCRM available for dental clinics in ${city.name}?`,
+            name: `Can a dental clinic in ${city.name} use SmileCRM?`,
             acceptedAnswer: {
               "@type": "Answer",
-              text: `Yes! SmileCRM is available for dental clinics across India, including ${city.name}, ${city.state}. We handle remote setup.`,
+              text: `Yes. Setup is done remotely, with written step by step instructions, so it works for clinics in ${city.name}, ${city.state}.`,
             },
           },
           {
             "@type": "Question",
-            name: "Is there a free trial?",
+            name: "How is the price set?",
             acceptedAnswer: {
               "@type": "Answer",
-              text: "Yes, we offer a free trial. Ask us for the current terms.",
+              text: "By written quote, after you tell us about your clinic. You agree it before anything starts.",
             },
           },
         ],

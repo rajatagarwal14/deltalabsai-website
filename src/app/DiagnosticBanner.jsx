@@ -86,8 +86,8 @@ export default function DiagnosticBanner() {
             overflow: "hidden",
             textOverflow: "ellipsis",
           }}>
-            Find where your business is leaking revenue —{" "}
-            <span style={{ color: "#10B981" }}>free in 3 minutes</span>
+            Find where your business is leaking revenue,{" "}
+            <span style={{ color: "#10B981" }}>free</span>
           </p>
           <p className="dla-tagline" style={{
             margin: "2px 0 0",
@@ -95,7 +95,7 @@ export default function DiagnosticBanner() {
             fontSize: 11,
             lineHeight: 1.3,
           }}>
-            AI Diagnostic scores your business across 5 dimensions. No signup needed.
+            The AI Diagnostic scores revenue, operations, team, technology and data. No signup needed.
           </p>
         </div>
 

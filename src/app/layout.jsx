@@ -1,13 +1,12 @@
 import "./globals.css";
-import WhatsAppFloat from "./WhatsAppFloat";
 
 export const metadata = {
-  title: "Free 3-Min AI Diagnostic: Find Your Automation Gaps | Delta Labs AI",
+  title: "Free AI Diagnostic: Find Your Automation Gaps | Delta Labs AI",
   description:
-    "Take the free 3-minute AI diagnostic — score your business on 5 dimensions, find revenue leaks, get a custom automation roadmap for your dental clinic, gym, or SMB. No lock-in, no sales call.",
+    "Take the free AI diagnostic. Score your business on revenue, operations, team, technology and data, find revenue leaks, and get an automation roadmap for your clinic, gym, or SMB. No lock-in, no sales call.",
   keywords: [
     "free AI diagnostic for small business",
-    "AI consulting for dental clinics",
+    "AI consulting for clinics",
     "AI automation for SMB",
     "free business automation audit",
     "AI tools for independent dental practice",
@@ -28,7 +27,7 @@ export const metadata = {
   openGraph: {
     title: "AI Automation for Small Business | Free AI Diagnostic | Delta Labs AI",
     description:
-      "AI automation for small businesses and dental clinics. Free 3-min AI diagnostic that scores 5 dimensions, finds revenue leaks, and gives your automation roadmap.",
+      "AI automation for small businesses and clinics. A free AI diagnostic that finds revenue leaks and gives your automation roadmap.",
     url: "https://deltalabsai.com",
     siteName: "Delta Labs AI",
     type: "website",
@@ -38,7 +37,7 @@ export const metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Delta Labs AI — AI-Powered Business Consulting",
+        alt: "Delta Labs AI, AI-Powered Business Consulting",
       },
     ],
   },
@@ -46,7 +45,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "AI Automation for Small Business | Free AI Diagnostic | Delta Labs AI",
     description:
-      "AI automation for small businesses and dental clinics. Free 3-min AI diagnostic that scores 5 dimensions, finds revenue leaks, and gives your automation roadmap.",
+      "AI automation for small businesses and clinics. A free AI diagnostic that finds revenue leaks and gives your automation roadmap.",
     images: ["/og-image.png"],
   },
   icons: {
@@ -80,7 +79,7 @@ const jsonLd = {
   name: "Delta Labs AI",
   alternateName: "Delta Labs AI Consulting",
   description:
-    "AI-powered business consulting for growing companies. We diagnose revenue leaks across 5 business dimensions, fix operations, implement CRM systems, and build AI automation for small and mid-sized businesses.",
+    "AI-powered business consulting for growing companies. We diagnose revenue leaks, fix operations, implement CRM systems, and build AI automation for small and mid-sized businesses.",
   url: "https://deltalabsai.com",
   logo: {
     "@type": "ImageObject",
@@ -129,9 +128,9 @@ const jsonLd = {
         "@type": "Offer",
         itemOffered: {
           "@type": "Service",
-          name: "Free 5-Dimension Business Diagnostic",
+          name: "Free Business Diagnostic",
           description:
-            "A free 3-minute assessment that scores your business across 5 dimensions including revenue, operations, technology, and team. Generates a radar chart with specific quick-win recommendations.",
+            "A free self-assessment that scores your business on revenue, operations, team, technology and data. Generates a radar chart with specific quick-win recommendations.",
           url: "https://deltalabsai.com/diagnostic",
         },
       },
@@ -144,22 +143,12 @@ const jsonLd = {
             "Self-serve Notion template for comprehensive business assessment with scoring framework",
         },
       },
-      {
-        "@type": "Offer",
-        itemOffered: {
-          "@type": "Service",
-          name: "Free Discovery Call",
-          description:
-            "30-minute consultation to review your diagnostic results and discuss specific recommendations for your business",
-          url: "https://cal.com/ag-ventures-qbqxax/30min",
-        },
-      },
     ],
   },
   contactPoint: {
     "@type": "ContactPoint",
     contactType: "Sales",
-    url: "https://cal.com/ag-ventures-qbqxax/30min",
+    email: "neil@mail.deltalabsai.com",
     availableLanguage: ["English"],
   },
 };
@@ -184,7 +173,7 @@ const serviceJsonLd = {
     "url": "https://deltalabsai.com",
   },
   "name": "AI Automation & Business Consulting",
-  "description": "AI-powered business consulting for small and mid-sized businesses. We diagnose revenue leaks, fix broken operations, and build AI automation that runs while you sleep.",
+  "description": "AI-powered business consulting for small and mid-sized businesses. We diagnose revenue leaks, fix broken operations, and build AI automation.",
   "areaServed": "Worldwide",
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
@@ -194,8 +183,8 @@ const serviceJsonLd = {
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
-          "name": "Free 5-Dimension Business Diagnostic",
-          "description": "A free 3-minute assessment scoring your business across 5 dimensions with radar chart and quick-win recommendations.",
+          "name": "Free Business Diagnostic",
+          "description": "A free self-assessment scoring your business with a radar chart and quick-win recommendations.",
         },
       },
       {
@@ -210,8 +199,8 @@ const serviceJsonLd = {
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
-          "name": "SmileCRM for Dental Clinics",
-          "description": "Purpose-built CRM for dental clinics with appointment automation, patient recall, review management, and WhatsApp follow-ups.",
+          "name": "SmileCRM for Clinics",
+          "description": "CRM for independent clinics and doctors with WhatsApp booking, visit reminders, patient records and feedback after a visit.",
         },
       },
     ],
@@ -227,7 +216,7 @@ const webSiteJsonLd = {
   name: "Delta Labs AI",
   url: "https://deltalabsai.com",
   description:
-    "AI-powered business consulting for growing companies. Free 5-dimension diagnostic, expert blog, and consulting services.",
+    "AI-powered business consulting for growing companies. Free diagnostic, blog, and consulting services.",
   publisher: {
     "@type": "Organization",
     name: "Delta Labs AI",
@@ -286,55 +275,6 @@ export default function RootLayout({ children }) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteJsonLd) }}
         />
-        {/* Cal.com Embed — popup + inline support site-wide, except /international (plain links there, no third-party load) */}
-        <script dangerouslySetInnerHTML={{ __html: `
-          if (window.location.pathname.indexOf('/international') !== 0) {
-          (function (C, A, L) {
-            var p = function (a, ar) { a.q.push(ar); };
-            var d = C.document;
-            C.Cal = C.Cal || function () {
-              var cal = C.Cal; var ar = arguments;
-              if (!cal.loaded) {
-                cal.ns = {}; cal.q = cal.q || [];
-                var s = d.createElement("script"); s.src = A; s.async = true;
-                d.head.appendChild(s);
-                cal.loaded = true;
-              }
-              if (ar[0] === L) {
-                var api = function () { p(api, arguments); };
-                var ns = ar[1]; api.q = api.q || [];
-                if (typeof ns === "string") { cal.ns[ns] = cal.ns[ns] || api; p(cal.ns[ns], ar); p(cal, [L, ns, ar[2]]); }
-                else p(cal, ar);
-                return;
-              }
-              p(cal, ar);
-            };
-          })(window, "https://app.cal.com/embed/embed.js", "init");
-          Cal("init", "30min", { origin: "https://cal.com" });
-          Cal.ns["30min"]("ui", {
-            styles: { branding: { brandColor: "#059669" } },
-            hideEventTypeDetails: false,
-            layout: "month_view"
-          });
-
-          // Global interceptor — catch ANY click on a cal.com link and open as popup instead
-          function openCalPopup() {
-            if (window.Cal && window.Cal.ns && window.Cal.ns["30min"]) {
-              window.Cal.ns["30min"]("modal", { calLink: "ag-ventures-qbqxax/30min" });
-            }
-          }
-          window.openCalPopup = openCalPopup;
-          document.addEventListener("click", function(e) {
-            var el = e.target.closest('a[href*="cal.com/ag-ventures"], a[href="#cal-book"], [data-cal-link]');
-            if (el) {
-              e.preventDefault();
-              e.stopPropagation();
-              if (window.gtag) window.gtag("event", "book_call_click");
-              openCalPopup();
-            }
-          }, true);
-          }
-        `}} />
       </head>
       <body
         style={{
@@ -346,8 +286,6 @@ export default function RootLayout({ children }) {
         }}
       >
         {children}
-
-        <WhatsAppFloat />
 
       </body>
     </html>

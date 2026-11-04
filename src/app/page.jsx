@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import DiagnosticBanner from "./DiagnosticBanner";
 
-const CAL = "https://cal.com/ag-ventures-qbqxax/30min";
+const MAIL = "mailto:neil@mail.deltalabsai.com";
 const FORM = "/diagnostic";
 
 function useScrollTo() { return (id) => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" }); }
@@ -47,17 +47,10 @@ const Ic = {
 };
 
 // Btn
-function Btn({ children, onClick, primary = true, href, calLink, style: sx = {} }) {
-  // calLink → Cal.com popup embed (no redirect). href → regular link. Neither → button with onClick.
-  const isCalLink = !!calLink;
-  const Tag = isCalLink ? "button" : href ? "a" : "button";
-  const calProps = isCalLink ? {
-    "data-cal-link": calLink,
-    "data-cal-namespace": "30min",
-    "data-cal-config": JSON.stringify({ layout: "month_view" }),
-    type: "button",
-  } : {};
-  const props = isCalLink ? calProps : href ? { href, target: href.startsWith("http") ? "_blank" : undefined, rel: "noopener noreferrer" } : { onClick };
+function Btn({ children, onClick, primary = true, href, style: sx = {} }) {
+  // href → regular link. No href → button with onClick.
+  const Tag = href ? "a" : "button";
+  const props = href ? { href, target: href.startsWith("http") ? "_blank" : undefined, rel: "noopener noreferrer" } : { onClick };
   return (
     <Tag {...props} style={{
       display: "inline-flex", alignItems: "center", gap: 8, border: "none", borderRadius: 10, cursor: "pointer",
@@ -76,25 +69,23 @@ function Btn({ children, onClick, primary = true, href, calLink, style: sx = {} 
 function FAQ() {
   const [open, setOpen] = useState(null);
   const faqs = [
-    { q: "How much does it cost?", a: "Our free diagnostic gives you immediate insights at no cost. Consulting engagements are customized to your business size and needs  - we'll discuss pricing on your discovery call after we understand your situation." },
+    { q: "How much does it cost?", a: "The diagnostic is free. Everything else is priced by quote. Send us a short written enquiry about your business and we reply in writing with what is included and the price. Nothing starts until you have agreed the quote." },
     { q: "We're not very tech-savvy. Is this for us?", a: "Absolutely. It is built for people who are not technical. We handle the complex stuff and give you simple, clear recommendations. If you can use email and a spreadsheet, you're good. Our AI tools are designed to be used by anyone on your team." },
     { q: "How quickly will we see results?", a: "It depends on the problem, so we do not promise a timeline for results. Before any work starts, we agree in writing what will be built and how long it should take." },
     { q: "Are we locked into a long-term contract?", a: "No. We don't do lock-in contracts. Engagements are project-based or month-to-month. You stay because you're getting results, not because of a contract." },
-    { q: "What if the discovery call isn't useful?", a: "If we can't identify at least one actionable quick win in your 30-minute call, we'll send you our DX Roadmap Template completely free." },
-    { q: "What is SmileCRM?", a: "SmileCRM is our purpose-built CRM for independent dental clinics. It automates appointment reminders, patient recall, Google review requests, and WhatsApp follow-ups. Pricing is quoted after a short call." },
-    { q: "What is the AI BDR product?", a: "AI BDR is a fully automated business development system that researches leads, writes personalised outreach emails, follows up automatically, and hands you warm replies. It runs about 200 personalised sequences a month. Pricing is quoted after a short call." },
-    { q: "Do you offer an AI voice receptionist?", a: "Yes — our AI Voice Receptionist answers your business phone 24/7, books appointments, handles common questions, and escalates to a human when needed. It's currently on waitlist. Pricing is shared when you join." },
-    { q: "What's the AI Business Ecosystem?", a: "It's our end-to-end automation package for any SMB: CRM setup, workflow automation with n8n/Make.com, custom AI agents, lead capture, and a monthly strategy review — all connected and running together. Pricing is custom based on scope." },
-    { q: "What industries do you work with?", a: "We have two clients so far, both in India. We are glad to look at any small or growing service business that has outgrown its systems, for example clinics, gyms and wellness studios, home services and trades, e-commerce brands and agencies. Tell us the problem and we will say honestly whether we can help." },
-    { q: "How does the free diagnostic work?", a: "It takes about 3 minutes, needs no credit card, and scores your business across 5 dimensions with instant results shown as a radar chart — so you can see exactly where you're leaking revenue before talking to us." },
-    { q: "What happens on the discovery call?", a: "It's a free 30-minute call (booked via our calendar) where we look at your specific processes and identify at least one actionable quick win. If we can't, you get our DX Roadmap Template free." },
-    { q: "How do WhatsApp automations work?", a: "We're a registered WhatsApp Tech Provider, so reminders, recall messages, and follow-ups (for example through SmileCRM) are sent via official WhatsApp Business channels rather than unofficial workarounds." },
-    { q: "Can you automate patient recall and no-show reduction for a dental clinic?", a: "Yes — this is exactly what SmileCRM and our dental automation service handle: automated appointment reminders, automated patient recall, and WhatsApp & SMS reminders to cut no-shows." },
-    { q: "Do you help with online reviews?", a: "Yes — Google review automation is a core part of our dental and clinic offerings, prompting satisfied patients/customers to leave reviews after their visit." },
-    { q: "What if I run a gym or fitness studio, not a clinic?", a: "We have a dedicated fitness & wellness solution focused on member retention, class scheduling, and revenue optimization for gyms and studios." },
-    { q: "What if I run an e-commerce or D2C brand?", a: "We handle order fulfillment, customer service, and inventory management automation for e-commerce and D2C brands." },
-    { q: "Do you build custom AI agents, or only use off-the-shelf tools?", a: "Both — the AI Business Ecosystem package includes custom AI agents built for your workflows on top of n8n/Make.com automations, not just pre-made templates." },
-    { q: "How do I get started?", a: "Start with the free 3-minute diagnostic, or book a 30-minute discovery call directly — whichever you're more comfortable with. There's no cost and no obligation either way." },
+    { q: "What is SmileCRM?", a: "SmileCRM is our CRM for independent clinics and doctors, dental and other specialities. Patients book on WhatsApp, get a reminder before their visit, and are asked for feedback afterwards. Pricing is by quote, after a short written enquiry." },
+    { q: "What is the AI BDR product?", a: "AI BDR is a fully automated business development system that researches leads, writes personalised outreach emails, follows up automatically, and hands you warm replies. Pricing is by quote, after a short written enquiry." },
+    { q: "What's the AI Business Ecosystem?", a: "It's our end-to-end automation package for any SMB: CRM setup, workflow automation with n8n/Make.com, custom AI agents and lead capture, all connected and running together. Pricing is by quote, based on scope." },
+    { q: "What industries do you work with?", a: "We are glad to look at any small or growing service business that has outgrown its systems, for example clinics, gyms and wellness studios, home services and trades, e-commerce brands and agencies. Tell us the problem and we will say honestly whether we can help." },
+    { q: "How does the free diagnostic work?", a: "It is a short self-assessment. It needs no credit card and scores your business on revenue, operations, team, technology and data, with results shown as a radar chart, so you can see where you may be leaking revenue before talking to us." },
+    { q: "What happens after I write to you?", a: "We read what you send and reply in writing: whether we can help, what we would fix and in what order, and a quote. Nothing starts until you agree it." },
+    { q: "How do WhatsApp automations work?", a: "Reminders and follow-ups (for example through SmileCRM) go to patients on WhatsApp, and only to patients who have messaged the clinic or agreed at the desk." },
+    { q: "Can you help a clinic with no-shows?", a: "SmileCRM books visits on WhatsApp and sends each patient a reminder on WhatsApp before the visit. It does not send text messages and does not run automatic campaigns to bring back lapsed patients." },
+    { q: "Do you help with online reviews?", a: "SmileCRM asks patients for feedback after a visit. We do not run review campaigns for you." },
+    { q: "What if I run a gym or fitness studio, not a clinic?", a: "Tell us what is not working, for example bookings, renewals or follow-ups, and we will say honestly whether we can help." },
+    { q: "What if I run an e-commerce or direct-to-consumer brand?", a: "Tell us where orders or customer questions get stuck. We have built WhatsApp ordering demos, and we will say honestly whether we can help with your setup." },
+    { q: "Do you build custom AI agents, or only use off-the-shelf tools?", a: "Both. The AI Business Ecosystem package includes custom AI agents built for your workflows on top of n8n/Make.com automations, not just pre-made templates." },
+    { q: "How do I get started?", a: "Start with the free diagnostic, or send a short written enquiry to neil@mail.deltalabsai.com, whichever you're more comfortable with. There's no cost and no obligation either way." },
   ];
   const faqJsonLd = {
     "@context": "https://schema.org",
@@ -285,13 +276,8 @@ function Radar() {
         @keyframes dlRadarSpin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
         @media(prefers-reduced-motion:reduce){.dl-radar-area,.dl-radar-sweep{animation:none}}
       `}</style>
-      <svg ref={ref} viewBox="0 0 400 400" style={{ width: "100%", height: "100%", overflow: "visible" }} aria-label="Example radar chart of the 5-dimension diagnostic, with illustrative values" />
+      <svg ref={ref} viewBox="0 0 400 400" style={{ width: "100%", height: "100%", overflow: "visible" }} aria-label="Example radar chart of the diagnostic, with illustrative values" />
       <span style={{ position: "absolute", top: 0, left: 0, fontFamily: "monospace", fontSize: 10, letterSpacing: "0.1em", color: "rgba(255,255,255,0.4)" }}>EXAMPLE · NOT REAL DATA</span>
-      <span style={{ position: "absolute", top: 0, right: 0, fontFamily: "monospace", fontSize: 10, letterSpacing: "0.1em", color: "rgba(255,255,255,0.4)" }}>5 DIMENSIONS</span>
-      <div style={{ position: "absolute", bottom: -6, left: "50%", transform: "translateX(-50%)", display: "flex", gap: 18, fontFamily: "monospace", fontSize: 11, color: "rgba(255,255,255,0.55)", whiteSpace: "nowrap" }}>
-        <span>HEALTH&nbsp;<b style={{ color: "#3B82F6" }}>56</b></span>
-        <span>LEAKS&nbsp;<b style={{ color: "#F87171" }}>2</b></span>
-      </div>
     </div>
   );
 }
@@ -306,18 +292,18 @@ function Hero() {
           <F eager>
             <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.12)", borderRadius: 100, padding: "6px 14px", fontSize: 13, color: "#cbd5e1", fontFamily: "'DM Sans',sans-serif", marginBottom: 28 }}>
               <span style={{ width: 7, height: 7, borderRadius: "50%", background: "#34D399", flexShrink: 0 }} />
-              Free · 3 minutes · Instant results across <b style={{ color: "#fff", margin: "0 4px" }}>5 business dimensions</b>
+              Free · <b style={{ color: "#fff", margin: "0 4px" }}>No card needed</b>
             </div>
           </F>
           <F eager d={0.08}>
             <h1 className="hero-h1" style={{ fontFamily: "Georgia, 'Times New Roman', serif", fontSize: "clamp(38px, 5.6vw, 64px)", fontWeight: 500, lineHeight: 1.06, letterSpacing: "-0.02em", margin: "0 0 24px" }}>
-              AI Automation for Small Business —{" "}
+              AI Automation for Small Business.{" "}
               <em style={{ color: "#60A5FA", fontStyle: "italic" }}>Get Your Free Delta Labs AI Diagnostic</em>
             </h1>
           </F>
           <F eager d={0.16}>
             <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: "clamp(16px, 1.6vw, 19px)", color: "#94a3b8", lineHeight: 1.7, maxWidth: 520, margin: "0 0 34px" }}>
-              See exactly where your business is losing time and money — in 3 minutes.
+              See where your business is losing time and money.
             </p>
           </F>
           <F eager d={0.24}>
@@ -325,16 +311,6 @@ function Hero() {
               <style>{`@keyframes dl-cta-pulse{0%,100%{box-shadow:0 4px 20px rgba(37,99,235,0.45),0 0 0 0 rgba(37,99,235,0.4)}70%{box-shadow:0 4px 20px rgba(37,99,235,0.45),0 0 0 12px rgba(37,99,235,0)}}`}</style>
               <Btn href={FORM} style={{ background: "#2563EB", fontSize: 17, padding: "18px 38px", animation: "dl-cta-pulse 2.2s infinite", borderRadius: 12 }}>Get Your Free AI Diagnostic <Ic.Arr /></Btn>
               <a onClick={() => scrollTo("how")} style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "14px 28px", borderRadius: 10, fontFamily: "'DM Sans',sans-serif", fontWeight: 600, fontSize: 15, cursor: "pointer", color: "#e2e8f0", border: "1.5px solid rgba(255,255,255,0.18)", background: "transparent" }}>See how it works</a>
-            </div>
-          </F>
-          <F eager d={0.35}>
-            <div style={{ marginTop: 44, display: "flex", gap: "clamp(20px, 4vw, 44px)", flexWrap: "wrap" }}>
-              {[["3 min", "free diagnostic\nno card needed"], ["5", "business dimensions\nscored"], ["30 min", "free discovery\ncall"]].map(([n, l], i) => (
-                <div key={i}>
-                  <div style={{ fontFamily: "monospace", fontSize: 26, fontWeight: 700, color: i === 0 ? "#60A5FA" : "#fff" }}>{n}</div>
-                  <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, color: "#64748b", fontWeight: 500, marginTop: 4, whiteSpace: "pre-line", lineHeight: 1.4 }}>{l}</div>
-                </div>
-              ))}
             </div>
           </F>
         </div>
@@ -352,7 +328,7 @@ function Proof() {
   return (
     <div style={{ background: "#0F172A", padding: "18px 24px" }}>
       <div style={{ maxWidth: 1000, margin: "0 auto", display: "flex", justifyContent: "center", alignItems: "center", gap: "clamp(16px, 4vw, 40px)", flexWrap: "wrap" }}>
-        {["5-dimension diagnostic", "Free, about 3 minutes", "No credit card needed"].map((t, i) => (
+        {["Free diagnostic", "Results on screen", "No credit card needed"].map((t, i) => (
           <div key={i} style={{ display: "flex", alignItems: "center", gap: 8 }}>
             <span style={{ color: "#34D399" }}><Ic.Chk /></span>
             <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, color: "#CBD5E1", fontWeight: 500 }}>{t}</span>
@@ -375,13 +351,13 @@ function HeroCTABand() {
       <div style={{ maxWidth: 700, margin: "0 auto" }}>
         <F>
           <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: "clamp(13px, 1.5vw, 15px)", color: "#34D399", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", margin: "0 0 12px" }}>
-            Free · 3 Minutes · Instant Results
+            Free · No Card Needed
           </p>
           <h2 style={{ fontFamily: "'DM Sans',sans-serif", fontSize: "clamp(22px, 3.5vw, 34px)", fontWeight: 800, color: "#fff", letterSpacing: "-0.02em", margin: "0 0 8px", lineHeight: 1.2 }}>
             Ready for Your Free AI Diagnostic?
           </h2>
           <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: "clamp(14px, 1.8vw, 17px)", color: "#94A3B8", margin: "0 0 28px", lineHeight: 1.6 }}>
-            A short self-assessment across 5 dimensions of your business that points to where money may be leaking, in minutes.
+            A short self-assessment of your business that points to where money may be leaking.
           </p>
           <a href={FORM} onClick={trackClick} style={{
             display: "inline-flex", alignItems: "center", gap: 8, textDecoration: "none",
@@ -413,7 +389,7 @@ function DiagnosticCTA() {
           </div>
           <h2 style={{ fontFamily: "'DM Sans',sans-serif", fontSize: "clamp(26px, 4vw, 38px)", fontWeight: 800, color: "#0F172A", letterSpacing: "-0.02em", margin: "0 0 12px" }}>How much is your business leaking?</h2>
           <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 16, color: "#4B5563", lineHeight: 1.7, maxWidth: 480, margin: "0 auto 32px" }}>
-            Our free 5-dimension diagnostic scores your business across revenue, operations, team, technology, and data. You'll get a radar chart, your scores, and one specific recommendation you can implement today.
+            Our free diagnostic scores your business across revenue, operations, team, technology, and data. You'll get a radar chart, your scores, and a specific recommendation you can act on.
           </p>
         </F>
         <F d={0.1}>
@@ -434,7 +410,7 @@ function DiagnosticCTA() {
             </div>
           )}
           <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, color: "#9CA3AF", marginTop: 12 }}>
-            Takes 3 minutes. No credit card. Instant results with radar chart.
+            No credit card. Results shown as a radar chart.
           </p>
         </F>
       </div>
@@ -449,7 +425,7 @@ function WhoFor() {
     { icon: Ic.Shield, label: "Healthcare, hospitals & dental clinics", detail: "Patient flow, billing, compliance  - all need systemizing" },
     { icon: Ic.Wrench, label: "Home services & trades", detail: "HVAC, plumbing, electrical  - scaling beyond the owner" },
     { icon: Ic.Zap, label: "Gyms, wellness & fitness", detail: "Member retention, class scheduling, revenue optimization" },
-    { icon: Ic.Bot, label: "E-commerce & D2C brands", detail: "Order fulfillment, customer service, inventory management" },
+    { icon: Ic.Bot, label: "E-commerce & direct-to-consumer brands", detail: "Orders and customer questions piling up" },
     { icon: Ic.Clock, label: "Any growing service business", detail: "Growing but drowning in operational chaos" },
   ];
   return (
@@ -482,21 +458,20 @@ function WhoFor() {
 // How It Works
 function How() {
   const steps = [
-    { n: "01", title: "Diagnose", desc: "Take our free 5-dimension diagnostic. In 3 minutes, you'll see exactly where your business is strong and where it's leaking revenue  - with a visual radar chart and specific scores.", color: "#2563EB" },
-    { n: "02", title: "Fix", desc: "On your discovery call, we'll walk through your results and give you a prioritized action plan. Quick wins first, strategic changes second. Clear timelines, realistic costs.", color: "#059669" },
-    { n: "03", title: "Grow", desc: "We implement the fixes  - process redesign, CRM setup, workflow automation, AI agents  - and optimize continuously.", color: "#7C3AED" },
+    { title: "Diagnose", desc: "Take our free diagnostic. You'll see where your business is strong and where it may be leaking revenue, with a radar chart and scores.", color: "#2563EB" },
+    { title: "Fix", desc: "Send us a short written enquiry. We reply in writing with a prioritized plan, quick wins before bigger changes, and a quote.", color: "#059669" },
+    { title: "Grow", desc: "We build the fixes we agreed: process redesign, CRM setup, workflow automation or AI agents.", color: "#7C3AED" },
   ];
   return (
     <section id="how" style={{ padding: "88px 24px", background: "#F8FAFC" }}>
       <div style={{ maxWidth: 800, margin: "0 auto" }}>
         <F><div style={{ textAlign: "center", marginBottom: 48 }}>
-          <h2 style={{ fontFamily: "'DM Sans',sans-serif", fontSize: "clamp(26px, 3.5vw, 36px)", fontWeight: 800, color: "#0F172A", letterSpacing: "-0.02em", margin: "0 0 10px" }}>Three steps from chaos to clarity</h2>
+          <h2 style={{ fontFamily: "'DM Sans',sans-serif", fontSize: "clamp(26px, 3.5vw, 36px)", fontWeight: 800, color: "#0F172A", letterSpacing: "-0.02em", margin: "0 0 10px" }}>From chaos to clarity</h2>
         </div></F>
         <div style={{ display: "grid", gap: 16 }}>
           {steps.map((s, i) => (
             <F key={i} d={i * 0.1}>
               <div style={{ display: "flex", gap: 20, alignItems: "flex-start", background: "#fff", borderRadius: 14, padding: "28px", border: "1px solid #E5E7EB", borderLeft: `4px solid ${s.color}` }}>
-                <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 36, fontWeight: 800, color: `${s.color}25`, minWidth: 48, lineHeight: 1 }}>{s.n}</div>
                 <div>
                   <h3 style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 20, fontWeight: 700, color: "#0F172A", margin: "0 0 8px" }}>{s.title}</h3>
                   <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 14.5, color: "#4B5563", lineHeight: 1.7, margin: 0 }}>{s.desc}</p>
@@ -513,15 +488,15 @@ function How() {
 // Services
 function Services() {
   const svcs = [
-    { icon: Ic.Search, title: "Find out where you're losing money", desc: "Our self-assessment points to likely revenue leaks, operational bottlenecks and inefficiencies, based on your own answers.", features: ["5-dimension business health score", "Competitor & market intelligence", "Likely revenue-leak pointers", "Prioritized fix-it roadmap"], color: "#2563EB", bg: "#EFF6FF" },
+    { icon: Ic.Search, title: "Find out where you're losing money", desc: "Our self-assessment points to likely revenue leaks, operational bottlenecks and inefficiencies, based on your own answers.", features: ["Business health score", "Likely revenue-leak pointers", "Prioritized fix-it roadmap"], color: "#2563EB", bg: "#EFF6FF" },
     { icon: Ic.Wrench, title: "Fix what's broken  - fast", desc: "We redesign your processes, set up proper systems, and eliminate the chaos. SOPs, CRM, workflows  - everything your business needs to run without you micromanaging.", features: ["Process redesign & SOPs", "CRM setup and optimization", "Workflow automation", "Team structure & role clarity"], color: "#059669", bg: "#ECFDF5" },
-    { icon: Ic.Bot, title: "Build AI that works while you sleep", desc: "Custom AI agents that handle the repetitive stuff  - answering calls, qualifying leads, checking compliance, generating reports. Your team focuses on what humans do best.", features: ["AI receptionist & lead qualifier", "Document review automation", "Compliance monitoring bots", "Custom industry-specific agents"], color: "#7C3AED", bg: "#F5F3FF" },
+    { icon: Ic.Bot, title: "Automate the repetitive work", desc: "Custom AI agents and automations for the repetitive stuff, built around how your business already works. Your team focuses on what humans do best.", features: ["WhatsApp booking and reminders", "Workflow automation", "Custom industry-specific agents"], color: "#7C3AED", bg: "#F5F3FF" },
   ];
   return (
     <section id="services" style={{ padding: "88px 24px", background: "#fff" }}>
       <div style={{ maxWidth: 1040, margin: "0 auto" }}>
         <F><div style={{ textAlign: "center", marginBottom: 48 }}>
-          <h2 style={{ fontFamily: "'DM Sans',sans-serif", fontSize: "clamp(26px, 3.5vw, 36px)", fontWeight: 800, color: "#0F172A", letterSpacing: "-0.02em", margin: "0 0 10px" }}>Three ways we help you grow</h2>
+          <h2 style={{ fontFamily: "'DM Sans',sans-serif", fontSize: "clamp(26px, 3.5vw, 36px)", fontWeight: 800, color: "#0F172A", letterSpacing: "-0.02em", margin: "0 0 10px" }}>How we help you grow</h2>
           <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 15, color: "#6B7280" }}>Whether you need clarity, systems, or automation - we've got you.</p>
         </div></F>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(290px, 1fr))", gap: 22 }}>
@@ -624,7 +599,7 @@ function Demos() {
           <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, fontWeight: 700, color: "#2563EB", textTransform: "uppercase", letterSpacing: "0.1em" }}>See It In Action</span>
           <h2 style={{ fontFamily: "'DM Sans',sans-serif", fontSize: "clamp(26px, 3.5vw, 36px)", fontWeight: 800, color: "#0F172A", letterSpacing: "-0.02em", margin: "8px 0 12px" }}>Watch it actually work</h2>
           <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 15, color: "#6B7280", maxWidth: 560, margin: "0 auto" }}>
-            A peek at two working WhatsApp demo flows we've built - the full walkthrough is one tap away.
+            A peek at working WhatsApp demo flows we've built. The full walkthrough is a tap away.
           </p>
         </div></F>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(270px, 1fr))", gap: 20 }}>
@@ -639,15 +614,16 @@ function Demos() {
                 <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, color: "#6B7280", margin: "0 0 8px", fontWeight: 600 }}>{d.brand}</p>
                 <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, color: "#6B7280", lineHeight: 1.6, margin: "0 0 18px", flex: 1 }}>{d.desc}</p>
                 <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-                  <button data-cal-link="ag-ventures-qbqxax/30min" data-cal-namespace="30min" data-cal-config='{"layout":"month_view"}' type="button" style={{
+                  <a href={MAIL} style={{
                     fontFamily: "'DM Sans',sans-serif", fontWeight: 700, fontSize: 13.5, color: "#fff", background: d.color,
                     border: "none", borderRadius: 8, padding: "11px 16px", cursor: "pointer", transition: "opacity 0.2s",
+                    textAlign: "center", textDecoration: "none",
                   }}
                     onMouseEnter={e => { e.currentTarget.style.opacity = "0.88"; }}
                     onMouseLeave={e => { e.currentTarget.style.opacity = "1"; }}
                   >
                     Get this for my business
-                  </button>
+                  </a>
                   <a href={d.href} target="_blank" rel="noopener noreferrer" style={{
                     display: "flex", alignItems: "center", justifyContent: "center", gap: 4,
                     fontFamily: "'DM Sans',sans-serif", fontSize: 12.5, fontWeight: 600, color: "#6B7280", textDecoration: "none",
@@ -658,13 +634,6 @@ function Demos() {
               </div>
             </F>
           ))}
-          <F d={2 * 0.08}>
-            <div style={{ borderRadius: 16, border: "1px dashed #D1D5DB", padding: 20, background: "#F8FAFC", height: "100%", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", gap: 8 }}>
-              <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, fontWeight: 700, color: "#4B5563", background: "#EEF0F3", padding: "3px 9px", borderRadius: 20, textTransform: "uppercase", letterSpacing: "0.04em" }}>Coming soon</span>
-              <h3 style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 16, fontWeight: 700, color: "#374151", margin: "6px 0 4px" }}>Voice negotiation, hands-free</h3>
-              <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, color: "#6B7280", lineHeight: 1.6, margin: 0, maxWidth: 220 }}>The same wholesale negotiation, spoken instead of typed.</p>
-            </div>
-          </F>
         </div>
         <F d={0.3}>
           <p style={{ textAlign: "center", fontFamily: "'DM Sans',sans-serif", fontSize: 12, color: "#6B7280", marginTop: 28 }}>
@@ -687,14 +656,14 @@ function HeroProduct() {
               <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, fontWeight: 700, color: "#7C3AED", textTransform: "uppercase", letterSpacing: "0.08em" }}>Featured Product</span>
               <h3 style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 24, fontWeight: 800, color: "#0F172A", margin: "8px 0 10px", letterSpacing: "-0.01em" }}>Business Diagnostic Kit</h3>
               <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 14, color: "#6B7280", lineHeight: 1.7, margin: "0 0 16px" }}>
-                Our 5-dimension framework as a self-serve Notion template. Score your business, identify gaps, get a prioritized action list.
+                Our diagnostic framework as a self-serve Notion template. Score your business, identify gaps, get a prioritized action list.
               </p>
               <div style={{ display: "flex", alignItems: "baseline", gap: 12, marginBottom: 16 }}>
                 <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 32, fontWeight: 800, color: "#0F172A" }}>Self-serve Notion template</span>
               </div>
               <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
                 <Btn href="https://adventureai4.gumroad.com/l/BusinessDiagnosticKit" style={{ fontSize: 14, padding: "12px 22px" }}>Get the Kit <Ic.Arr /></Btn>
-                <button data-cal-link="ag-ventures-qbqxax/30min" data-cal-namespace="30min" data-cal-config='{"layout":"month_view"}' type="button" style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, color: "#2563EB", fontWeight: 600, display: "flex", alignItems: "center", cursor: "pointer", textDecoration: "none", background: "none", border: "none", padding: 0 }}>or book a free consultation</button>
+                <a href={MAIL} style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, color: "#2563EB", fontWeight: 600, display: "flex", alignItems: "center", cursor: "pointer", textDecoration: "none", background: "none", border: "none", padding: 0 }}>or send a short written enquiry</a>
               </div>
             </div>
             <div style={{ flex: "0 0 auto", width: 160, height: 160, borderRadius: 20, background: "linear-gradient(135deg, #EFF6FF, #F5F3FF)", display: "flex", alignItems: "center", justifyContent: "center" }}>
@@ -730,13 +699,13 @@ function ClinicScoreBanner() {
             <div style={{ flex: "1 1 280px", minWidth: 240, position: "relative", zIndex: 1 }}>
               <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 10 }}>
                 <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, fontWeight: 700, color: "#818cf8", textTransform: "uppercase", letterSpacing: "0.08em" }}>New · Free Tool</span>
-                <span style={{ background: "#22c55e22", color: "#22c55e", fontFamily: "'DM Sans',sans-serif", fontSize: 10, fontWeight: 700, padding: "2px 8px", borderRadius: 20, border: "1px solid #22c55e44" }}>FOR DENTAL CLINICS</span>
+                <span style={{ background: "#22c55e22", color: "#22c55e", fontFamily: "'DM Sans',sans-serif", fontSize: 10, fontWeight: 700, padding: "2px 8px", borderRadius: 20, border: "1px solid #22c55e44" }}>FOR CLINICS</span>
               </div>
               <h3 style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 22, fontWeight: 800, color: "#f1f5f9", margin: "0 0 10px", letterSpacing: "-0.01em", lineHeight: 1.25 }}>
-                Clinic Digital Score™
+                Clinic Digital Score
               </h3>
               <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 14, color: "#94a3b8", lineHeight: 1.7, margin: "0 0 20px" }}>
-                6 questions. 90 seconds. See how your clinic scores — and get your top 3 actionable improvements instantly. Free, no login needed.
+                A few quick questions about your clinic. See how your clinic scores and get practical improvements. Free, no login needed.
               </p>
               <a href="/clinic-score" style={{
                 fontFamily: "'DM Sans',sans-serif",
@@ -758,10 +727,6 @@ function ClinicScoreBanner() {
                 Get My Clinic Score <Ic.Arr />
               </a>
             </div>
-            <div style={{ flex: "0 0 auto", width: 120, height: 120, borderRadius: "50%", border: "8px solid #6366f1", background: "#6366f115", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", position: "relative", zIndex: 1 }}>
-              <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 36, fontWeight: 900, color: "#818cf8", lineHeight: 1 }}>68</span>
-              <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, color: "#475569" }}>/ 100</span>
-            </div>
           </div>
         </F>
       </div>
@@ -772,12 +737,12 @@ function ClinicScoreBanner() {
 // Latest Articles - SEO internal linking section
 function LatestArticles() {
   const articles = [
-    { slug: "ai-automations-small-business", title: "The AI Automation Stack Your Small Business Actually Needs", category: "Automation", readTime: "12 min" },
-    { slug: "manual-processes-costing-money", title: "5 Signs Your Business Is Losing Money to Manual Processes", category: "Operations", readTime: "7 min" },
-    { slug: "digital-transformation-roadmap", title: "What Is a Digital Transformation Roadmap?", category: "Strategy", readTime: "8 min" },
-    { slug: "how-to-choose-ai-consultant", title: "How to Choose an AI Consultant for Your Business", category: "AI", readTime: "8 min" },
-    { slug: "hidden-revenue-leaks-small-business", title: "7 Hidden Revenue Leaks in Your Business", category: "Strategy", readTime: "9 min" },
-    { slug: "crm-service-businesses", title: "CRM for Service Businesses: The Complete Guide", category: "Technology", readTime: "9 min" },
+    { slug: "ai-automations-small-business", title: "The AI Automation Stack Your Small Business Actually Needs", category: "Automation" },
+    { slug: "manual-processes-costing-money", title: "Signs Your Business Is Losing Money to Manual Processes", category: "Operations" },
+    { slug: "digital-transformation-roadmap", title: "What Is a Digital Transformation Roadmap?", category: "Strategy" },
+    { slug: "how-to-choose-ai-consultant", title: "How to Choose an AI Consultant for Your Business", category: "AI" },
+    { slug: "hidden-revenue-leaks-small-business", title: "Hidden Revenue Leaks in Your Business", category: "Strategy" },
+    { slug: "crm-service-businesses", title: "CRM for Service Businesses: The Complete Guide", category: "Technology" },
   ];
   return (
     <section style={{ padding: "80px 24px", background: "#fff" }}>
@@ -789,7 +754,7 @@ function LatestArticles() {
               Expert Articles on AI, Automation & Growth
             </h2>
             <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 16, color: "#6B7280", maxWidth: 560, margin: "0 auto" }}>
-              Actionable insights for growing businesses from our consulting team
+              Actionable insights for growing businesses
             </p>
           </div>
         </F>
@@ -805,7 +770,6 @@ function LatestArticles() {
               >
                 <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
                   <span style={{ fontFamily: "'DM Sans',sans-serif", background: "#EFF6FF", color: "#2563EB", padding: "3px 10px", borderRadius: 6, fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.04em" }}>{a.category}</span>
-                  <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, color: "#9CA3AF" }}>{a.readTime}</span>
                 </div>
                 <h3 style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 17, fontWeight: 700, lineHeight: 1.35, color: "#0F172A", margin: 0 }}>{a.title}</h3>
                 <div style={{ display: "flex", alignItems: "center", gap: 4, marginTop: 14, color: "#2563EB", fontSize: 13, fontWeight: 600, fontFamily: "'DM Sans',sans-serif" }}>
@@ -840,18 +804,18 @@ function CTA() {
       <div style={{ maxWidth: 620, margin: "0 auto", textAlign: "center", position: "relative", zIndex: 1 }}>
         <F>
           <h2 style={{ fontFamily: "'DM Sans',sans-serif", fontSize: "clamp(26px, 4vw, 40px)", fontWeight: 800, color: "#fff", letterSpacing: "-0.02em", lineHeight: 1.2, margin: "0 0 16px" }}>
-            Every week you wait costs you money.
+            Tell us what is not working.
           </h2>
           <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 16, color: "#94A3B8", lineHeight: 1.7, margin: "0 0 12px" }}>
-            Book a free 30-minute discovery call. We'll show you at least one quick win you can implement this week.
+            Send us a short written enquiry. We reply in writing with what we would fix and a quote.
           </p>
-          <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 14, color: "#FCD34D", fontWeight: 600, margin: "0 0 32px" }}>
-            If we can't find a quick win in 30 minutes, you get our DX Roadmap Template free.
+          <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 14, color: "#94A3B8", margin: "0 0 32px" }}>
+            neil@mail.deltalabsai.com
           </p>
           <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
-            <Btn calLink="ag-ventures-qbqxax/30min" style={{ background: "#fff", color: "#0F172A" }}>Book Your Free Call <Ic.Arr /></Btn>
-            <Btn primary={false} calLink="ag-ventures-qbqxax/30min" style={{ background: "transparent", color: "#94A3B8", border: "1.5px solid #334155" }}>
-              <Ic.Mail /> Contact Us
+            <Btn href={MAIL} style={{ background: "#fff", color: "#0F172A" }}><Ic.Mail /> Send a short written enquiry</Btn>
+            <Btn primary={false} href={FORM} style={{ background: "transparent", color: "#94A3B8", border: "1.5px solid #334155" }}>
+              Get Your Free Diagnostic <Ic.Arr />
             </Btn>
           </div>
         </F>
@@ -863,13 +827,12 @@ function CTA() {
 // Industries & Solutions - internal linking section
 function Industries() {
   const links = [
-    { href: "/dental", title: "Dental Automation", desc: "Appointment reminders, recall & reviews for independent clinics" },
+    { href: "/dental", title: "Dental Automation", desc: "WhatsApp booking and visit reminders for independent dental clinics" },
     { href: "/fitness", title: "Fitness & Wellness", desc: "Member retention and scheduling automation for gyms and studios" },
     { href: "/home-services", title: "Home Services", desc: "Booking, dispatch and follow-up automation for plumbers, electricians & more" },
     { href: "/ai-bdr", title: "AI BDR", desc: "AI-powered lead qualification and outbound for growing sales teams" },
-    { href: "/smilecrm", title: "SmileCRM", desc: "Purpose-built CRM for dental clinics — appointments, recall, WhatsApp" },
+    { href: "/smilecrm", title: "SmileCRM", desc: "CRM for independent clinics: WhatsApp booking, reminders, patient records" },
     { href: "/solutions", title: "All Solutions", desc: "The full Delta Labs AI automation and consulting suite" },
-    { href: "/voice-receptionist", title: "Voice Receptionist", desc: "AI voice agents that answer calls and book appointments 24/7" },
   ];
   return (
     <section style={{ padding: "80px 24px", background: "#fafafa" }}>
@@ -925,13 +888,13 @@ function Footer() {
           <a href="/diagnostic" style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, fontWeight: 500, color: "#94A3B8", textDecoration: "none", transition: "color 0.2s", padding: "12px 10px", display: "inline-flex", alignItems: "center" }} onMouseEnter={e => e.currentTarget.style.color = "#fff"} onMouseLeave={e => e.currentTarget.style.color = "#94A3B8"}>Diagnostic</a>
           <a href="/clinic-score" style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, fontWeight: 500, color: "#94A3B8", textDecoration: "none", transition: "color 0.2s", padding: "12px 10px", display: "inline-flex", alignItems: "center" }} onMouseEnter={e => e.currentTarget.style.color = "#fff"} onMouseLeave={e => e.currentTarget.style.color = "#94A3B8"}>Clinic Score</a>
           <a href="/blog/ai-automations-small-business" style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, fontWeight: 500, color: "#94A3B8", textDecoration: "none", transition: "color 0.2s", padding: "12px 10px", display: "inline-flex", alignItems: "center" }} onMouseEnter={e => e.currentTarget.style.color = "#fff"} onMouseLeave={e => e.currentTarget.style.color = "#94A3B8"}>AI Automation</a>
-          <a href="/blog/9-dimensions-healthy-business" style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, fontWeight: 500, color: "#94A3B8", textDecoration: "none", transition: "color 0.2s", padding: "12px 10px", display: "inline-flex", alignItems: "center" }} onMouseEnter={e => e.currentTarget.style.color = "#fff"} onMouseLeave={e => e.currentTarget.style.color = "#94A3B8"}>9 Dimensions</a>
+          <a href="/blog/9-dimensions-healthy-business" style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, fontWeight: 500, color: "#94A3B8", textDecoration: "none", transition: "color 0.2s", padding: "12px 10px", display: "inline-flex", alignItems: "center" }} onMouseEnter={e => e.currentTarget.style.color = "#fff"} onMouseLeave={e => e.currentTarget.style.color = "#94A3B8"}>Healthy Business Guide</a>
           <a href="/blog/manual-processes-costing-money" style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, fontWeight: 500, color: "#94A3B8", textDecoration: "none", transition: "color 0.2s", padding: "12px 10px", display: "inline-flex", alignItems: "center" }} onMouseEnter={e => e.currentTarget.style.color = "#fff"} onMouseLeave={e => e.currentTarget.style.color = "#94A3B8"}>Manual Process Costs</a>
           <a href="/blog/digital-transformation-roadmap" style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, fontWeight: 500, color: "#94A3B8", textDecoration: "none", transition: "color 0.2s", padding: "12px 10px", display: "inline-flex", alignItems: "center" }} onMouseEnter={e => e.currentTarget.style.color = "#fff"} onMouseLeave={e => e.currentTarget.style.color = "#94A3B8"}>DX Roadmap</a>
           <a href="/blog/crm-service-businesses" style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, fontWeight: 500, color: "#94A3B8", textDecoration: "none", transition: "color 0.2s", padding: "12px 10px", display: "inline-flex", alignItems: "center" }} onMouseEnter={e => e.currentTarget.style.color = "#fff"} onMouseLeave={e => e.currentTarget.style.color = "#94A3B8"}>CRM Guide</a>
           <a href="/blog/how-to-choose-ai-consultant" style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, fontWeight: 500, color: "#94A3B8", textDecoration: "none", transition: "color 0.2s", padding: "12px 10px", display: "inline-flex", alignItems: "center" }} onMouseEnter={e => e.currentTarget.style.color = "#fff"} onMouseLeave={e => e.currentTarget.style.color = "#94A3B8"}>Choose AI Consultant</a>
           <div style={{ display: "inline-flex", alignItems: "center", gap: 8, flexWrap: "nowrap" }}>
-            <button data-cal-link="ag-ventures-qbqxax/30min" data-cal-namespace="30min" data-cal-config='{"layout":"month_view"}' type="button" aria-label="Book a call" style={{ color: "#94A3B8", transition: "color 0.2s", padding: "12px", display: "inline-flex", alignItems: "center", justifyContent: "center", minWidth: 48, minHeight: 48, background: "none", border: "none", cursor: "pointer" }} onMouseEnter={e => e.currentTarget.style.color = "#fff"} onMouseLeave={e => e.currentTarget.style.color = "#94A3B8"}><Ic.Mail /></button>
+            <a href={MAIL} aria-label="Email us" style={{ color: "#94A3B8", transition: "color 0.2s", padding: "12px", display: "inline-flex", alignItems: "center", justifyContent: "center", minWidth: 48, minHeight: 48 }} onMouseEnter={e => e.currentTarget.style.color = "#fff"} onMouseLeave={e => e.currentTarget.style.color = "#94A3B8"}><Ic.Mail /></a>
             <a href="/linkedin" aria-label="LinkedIn" style={{ color: "#94A3B8", transition: "color 0.2s", padding: "12px", display: "inline-flex", alignItems: "center", justifyContent: "center", minWidth: 48, minHeight: 48 }} onMouseEnter={e => e.currentTarget.style.color = "#fff"} onMouseLeave={e => e.currentTarget.style.color = "#94A3B8"}><Ic.LI /></a>
             <a href="/facebook" aria-label="Facebook" style={{ color: "#94A3B8", transition: "color 0.2s", padding: "12px", display: "inline-flex", alignItems: "center", justifyContent: "center", minWidth: 48, minHeight: 48 }} onMouseEnter={e => e.currentTarget.style.color = "#fff"} onMouseLeave={e => e.currentTarget.style.color = "#94A3B8"}><Ic.FB /></a>
           </div>
@@ -939,31 +902,8 @@ function Footer() {
       </div>
       <div style={{ maxWidth: 1040, margin: "16px auto 0", paddingTop: 16, borderTop: "1px solid #1E293B", textAlign: "center" }}>
         <div style={{ marginBottom: 12, display: "flex", justifyContent: "center", alignItems: "center", gap: 24, flexWrap: "wrap" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 8, background: "#1E293B", borderRadius: 8, padding: "8px 16px" }}>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" fill="#25D366"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z" stroke="#25D366" strokeWidth="1.5" fill="none"/></svg>
-            <div style={{ textAlign: "left" }}>
-              <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, color: "#25D366", fontWeight: 700, letterSpacing: "0.5px", textTransform: "uppercase" }}>Official Meta</div>
-              <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, color: "#fff", fontWeight: 600 }}>WhatsApp Tech Provider</div>
-            </div>
-          </div>
           <a href="https://aiagentsdirectory.com/agent/delta-labs-ai?utm_source=badge&utm_medium=referral&utm_campaign=free_listing&utm_content=delta-labs-ai" target="_blank" rel="noopener noreferrer">
             <img src="https://aiagentsdirectory.com/featured-badge.svg?v=2024" alt="Delta Labs AI - Featured AI Agent on AI Agents Directory" width="200" height="50" />
-          </a>
-          <div style={{ display: "flex", alignItems: "center", gap: 10, background: "#1E293B", borderRadius: 8, padding: "8px 16px" }}>
-            <div style={{ textAlign: "left" }}>
-              <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, color: "#E8772E", fontWeight: 700, letterSpacing: "0.5px", textTransform: "uppercase", marginBottom: 3 }}>Powered by</div>
-              {/* Sarvam official wordmark (white), from sarvam.ai/brand — 202x32 */}
-              <img src="/sarvam-logo.svg" alt="Sarvam AI" height="15" width="95" style={{ display: "block" }} />
-            </div>
-          </div>
-          <a href="https://bolomate.com" target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
-            <div style={{ display: "flex", alignItems: "center", gap: 8, background: "#1E293B", borderRadius: 8, padding: "8px 16px" }}>
-              <img src="/bolomate-logo.svg" alt="BoloMate" width="24" height="24" />
-              <div style={{ textAlign: "left" }}>
-                <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, color: "#6D5EF8", fontWeight: 700, letterSpacing: "0.5px", textTransform: "uppercase" }}>Voice AI Agent</div>
-                <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, color: "#fff", fontWeight: 600 }}>BoloMate</div>
-              </div>
-            </div>
           </a>
         </div>
         <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, color: "#94A3B8", margin: "0 0 8px" }}>&copy; {new Date().getFullYear()} Delta Labs AI. All rights reserved.</p>
@@ -981,12 +921,12 @@ function Footer() {
 function WhatsAppDemoWidget() {
   const MSGS = [
     { from: "user", text: "Hi! Do you have anything open this week for a cleaning?" },
-    { from: "bot", text: "Hi Priya! We have Tue 2:30pm or Thu 11:00am with Dr. Patel \u2014 which works?" },
-    { from: "user", text: "Thu 11am works" },
-    { from: "bot", text: "Booked \u2705 Thu 11:00am with Dr. Patel. I'll remind you the day before." },
-    { from: "bot", text: "Reminder: your cleaning is tomorrow at 11:00am. Reply C to confirm or R to reschedule.", gap: true },
+    { from: "bot", text: "Hi Priya! We have Tuesday afternoon or Thursday morning with Dr. Patel. Which works?" },
+    { from: "user", text: "Thursday morning works" },
+    { from: "bot", text: "Booked \u2705 Thursday morning with Dr. Patel. I'll send you a reminder before your visit." },
+    { from: "bot", text: "Reminder: your cleaning is tomorrow morning. Reply C to confirm or R to reschedule.", gap: true },
     { from: "user", text: "C" },
-    { from: "bot", text: "Confirmed \u2014 see you tomorrow \ud83e\uddb7" },
+    { from: "bot", text: "Confirmed, see you tomorrow \ud83e\uddb7" },
   ];
   const wrapRef = useRef(null);
   const [on, setOn] = useState(false);
