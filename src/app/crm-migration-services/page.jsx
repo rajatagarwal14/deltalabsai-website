@@ -33,7 +33,7 @@ const PAIRS = [
 ];
 
 const FAQ = [
-  { q: "How long does a CRM migration take?", a: "A fixed-scope migration is normally about three weeks: roughly a week on audit and mapping, a week on cleaning and the staged load, and a week on verification and cutover. Migrations that need custom-object work or that uncover unusable source data take longer, and we say so at scoping rather than mid-project." },
+  { q: "How long does a CRM migration take?", a: "It depends on the record count and how clean the source data is, so we put a timeline in writing at scoping rather than quoting one up front. The work runs in three stages: audit and field mapping, cleaning and the staged load, then verification and cutover. Custom-object work or unusable source data extends it, and we say so at scoping rather than mid-project." },
   { q: "What does it cost?", a: "Estimates vary widely with record volume and custom field mapping. We scope to a fixed number before starting. Below a few thousand clean records in a single system, a migration service is usually not worth paying for and we will tell you that." },
   { q: "Will the team be locked out during the move?", a: "No. The load runs into a sandbox first and is verified against the audit counts object by object. The source system is frozen read-only at cutover rather than deleted, so it stays available if something needs checking afterwards." },
   { q: "What happens to the old system?", a: "It stays intact and readable. Deleting the source is the customer's decision to make later, once they are satisfied the new system holds everything. Nothing in our process depends on destroying it." },
@@ -84,10 +84,10 @@ export default function CrmMigrationServicesPage() {
           CRM Migration Services
         </p>
         <h1 style={{ fontSize: "clamp(32px, 5vw, 50px)", fontWeight: 800, letterSpacing: -1.5, lineHeight: 1.12, margin: "0 0 20px" }}>
-          Move your CRM data without losing records
+          CRM data migration services for small teams
         </h1>
         <p style={{ ...p, fontSize: 19, maxWidth: 620, margin: "0 auto 30px" }}>
-          Audit, field mapping, staged load, and verification against source counts before cutover. Fixed scope, about three weeks, and the old system stays intact until you say otherwise.
+          Record audit, field mapping, staged load, and row counts checked against the source before cutover. Fixed scope, and the old system stays intact until you say otherwise.
         </p>
         <a href={CAL} style={btn}>Book a migration scoping call</a>
       </section>
