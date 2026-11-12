@@ -232,9 +232,9 @@ It is not built for hospital groups or multi-branch chains running enterprise pr
       },
       {
         heading: "FAQ: Common Questions from Abu Dhabi Clinic Owners",
-        body: `**Q: How fast can SmileCRM go live for my Abu Dhabi clinic?**
+        body: `**Q: What is involved in getting SmileCRM live for my Abu Dhabi clinic?**
 
-Target go-live is within 2 weeks — WhatsApp template approval from Meta is the main lead time (1–3 business days), and Delta Labs AI handles setup end to end.
+Three things: your WhatsApp Business number, your appointment schedule, and message template approval from Meta, which is the one step nobody can speed up. Delta Labs AI handles the setup end to end. We will not put a go-live date in writing before we have seen how your bookings actually run.
 
 **Q: Does SmileCRM work with my existing booking system, even if it's just a spreadsheet?**
 
@@ -2040,10 +2040,10 @@ A good consultant will tell you when you've outgrown consulting and need an in-h
 A proper diagnosis of your current operations, identifying the highest-leverage automation opportunities. Any consultant skipping this phase and jumping straight to implementation is a red flag.
 
 **Single Automation Implementation**: $2,000–$8,000
-One focused workflow — lead capture automation, invoice processing, appointment reminders. Timeline: 4–8 weeks. Includes setup, integration, testing, and team training.
+One focused workflow — lead capture automation, invoice processing, appointment reminders. Includes setup, integration, testing, and team training.
 
 **Full Operations Overhaul**: $10,000–$40,000
-Multiple systems: CRM setup, workflow automation across departments, integrations, reporting. Timeline: 3–6 months. Appropriate for businesses with $1M+ revenue where operational inefficiency is a material problem.
+Multiple systems: CRM setup, workflow automation across departments, integrations, reporting. Appropriate for businesses with $1M+ revenue where operational inefficiency is a material problem.
 
 **Ongoing Retainer**: $1,500–$5,000/month
 Continuous improvement, new automation builds, maintenance, and monitoring. Makes sense after initial implementation when the relationship is proven.
@@ -2083,10 +2083,10 @@ Look for: Membership management software experience, member retention automation
       {
         heading: "FAQ: Hiring an AI Consultant for Your Small Business",
         body: `### How long does an AI consulting engagement typically take?
-A focused single-automation project takes 4–8 weeks from kickoff to go-live. A broader operations overhaul covering multiple systems takes 3–6 months. Any consultant promising full digital transformation in 2 weeks is either misleading you or planning to deliver something superficial. Real implementation — including data migration, team training, and testing — takes time.
+It depends on how many systems are involved and how clean your data is, so ask for a written scope before you ask anyone for a date. Any consultant promising full digital transformation in 2 weeks is either misleading you or planning to deliver something superficial. Real implementation, including data migration, team training, and testing, takes time.
 
 ### Can a small business afford AI consulting?
-Yes — with the right scoping. The key is starting small and proving ROI before expanding. A focused 8-week project to automate your highest-friction process typically costs $3,000–$8,000. You don't need a $50,000 engagement to get value from AI consulting. Start with the one problem that's costing you the most time or money, fix it, measure the result, then decide whether to expand.
+Yes — with the right scoping. The key is starting small and proving ROI before expanding. A focused project to automate your highest-friction process typically costs $3,000–$8,000. You don't need a $50,000 engagement to get value from AI consulting. Start with the one problem that's costing you the most time or money, fix it, measure the result, then decide whether to expand.
 
 ### What's the difference between an AI consultant and a software vendor?
 A software vendor sells you their tool and may offer implementation support for that specific tool. An AI consultant is vendor-neutral — they assess your actual problem first, then recommend the best tool for your situation (which may not be their preferred vendor). If a "consultant" only recommends one platform regardless of your situation, they're a vendor in disguise.
@@ -2536,7 +2536,7 @@ HVAC business software ranges from $49/month for basic dispatch and scheduling t
 Yes, directly and measurably. HVAC software increases margins through: (1) better dispatch efficiency — more jobs per day per technician without adding headcount; (2) reduced invoice errors — digital work orders eliminate billing disputes and undercharging for materials; (3) higher maintenance agreement renewal rates — automated reminders vs. manual follow-up; (4) increased average ticket via technician context.
 
 ### How long does HVAC software implementation take?
-A basic dispatch + digital work orders setup takes 2–4 weeks. Full automation including CRM, automated marketing, and review management takes 60–90 days for proper setup and team training.
+It depends on how much you switch on at once. Dispatch and digital work orders are the smallest piece. CRM, automated marketing, and review management each bring their own data to migrate and more for the team to learn, so ask any vendor to scope those separately instead of quoting you one number for the whole thing.
 
 ### Do I need to change everything at once?
 No, and you shouldn't. A phased approach — dispatch and work orders first, then CRM, then marketing automation — reduces disruption and improves team adoption. Start with one high-impact change, prove the ROI to your team, then add layers. Trying to change everything in one week almost always fails.`,
