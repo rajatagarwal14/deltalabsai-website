@@ -2669,9 +2669,7 @@ Gyms with structured cancellation intervention retain a portion of members who w
 
 **Class and booking integration**: If members use your class schedule, the software should track class attendance and participation, not just entry swipes.
 
-**Reporting and analytics**: Monthly retention rate, average lifetime value, churn by membership type, class attendance by day and time. These numbers tell you what's working and what isn't.
-
-**Price range**: Gym management software ranges from $79–$299/month depending on size and features. For a gym with 200+ members, the math is simple: retaining one member who would have cancelled pays for the software for 3–6 months.`,
+**Reporting and analytics**: Monthly retention rate, average lifetime value, churn by membership type, class attendance by day and time. These numbers tell you what's working and what isn't.`,
       },
       {
         heading: "Illustrative Example: What Fixing Churn Could Look Like",
@@ -3308,7 +3306,7 @@ No IT team is required at any stage. Delta Labs AI handles every technical step 
 - Weekly reporting dashboard
 - Ongoing support via WhatsApp (Sunday–Thursday, UAE work week)
 
-There is no lock-in contract. If SmileCRM does not deliver measurable results in 60 days, you cancel and pay nothing further. That is the commitment.
+There is no lock-in contract.
 
 `,
       },
@@ -3993,7 +3991,7 @@ It also won't help a clinic with very low patient volume build a review base qui
       },
       {
         heading: "Getting started",
-        body: `Setting this up doesn't require a new phone number, a new app for patients to download, or weeks of configuration. SmileCRM connects to the clinic's existing WhatsApp Business number and the daily appointment schedule, and the review sequence goes live for the next completed appointment. The sequence can go live the same day a clinic signs up, with the private-feedback routing configured up front so an unhappy visit never becomes the clinic's most visible Google review by default.`,
+        body: `Setting this up doesn't require a new phone number, a new app for patients to download, or weeks of configuration. SmileCRM connects to the clinic's existing WhatsApp Business number and the daily appointment schedule, and the review sequence goes live for the next completed appointment.`,
       },
       {
         heading: "Frequently Asked Questions",
