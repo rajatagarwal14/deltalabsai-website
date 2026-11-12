@@ -2717,7 +2717,7 @@ Done right, automated messages feel more personal than no communication at all. 
 
 The mechanics are straightforward: automated onboarding, attendance monitoring, behavior-triggered re-engagement, milestone celebrations, and cancellation intervention. Combined, these systems address the biggest drivers of gym churn.
 
-The technology cost is low ($79–$200/month). The implementation takes 2–3 weeks. And you're not recovering lost members, you're keeping members you already have.
+All of it runs on member data you're already collecting. And you're not recovering lost members, you're keeping members you already have.
 
 If you want to see exactly where your fitness business is losing member lifetime value — and what the recovery opportunity looks like — take the [free 5-Dimension Business Diagnostic at deltalabsai.com/diagnostic](https://deltalabsai.com/diagnostic). It scores your revenue, operations, technology, team and data in 6 minutes and shows you the highest-leverage thing to fix first.`,
       },
