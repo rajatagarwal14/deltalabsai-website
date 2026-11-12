@@ -3401,10 +3401,7 @@ Automated review management means:
 
 1. Appointment ends → system waits 2–3 hours
 2. WhatsApp message sent: "We hope your appointment went well! Your feedback means a lot to us — would you mind leaving a quick review?" with a direct Google Maps link
-3. Patient taps the link → lands directly on your Google review page, no searching required
-4. **Negative sentiment filter**: Patients who had a poor experience get routed to a private feedback form instead of going straight to Google
-
-This last point matters. A proactive internal feedback loop lets you fix problems before they become one-star public reviews.`,
+3. Patient taps the link → lands directly on your Google review page, no searching required`,
       },
       {
         heading: "SmileCRM: Built for Dental Clinics, Not Adapted for Them",
@@ -3414,7 +3411,7 @@ This last point matters. A proactive internal feedback loop lets you fix problem
 - 24/7 automated appointment booking with real-time calendar sync
 - Patient recall sequences with customizable follow-up timing
 - WhatsApp reminders with two-way messaging and confirmation tracking
-- Automated post-appointment review requests with sentiment filtering
+- Automated post-appointment review requests
 - Patient history, treatment notes, and billing in one place
 - No-show predictor that flags high-risk appointments so your team can follow up manually
 
@@ -3966,16 +3963,13 @@ The result: a clinic that delivers excellent care every day, with a Google listi
 1. **Trigger** — the system detects a completed visit from the day's schedule.
 2. **Delay** — a 2 to 4 hour wait, timed for when the patient is home and relaxed, not rushed at the counter.
 3. **WhatsApp message** — a short, personalized message goes out with a direct one-tap link to the clinic's Google review page. No app download, no search required.
-4. **Smart routing** — patients who respond positively are guided straight to the public review link. Patients who flag a concern are routed to a private feedback form instead, so an unhappy visit never becomes a public one-star review before the clinic has had a chance to fix it.
-5. **Follow-up** — a single, polite reminder goes out 48 hours later only to patients who haven't yet responded, then the sequence closes.
+4. **Follow-up** — a single, polite reminder goes out 48 hours later only to patients who haven't yet responded, then the sequence closes.
 
 None of this requires a staff member to remember anything. It runs identically on the clinic's busiest day and its quietest one.`,
       },
       {
         heading: "What this actually changes for a clinic",
-        body: `Running this sequence means the ask reaches every patient instead of whichever ones a staff member happened to catch on their way out. More reviews compound: more recent reviews generally help a Google listing, even before a clinic spends a rupee on ads.
-
-The smart routing step matters as much as the volume. Sending every patient straight to a public review link, including the ones who had a rough visit, is how clinics end up with an avoidable one-star review sitting at the top of their listing. Filtering unhappy patients to a private form first protects the public rating while still surfacing the complaint internally, where it can actually be addressed.`,
+        body: `Running this sequence means the ask reaches every patient instead of whichever ones a staff member happened to catch on their way out. More reviews compound: more recent reviews generally help a Google listing, even before a clinic spends a rupee on ads.`,
       },
       {
         heading: "Why generic review software doesn't fit small Indian clinics",
@@ -3995,11 +3989,7 @@ It also won't help a clinic with very low patient volume build a review base qui
       },
       {
         heading: "Frequently Asked Questions",
-        body: `**Q: Will this ask unhappy patients to leave public reviews?**
-
-No. The routing step sends any patient who indicates a problem to a private feedback form instead of the public Google link, so complaints reach the clinic directly instead of becoming a public review.
-
-**Q: Do patients need to install anything?**
+        body: `**Q: Do patients need to install anything?**
 
 No. The message arrives on WhatsApp, which almost every patient already has, with a direct link to the review page. No app, no login, no account.
 
