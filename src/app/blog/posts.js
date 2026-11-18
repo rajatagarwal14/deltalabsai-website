@@ -2086,7 +2086,7 @@ Look for: Membership management software experience, member retention automation
 It depends on how many systems are involved and how clean your data is, so ask for a written scope before you ask anyone for a date. Any consultant promising full digital transformation in 2 weeks is either misleading you or planning to deliver something superficial. Real implementation, including data migration, team training, and testing, takes time.
 
 ### Can a small business afford AI consulting?
-Yes — with the right scoping. The key is starting small and proving ROI before expanding. A focused project to automate your highest-friction process typically costs $3,000–$8,000. You don't need a $50,000 engagement to get value from AI consulting. Start with the one problem that's costing you the most time or money, fix it, measure the result, then decide whether to expand.
+Yes — with the right scoping. The key is starting small and proving ROI before expanding. You don't need a large engagement to get value from AI consulting. Start with the one problem that's costing you the most time or money, fix it, measure the result, then decide whether to expand.
 
 ### What's the difference between an AI consultant and a software vendor?
 A software vendor sells you their tool and may offer implementation support for that specific tool. An AI consultant is vendor-neutral — they assess your actual problem first, then recommend the best tool for your situation (which may not be their preferred vendor). If a "consultant" only recommends one platform regardless of your situation, they're a vendor in disguise.
