@@ -141,6 +141,12 @@ export default function sitemap() {
       changeFrequency: "monthly",
       priority: 0.75,
     },
+    {
+      url: "https://deltalabsai.com/answers/moving-off-spreadsheets-to-crm",
+      lastModified: new Date("2026-11-18"),
+      changeFrequency: "monthly",
+      priority: 0.75,
+    },
     ...cityPages,
     ...blogPosts,
   ];

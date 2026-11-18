@@ -1,7 +1,7 @@
 export const metadata = {
-  title: "CRM Migration Services: Fixed-Scope, Zero Data Loss | Delta Labs AI",
+  title: "CRM Data Migration Services for Small Teams | Delta Labs AI",
   description:
-    "CRM migration services for teams moving off spreadsheets or another CRM. Audit, field mapping, staged load and verification against source counts before cutover. About three weeks.",
+    "CRM data migration services for teams moving off spreadsheets or another CRM. Fixed scope: record audit, field mapping, staged load, and row counts checked against the source before cutover.",
   keywords: [
     "crm migration services",
     "crm migration service",
@@ -12,9 +12,9 @@ export const metadata = {
   ],
   alternates: { canonical: "https://deltalabsai.com/crm-migration-services" },
   openGraph: {
-    title: "CRM Migration Services: Fixed-Scope, Zero Data Loss | Delta Labs AI",
+    title: "CRM Data Migration Services for Small Teams | Delta Labs AI",
     description:
-      "Audit, mapping, staged load and verification against source counts before cutover. About three weeks.",
+      "Record audit, field mapping, staged load, and row counts checked against the source before cutover.",
     url: "https://deltalabsai.com/crm-migration-services",
     type: "website",
     images: [
