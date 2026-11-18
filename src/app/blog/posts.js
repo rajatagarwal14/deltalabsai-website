@@ -907,13 +907,13 @@ Don't let another quarter go by operating in chaos. Get clear on where you're go
   {
     slug: "ai-automations-small-business",
     title: "7 No-Code AI Automations That Save Small Businesses Hours Every Week",
-    metaTitle: "AI Automations for Small Business: Boost Efficiency & Profits",
+    metaTitle: "AI Automations for Small Business: 7 No-Code Workflows",
     subtitle: "The 7 highest-ROI automations for small businesses — ranked by payback speed, no code or IT team required",
     category: "AI & Automation",
     date: "February 14, 2026",
     readTime: "9 min read",
     keywords: ["AI for small business", "business automation", "workflow automation", "AI automation tools", "small business automation", "process automation", "ai automation for small business owners no-code"],
-    description: "Discover powerful AI automations designed for small businesses. Delta Labs AI helps you streamline operations, save time, and increase profitability.",
+    description: "Seven no-code automations for small businesses: scheduling, lead qualification, invoice reminders, data entry, FAQ chat. What each does and which to run first.",
     sections: [
       {
         heading: null,
