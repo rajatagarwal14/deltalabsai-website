@@ -1637,7 +1637,7 @@ This guide covers the five phases, a pre-migration checklist, the failure modes 
 The audit and mapping phases take longer than the transfer itself. Teams that skip them are the ones who lose data.`,
       },
       {
-        heading: "Pre-migration checklist",
+        heading: "CRM migration checklist",
         body: `Work through this before any data moves:
 
 - Record count per object in the source system, written down for later comparison
@@ -1668,7 +1668,7 @@ If a step here has no owner, that is the step the migration will fail on.`,
 Every one of these is caught by verifying record counts against the source after each phase, which is why that step is not optional.`,
       },
       {
-        heading: "When to hire a migration service",
+        heading: "When to hire CRM data migration services",
         body: `Doing it yourself makes sense when the record count is low, the data is clean, and one person can own the mapping decisions.
 
 Hiring makes sense when any of these are true:
