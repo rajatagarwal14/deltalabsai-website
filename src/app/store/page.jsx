@@ -90,7 +90,8 @@ function TrialModal({ product, productName, defaultBiz, onClose }) {
       const res = await fetch(TRIAL_API, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ ...form, product }) });
       const data = await res.json();
       if (!res.ok || data.error) throw new Error(data.error || "Failed");
-      setState("done");
+      // The API returns success even when the magic-link email failed to send.
+      setState(data.emailSent === false ? "done_no_email" : "done");
     } catch (err) {
       setErrMsg(err.message || "Something went wrong. Try again.");
       setState("error");
@@ -103,7 +104,16 @@ function TrialModal({ product, productName, defaultBiz, onClose }) {
       <div style={{ position: "relative", background: "#fff", borderRadius: 22, padding: "36px 32px", width: "100%", maxWidth: 460, boxShadow: "0 28px 64px rgba(0,0,0,0.22)" }}>
         <button onClick={onClose} style={{ position: "absolute", top: 16, right: 16, background: "none", border: "none", cursor: "pointer", color: "#9CA3AF" }}><Ic.X /></button>
 
-        {state === "done" ? (
+        {state === "done_no_email" ? (
+          <div style={{ textAlign: "center", padding: "8px 0" }}>
+            <div style={{ fontSize: 56, marginBottom: 16 }}>📭</div>
+            <h3 style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 24, fontWeight: 800, color: "#0F172A", margin: "0 0 10px" }}>We have your request</h3>
+            <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 15, color: "#4B5563", lineHeight: 1.7, margin: "0 0 24px" }}>
+              We could not send the access link to <strong>{form.email}</strong> just now. Nothing is wrong on your side. Email us at <a href="mailto:neil@mail.deltalabsai.com" style={{ color: "#2563EB" }}>neil@mail.deltalabsai.com</a> and we will send your trial access by hand.
+            </p>
+            <button onClick={onClose} style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 14, color: "#6B7280", background: "none", border: "none", cursor: "pointer" }}>Close</button>
+          </div>
+        ) : state === "done" ? (
           <div style={{ textAlign: "center", padding: "8px 0" }}>
             <div style={{ fontSize: 56, marginBottom: 16 }}>📬</div>
             <h3 style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 24, fontWeight: 800, color: "#0F172A", margin: "0 0 10px" }}>Check your inbox!</h3>
