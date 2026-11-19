@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { mergeIntoExisting } from "./merge.mjs";
 
 export const dynamic = "force-dynamic";
 
@@ -68,11 +69,24 @@ export async function POST(request) {
 
     // Dedup by email+org
     const dedupRes = await supa(
-      `leads?select=id,full_name,email,status,created_at&org_id=eq.${orgId}&email=ilike.${encodeURIComponent(emailNorm)}&limit=1`
+      `leads?select=id,full_name,email,status,created_at,source_detail,tags&org_id=eq.${orgId}&email=ilike.${encodeURIComponent(emailNorm)}&limit=1`
     );
     const existing = await dedupRes.json();
     if (Array.isArray(existing) && existing.length) {
-      return NextResponse.json({ lead: existing[0], duplicate: true }, { status: 200 });
+      // Returning visitor: APPEND the new answers to the existing lead instead of dropping them, and never
+      // report success unless that save worked (a false success here used to lose a repeat visitor's brief).
+      const patch = mergeIntoExisting(existing[0], { source, source_detail, notes, metadata, tags });
+      const patchRes = await supa(`leads?id=eq.${existing[0].id}`, {
+        method: "PATCH",
+        headers: { Prefer: "return=minimal" },
+        body: JSON.stringify(patch),
+      });
+      if (!patchRes.ok) {
+        console.error("[leads/capture] Repeat-visitor update failed:", await patchRes.text());
+        return NextResponse.json({ error: "Failed to update lead" }, { status: 500 });
+      }
+      const { source_detail: _sd, tags: _tags, ...lead } = existing[0];
+      return NextResponse.json({ lead, duplicate: true, updated: true }, { status: 200 });
     }
 
     const sourceDetailObj = {};
