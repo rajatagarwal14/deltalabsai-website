@@ -378,8 +378,6 @@ function HeroCTABand() {
 
 // Diagnostic CTA
 function DiagnosticCTA() {
-  const [email, setEmail] = useState("");
-  const [sent, setSent] = useState(false);
   return (
     <section id="diagnostic" style={{ padding: "88px 24px", background: "linear-gradient(135deg, #EFF6FF, #F5F3FF)" }}>
       <div style={{ maxWidth: 640, margin: "0 auto", textAlign: "center" }}>
@@ -393,22 +391,9 @@ function DiagnosticCTA() {
           </p>
         </F>
         <F d={0.1}>
-          {!sent ? (
-            <div style={{ display: "flex", gap: 10, maxWidth: 440, margin: "0 auto", flexWrap: "wrap", justifyContent: "center" }}>
-              <input type="email" placeholder="Enter your work email" value={email} onChange={e => setEmail(e.target.value)}
-                style={{ flex: "1 1 240px", padding: "14px 18px", borderRadius: 10, border: "1.5px solid #D1D5DB", fontFamily: "'DM Sans',sans-serif", fontSize: 15, outline: "none", background: "#fff", minWidth: 200 }}
-                onFocus={e => e.target.style.borderColor = "#2563EB"} onBlur={e => e.target.style.borderColor = "#D1D5DB"} />
-              <Btn onClick={() => { if (email.includes("@")) { setSent(true); window.open("/diagnostic?email=" + encodeURIComponent(email), "_blank"); } }} style={{ flex: "0 0 auto" }}>
-                Get Your Free Diagnostic <Ic.Arr />
-              </Btn>
-            </div>
-          ) : (
-            <div style={{ background: "#ECFDF5", border: "1px solid #A7F3D0", borderRadius: 12, padding: "20px 28px" }}>
-              <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 15, fontWeight: 600, color: "#065F46", margin: 0 }}>
-                {"\u2713"} Opening your diagnostic assessment - check the new tab!
-              </p>
-            </div>
-          )}
+          <Btn href="/diagnostic">
+            Get Your Free Diagnostic <Ic.Arr />
+          </Btn>
           <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, color: "#9CA3AF", marginTop: 12 }}>
             No credit card. Results shown as a radar chart.
           </p>
