@@ -6,8 +6,9 @@ const SUPABASE_URL = "https://qkcafjbmqrxhqyyayrqz.supabase.co";
 const SUPABASE_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "";
 
 async function saveRetargetLead(email, name, industry, score) {
+  if (!SUPABASE_KEY) return false;
   try {
-    await fetch(`${SUPABASE_URL}/rest/v1/leads`, {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/leads`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -22,11 +23,14 @@ async function saveRetargetLead(email, name, industry, score) {
         source: "diagnostic_retarget",
         status: "warm",
         score,
-        notes: "Requested results email via diagnostic retarget modal",
+        notes: "Left email via diagnostic retarget modal (no results email is sent automatically)",
         created_at: new Date().toISOString(),
       }),
     });
-  } catch {}
+    return res.ok;
+  } catch {
+    return false;
+  }
 }
 
 // A/B Test: hero CTA variants
@@ -437,6 +441,7 @@ export default function IntakeForm() {
   const [modalEmail, setModalEmail] = useState("");
   const [modalSubmitted, setModalSubmitted] = useState(false);
   const [modalSubmitting, setModalSubmitting] = useState(false);
+  const [modalError, setModalError] = useState(false);
   const [toolStack, setToolStack] = useState([]);
   const [toolSpend, setToolSpend] = useState("");
   const [toolSatisfaction, setToolSatisfaction] = useState("");
@@ -501,8 +506,8 @@ export default function IntakeForm() {
             { key: "website", label: "Website (optional)", placeholder: "https://...", type: "url" },
           ].map(f => (
             <div key={f.key}>
-              <label style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, fontWeight: 600, color: "#374151", display: "block", marginBottom: 6 }}>{f.label}</label>
-              <input type={f.type} value={info[f.key]} onChange={e => setInfo({ ...info, [f.key]: e.target.value })}
+              <label htmlFor={`diag-${f.key}`} style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, fontWeight: 600, color: "#374151", display: "block", marginBottom: 6 }}>{f.label}</label>
+              <input id={`diag-${f.key}`} type={f.type} value={info[f.key]} onChange={e => setInfo({ ...info, [f.key]: e.target.value })}
                 placeholder={f.placeholder}
                 style={{ width: "100%", padding: "12px 16px", borderRadius: 10, border: "1.5px solid #E5E7EB", fontFamily: "'DM Sans',sans-serif", fontSize: 14.5, color: "#0F172A", outline: "none", transition: "border-color 0.2s", boxSizing: "border-box", background: "#FAFBFC" }}
                 onFocus={e => e.target.style.borderColor = "#2563EB"}
@@ -602,10 +607,10 @@ export default function IntakeForm() {
         <div style={{ marginBottom: 8 }}>
           <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, fontWeight: 600, color: "#2563EB", textTransform: "uppercase", letterSpacing: "0.08em" }}>Final Question</span>
         </div>
-        <h2 style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 26, fontWeight: 800, color: "#0F172A", margin: "0 0 6px" }}>What&apos;s your biggest challenge right now?</h2>
+        <h2 id="diag-challenge-label" style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 26, fontWeight: 800, color: "#0F172A", margin: "0 0 6px" }}>What&apos;s your biggest challenge right now?</h2>
         <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 14.5, color: "#6B7280", margin: "0 0 24px", lineHeight: 1.6 }}>In your own words -what&apos;s the one thing that, if fixed, would make the biggest difference to your business?</p>
 
-        <textarea value={info.biggestChallenge} onChange={e => setInfo({ ...info, biggestChallenge: e.target.value })}
+        <textarea aria-labelledby="diag-challenge-label" value={info.biggestChallenge} onChange={e => setInfo({ ...info, biggestChallenge: e.target.value })}
           placeholder="e.g. We're growing fast but our processes are a mess. Every new hire makes things more chaotic instead of better. We need systems that scale..."
           rows={6}
           style={{ width: "100%", padding: "16px", borderRadius: 12, border: "1.5px solid #E5E7EB", fontFamily: "'DM Sans',sans-serif", fontSize: 14.5, color: "#0F172A", resize: "vertical", outline: "none", boxSizing: "border-box", background: "#FAFBFC", lineHeight: 1.6 }}
@@ -729,12 +734,18 @@ export default function IntakeForm() {
                 const isToolStackPain = (toolSatisfaction === "No" || toolSatisfaction === "Somewhat") && toolSpend !== "" && toolSpend !== "< $100 / mo";
                 const leadTags = isToolStackPain ? ["tool_stack_pain"] : [];
                 const payload = { info, scores, toolStack, toolSpend, toolSatisfaction };
-                const res = await fetch(FORM_ENDPOINT, {
-                  method: "POST",
-                  headers: { "Content-Type": "text/plain" },
-                  body: JSON.stringify(payload),
-                  mode: "no-cors",
-                });
+                // Secondary copy only (no-cors, response is opaque). A failure here must not
+                // block the CRM capture below, which is what decides success.
+                try {
+                  await fetch(FORM_ENDPOINT, {
+                    method: "POST",
+                    headers: { "Content-Type": "text/plain" },
+                    body: JSON.stringify(payload),
+                    mode: "no-cors",
+                  });
+                } catch (backupErr) {
+                  console.error("[diagnostic] backup copy failed:", backupErr);
+                }
                 // Sync to Delta Labs CRM — same-origin route (was a cross-origin call to
                 // delta-labs-ecosystem.vercel.app with no CORS headers on that route, so the
                 // browser silently blocked it and .catch(() => {}) hid the failure entirely.
@@ -772,16 +783,14 @@ export default function IntakeForm() {
                   setSubmitError("We could not send your details. Please try again, or email neil@mail.deltalabsai.com.");
                 } else {
                   setSubmitted(true);
+                  trackGa4Event("diagnostic_complete", { score: scoreData.pct, industry: info.industry });
                 }
               } catch (err) {
                 setCrmFailed(true);
+                trackGa4Event("diagnostic_crm_failed", { industry: info.industry });
                 setSubmitError("We could not send your details. Please try again, or email neil@mail.deltalabsai.com.");
               } finally {
-                // Fires on both paths. It used to sit at the end of the try, so any throw
-                // from the FORM_ENDPOINT fetch skipped it while the user still saw a
-                // completed diagnostic. That is why GA4 recorded form_submit but
-                // diagnostic_complete never fired once in 90 days.
-                trackGa4Event("diagnostic_complete", { score: scoreData.pct, industry: info.industry });
+                // diagnostic_complete now fires only after the capture request succeeded.
                 setSubmitting(false);
               }
             }} disabled={submitting} style={{
@@ -793,9 +802,14 @@ export default function IntakeForm() {
             }}
               onMouseEnter={e => { if (!submitting) { e.currentTarget.style.transform = "translateY(-1px)"; e.currentTarget.style.boxShadow = "0 6px 20px rgba(15,23,42,0.25)"; }}}
               onMouseLeave={e => { e.currentTarget.style.transform = ""; e.currentTarget.style.boxShadow = ""; }}>
-              {submitting ? "Submitting..." : ab.ctaLabel} {!submitting && <Ic.Arrow />}
+              {submitting ? "Submitting..." : submitError ? "Try again" : ab.ctaLabel} {!submitting && <Ic.Arrow />}
             </button>
-            {submitError && <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, color: "#DC2626", textAlign: "center", marginTop: 10 }}>{submitError}</p>}
+            {submitError && (
+              <div style={{ textAlign: "center", marginTop: 10 }}>
+                <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, color: "#DC2626", margin: "0 0 8px" }}>{submitError}</p>
+                <a href="mailto:neil@mail.deltalabsai.com" style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, fontWeight: 600, color: "#2563EB" }}>Send a short written enquiry instead</a>
+              </div>
+            )}
           </div>
         ) : (
           <div style={{ marginTop: 24 }}>
@@ -851,14 +865,15 @@ export default function IntakeForm() {
             }} aria-label="Close">×</button>
             <div style={{ fontSize: 28, marginBottom: 8 }}>📊</div>
             <h3 style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 18, fontWeight: 800, color: "#0F172A", margin: "0 0 6px" }}>
-              Get your results by email
+              Want us to look at your results?
             </h3>
             <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13.5, color: "#6B7280", margin: "0 0 18px", lineHeight: 1.6 }}>
-              We&apos;ll send you a copy of your diagnostic with tailored recommendations — free, no spam.
+              Leave your email and we will review your diagnostic and reply in writing. We do not send results automatically.
             </p>
             <div style={{ display: "flex", gap: 8 }}>
               <input
                 type="email"
+                aria-label="Your email address"
                 value={modalEmail}
                 onChange={e => setModalEmail(e.target.value)}
                 placeholder="your@email.com"
@@ -876,8 +891,10 @@ export default function IntakeForm() {
                 onClick={async () => {
                   if (!modalEmail) return;
                   setModalSubmitting(true);
-                  await saveRetargetLead(modalEmail, info.name, info.industry, scoreData.pct);
+                  setModalError(false);
+                  const saved = await saveRetargetLead(modalEmail, info.name, info.industry, scoreData.pct);
                   setModalSubmitting(false);
+                  if (!saved) { setModalError(true); return; }
                   setModalSubmitted(true);
                   setTimeout(() => setShowEmailModal(false), 2500);
                 }}
@@ -890,9 +907,14 @@ export default function IntakeForm() {
                   whiteSpace: "nowrap", transition: "all 0.2s",
                 }}
               >
-                {modalSubmitting ? "Sending…" : "Send it →"}
+                {modalSubmitting ? "Sending…" : modalError ? "Try again" : "Send it →"}
               </button>
             </div>
+            {modalError && (
+              <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12.5, color: "#DC2626", margin: "10px 0 0" }}>
+                We could not save that. Please try again, or email <a href="mailto:neil@mail.deltalabsai.com" style={{ color: "#2563EB" }}>neil@mail.deltalabsai.com</a>.
+              </p>
+            )}
             <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, color: "#9CA3AF", marginTop: 10, display: "flex", alignItems: "center", gap: 4 }}>
               <Ic.Lock /> No spam. Unsubscribe any time.
             </p>
@@ -915,7 +937,7 @@ export default function IntakeForm() {
           }}>
             <div style={{ fontSize: 28, marginBottom: 8 }}>✅</div>
             <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 15, fontWeight: 700, color: "#065F46", margin: 0 }}>
-              Results on their way to {modalEmail}!
+              Thanks, we have {modalEmail} and will reply in writing.
             </p>
           </div>
         </div>
